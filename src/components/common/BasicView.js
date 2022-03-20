@@ -13,6 +13,7 @@ import styles from './basicViewStyle';
 const BasicView = ({
     children,
     headerComponent,
+    containerStyle,
 }) => {
     return (
         <View style={globalStyles.fullHeight}>
@@ -36,7 +37,7 @@ const BasicView = ({
             >
                 {headerComponent}
                 <View style={styles.shadow}>
-                    <View style={styles.container}>
+                    <View style={[styles.container, containerStyle]}>
                         {children}
                     </View>
                 </View>

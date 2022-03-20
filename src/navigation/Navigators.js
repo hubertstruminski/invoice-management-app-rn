@@ -2,7 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import {
-    LoginScreen,
+    LoginScreen, 
+    RegisterScreen,
 } from '../screens';
 
 const AppStackNavigator = createStackNavigator();
@@ -17,6 +18,10 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="LoginScreen"
                 component={LoginScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="RegisterScreen"
+                component={RegisterScreen}
             />
         </AppStackNavigator.Navigator>
     );

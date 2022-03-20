@@ -6,5 +6,9 @@ export default StyleSheet.create({
     },
     fullHeight: {
         height: '100%',
-    }
+    },
+    rowCenter: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 });

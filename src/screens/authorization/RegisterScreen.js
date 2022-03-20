@@ -3,8 +3,9 @@ import React from 'react';
 import { 
     BasicView, 
     Button, 
+    Header, 
     Input, 
-    ResponsiveText 
+    ResponsiveText
 } from '../../components';
 import { 
     MAIN_GRAY, 
@@ -16,17 +17,20 @@ import {
     LockIcon, 
 } from '../../../assets';
 
-const LoginScreen = ({
+const RegisterScreen = ({
     navigation: {
         navigate,
     },
 }) => {
     return (
-        <BasicView containerStyle={styles.container}>
+        <BasicView 
+            containerStyle={styles.container}
+            headerComponent={<Header />}
+        >
             <ResponsiveText 
-                text="Invoice Management App"
+                text="Get Started!"
                 color={MAIN_GRAY}
-                fontStyle="appTitle"
+                fontStyle="registerTitle"
                 customStyle={styles.appTitleContainer}
             />
             <Input 
@@ -35,24 +39,26 @@ const LoginScreen = ({
                 leftIcon={<UserIcon />}
             />
             <Input 
+                leftTitle="Full name"
+                placeholder="Enter full name"
+            />
+            <Input 
                 leftTitle="Password"
                 placeholder="Enter password"
                 leftIcon={<LockIcon />}
-                containerStyle={styles.lastInputSpace}
             />
+            <Input 
+                leftTitle="Confirm password"
+                placeholder="Enter password"
+                leftIcon={<LockIcon />}
+                containerStyle={styles.lastInputSpace}
+            />   
             <Button 
                 color={WHITE}
-                text="Log In"
-            />
-            <Button 
-                color={MAIN_GRAY}
-                text="Register an Account"
-                backgroundColor="transparent"
-                isOutline
-                onPress={() => navigate('RegisterScreen')}
+                text="Create an Account"
             />
         </BasicView>
     );
 }
 
-export default LoginScreen;
+export default RegisterScreen;
