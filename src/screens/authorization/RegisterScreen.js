@@ -56,6 +56,7 @@ const RegisterScreen = ({
             <Button 
                 color={WHITE}
                 text="Create an Account"
+                onPress={() => navigate('DashboardScreen')}
             />
         </BasicView>
     );

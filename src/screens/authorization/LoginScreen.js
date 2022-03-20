@@ -43,6 +43,7 @@ const LoginScreen = ({
             <Button 
                 color={WHITE}
                 text="Log In"
+                onPress={() => navigate('DashboardScreen')}
             />
             <Button 
                 color={MAIN_GRAY}

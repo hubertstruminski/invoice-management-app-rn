@@ -4,6 +4,7 @@ import ResponsiveText from './common/responsiveText/ResponsiveText';
 import Button from './common/buttons/Button';
 import Input from './common/inputs/Input';
 import Header from './common/header/Header';
+import EntityTile from './common/tile/EntityTile';
 
 export {
     globalStyles,
@@ -12,4 +13,5 @@ export {
     Button,
     Input,
     Header,
+    EntityTile,
 };

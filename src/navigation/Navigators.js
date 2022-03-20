@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import {
+    DashboardScreen,
     LoginScreen, 
     RegisterScreen,
 } from '../screens';
@@ -22,6 +23,10 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="RegisterScreen"
                 component={RegisterScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="DashboardScreen"
+                component={DashboardScreen}
             />
         </AppStackNavigator.Navigator>
     );
