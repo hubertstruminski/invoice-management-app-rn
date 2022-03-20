@@ -40,8 +40,19 @@ export default StyleSheet.create({
         width: '100%', 
         paddingHorizontal: wp(16), 
         paddingTop: hp(24),
+        overflow: 'hidden',
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
     },
     mediumToSpace: {
         marginTop: hp(24),
+    },
+    largeSpace: {
+        marginBottom: hp(48),
+    },
+    parentFlatList: {
+        overflow: 'hidden',
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
     },
 });

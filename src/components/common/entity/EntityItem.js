@@ -18,17 +18,18 @@ import styles from './entityItemStyle';
 
 const EntityItem = ({
     children,
+    height = hp(64),
 }) => {
     return (
         <View style={globalStyles.shadow}>
             <View 
                 style={[
                     styles.container, {
-                        height: hp(64),
+                        height: height,
                     }
                 ]}
             >
-                <View style={styles.columnContainer}>
+                <View style={styles.columnStretchContainer}>
                     <View style={styles.columnContainer}>
                         {children}
                     </View>

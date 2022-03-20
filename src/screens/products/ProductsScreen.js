@@ -1,44 +1,48 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { 
+    FlatList, 
+    View,
+} from 'react-native';
 
 import { 
     BasicView, 
     Header, 
     Button,
     EntityItem,
-    ResponsiveText,
     globalStyles,
+    ProductItem,
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
-import { COMPANIES } from '../../mocks';
+import { PRODUCTS } from '../../mocks';
+import { hp } from '../../tools';
 
-const MyCompaniesScreen = props => {
+const ProductsScreen = () => {
     return (
         <BasicView 
             headerComponent={
-                <Header 
-                    title="My companies" 
-                />
+                <Header title="Products" />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add company"
+                        text="Add product"
                         backgroundColor="transparent"
                         isOutline
-                        customStyle={globalStyles.mediumToSpace}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={COMPANIES}
+                data={PRODUCTS}
                 renderItem={({ item, index }) => (
-                    <EntityItem key={index}>
-                        <ResponsiveText 
-                            fontStyle="header"
-                            color={MAIN_GRAY}
-                            text={item.name}
+                    <EntityItem 
+                        key={index}
+                        height={hp(128)}
+                    >
+                        <ProductItem 
+                            name={item.name}
+                            price={item.price}
+                            amount={item.amount}
                         />
                     </EntityItem>
                 )}
@@ -51,4 +55,4 @@ const MyCompaniesScreen = props => {
     );
 }
 
-export default MyCompaniesScreen;
+export default ProductsScreen;

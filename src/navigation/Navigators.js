@@ -2,11 +2,14 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import {
+    CustomersScreen,
     DashboardScreen,
+    InvoicesScreen,
     LoginScreen, 
     RegisterScreen,
+    MyCompaniesScreen,
+    ProductsScreen,
 } from '../screens';
-import MyCompaniesScreen from '../screens/company/MyCompaniesScreen';
 
 const AppStackNavigator = createStackNavigator();
 
@@ -32,6 +35,18 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="MyCompaniesScreen"
                 component={MyCompaniesScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="CustomersScreen"
+                component={CustomersScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="InvoicesScreen"
+                component={InvoicesScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="ProductsScreen"
+                component={ProductsScreen}
             />
         </AppStackNavigator.Navigator>
     );

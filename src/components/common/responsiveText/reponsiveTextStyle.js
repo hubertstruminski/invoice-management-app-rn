@@ -43,5 +43,15 @@ export default StyleSheet.create({
         fontSize: RFValue(18, 844),
         lineHeight: hp(18),
         fontFamily: 'Roboto-Regular',
-    }
+    },
+    regularSmallText: {
+        fontSize: RFValue(16, 844),
+        lineHeight: hp(16),
+        fontFamily: 'Roboto-Regular',
+    },
+    boldSmallText: {
+        fontSize: RFValue(16, 844),
+        lineHeight: hp(16),
+        fontFamily: 'Roboto-Bold',
+    },
 });

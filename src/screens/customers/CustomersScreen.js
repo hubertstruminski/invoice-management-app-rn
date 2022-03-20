@@ -1,44 +1,48 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { 
+    FlatList,
+    View, 
+} from 'react-native';
 
 import { 
     BasicView, 
     Header, 
     Button,
     EntityItem,
-    ResponsiveText,
     globalStyles,
+    CustomerItem,
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
-import { COMPANIES } from '../../mocks';
+import { CUSTOMERS } from '../../mocks';
+import { hp } from '../../tools';
 
-const MyCompaniesScreen = props => {
+const CustomersScreen = props => {
     return (
         <BasicView 
             headerComponent={
-                <Header 
-                    title="My companies" 
-                />
+                <Header title="Customers" />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add company"
+                        text="Add customer"
                         backgroundColor="transparent"
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={COMPANIES}
+                data={CUSTOMERS}
                 renderItem={({ item, index }) => (
-                    <EntityItem key={index}>
-                        <ResponsiveText 
-                            fontStyle="header"
-                            color={MAIN_GRAY}
-                            text={item.name}
+                    <EntityItem 
+                        key={index}
+                        height={hp(96)}
+                    >
+                        <CustomerItem 
+                            fullName={item.fullName}
+                            email={item.email}
                         />
                     </EntityItem>
                 )}
@@ -51,4 +55,4 @@ const MyCompaniesScreen = props => {
     );
 }
 
-export default MyCompaniesScreen;
+export default CustomersScreen;

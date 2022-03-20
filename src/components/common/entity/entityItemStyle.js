@@ -17,12 +17,21 @@ export default StyleSheet.create({
         backgroundColor: WHITE,
         borderRadius: 16,
     },
-    columnContainer: {
+    columnStretchContainer: {
         flexDirection: 'column',
         justifyContent: 'space-between',
+    },
+    columnContainer: {
+        flexDirection: 'column',
         flex: 1,
     },
     iconSpace: {
         marginRight: wp(18.67),
+    },
+    smallBottomSpace: {
+        marginBottom: hp(8),
+    },
+    mediumBottomSpace: {
+        marginBottom: hp(16),
     },
 });

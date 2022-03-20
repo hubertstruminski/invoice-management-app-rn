@@ -8,6 +8,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { globalStyles } from '..';
 import { MAIN_ORANGE } from '../../contants/colors';
+import { hp } from '../../tools';
 import styles from './basicViewStyle';
 
 const BasicView = ({
@@ -16,7 +17,7 @@ const BasicView = ({
     containerStyle,
 }) => {
     return (
-        <View style={globalStyles.fullHeight}>
+        <React.Fragment>
             { Platform.OS === 'android' ? (
                     <StatusBar backgroundColor={MAIN_ORANGE} />
                 ) : (
@@ -35,14 +36,19 @@ const BasicView = ({
                     }
                 ]}
             >
+                <View style={{
+                    height: hp(84)
+                    }}>
                 {headerComponent}
+                </View>
+                
                 <View style={styles.shadow}>
                     <View style={[styles.container, containerStyle]}>
                         {children}
                     </View>
                 </View>
             </View>
-        </View>
+        </React.Fragment>
     );
 }
 

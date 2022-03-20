@@ -9,16 +9,16 @@ import { hp } from '../../tools';
 
 export default StyleSheet.create({
     container: {
-        height: hp(740),
+        // height: hp(740),
         backgroundColor: WHITE,
         width: '100%',  
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24, 
+        flex: 1,
     },
     wrapper: {
-        height: '100%',
+        flex: 1,
         backgroundColor: MAIN_ORANGE,
-        alignItems: 'center',
     },
     shadow: {
         shadowColor: BLACK,
@@ -28,7 +28,8 @@ export default StyleSheet.create({
         elevation: 3,
         backgroundColor: WHITE,
         borderRadius: 24,
-        height: hp(740),
+        // height: hp(740),
+        flexGrow: 1,
         width: '100%',
     },
 });
