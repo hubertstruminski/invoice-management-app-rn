@@ -5,7 +5,10 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { ResponsiveText } from '../..';
+import { 
+    globalStyles, 
+    ResponsiveText, 
+} from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 import styles from './entityTileStyle';
 import { navigateFromTile } from '../../../tools';
@@ -19,7 +22,7 @@ const EntityTile = ({
     const { navigate } = useNavigation();
 
     return (
-        <View style={[styles.shadow, customStyle]}>
+        <View style={[globalStyles.shadow, customStyle]}>
             <TouchableWithoutFeedback 
                 onPress={() => navigateFromTile(label, navigate)}
             >

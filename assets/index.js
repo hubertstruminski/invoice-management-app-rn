@@ -7,6 +7,8 @@ import CustomersIcon from './icons-js/dashboard/customers';
 import InvoicesIcon from './icons-js/dashboard/invoices';
 import ProductsIcon from './icons-js/dashboard/products';
 import TaxesIcon from './icons-js/dashboard/taxes';
+import EditIcon from './icons-js/edit';
+import TrashIcon from './icons-js/trash';
 
 export {
     LockIcon,
@@ -18,4 +20,6 @@ export {
     InvoicesIcon,
     ProductsIcon,
     TaxesIcon,
+    EditIcon,
+    TrashIcon,
 };

@@ -17,12 +17,14 @@ const Button = ({
     backgroundColor = MAIN_ORANGE,
     isOutline,
     onPress,
+    customStyle,
 }) => {
     return (
         <TouchableWithoutFeedback onPress={onPress}> 
             <View 
                 style={[
-                    styles.container, {
+                    styles.container,
+                    customStyle, {
                         backgroundColor: backgroundColor,
                         borderWidth: isOutline ? 2 : 0,
                         borderColor: isOutline && MAIN_GRAY,

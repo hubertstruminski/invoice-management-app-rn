@@ -5,6 +5,7 @@ import Button from './common/buttons/Button';
 import Input from './common/inputs/Input';
 import Header from './common/header/Header';
 import EntityTile from './common/tile/EntityTile';
+import EntityItem from './common/entity/EntityItem';
 
 export {
     globalStyles,
@@ -14,4 +15,5 @@ export {
     Input,
     Header,
     EntityTile,
+    EntityItem,
 };

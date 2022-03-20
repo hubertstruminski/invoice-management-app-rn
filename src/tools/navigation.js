@@ -1,6 +1,7 @@
 export const navigateFromTile = (label, navigate) => {
-    switch(label.toLowerCase()) {
+    switch(label) {
         case "myCompanies":
+            navigate('MyCompaniesScreen');
             break;
         case "customers":
             break;

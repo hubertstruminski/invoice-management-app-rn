@@ -8,7 +8,6 @@ import {
     globalStyles,
 } from '../../components';
 import { DASHBOARD_TILES } from '../../mocks';
-import styles from './dashboardScreenStyle';
 
 const DashboardScreen = () => {
     return (
@@ -33,7 +32,7 @@ const DashboardScreen = () => {
                 )}
                 bounces={false}
                 numColumns={2}
-                style={styles.flatListContainer}
+                style={globalStyles.flatListContainer}
                 columnWrapperStyle={globalStyles.spaceBetween}
             />
         </BasicView>

@@ -13,5 +13,8 @@ export default StyleSheet.create({
     },
     lastInputSpace: {
         marginBottom: hp(48),
-    }
+    },
+    zeroBottomSpace: {
+        marginBottom: 0,
+    },
 });

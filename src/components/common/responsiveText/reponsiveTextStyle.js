@@ -38,5 +38,10 @@ export default StyleSheet.create({
         fontSize: RFValue(18, 844),
         lineHeight: hp(18),
         fontFamily: 'Roboto-Medium',
+    },
+    details: {
+        fontSize: RFValue(18, 844),
+        lineHeight: hp(18),
+        fontFamily: 'Roboto-Regular',
     }
 });
