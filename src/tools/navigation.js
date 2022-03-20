@@ -13,6 +13,7 @@ export const navigateFromTile = (label, navigate) => {
             navigate('ProductsScreen');
             break;
         case "taxes":
+            navigate('TaxesScreen');
             break;
         default: 
             break;

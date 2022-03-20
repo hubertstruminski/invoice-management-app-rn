@@ -35,7 +35,7 @@ const ProductItem = ({
                 <ResponsiveText 
                     fontStyle="regularSmallText"
                     color={MAIN_GRAY}
-                    text={price}
+                    text={price + " $"}
                 />
             </View>
             <View style={globalStyles.rowCenter}>

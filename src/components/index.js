@@ -9,6 +9,7 @@ import EntityItem from './common/entity/EntityItem';
 import CustomerItem from './common/entity/CustomerItem';
 import InvoiceItem from './common/entity/InvoiceItem';
 import ProductItem from './common/entity/ProductItem';
+import TaxItem from './common/entity/TaxItem';
 
 export {
     globalStyles,
@@ -22,4 +23,5 @@ export {
     CustomerItem,
     InvoiceItem,
     ProductItem,
+    TaxItem,
 };

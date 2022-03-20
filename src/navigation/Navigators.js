@@ -9,6 +9,7 @@ import {
     RegisterScreen,
     MyCompaniesScreen,
     ProductsScreen,
+    TaxesScreen,
 } from '../screens';
 
 const AppStackNavigator = createStackNavigator();
@@ -47,6 +48,10 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="ProductsScreen"
                 component={ProductsScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="TaxesScreen"
+                component={TaxesScreen}
             />
         </AppStackNavigator.Navigator>
     );

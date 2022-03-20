@@ -3,6 +3,7 @@ import { COMPANIES } from './companyMocks';
 import { CUSTOMERS } from './customerMocks';
 import { INVOICES } from './invoiceMocks';
 import { PRODUCTS } from './productMocks';
+import { TAXES } from './taxMocks';
 
 export {
     DASHBOARD_TILES,
@@ -10,4 +11,5 @@ export {
     CUSTOMERS,
     INVOICES,
     PRODUCTS,
+    TAXES,
 };

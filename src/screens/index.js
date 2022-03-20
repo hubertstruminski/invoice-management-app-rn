@@ -5,6 +5,7 @@ import CustomersScreen from './customers/CustomersScreen';
 import InvoicesScreen from './invoices/InvoicesScreen';
 import MyCompaniesScreen from './company/MyCompaniesScreen';
 import ProductsScreen from './products/ProductsScreen';
+import TaxesScreen from './taxes/TaxesScreen';
 
 export {
     LoginScreen,
@@ -14,4 +15,5 @@ export {
     InvoicesScreen,
     MyCompaniesScreen,
     ProductsScreen,
+    TaxesScreen,
 };
