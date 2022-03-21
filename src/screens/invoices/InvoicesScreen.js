@@ -3,6 +3,7 @@ import {
     FlatList, 
     View,
 } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import { 
     BasicView, 
@@ -16,13 +17,19 @@ import { MAIN_GRAY } from '../../contants/colors';
 import { INVOICES } from '../../mocks';
 import { hp } from '../../tools';
 
-const InvoicesScreen = () => {
+const InvoicesScreen = ({
+    navigation: {
+        navigate,
+    },
+}) => {
     return (
         <BasicView 
             headerComponent={
                 <Header title="Invoices" />
             }
         >
+            {/* <TouchableWithoutFeedback>
+            <View> */}
             <FlatList
                 ListHeaderComponent={
                     <Button 
@@ -30,6 +37,7 @@ const InvoicesScreen = () => {
                         text="Add invoice"
                         backgroundColor="transparent"
                         isOutline
+                        onPress={() => navigate('AddInvoiceScreen')}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -47,10 +55,12 @@ const InvoicesScreen = () => {
                     </EntityItem>
                 )}
                 style={globalStyles.flatListContainer}
-                contentContainerStyle={globalStyles.alignCenter}
+                contentContainerStyle={[globalStyles.alignCenter, {flexGrow: 1}]}
                 ListFooterComponent={<View />}
                 ListFooterComponentStyle={globalStyles.largeSpace}
             />
+            {/* </View>
+            </TouchableWithoutFeedback> */}
         </BasicView>
     );
 }

@@ -3,10 +3,10 @@ import {
     Platform, 
     StatusBar, 
     View, 
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { globalStyles } from '..';
 import { MAIN_ORANGE } from '../../contants/colors';
 import { hp } from '../../tools';
 import styles from './basicViewStyle';
@@ -29,25 +29,24 @@ const BasicView = ({
                     />
                 )
             }
-            <View 
-                style={[
-                    styles.wrapper, {
-                        justifyContent: headerComponent ? 'space-between' : 'flex-end',
-                    }
-                ]}
-            >
-                <View style={{
-                    height: hp(84)
-                    }}>
-                {headerComponent}
-                </View>
-                
-                <View style={styles.shadow}>
-                    <View style={[styles.container, containerStyle]}>
-                        {children}
+                <View 
+                    style={[
+                        styles.wrapper, {
+                            justifyContent: headerComponent ? 'space-between' : 'flex-end',
+                        }
+                    ]}
+                >
+                    
+                    <View style={{ height: hp(84) }}>
+                        {headerComponent}
+                    </View>
+                    
+                    <View style={styles.shadow}>
+                        <View style={[styles.container, containerStyle]}>
+                            {children}
+                        </View>
                     </View>
                 </View>
-            </View>
         </React.Fragment>
     );
 }

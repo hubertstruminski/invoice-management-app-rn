@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native';
-import { GRAY_3, MAIN_GRAY } from '../../../contants/colors';
-import { hp, wp } from '../../../tools';
+
+import globalStyles from '../globalStyles';
+import { 
+    GRAY_3, 
+    MAIN_GRAY, 
+    WHITE,}
+     from '../../../contants/colors';
+import { 
+    hp, 
+    wp, 
+} from '../../../tools';
 
 export default StyleSheet.create({
     container: {
@@ -37,5 +46,15 @@ export default StyleSheet.create({
     errorSpace: {
         marginTop: hp(8),
         marginLeft: wp(16),
+    },
+    dropdownContainer: {
+        borderRadius: 8,
+        backgroundColor: WHITE,
+    },
+    shadow: {
+        ...globalStyles.shadow,
+        borderRadius: 8,
+        marginTop: hp(16),
+        width: wp(344),
     }
 });

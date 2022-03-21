@@ -1,5 +1,8 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { 
+    FlatList, 
+    View, 
+} from 'react-native';
 
 import { 
     BasicView, 
@@ -12,7 +15,11 @@ import {
 import { MAIN_GRAY } from '../../contants/colors';
 import { COMPANIES } from '../../mocks';
 
-const MyCompaniesScreen = props => {
+const MyCompaniesScreen = ({
+    navigation: {
+        navigate,
+    },
+}) => {
     return (
         <BasicView 
             headerComponent={
@@ -29,6 +36,7 @@ const MyCompaniesScreen = props => {
                         backgroundColor="transparent"
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
+                        onPress={() => navigate('AddCompanyScreen')}
                     />
                 } 
                 showsVerticalScrollIndicator={false}

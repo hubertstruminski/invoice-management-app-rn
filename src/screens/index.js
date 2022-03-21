@@ -6,6 +6,11 @@ import InvoicesScreen from './invoices/InvoicesScreen';
 import MyCompaniesScreen from './company/MyCompaniesScreen';
 import ProductsScreen from './products/ProductsScreen';
 import TaxesScreen from './taxes/TaxesScreen';
+import AddCompanyScreen from './company/AddCompanyScreen';
+import AddCustomerScreen from './customers/AddCustomerScreen';
+import AddInvoiceScreen from './invoices/AddInvoiceScreen';
+import AddTaxScreen from './taxes/AddTaxScreen';
+import AddProductScreen from './products/AddProductScreen';
 
 export {
     LoginScreen,
@@ -16,4 +21,9 @@ export {
     MyCompaniesScreen,
     ProductsScreen,
     TaxesScreen,
+    AddCompanyScreen,
+    AddCustomerScreen,
+    AddInvoiceScreen,
+    AddTaxScreen,
+    AddProductScreen,
 };

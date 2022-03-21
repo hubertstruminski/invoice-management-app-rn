@@ -16,7 +16,11 @@ import { MAIN_GRAY } from '../../contants/colors';
 import { CUSTOMERS } from '../../mocks';
 import { hp } from '../../tools';
 
-const CustomersScreen = props => {
+const CustomersScreen = ({
+    navigation: {
+        navigate,
+    },
+}) => {
     return (
         <BasicView 
             headerComponent={
@@ -31,6 +35,7 @@ const CustomersScreen = props => {
                         backgroundColor="transparent"
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
+                        onPress={() => navigate('AddCustomerScreen')}
                     />
                 } 
                 showsVerticalScrollIndicator={false}

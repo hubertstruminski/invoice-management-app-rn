@@ -16,7 +16,11 @@ import { MAIN_GRAY } from '../../contants/colors';
 import { PRODUCTS } from '../../mocks';
 import { hp } from '../../tools';
 
-const ProductsScreen = () => {
+const ProductsScreen = ({
+    navigation: {
+        navigate,
+    },
+}) => {
     return (
         <BasicView 
             headerComponent={
@@ -30,6 +34,7 @@ const ProductsScreen = () => {
                         text="Add product"
                         backgroundColor="transparent"
                         isOutline
+                        onPress={() => navigate('AddProductScreen')}
                     />
                 } 
                 showsVerticalScrollIndicator={false}

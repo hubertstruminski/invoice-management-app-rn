@@ -16,7 +16,11 @@ import { MAIN_GRAY } from '../../contants/colors';
 import { TAXES } from '../../mocks';
 import { hp } from '../../tools';
 
-const TaxesScreen = () => {
+const TaxesScreen = ({
+    navigation: {
+        navigate,
+    },
+}) => {
     return (
         <BasicView 
             headerComponent={
@@ -30,6 +34,7 @@ const TaxesScreen = () => {
                         text="Add tax"
                         backgroundColor="transparent"
                         isOutline
+                        onPress={() => navigate('AddTaxScreen')}
                     />
                 } 
                 showsVerticalScrollIndicator={false}

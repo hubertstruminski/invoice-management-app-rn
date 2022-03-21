@@ -9,6 +9,8 @@ import ProductsIcon from './icons-js/dashboard/products';
 import TaxesIcon from './icons-js/dashboard/taxes';
 import EditIcon from './icons-js/edit';
 import TrashIcon from './icons-js/trash';
+import CalendarIcon from './icons-js/calendar';
+import ArrowDownIcon from './icons-js/arrowDown';
 
 export {
     LockIcon,
@@ -22,4 +24,6 @@ export {
     TaxesIcon,
     EditIcon,
     TrashIcon,
+    CalendarIcon,
+    ArrowDownIcon,
 };

@@ -55,4 +55,20 @@ export default StyleSheet.create({
         borderTopLeftRadius: 24,
         borderTopRightRadius: 24,
     },
+    regularBottomSpace: {
+        marginBottom: hp(16),
+    },
+    largeTopSpace: {
+        paddingTop: hp(48),
+    },
+    addEntityScrollViewContainer: {
+        // paddingBottom: hp(48),
+        paddingTop: hp(48),
+    },
+    largeBottomPadding: {
+        marginBottom: hp(72),
+    },
+    mediumBottomSpace: {
+        marginBottom: hp(24),
+    },
 });
