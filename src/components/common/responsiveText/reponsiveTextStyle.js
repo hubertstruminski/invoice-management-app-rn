@@ -54,4 +54,24 @@ export default StyleSheet.create({
         lineHeight: hp(16),
         fontFamily: 'Roboto-Bold',
     },
+    headerDetails: {
+        fontSize: RFValue(24, 844),
+        lineHeight: hp(24),
+        fontFamily: 'Roboto-Bold',
+    },
+    regularHeaderDetails: {
+        fontSize: RFValue(24, 844),
+        lineHeight: hp(24),
+        fontFamily: 'Roboto-Regular',
+    },
+    labelDetails: {
+        fontSize: RFValue(16, 844),
+        lineHeight: hp(18.75),
+        fontFamily: 'Roboto-Medium', 
+    },
+    smallDetailsTitle: {
+        fontSize: RFValue(18, 844),
+        lineHeight: hp(18),
+        fontFamily: 'Roboto-Bold',
+    }
 });

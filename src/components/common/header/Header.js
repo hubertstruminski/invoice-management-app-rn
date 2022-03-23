@@ -13,8 +13,9 @@ import styles from './headerStyle';
 const Header = ({
     withBackArrow = true,
     title,
+    withLogout = true,
 }) => {
-    const { goBack } = useNavigation();
+    const { goBack, navigate } = useNavigation();
 
     return (
         <View style={styles.container}>
@@ -34,7 +35,19 @@ const Header = ({
                     color={MAIN_GRAY}
                 />
             }
-            <View></View>
+            <View>
+                {withLogout &&
+                    <TouchableWithoutFeedback onPress={() => navigate('LoginScreen')}>
+                        <View>
+                            <ResponsiveText 
+                                fontStyle="header"
+                                text="Logout"
+                                color={MAIN_GRAY}
+                            />
+                        </View>
+                    </TouchableWithoutFeedback> 
+                }
+            </View>
         </View>
     );
 }

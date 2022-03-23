@@ -43,6 +43,7 @@ const ProductsScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(128)}
+                        type="product"
                     >
                         <ProductItem 
                             name={item.name}

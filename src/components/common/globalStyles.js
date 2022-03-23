@@ -62,7 +62,6 @@ export default StyleSheet.create({
         paddingTop: hp(48),
     },
     addEntityScrollViewContainer: {
-        // paddingBottom: hp(48),
         paddingTop: hp(48),
     },
     largeBottomPadding: {
@@ -71,4 +70,36 @@ export default StyleSheet.create({
     mediumBottomSpace: {
         marginBottom: hp(24),
     },
+    smallLabelSpace: {
+        marginBottom: hp(8),
+    },
+    detailsContainer: {
+        minWidth: '100%', 
+        paddingHorizontal: wp(16),
+    },
+    bottomIconDetailsContainer: {
+        height: '100%', 
+        maxWidth: '100%', 
+        paddingHorizontal: wp(16), 
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center'
+    },
+    smallMediumDetailsSpace: {
+        paddingTop: hp(32),
+        paddingBottom: hp(32),
+    },
+    textAlignCenter: {
+        textAlign: 'center', 
+        minWidth: '100%',
+    },
+    mediumBottomPadding: {
+        paddingBottom: hp(32),
+    },
+    zeroBottomPaddingSpace: {
+        paddingBottom: 0,
+    },
+    mediumTopPadding: {
+        paddingTop: hp(32),
+    } 
 });

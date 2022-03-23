@@ -30,7 +30,6 @@ const DashboardScreen = () => {
                         label={item.label}
                     />
                 )}
-                bounces={false}
                 numColumns={2}
                 style={globalStyles.flatListContainer}
                 columnWrapperStyle={globalStyles.spaceBetween}

@@ -28,8 +28,6 @@ const InvoicesScreen = ({
                 <Header title="Invoices" />
             }
         >
-            {/* <TouchableWithoutFeedback>
-            <View> */}
             <FlatList
                 ListHeaderComponent={
                     <Button 
@@ -46,6 +44,7 @@ const InvoicesScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(112)}
+                        type="invoice"
                     >
                         <InvoiceItem 
                             number={item.number}
@@ -59,8 +58,6 @@ const InvoicesScreen = ({
                 ListFooterComponent={<View />}
                 ListFooterComponentStyle={globalStyles.largeSpace}
             />
-            {/* </View>
-            </TouchableWithoutFeedback> */}
         </BasicView>
     );
 }

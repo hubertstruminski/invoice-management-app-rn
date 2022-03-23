@@ -25,7 +25,7 @@ const RegisterScreen = ({
     return (
         <BasicView 
             containerStyle={styles.container}
-            headerComponent={<Header />}
+            headerComponent={<Header withLogout={false} />}
         >
             <ResponsiveText 
                 text="Get Started!"

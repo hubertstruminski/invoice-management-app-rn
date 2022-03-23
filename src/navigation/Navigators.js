@@ -15,6 +15,10 @@ import {
     AddInvoiceScreen,
     AddTaxScreen,
     AddProductScreen,
+    MyCompanyDetailsScreen,
+    TaxDetailsScreen,
+    ProductDetailsScreen,
+    InvoiceDetailsScreen,
 } from '../screens';
 
 const AppStackNavigator = createStackNavigator();
@@ -77,6 +81,22 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="AddProductScreen"
                 component={AddProductScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="MyCompanyDetailsScreen"
+                component={MyCompanyDetailsScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="TaxDetailsScreen"
+                component={TaxDetailsScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="ProductDetailsScreen"
+                component={ProductDetailsScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="InvoiceDetailsScreen"
+                component={InvoiceDetailsScreen}
             />
         </AppStackNavigator.Navigator>
     );

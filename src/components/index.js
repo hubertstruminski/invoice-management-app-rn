@@ -12,6 +12,7 @@ import ProductItem from './common/entity/ProductItem';
 import TaxItem from './common/entity/TaxItem';
 import Dropdown from './common/inputs/Dropdown';
 import DropdownItem from './common/inputs/DropdownItem';
+import ProductPreview from './common/preview/ProductPreview';
 
 export {
     globalStyles,
@@ -28,4 +29,5 @@ export {
     TaxItem,
     Dropdown,
     DropdownItem,
+    ProductPreview,
 };

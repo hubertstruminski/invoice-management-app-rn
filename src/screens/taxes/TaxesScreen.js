@@ -43,6 +43,7 @@ const TaxesScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(64)}
+                        type="tax"
                     >
                         <TaxItem 
                             name={item.name}

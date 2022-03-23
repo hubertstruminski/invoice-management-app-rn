@@ -42,7 +42,10 @@ const MyCompaniesScreen = ({
                 showsVerticalScrollIndicator={false}
                 data={COMPANIES}
                 renderItem={({ item, index }) => (
-                    <EntityItem key={index}>
+                    <EntityItem 
+                        key={index}
+                        type="company"
+                    >
                         <ResponsiveText 
                             fontStyle="header"
                             color={MAIN_GRAY}
