@@ -13,7 +13,12 @@ const ProductPreview = () => {
     const icon = PRODUCT_PREVIEW_ICONS[Math.floor(Math.random() * PRODUCT_PREVIEW_ICONS.length)];
     
     return (
-        <View style={[globalStyles.shadow, styles.shadowSpace]}>
+        <View 
+            style={[
+                globalStyles.shadow, 
+                styles.shadowSpace,
+            ]}
+        >
             <View style={styles.productContainer}>
                 <View style={styles.columnContainer}>
                     <ResponsiveText 
@@ -22,7 +27,12 @@ const ProductPreview = () => {
                         text="Banan"
                     />
                     <View>
-                        <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
+                        <View 
+                            style={[
+                                globalStyles.rowCenter, 
+                                globalStyles.smallLabelSpace,
+                            ]}
+                        >
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={MAIN_GRAY}

@@ -6,6 +6,7 @@ import {
 
 import { CompanyDetailsIcon } from '../../../assets';
 import { 
+    AddressDetails,
     BasicView, 
     globalStyles, 
     Header, 
@@ -31,53 +32,22 @@ const MyCompanyDetailsScreen = () => {
                     customStyle={globalStyles.largeSpace}
                 />
                 <View style={globalStyles.detailsContainer}>
-                    <ResponsiveText 
-                        fontStyle="labelDetails"
-                        color={MAIN_GRAY}
-                        text={"Street" + ":"} 
-                        customStyle={globalStyles.smallLabelSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="rightInputTitle"
-                        color={MAIN_GRAY}
-                        text="Karmelicka 45/32"
-                        customStyle={globalStyles.mediumBottomSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="labelDetails"
-                        color={MAIN_GRAY}
-                        text={"Postalcode" + ":"} 
-                        customStyle={globalStyles.smallLabelSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="rightInputTitle"
-                        color={MAIN_GRAY}
-                        text="31-345"
-                        customStyle={globalStyles.mediumBottomSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="labelDetails"
-                        color={MAIN_GRAY}
-                        text={"City" + ":"} 
-                        customStyle={globalStyles.smallLabelSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="rightInputTitle"
-                        color={MAIN_GRAY}
-                        text="Cracow"
-                        customStyle={globalStyles.mediumBottomSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="labelDetails"
-                        color={MAIN_GRAY}
-                        text={"Country" + ":"} 
-                        customStyle={globalStyles.smallLabelSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="rightInputTitle"
-                        color={MAIN_GRAY}
-                        text="Poland"
-                    />
+                    <AddressDetails 
+                        separatorStyle={globalStyles.mediumBottomSpace}
+                    >
+                        <ResponsiveText 
+                            fontStyle="labelDetails"
+                            color={MAIN_GRAY}
+                            text={"Postalcode" + ":"} 
+                            customStyle={globalStyles.smallLabelSpace}
+                        />
+                        <ResponsiveText 
+                            fontStyle="rightInputTitle"
+                            color={MAIN_GRAY}
+                            text="31-345"
+                            customStyle={globalStyles.mediumBottomSpace}
+                        />
+                    </AddressDetails>
                 </View>
                 <View style={globalStyles.bottomIconDetailsContainer}>
                     <CompanyDetailsIcon />

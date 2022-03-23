@@ -24,6 +24,27 @@ import {
 
 const AppStackNavigator = createStackNavigator();
 
+const routes = [
+    { name: 'LoginScreen', component: LoginScreen },
+    { name: 'RegisterScreen', component: RegisterScreen },
+    { name: 'DashboardScreen', component: DashboardScreen },
+    { name: 'MyCompaniesScreen', component: MyCompaniesScreen },
+    { name: 'CustomersScreen', component: CustomersScreen },
+    { name: 'InvoicesScreen', component: InvoicesScreen },
+    { name: 'ProductsScreen', component: ProductsScreen },
+    { name: 'TaxesScreen', component: TaxesScreen },
+    { name: 'AddCompanyScreen', component: AddCompanyScreen },
+    { name: 'AddCustomerScreen', component: AddCustomerScreen },
+    { name: 'AddInvoiceScreen', component: AddInvoiceScreen },
+    { name: 'AddTaxScreen', component: AddTaxScreen },
+    { name: 'AddProductScreen', component: AddProductScreen },
+    { name: 'MyCompanyDetailsScreen', component: MyCompanyDetailsScreen },
+    { name: 'TaxDetailsScreen', component: TaxDetailsScreen },
+    { name: 'ProductDetailsScreen', component: ProductDetailsScreen },
+    { name: 'InvoiceDetailsScreen', component: InvoiceDetailsScreen },
+    { name: 'CustomerDetailsScreen', component: CustomerDetailsScreen }, 
+];
+
 export default () => {
     return (
         <AppStackNavigator.Navigator
@@ -31,78 +52,13 @@ export default () => {
             screenOptions={{ headerShown: false }}
             mode="modal"
         >
-            <AppStackNavigator.Screen 
-                name="LoginScreen"
-                component={LoginScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="RegisterScreen"
-                component={RegisterScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="DashboardScreen"
-                component={DashboardScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="MyCompaniesScreen"
-                component={MyCompaniesScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="CustomersScreen"
-                component={CustomersScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="InvoicesScreen"
-                component={InvoicesScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="ProductsScreen"
-                component={ProductsScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="TaxesScreen"
-                component={TaxesScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="AddCompanyScreen"
-                component={AddCompanyScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="AddCustomerScreen"
-                component={AddCustomerScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="AddInvoiceScreen"
-                component={AddInvoiceScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="AddTaxScreen"
-                component={AddTaxScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="AddProductScreen"
-                component={AddProductScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="MyCompanyDetailsScreen"
-                component={MyCompanyDetailsScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="TaxDetailsScreen"
-                component={TaxDetailsScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="ProductDetailsScreen"
-                component={ProductDetailsScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="InvoiceDetailsScreen"
-                component={InvoiceDetailsScreen}
-            />
-            <AppStackNavigator.Screen 
-                name="CustomerDetailsScreen"
-                component={CustomerDetailsScreen}
-            />
+            {routes.map((item, index) => (
+                <AppStackNavigator.Screen 
+                    key={index}
+                    name={item.name}
+                    component={item.component}
+                />
+            ))}
         </AppStackNavigator.Navigator>
     );
 }

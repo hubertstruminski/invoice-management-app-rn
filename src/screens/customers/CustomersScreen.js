@@ -12,7 +12,11 @@ import {
     globalStyles,
     CustomerItem,
 } from '../../components';
-import { MAIN_GRAY } from '../../contants/colors';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../contants/colors';
+import { CUSTOMER_ENTITY } from '../../contants/constants';
 import { CUSTOMERS } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -32,7 +36,7 @@ const CustomersScreen = ({
                     <Button 
                         color={MAIN_GRAY}
                         text="Add customer"
-                        backgroundColor="transparent"
+                        backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
                         onPress={() => navigate('AddCustomerScreen')}
@@ -44,7 +48,7 @@ const CustomersScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(96)}
-                        type="customer"
+                        type={CUSTOMER_ENTITY}
                     >
                         <CustomerItem 
                             fullName={item.fullName}

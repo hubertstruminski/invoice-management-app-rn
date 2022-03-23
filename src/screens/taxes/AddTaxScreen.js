@@ -2,8 +2,6 @@ import React from 'react';
 import { 
     ScrollView, 
     View, 
-    TouchableWithoutFeedback, 
-    Keyboard, 
 } from 'react-native';
 
 import { 
@@ -11,18 +9,18 @@ import {
     Button, 
     globalStyles, 
     Header, 
-    Input, 
+    Input,
+    TouchableLayout, 
 } from '../../components';
 import { WHITE } from '../../contants/colors';
 
-const AddTaxScreen = ({
-    navigation: {
-        navigate,
-    },
-}) => {
+const AddTaxScreen = () => {
     return (
         <BasicView 
-            containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
+            containerStyle={[
+                globalStyles.alignCenter, 
+                globalStyles.flex,
+            ]}
             headerComponent={<Header title="Add tax" />}
         >
             <ScrollView 
@@ -37,35 +35,33 @@ const AddTaxScreen = ({
                     globalStyles.flex,
                 ]}
             >
-                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    <View>
-                        <View style={globalStyles.flex}>
-                            <Input 
-                                leftTitle="Name"
-                                placeholder="Enter name"
-                                withWarning
-                                errorText="Error text"
-                                containerStyle={globalStyles.mediumBottomSpace}
-                            />
-                            <Input 
-                                leftTitle="Description"
-                                placeholder="Enter description"
-                                containerStyle={globalStyles.mediumBottomSpace}
-                                rightTitle="Optional"
-                            />
-                            <Input 
-                                leftTitle="Amount"
-                                placeholder="Enter amount"
-                                withWarning
-                                errorText="Error text"
-                            />
-                        </View>
-                        <Button 
-                            color={WHITE}
-                            text="Save" 
+                <TouchableLayout>
+                    <View style={globalStyles.flex}>
+                        <Input 
+                            leftTitle="Name"
+                            placeholder="Enter name"
+                            withWarning
+                            errorText="Error text"
+                            containerStyle={globalStyles.mediumBottomSpace}
+                        />
+                        <Input 
+                            leftTitle="Description"
+                            placeholder="Enter description"
+                            containerStyle={globalStyles.mediumBottomSpace}
+                            rightTitle="Optional"
+                        />
+                        <Input 
+                            leftTitle="Amount"
+                            placeholder="Enter amount"
+                            withWarning
+                            errorText="Error text"
                         />
                     </View>
-                </TouchableWithoutFeedback>
+                    <Button 
+                        color={WHITE}
+                        text="Save" 
+                    />
+                </TouchableLayout>
             </ScrollView>
         </BasicView>
     );

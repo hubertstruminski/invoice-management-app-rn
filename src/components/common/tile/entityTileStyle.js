@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { 
-    BLACK, 
-    WHITE, 
-} from '../../../contants/colors';
+import { WHITE } from '../../../contants/colors';
 import { 
     hp, 
     wp, 

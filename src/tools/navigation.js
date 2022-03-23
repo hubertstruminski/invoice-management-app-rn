@@ -1,18 +1,26 @@
+import { 
+    COMPANY_ENTITY, 
+    CUSTOMER_ENTITY, 
+    INVOICE_ENTITY, 
+    PRODUCT_ENTITY, 
+    TAX_ENTITY, 
+} from "../contants/constants";
+
 export const navigateFromTile = (label, navigate) => {
     switch(label) {
-        case "myCompanies":
+        case COMPANY_ENTITY:
             navigate('MyCompaniesScreen');
             break;
-        case "customers":
+        case CUSTOMER_ENTITY:
             navigate('CustomersScreen');
             break;
-        case "invoices":
+        case INVOICE_ENTITY:
             navigate('InvoicesScreen');
             break;
-        case "products":
+        case PRODUCT_ENTITY:
             navigate('ProductsScreen');
             break;
-        case "taxes":
+        case TAX_ENTITY:
             navigate('TaxesScreen');
             break;
         default: 

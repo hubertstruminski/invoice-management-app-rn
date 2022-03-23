@@ -10,7 +10,7 @@ import {
     MAIN_GRAY, 
     WHITE 
 } from '../../contants/colors';
-import styles from './authorizationStyle';
+import styles from '../screenStyle';
 import { 
     UserIcon, 
     LockIcon, 

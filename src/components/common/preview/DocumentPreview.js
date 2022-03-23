@@ -2,7 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { 
+    CustomerPartDocument,
     globalStyles, 
+    InvoicePartDocument, 
     ResponsiveText, 
     TouchableIcon, 
 } from '../..';
@@ -27,69 +29,8 @@ const DocumentPreview = () => {
                         styles.horizontalSpace
                     ]}
                 >
-                    <View>
-                        <ResponsiveText 
-                            fontStyle="header"
-                            color={MAIN_GRAY}
-                            text="Invoice"
-                            customStyle={globalStyles.regularBottomSpace}
-                        />
-                        <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
-                            <ResponsiveText 
-                                fontStyle="boldSmallText"
-                                color={MAIN_GRAY}
-                                text={"Number" + ": "}
-                            />
-                            <ResponsiveText 
-                                fontStyle="regularSmallText"
-                                color={MAIN_GRAY}
-                                text="100678"
-                            />
-                        </View>
-                        <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
-                            <ResponsiveText 
-                                fontStyle="boldSmallText"
-                                color={MAIN_GRAY}
-                                text={"Date" + ": "}
-                            />
-                            <ResponsiveText 
-                                fontStyle="regularSmallText"
-                                color={MAIN_GRAY}
-                                text="21.02.2022"
-                            />
-                        </View>
-                        <View style={globalStyles.rowCenter}>
-                            <ResponsiveText 
-                                fontStyle="boldSmallText"
-                                color={MAIN_GRAY}
-                                text={"Deadline" + ": "}
-                            />
-                            <ResponsiveText 
-                                fontStyle="regularSmallText"
-                                color={MAIN_GRAY}
-                                text="27.02.2022"
-                            />
-                        </View>
-                    </View>
-                    <View>
-                        <ResponsiveText 
-                            fontStyle="header"
-                            color={MAIN_GRAY}
-                            text="Customer"
-                            customStyle={globalStyles.regularBottomSpace}
-                        />
-                        <ResponsiveText 
-                            fontStyle="regularSmallText"
-                            color={MAIN_GRAY}
-                            text="Hubert Strumiński"
-                            customStyle={globalStyles.smallLabelSpace}
-                        />
-                        <ResponsiveText 
-                            fontStyle="boldSmallText"
-                            color={MAIN_GRAY}
-                            text="+48 607 002 131"
-                        />
-                    </View>
+                    <InvoicePartDocument />
+                    <CustomerPartDocument />
                 </View>
                 <View style={styles.horizontalLineContainer} />
                 <View 

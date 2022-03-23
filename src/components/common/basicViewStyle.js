@@ -9,7 +9,6 @@ import { hp } from '../../tools';
 
 export default StyleSheet.create({
     container: {
-        // height: hp(740),
         backgroundColor: WHITE,
         width: '100%',  
         borderTopLeftRadius: 24,
@@ -28,8 +27,10 @@ export default StyleSheet.create({
         elevation: 3,
         backgroundColor: WHITE,
         borderRadius: 24,
-        // height: hp(740),
         flexGrow: 1,
         width: '100%',
+    },
+    headerContainer: {
+        height: hp(84),
     },
 });

@@ -16,6 +16,9 @@ export default StyleSheet.create({
     fullHeight: {
         height: '100%',
     },
+    flexGrow: {
+        flexGrow: 1,
+    },  
     rowCenter: {
         flexDirection: 'row',
         alignItems: 'center',

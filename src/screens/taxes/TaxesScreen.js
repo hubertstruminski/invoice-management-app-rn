@@ -12,7 +12,11 @@ import {
     globalStyles,
     TaxItem,
 } from '../../components';
-import { MAIN_GRAY } from '../../contants/colors';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../contants/colors';
+import { TAX_ENTITY } from '../../contants/constants';
 import { TAXES } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -32,7 +36,7 @@ const TaxesScreen = ({
                     <Button 
                         color={MAIN_GRAY}
                         text="Add tax"
-                        backgroundColor="transparent"
+                        backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddTaxScreen')}
                     />
@@ -43,7 +47,7 @@ const TaxesScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(64)}
-                        type="tax"
+                        type={TAX_ENTITY}
                     >
                         <TaxItem 
                             name={item.name}

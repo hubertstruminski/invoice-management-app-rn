@@ -7,3 +7,5 @@ export const GRAY_3 = '#B5B5BE';
 export const GRAY_4 = '#DADADE';
 
 export const RED = '#FF0000';
+
+export const TRANSPARENT = "transparent";

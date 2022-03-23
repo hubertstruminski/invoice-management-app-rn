@@ -3,16 +3,17 @@ import React, {
     useEffect,
     forwardRef,
     useImperativeHandle,
+    useCallback,
 } from 'react';
 import { 
     View, 
     TextInput,
-    TouchableWithoutFeedback,
 } from 'react-native';
 
 import { 
     DropdownItem, 
-    ResponsiveText, 
+    ResponsiveText,
+    TouchableIcon, 
 } from '../..';
 import { 
     GRAY_3, 
@@ -37,11 +38,6 @@ const Dropdown = forwardRef(({
         setFilteredData(data);
     }, [data]);
 
-    useImperativeHandle(ref, () => ({
-        closeDropdown: () => setShowData(false),
-        isOpen: showData,
-    }));
-
     useEffect(() => {
         if(value === '') {
             setFilteredData(data);
@@ -53,7 +49,12 @@ const Dropdown = forwardRef(({
         }
     }, [value, data]);
 
-    const renderItems = () => {
+    useImperativeHandle(ref, () => ({
+        closeDropdown: () => setShowData(false),
+        isOpen: showData,
+    }));
+
+    const renderItems = useCallback(() => {
         return filteredData.map((item, index) => {
             const resultName = item.fullName ? item.fullName : item.name;
             return (
@@ -66,7 +67,12 @@ const Dropdown = forwardRef(({
                 />
             );
         });
-    }
+    }, [filteredData, ref]);
+
+    const toggleDropdown = useCallback(() => {
+        setValue('');
+        setShowData(!showData);
+    }, [showData]);
 
     return (
         <View 
@@ -100,16 +106,9 @@ const Dropdown = forwardRef(({
                     value={value}
                     onChangeText={setValue}
                 />
-                <TouchableWithoutFeedback 
-                    onPress={() => {
-                        setValue('');
-                        setShowData(!showData);
-                    }}
-                >
-                    <View>
-                        <ArrowDownIcon />
-                    </View>
-                </TouchableWithoutFeedback>
+                <TouchableIcon onPress={toggleDropdown}>
+                    <ArrowDownIcon />
+                </TouchableIcon>
             </View> 
             { showData &&
                 <View style={styles.shadow}>

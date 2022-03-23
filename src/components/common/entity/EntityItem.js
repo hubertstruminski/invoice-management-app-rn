@@ -7,13 +7,21 @@ import { useNavigation } from '@react-navigation/native';
 
 import { 
     globalStyles, 
-    ResponsiveText, 
+    ResponsiveText,
+    TouchableIcon, 
 } from '../..';
 import { 
     EditIcon, 
     TrashIcon, 
 } from '../../../../assets';
 import { MAIN_ORANGE } from '../../../contants/colors';
+import { 
+    COMPANY_ENTITY, 
+    CUSTOMER_ENTITY, 
+    INVOICE_ENTITY, 
+    PRODUCT_ENTITY, 
+    TAX_ENTITY, 
+} from '../../../contants/constants';
 import { hp } from '../../../tools';
 import styles from './entityItemStyle';
 
@@ -26,19 +34,19 @@ const EntityItem = ({
 
     const redirectToDetails = () => {
         switch(type) {
-            case "company":
+            case COMPANY_ENTITY:
                 navigate('MyCompanyDetailsScreen');
                 break;
-            case "customer":
+            case CUSTOMER_ENTITY:
                 navigate('CustomerDetailsScreen');
                 break;
-            case "invoice":
+            case INVOICE_ENTITY:
                 navigate('InvoiceDetailsScreen');
                 break;
-            case "product":
+            case PRODUCT_ENTITY:
                 navigate('ProductDetailsScreen');
                 break;
-            case "tax":
+            case TAX_ENTITY:
                 navigate('TaxDetailsScreen');
                 break;
             default: 
@@ -70,16 +78,12 @@ const EntityItem = ({
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={globalStyles.rowCenter}>
-                    <TouchableWithoutFeedback>
-                        <View style={styles.iconSpace}>
-                            <EditIcon />
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
-                        <View>
-                            <TrashIcon />
-                        </View>
-                    </TouchableWithoutFeedback>
+                    <TouchableIcon containerStyle={styles.iconSpace}>
+                        <EditIcon />
+                    </TouchableIcon>
+                    <TouchableIcon>
+                        <TrashIcon />
+                    </TouchableIcon>
                 </View>
             </View>
         </View>

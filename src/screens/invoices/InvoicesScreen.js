@@ -3,7 +3,6 @@ import {
     FlatList, 
     View,
 } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import { 
     BasicView, 
@@ -13,7 +12,11 @@ import {
     globalStyles,
     InvoiceItem,
 } from '../../components';
-import { MAIN_GRAY } from '../../contants/colors';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../contants/colors';
+import { INVOICE_ENTITY } from '../../contants/constants';
 import { INVOICES } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -33,7 +36,7 @@ const InvoicesScreen = ({
                     <Button 
                         color={MAIN_GRAY}
                         text="Add invoice"
-                        backgroundColor="transparent"
+                        backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddInvoiceScreen')}
                     />
@@ -44,7 +47,7 @@ const InvoicesScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(112)}
-                        type="invoice"
+                        type={INVOICE_ENTITY}
                     >
                         <InvoiceItem 
                             number={item.number}
@@ -54,7 +57,10 @@ const InvoicesScreen = ({
                     </EntityItem>
                 )}
                 style={globalStyles.flatListContainer}
-                contentContainerStyle={[globalStyles.alignCenter, {flexGrow: 1}]}
+                contentContainerStyle={[
+                    globalStyles.alignCenter,
+                    globalStyles.flexGrow,
+                ]}
                 ListFooterComponent={<View />}
                 ListFooterComponentStyle={globalStyles.largeSpace}
             />

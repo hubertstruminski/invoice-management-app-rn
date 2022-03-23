@@ -1,13 +1,13 @@
 import React from 'react';
 import { 
     FlatList,
-    ScrollView, 
     View,
 } from 'react-native';
 
-import { CompanyDetailsIcon } from '../../../assets';
 import { 
+    AddressDetails,
     BasicView, 
+    DescriptionSection, 
     DocumentPreview, 
     globalStyles, 
     Header, 
@@ -70,53 +70,11 @@ const CustomerDetailsScreen = () => {
                                 text="456780123"
                                 customStyle={globalStyles.regularBottomSpace}
                             />
-                            <ResponsiveText 
-                                fontStyle="labelDetails"
-                                color={MAIN_GRAY}
-                                text={"Street" + ":"} 
-                                customStyle={globalStyles.smallLabelSpace}
+                            <AddressDetails 
+                                separatorStyle={globalStyles.regularBottomSpace}
                             />
-                            <ResponsiveText 
-                                fontStyle="rightInputTitle"
-                                color={MAIN_GRAY}
-                                text="Karmelicka 45/32"
-                                customStyle={globalStyles.regularBottomSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="labelDetails"
-                                color={MAIN_GRAY}
-                                text={"City" + ":"} 
-                                customStyle={globalStyles.smallLabelSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="rightInputTitle"
-                                color={MAIN_GRAY}
-                                text="Cracow"
-                                customStyle={globalStyles.regularBottomSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="labelDetails"
-                                color={MAIN_GRAY}
-                                text={"Country" + ":"} 
-                                customStyle={globalStyles.smallLabelSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="rightInputTitle"
-                                color={MAIN_GRAY}
-                                text="Poland"
-                                customStyle={globalStyles.regularBottomSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="smallDetailsTitle"
-                                color={MAIN_GRAY}
-                                text="Description"
-                                customStyle={[globalStyles.regularBottomSpace, globalStyles.textAlignCenter]}
-                            />
-                            <ResponsiveText 
-                                fontStyle="rightInputTitle"
-                                color={MAIN_GRAY}
-                                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet. Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo."
-                                customStyle={globalStyles.regularBottomSpace}
+                            <DescriptionSection 
+                                separatorStyle={globalStyles.regularBottomSpace}
                             />
                         </View>
                         <ResponsiveText 
@@ -131,7 +89,7 @@ const CustomerDetailsScreen = () => {
                     </View>
                 )}
                 data={[1, 2, 3, 4, 5]}
-                renderItem={({ item, index }) => (
+                renderItem={({ _, index }) => (
                     <DocumentPreview key={index} />
                 )}
             />

@@ -15,6 +15,13 @@ import DropdownItem from './common/inputs/DropdownItem';
 import ProductPreview from './common/preview/ProductPreview';
 import DocumentPreview from './common/preview/DocumentPreview';
 import TouchableIcon from './common/touchable/TouchableIcon';
+import TouchableLayout from './common/touchable/TouchableLayout';
+import InvoiceDatePeriod from './common/details/InvoiceDatePeriod';
+import CustomerDetails from './common/details/CustomerDetails';
+import DescriptionSection from './common/details/DescriptionSection';
+import AddressDetails from './common/details/AddressDetails';
+import InvoicePartDocument from './common/preview/InvoicePartDocument';
+import CustomerPartDocument from './common/preview/CustomerPartDocument';
 
 export {
     globalStyles,
@@ -34,4 +41,11 @@ export {
     ProductPreview,
     DocumentPreview,
     TouchableIcon,
+    TouchableLayout,
+    InvoiceDatePeriod,
+    CustomerDetails,
+    DescriptionSection,
+    AddressDetails,
+    InvoicePartDocument,
+    CustomerPartDocument,
 };

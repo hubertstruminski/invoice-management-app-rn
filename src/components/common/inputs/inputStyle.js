@@ -4,8 +4,8 @@ import globalStyles from '../globalStyles';
 import { 
     GRAY_3, 
     MAIN_GRAY, 
-    WHITE,}
-     from '../../../contants/colors';
+    WHITE,
+} from '../../../contants/colors';
 import { 
     hp, 
     wp, 

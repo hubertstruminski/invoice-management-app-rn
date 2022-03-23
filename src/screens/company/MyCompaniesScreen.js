@@ -12,7 +12,11 @@ import {
     ResponsiveText,
     globalStyles,
 } from '../../components';
-import { MAIN_GRAY } from '../../contants/colors';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../contants/colors';
+import { COMPANY_ENTITY } from '../../contants/constants';
 import { COMPANIES } from '../../mocks';
 
 const MyCompaniesScreen = ({
@@ -23,9 +27,7 @@ const MyCompaniesScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header 
-                    title="My companies" 
-                />
+                <Header title="My companies" />
             }
         >
             <FlatList
@@ -33,7 +35,7 @@ const MyCompaniesScreen = ({
                     <Button 
                         color={MAIN_GRAY}
                         text="Add company"
-                        backgroundColor="transparent"
+                        backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
                         onPress={() => navigate('AddCompanyScreen')}
@@ -44,7 +46,7 @@ const MyCompaniesScreen = ({
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
-                        type="company"
+                        type={COMPANY_ENTITY}
                     >
                         <ResponsiveText 
                             fontStyle="header"

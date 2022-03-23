@@ -12,7 +12,11 @@ import {
     globalStyles,
     ProductItem,
 } from '../../components';
-import { MAIN_GRAY } from '../../contants/colors';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../contants/colors';
+import { PRODUCT_ENTITY } from '../../contants/constants';
 import { PRODUCTS } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -32,7 +36,7 @@ const ProductsScreen = ({
                     <Button 
                         color={MAIN_GRAY}
                         text="Add product"
-                        backgroundColor="transparent"
+                        backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddProductScreen')}
                     />
@@ -43,7 +47,7 @@ const ProductsScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(128)}
-                        type="product"
+                        type={PRODUCT_ENTITY}
                     >
                         <ProductItem 
                             name={item.name}
