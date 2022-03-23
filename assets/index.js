@@ -22,6 +22,8 @@ import CalendarPreviewIcon from './icons-js/details/preview/calendarPreview';
 import CreditCardIcon from './icons-js/details/preview/creditCard';
 import MobileIcon from './icons-js/details/preview/mobile';
 import PenIcon from './icons-js/details/preview/pen';
+import MessageIcon from './icons-js/message';
+import PdfIcon from './icons-js/pdf';
 
 export {
     LockIcon,
@@ -48,4 +50,6 @@ export {
     CreditCardIcon,
     MobileIcon,
     PenIcon,
+    MessageIcon, 
+    PdfIcon,
 };

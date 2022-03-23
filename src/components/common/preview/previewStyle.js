@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { WHITE } from '../../../contants/colors';
+import { globalStyles } from '../..';
+import { 
+    GRAY_3, 
+    WHITE, 
+} from '../../../contants/colors';
 import { 
     hp, 
     wp, 
@@ -27,5 +31,25 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'column',
         alignItems: 'flex-start',
+    },
+    documentContainer: {
+        width: wp(358),
+        borderRadius: 16,
+        backgroundColor: WHITE,
+        paddingVertical: hp(8),
+    },
+    documentShadow: {
+        ...globalStyles.shadow,
+        marginTop: 0,
+        marginBottom: hp(24),
+    },
+    horizontalLineContainer: {
+        width: '100%',
+        borderBottomColor: GRAY_3,
+        borderBottomWidth: 1,
+        marginVertical: hp(16),
+    },
+    horizontalSpace: {
+        paddingHorizontal: wp(16),
     },
 });

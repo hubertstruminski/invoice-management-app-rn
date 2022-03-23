@@ -96,10 +96,19 @@ export default StyleSheet.create({
     mediumBottomPadding: {
         paddingBottom: hp(32),
     },
+    bigBottomPadding: {
+        paddingBottom: hp(72),
+    },  
     zeroBottomPaddingSpace: {
         paddingBottom: 0,
     },
     mediumTopPadding: {
         paddingTop: hp(32),
-    } 
+    },
+    row: {
+        flexDirection: 'row',
+    },
+    mediumRightSpace: {
+        marginRight: wp(32),
+    }
 });

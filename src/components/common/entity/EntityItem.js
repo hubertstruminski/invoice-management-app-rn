@@ -30,6 +30,7 @@ const EntityItem = ({
                 navigate('MyCompanyDetailsScreen');
                 break;
             case "customer":
+                navigate('CustomerDetailsScreen');
                 break;
             case "invoice":
                 navigate('InvoiceDetailsScreen');

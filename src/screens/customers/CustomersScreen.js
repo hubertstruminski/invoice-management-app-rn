@@ -44,6 +44,7 @@ const CustomersScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(96)}
+                        type="customer"
                     >
                         <CustomerItem 
                             fullName={item.fullName}

@@ -15,6 +15,7 @@ import MyCompanyDetailsScreen from './company/MyCompanyDetailsScreen';
 import TaxDetailsScreen from './taxes/TaxDetailsScreen';
 import ProductDetailsScreen from './products/ProductDetailsScreen';
 import InvoiceDetailsScreen from './invoices/InvoiceDetailsScreen';
+import CustomerDetailsScreen from './customers/CustomerDetailsScreen';
 
 export {
     LoginScreen,
@@ -34,4 +35,5 @@ export {
     TaxDetailsScreen,
     ProductDetailsScreen,
     InvoiceDetailsScreen,
+    CustomerDetailsScreen,
 };

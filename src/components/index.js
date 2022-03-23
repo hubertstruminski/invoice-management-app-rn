@@ -13,6 +13,8 @@ import TaxItem from './common/entity/TaxItem';
 import Dropdown from './common/inputs/Dropdown';
 import DropdownItem from './common/inputs/DropdownItem';
 import ProductPreview from './common/preview/ProductPreview';
+import DocumentPreview from './common/preview/DocumentPreview';
+import TouchableIcon from './common/touchable/TouchableIcon';
 
 export {
     globalStyles,
@@ -30,4 +32,6 @@ export {
     Dropdown,
     DropdownItem,
     ProductPreview,
+    DocumentPreview,
+    TouchableIcon,
 };

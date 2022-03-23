@@ -19,6 +19,7 @@ import {
     TaxDetailsScreen,
     ProductDetailsScreen,
     InvoiceDetailsScreen,
+    CustomerDetailsScreen,
 } from '../screens';
 
 const AppStackNavigator = createStackNavigator();
@@ -97,6 +98,10 @@ export default () => {
             <AppStackNavigator.Screen 
                 name="InvoiceDetailsScreen"
                 component={InvoiceDetailsScreen}
+            />
+            <AppStackNavigator.Screen 
+                name="CustomerDetailsScreen"
+                component={CustomerDetailsScreen}
             />
         </AppStackNavigator.Navigator>
     );
