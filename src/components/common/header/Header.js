@@ -20,12 +20,14 @@ const Header = ({
     return (
         <View style={styles.container}>
             {withBackArrow ? (
-                <TouchableWithoutFeedback onPress={() => goBack()}>
-                    <View>
-                        <BackArrowIcon />
-                    </View>
-                </TouchableWithoutFeedback>) : (
-                    <View></View>
+                <View style={styles.leftContainer}>
+                    <TouchableWithoutFeedback onPress={() => goBack()}>
+                        <View>
+                            <BackArrowIcon />
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>) : (
+                    <View style={styles.leftContainer} />
                 )
             }
             { title &&
@@ -33,9 +35,10 @@ const Header = ({
                     fontStyle="header"
                     text={title}
                     color={MAIN_GRAY}
+                    customStyle={styles.titleContainer}
                 />
             }
-            <View>
+            <View style={styles.rightContainer}>
                 {withLogout &&
                     <TouchableWithoutFeedback onPress={() => navigate('LoginScreen')}>
                         <View>

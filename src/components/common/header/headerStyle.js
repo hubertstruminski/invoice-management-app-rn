@@ -9,9 +9,18 @@ export default StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: wp(16),
+        justifyContent: 'center',
         paddingTop: hp(33),
         width: '100%',
     },
+    leftContainer: {
+        position: 'absolute',
+        left: wp(16),
+        top: hp(33),
+    },
+    rightContainer: {
+        position: 'absolute',
+        right: wp(16),
+        top: hp(33),
+    }
 });

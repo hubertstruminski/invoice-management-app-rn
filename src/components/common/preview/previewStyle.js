@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { globalStyles } from '../..';
 import { 
+    BLACK,
     GRAY_3, 
     WHITE, 
 } from '../../../contants/colors';
@@ -39,8 +40,13 @@ export default StyleSheet.create({
         paddingVertical: hp(8),
     },
     documentShadow: {
-        ...globalStyles.shadow,
-        marginTop: 0,
+        shadowColor: BLACK,
+        shadowOffset: { width: 0, height: hp(2) },
+        shadowOpacity: 0.25,
+        shadowRadius: 8, 
+        elevation: 3,
+        backgroundColor: WHITE,
+        borderRadius: 16,
         marginBottom: hp(24),
     },
     horizontalLineContainer: {

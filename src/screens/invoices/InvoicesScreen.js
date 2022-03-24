@@ -51,7 +51,7 @@ const InvoicesScreen = ({
                     >
                         <InvoiceItem 
                             number={item.number}
-                            fullName={item.fullName}
+                            fullName={item.customer.fullName}
                             deadline={item.deadline}
                         />
                     </EntityItem>
