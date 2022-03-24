@@ -11,11 +11,11 @@ export const CUSTOMERS = [
         city: 'Cracow',
         country: 'Poland',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod sed consectetur velit metus, vivamus. Laoreet non sed quis magna urna libero. At volutpat, malesuada fermentum sed sed tincidunt. At lectus id scelerisque volutpat. Vel sed magna ac cursus libero. Volutpat iaculis dignissim sit sapien tellus vel felis in tortor. Pretium posuere at ullamcorper rhoncus quis iaculis. Justo mattis gravida lorem dignissim felis.',
-        invoices: [
-            INVOICES[0],
-            INVOICES[1],
-            INVOICES[9],
-        ],
+        // invoices: [
+        //     INVOICES[0],
+        //     INVOICES[1],
+        //     INVOICES[9],
+        // ],
     },
     { 
         id: 2,
@@ -27,10 +27,10 @@ export const CUSTOMERS = [
         city: 'Cracow',
         country: 'Poland',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Euismod sed consectetur velit metus, vivamus. Laoreet non sed quis magna urna libero. At volutpat, malesuada fermentum sed sed tincidunt. At lectus id scelerisque volutpat.',
-        invoices: [
-            INVOICES[2],
-            INVOICES[3],
-        ],
+        // invoices: [
+        //     INVOICES[2],
+        //     INVOICES[3],
+        // ],
     },
     { 
         id: 3,
@@ -42,11 +42,11 @@ export const CUSTOMERS = [
         city: 'Wrocław',
         country: 'Polska',
         description: 'Consectetur adipiscing elit.',
-        invoices: [
-            INVOICES[4],
-            INVOICES[5],
-            INVOICES[8],
-        ],
+        // invoices: [
+        //     INVOICES[4],
+        //     INVOICES[5],
+        //     INVOICES[8],
+        // ],
     },
     { 
         id: 4,
@@ -58,9 +58,9 @@ export const CUSTOMERS = [
         city: 'Cracow',
         country: 'Poland',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        invoices: [
-            INVOICES[6],
-            INVOICES[7],
-        ],
+        // invoices: [
+        //     INVOICES[6],
+        //     INVOICES[7],
+        // ],
     },   
 ];

@@ -21,7 +21,6 @@ import CustomerDetails from './common/details/CustomerDetails';
 import DescriptionSection from './common/details/DescriptionSection';
 import AddressDetails from './common/details/AddressDetails';
 import InvoicePartDocument from './common/preview/InvoicePartDocument';
-import CustomerPartDocument from './common/preview/CustomerPartDocument';
 
 export {
     globalStyles,
@@ -47,5 +46,4 @@ export {
     DescriptionSection,
     AddressDetails,
     InvoicePartDocument,
-    CustomerPartDocument,
 };

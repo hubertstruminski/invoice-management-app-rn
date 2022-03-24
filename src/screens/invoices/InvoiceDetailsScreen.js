@@ -3,6 +3,7 @@ import {
     FlatList,
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { InvoiceCalendarIcon } from '../../../assets';
 import { 
@@ -18,7 +19,15 @@ import {
 import { MAIN_GRAY } from '../../contants/colors';
 import { PRODUCTS } from '../../mocks';
 
-const InvoiceDetailsScreen = () => {
+const InvoiceDetailsScreen = ({
+    invoiceDetails: {
+        number,
+        date,
+        deadline,
+        customer,
+        description,
+    },
+}) => {
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
@@ -43,7 +52,7 @@ const InvoiceDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="regularHeaderDetails"
                                 color={MAIN_GRAY}
-                                text="#023481"
+                                text={"#" + number}
                             />
                         </View>
                         <View style={globalStyles.detailsContainer}>
@@ -55,15 +64,21 @@ const InvoiceDetailsScreen = () => {
                                 ]}
                             >
                                 <View>
-                                    <InvoiceDatePeriod />
+                                    <InvoiceDatePeriod 
+                                        date={date}
+                                        deadline={deadline}
+                                    />
                                 </View>
                                 <View>
                                     <InvoiceCalendarIcon /> 
                                 </View>
                             </View>
-                            <CustomerDetails />
+                            <CustomerDetails 
+                                item={customer}
+                            />
                             <DescriptionSection 
                                 separatorStyle={globalStyles.regularBottomSpace} 
+                                description={description}
                             />
                             <ResponsiveText 
                                 fontStyle="smallDetailsTitle"
@@ -74,10 +89,11 @@ const InvoiceDetailsScreen = () => {
                         </View>
                     </View>
                 )}
-                data={PRODUCTS}
+                data={PRODUCTS.filter(product => product.customer?.id === customer?.id)}
                 renderItem={({ item, index }) => (
                     <ProductPreview 
                         key={index}
+                        item={item}
                     />
                 )}
             />
@@ -85,4 +101,8 @@ const InvoiceDetailsScreen = () => {
     );
 }
 
-export default InvoiceDetailsScreen;
+const mapStateToProps = state => ({
+    invoiceDetails: state.invoice.invoiceDetails,
+});
+
+export default connect(mapStateToProps, { })(InvoiceDetailsScreen);

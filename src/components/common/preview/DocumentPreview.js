@@ -13,12 +13,15 @@ import {
     PdfIcon, 
 } from '../../../../assets';
 import { 
+    GREEN,
     MAIN_GRAY, 
     RED, 
 } from '../../../contants/colors';
 import styles from './previewStyle';
 
-const DocumentPreview = () => {
+const DocumentPreview = ({
+    item,
+}) => {
     return (
         <View style={styles.documentShadow}>
             <View style={styles.documentContainer}>
@@ -29,38 +32,30 @@ const DocumentPreview = () => {
                         styles.horizontalSpace
                     ]}
                 >
-                    <InvoicePartDocument />
-                    <CustomerPartDocument />
-                </View>
-                <View style={styles.horizontalLineContainer} />
-                <View 
-                    style={[
-                        globalStyles.row, 
-                        globalStyles.spaceBetween,
-                        styles.horizontalSpace,
-                    ]}
-                >
-                    <View style={globalStyles.rowCenter}>
-                        <ResponsiveText 
-                            fontStyle="boldSmallText"
-                            color={MAIN_GRAY}
-                            text={"Status" + ": "}
-                        />
-                        <ResponsiveText 
-                            fontStyle="boldSmallText"
-                            color={RED}
-                            text="not sent"
-                        />
-                    </View>
-                    <View style={globalStyles.rowCenter}>
-                        <TouchableIcon 
-                            containerStyle={globalStyles.mediumRightSpace}
-                        >
-                            <MessageIcon />
-                        </TouchableIcon>
-                        <TouchableIcon>
-                            <PdfIcon />
-                        </TouchableIcon>
+                    <InvoicePartDocument item={item} />
+                    <View style={styles.statusContainer}>
+                        <View style={[globalStyles.rowCenter, globalStyles.regularBottomSpace]}>
+                            <ResponsiveText 
+                                fontStyle="boldSmallText"
+                                color={MAIN_GRAY}
+                                text={"Status" + ": "}
+                            />
+                            <ResponsiveText 
+                                fontStyle="boldSmallText"
+                                color={item?.sentStatus ? GREEN : RED}
+                                text={item?.sentStatus ? "sent" : "not sent"}
+                            />
+                        </View>
+                        <View style={globalStyles.rowCenter}>
+                            <TouchableIcon 
+                                containerStyle={globalStyles.mediumRightSpace}
+                            >
+                                <MessageIcon />
+                            </TouchableIcon>
+                            <TouchableIcon>
+                                <PdfIcon />
+                            </TouchableIcon>
+                        </View>
                     </View>
                 </View>
             </View>

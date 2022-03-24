@@ -3,6 +3,7 @@ import {
     ScrollView, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { CompanyDetailsIcon } from '../../../assets';
 import { 
@@ -14,7 +15,15 @@ import {
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
 
-const MyCompanyDetailsScreen = () => {
+const MyCompanyDetailsScreen = ({
+    companyDetails: {
+        name,
+        street,
+        postalCode,
+        city,
+        country,
+    }
+}) => {
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -28,12 +37,15 @@ const MyCompanyDetailsScreen = () => {
                 <ResponsiveText 
                     fontStyle="headerDetails"
                     color={MAIN_GRAY}
-                    text="Monkey@com"
+                    text={name}
                     customStyle={globalStyles.largeSpace}
                 />
                 <View style={globalStyles.detailsContainer}>
                     <AddressDetails 
                         separatorStyle={globalStyles.mediumBottomSpace}
+                        street={street}
+                        city={city}
+                        country={country}
                     >
                         <ResponsiveText 
                             fontStyle="labelDetails"
@@ -44,7 +56,7 @@ const MyCompanyDetailsScreen = () => {
                         <ResponsiveText 
                             fontStyle="rightInputTitle"
                             color={MAIN_GRAY}
-                            text="31-345"
+                            text={postalCode}
                             customStyle={globalStyles.mediumBottomSpace}
                         />
                     </AddressDetails>
@@ -57,4 +69,8 @@ const MyCompanyDetailsScreen = () => {
     );
 }
 
-export default MyCompanyDetailsScreen;
+const mapStateToProps = state => ({
+    companyDetails: state.company.companyDetails,
+});
+
+export default connect(mapStateToProps, { })(MyCompanyDetailsScreen);

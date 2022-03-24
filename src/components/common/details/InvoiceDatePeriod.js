@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import { 
     globalStyles, 
@@ -6,7 +7,10 @@ import {
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 
-const InvoiceDatePeriod = () => {
+const InvoiceDatePeriod = ({
+    date,
+    deadline,
+}) => {
     return (
         <React.Fragment>
             <ResponsiveText 
@@ -18,7 +22,7 @@ const InvoiceDatePeriod = () => {
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="21.02.2022"
+                text={moment(new Date(date)).format("DD.MM.YYYY")}
                 customStyle={globalStyles.regularBottomSpace}
             />
             <ResponsiveText 
@@ -30,7 +34,7 @@ const InvoiceDatePeriod = () => {
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="27.02.2022"
+                text={moment(new Date(deadline)).format("DD.MM.YYYY")}
             />
         </React.Fragment>
     );

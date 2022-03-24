@@ -48,6 +48,7 @@ const InvoicesScreen = ({
                         key={index}
                         height={hp(112)}
                         type={INVOICE_ENTITY}
+                        id={item.id}
                     >
                         <InvoiceItem 
                             number={item.number}

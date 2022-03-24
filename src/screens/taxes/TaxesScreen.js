@@ -48,6 +48,7 @@ const TaxesScreen = ({
                         key={index}
                         height={hp(64)}
                         type={TAX_ENTITY}
+                        id={item.id}
                     >
                         <TaxItem 
                             name={item.name}

@@ -10,6 +10,7 @@ const DescriptionSection = ({
     separatorStyle, 
     fontStyle = "smallDetailsTitle",
     descriptionLabel = "Description",
+    description,
     descriptionLabelStyle = [globalStyles.regularBottomSpace, globalStyles.textAlignCenter],
 }) => {
     return (
@@ -23,7 +24,7 @@ const DescriptionSection = ({
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet. Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo."
+                text={description}
                 customStyle={separatorStyle}
             />
         </React.Fragment>

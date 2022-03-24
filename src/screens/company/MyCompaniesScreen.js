@@ -46,6 +46,7 @@ const MyCompaniesScreen = ({
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
+                        id={item.id}
                         type={COMPANY_ENTITY}
                     >
                         <ResponsiveText 

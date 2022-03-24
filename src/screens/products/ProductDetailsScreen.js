@@ -3,6 +3,7 @@ import {
     ScrollView, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     ChartIcon, 
@@ -20,7 +21,19 @@ import {
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
 
-const ProductDetailsScreen = () => {
+const ProductDetailsScreen = ({
+    productDetails: {
+        name,
+        price,
+        amount,
+        discount,
+        unit,
+        invoice,
+        customer,
+        tax,
+        description,
+    }
+}) => {
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
@@ -33,7 +46,7 @@ const ProductDetailsScreen = () => {
                 <ResponsiveText 
                     fontStyle="headerDetails"
                     color={MAIN_GRAY}
-                    text="Strawberry"
+                    text={name}
                     customStyle={globalStyles.smallMediumDetailsSpace}
                 />
                 <View style={[globalStyles.detailsContainer, globalStyles.mediumBottomPadding]}>
@@ -54,7 +67,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="0.3 $"
+                                text={price + " $"}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -66,7 +79,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="2"
+                                text={amount}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -78,7 +91,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text={"12" + "%"}
+                                text={discount + "%"}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -90,7 +103,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="PIECES"
+                                text={unit}
                             />
                         </View>
                         <View>
@@ -120,16 +133,19 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="#678901"
+                                text={"#" + invoice?.number}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
-                            <InvoiceDatePeriod />
+                            <InvoiceDatePeriod 
+                                date={invoice?.date}
+                                deadline={invoice?.deadline}
+                            />
                         </View>
                         <View>
                             <ChartIcon />
                         </View>
                     </View>
-                    <CustomerDetails />
+                    <CustomerDetails item={customer} />
                     <ResponsiveText 
                         fontStyle="smallDetailsTitle"
                         color={MAIN_GRAY}
@@ -153,7 +169,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="VAT"
+                                text={tax?.name}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -165,7 +181,7 @@ const ProductDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text={"23" + "%"}
+                                text={tax?.amount + "%"}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                         </View>
@@ -173,11 +189,17 @@ const ProductDetailsScreen = () => {
                             <CoinIcon />
                         </View>
                     </View>
-                    <DescriptionSection />
+                    <DescriptionSection 
+                        description={description}
+                    />
                 </View>
             </ScrollView>
         </BasicView>
     );
 }
 
-export default ProductDetailsScreen;
+const mapStateToProps = state => ({
+    productDetails: state.product.productDetails,
+});
+
+export default connect(mapStateToProps, { })(ProductDetailsScreen);

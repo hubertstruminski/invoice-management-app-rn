@@ -3,6 +3,7 @@ import {
     FlatList,
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     AddressDetails,
@@ -14,8 +15,21 @@ import {
     ResponsiveText, 
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
+import { INVOICES } from '../../mocks';
 
-const CustomerDetailsScreen = () => {
+const CustomerDetailsScreen = ({
+    customerDetails: {
+        id,
+        fullName,
+        email,
+        phoneNumber,
+        nip,
+        street,
+        city,
+        country,
+        description,
+    }
+}) => {
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -30,7 +44,7 @@ const CustomerDetailsScreen = () => {
                         <ResponsiveText 
                             fontStyle="headerDetails"
                             color={MAIN_GRAY}
-                            text="Hubert Strumiński"
+                            text={fullName}
                             customStyle={globalStyles.largeSpace}
                         />
                         <View style={[globalStyles.detailsContainer, globalStyles.regularBottomSpace]}>
@@ -43,7 +57,7 @@ const CustomerDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="hubert.struminski@microsoft.wsei.edu.pl"
+                                text={email}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -55,7 +69,7 @@ const CustomerDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="+48 607 002 131"
+                                text={phoneNumber}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
@@ -67,14 +81,18 @@ const CustomerDetailsScreen = () => {
                             <ResponsiveText 
                                 fontStyle="rightInputTitle"
                                 color={MAIN_GRAY}
-                                text="456780123"
+                                text={nip}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <AddressDetails 
                                 separatorStyle={globalStyles.regularBottomSpace}
+                                street={street}
+                                city={city}
+                                country={country}
                             />
                             <DescriptionSection 
                                 separatorStyle={globalStyles.regularBottomSpace}
+                                description={description}
                             />
                         </View>
                         <ResponsiveText 
@@ -88,13 +106,20 @@ const CustomerDetailsScreen = () => {
                         />
                     </View>
                 )}
-                data={[1, 2, 3, 4, 5]}
-                renderItem={({ _, index }) => (
-                    <DocumentPreview key={index} />
+                data={INVOICES.filter(invoice => invoice.customer.id === id)}
+                renderItem={({ item, index }) => (
+                    <DocumentPreview 
+                        key={index} 
+                        item={item}
+                    />
                 )}
             />
         </BasicView>
     );
 }
 
-export default CustomerDetailsScreen;
+const mapStateToProps = state => ({
+    customerDetails: state.customer.customerDetails,
+});
+
+export default connect(mapStateToProps, { })(CustomerDetailsScreen);

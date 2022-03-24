@@ -8,7 +8,9 @@ import {
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 
-const CustomerDetails = () => {
+const CustomerDetails = ({
+    item,
+}) => {
     return (
         <React.Fragment>
             <ResponsiveText 
@@ -37,7 +39,7 @@ const CustomerDetails = () => {
                     <ResponsiveText 
                         fontStyle="rightInputTitle"
                         color={MAIN_GRAY}
-                        text="Hubert Strumiński"
+                        text={item?.fullName}
                         customStyle={globalStyles.regularBottomSpace}
                     />
                     <ResponsiveText 
@@ -49,7 +51,7 @@ const CustomerDetails = () => {
                     <ResponsiveText 
                         fontStyle="rightInputTitle"
                         color={MAIN_GRAY}
-                        text="+48 500 032 147"
+                        text={item?.phoneNumber}
                     />
                 </View>
                 <View>

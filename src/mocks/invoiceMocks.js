@@ -12,10 +12,10 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet. Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo.',
         sentStatus: false,
         customer: CUSTOMERS[0],
-        products: [
-            PRODUCTS[0],
-            PRODUCTS[1],
-        ],
+        // products: [
+        //     PRODUCTS[0],
+        //     PRODUCTS[1],
+        // ],
     },
     { 
         id: 2,
@@ -25,9 +25,9 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet.',
         sentStatus: true,
         customer: CUSTOMERS[0],
-        products: [
-            PRODUCTS[2]
-        ],
+        // products: [
+        //     PRODUCTS[2]
+        // ],
     },
     { 
         id: 3,
@@ -37,9 +37,9 @@ export const INVOICES = [
         description: 'Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo.',
         sentStatus: false,
         customer: CUSTOMERS[1],
-        products: [
-            PRODUCTS[3],
-        ],
+        // products: [
+        //     PRODUCTS[3],
+        // ],
     },
     { 
         id: 4,
@@ -49,9 +49,9 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         sentStatus: true,
         customer: CUSTOMERS[1],
-        products: [
-            PRODUCTS[4]
-        ],
+        // products: [
+        //     PRODUCTS[4]
+        // ],
     }, 
     {
         id: 5,
@@ -61,9 +61,9 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend.',
         sentStatus: true,
         customer: CUSTOMERS[2],
-        products: [
-            PRODUCTS[5],
-        ],
+        // products: [
+        //     PRODUCTS[5],
+        // ],
     },
     {
         id: 6,
@@ -73,10 +73,10 @@ export const INVOICES = [
         description: 'In massa pretium sit odio amet. Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo.',
         sentStatus: false,
         customer: CUSTOMERS[2],
-        products: [
-            PRODUCTS[6],
-            PRODUCTS[7],
-        ],
+        // products: [
+        //     PRODUCTS[6],
+        //     PRODUCTS[7],
+        // ],
     },
     { 
         id: 7,
@@ -86,10 +86,10 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet. Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo.',
         sentStatus: false,
         customer: CUSTOMERS[3],
-        products: [
-            PRODUCTS[8],
-            PRODUCTS[9],
-        ],
+        // products: [
+        //     PRODUCTS[8],
+        //     PRODUCTS[9],
+        // ],
     },
     { 
         id: 8,
@@ -99,9 +99,9 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Justo turpis diam feugiat quis euismod id neque a eleifend. In massa pretium sit odio amet.',
         sentStatus: true,
         customer: CUSTOMERS[3],
-        products: [
-            PRODUCTS[10],
-        ],
+        // products: [
+        //     PRODUCTS[10],
+        // ],
     },
     { 
         id: 9,
@@ -111,10 +111,10 @@ export const INVOICES = [
         description: 'Ullamcorper ut convallis sit sed urna. Dictum mi adipiscing at turpis cras hac urna, commodo.',
         sentStatus: false,
         customer: CUSTOMERS[2],
-        products: [
-            PRODUCTS[11],
-            PRODUCTS[12],
-        ],
+        // products: [
+        //     PRODUCTS[11],
+        //     PRODUCTS[12],
+        // ],
     },
     { 
         id: 10,
@@ -124,9 +124,9 @@ export const INVOICES = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         sentStatus: true,
         customer: CUSTOMERS[0],
-        products: [
-            PRODUCTS[13],
-            PRODUCTS[14],
-        ],
+        // products: [
+        //     PRODUCTS[13],
+        //     PRODUCTS[14],
+        // ],
     }, 
 ];

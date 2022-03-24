@@ -49,6 +49,7 @@ const CustomersScreen = ({
                         key={index}
                         height={hp(96)}
                         type={CUSTOMER_ENTITY}
+                        id={item.id}
                     >
                         <CustomerItem 
                             fullName={item.fullName}

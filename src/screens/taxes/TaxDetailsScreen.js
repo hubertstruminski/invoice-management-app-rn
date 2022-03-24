@@ -3,6 +3,7 @@ import {
     ScrollView, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { TaxDetailsIcon } from '../../../assets';
 import { 
@@ -14,7 +15,13 @@ import {
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
 
-const TaxDetailsScreen = () => {
+const TaxDetailsScreen = ({
+    taxDetails: {
+        name,
+        amount,
+        description,
+    },
+}) => {
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -31,7 +38,7 @@ const TaxDetailsScreen = () => {
                 <ResponsiveText 
                     fontStyle="headerDetails"
                     color={MAIN_GRAY}
-                    text="VAT"
+                    text={name}
                     customStyle={globalStyles.largeSpace}
                 />
                 <View style={globalStyles.detailsContainer}>
@@ -44,13 +51,14 @@ const TaxDetailsScreen = () => {
                     <ResponsiveText 
                         fontStyle="rightInputTitle"
                         color={MAIN_GRAY}
-                        text={"23" + "%"}
+                        text={amount + "%"}
                         customStyle={globalStyles.mediumBottomSpace}
                     />
                     <DescriptionSection 
                         fontStyle="labelDetails"
                         descriptionLabel={"Description" + ":"} 
                         descriptionLabelStyle={globalStyles.smallLabelSpace}
+                        description={description}
                     />
                 </View>
                 <View style={globalStyles.bottomIconDetailsContainer}>
@@ -61,4 +69,8 @@ const TaxDetailsScreen = () => {
     );
 }
 
-export default TaxDetailsScreen;
+const mapStateToProps = state => ({
+    taxDetails: state.tax.taxDetails,
+});
+
+export default connect(mapStateToProps, { })(TaxDetailsScreen);

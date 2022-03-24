@@ -9,7 +9,9 @@ import { MAIN_GRAY } from '../../../contants/colors';
 import styles from './previewStyle';
 import { PRODUCT_PREVIEW_ICONS } from '../../../mocks';
 
-const ProductPreview = () => {
+const ProductPreview = ({
+    item,
+}) => {
     const icon = PRODUCT_PREVIEW_ICONS[Math.floor(Math.random() * PRODUCT_PREVIEW_ICONS.length)];
     
     return (
@@ -24,7 +26,7 @@ const ProductPreview = () => {
                     <ResponsiveText 
                         fontStyle="header"
                         color={MAIN_GRAY}
-                        text="Banan"
+                        text={item?.name}
                     />
                     <View>
                         <View 
@@ -41,7 +43,7 @@ const ProductPreview = () => {
                             <ResponsiveText 
                                 fontStyle="regularSmallText"
                                 color={MAIN_GRAY}
-                                text={"0.76" + " $"}
+                                text={item?.price + " $"}
                             />
                         </View>
                         <View style={globalStyles.rowCenter}>
@@ -53,7 +55,7 @@ const ProductPreview = () => {
                             <ResponsiveText 
                                 fontStyle="regularSmallText"
                                 color={MAIN_GRAY}
-                                text="1"
+                                text={item?.amount}
                             />
                         </View>
                     </View>

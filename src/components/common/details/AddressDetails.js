@@ -9,6 +9,9 @@ import { MAIN_GRAY } from '../../../contants/colors';
 const AddressDetails = ({
     children,
     separatorStyle,
+    street,
+    city,
+    country,
 }) => {
     return (
         <React.Fragment>
@@ -21,7 +24,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="Karmelicka 45/32"
+                text={street}
                 customStyle={separatorStyle}
             />
             {children}
@@ -34,7 +37,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="Cracow"
+                text={city}
                 customStyle={separatorStyle}
             />
             <ResponsiveText 
@@ -46,7 +49,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="rightInputTitle"
                 color={MAIN_GRAY}
-                text="Poland"
+                text={country}
                 customStyle={separatorStyle}
             />
         </React.Fragment>

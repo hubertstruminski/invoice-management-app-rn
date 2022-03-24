@@ -58,4 +58,9 @@ export default StyleSheet.create({
     horizontalSpace: {
         paddingHorizontal: wp(16),
     },
+    statusContainer: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    }
 });

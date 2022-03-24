@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import moment from 'moment';
 
 import { 
     globalStyles, 
@@ -7,7 +8,9 @@ import {
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 
-const InvoicePartDocument = () => {
+const InvoicePartDocument = ({
+    item,
+}) => {
     return (
         <View>
             <ResponsiveText 
@@ -25,7 +28,7 @@ const InvoicePartDocument = () => {
                 <ResponsiveText 
                     fontStyle="regularSmallText"
                     color={MAIN_GRAY}
-                    text="100678"
+                    text={"#" + item?.number}
                 />
             </View>
             <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
@@ -37,7 +40,7 @@ const InvoicePartDocument = () => {
                 <ResponsiveText 
                     fontStyle="regularSmallText"
                     color={MAIN_GRAY}
-                    text="21.02.2022"
+                    text={moment(new Date(item?.date)).format("DD.MM.YYYY")}
                 />
             </View>
             <View style={globalStyles.rowCenter}>
@@ -49,7 +52,7 @@ const InvoicePartDocument = () => {
                 <ResponsiveText 
                     fontStyle="regularSmallText"
                     color={MAIN_GRAY}
-                    text="27.02.2022"
+                    text={moment(new Date(item?.deadline)).format("DD.MM.YYYY")}
                 />
             </View>
         </View>
