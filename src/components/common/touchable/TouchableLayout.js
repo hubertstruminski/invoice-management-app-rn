@@ -10,6 +10,7 @@ import {
 const TouchableLayout = ({ 
     children,
     callback, 
+    containerStyle,
 }) => {
     const dismissKeyboard = useCallback(() => {
         Keyboard.dismiss();
@@ -18,7 +19,7 @@ const TouchableLayout = ({
 
     return (
         <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <View>
+            <View style={containerStyle}>
                 {children}
             </View>
         </TouchableWithoutFeedback>

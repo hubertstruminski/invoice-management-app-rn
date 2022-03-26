@@ -93,5 +93,9 @@
         "invoice": "Szczegóły faktury",
         "product": "Szczegóły produktu",
         "tax": "Szczegóły podatku"
+    },
+    "formErrors": {
+        "label": "Błąd",
+        "incorrectCredentials": "Niepoprawne dane logowania!"
     }
 }

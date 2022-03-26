@@ -17,7 +17,6 @@ import {
 import styles from './inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { WarningIcon } from '../../../../assets';
-import { languages } from '../../../internationalization/languages';
 
 const Input = ({
     containerStyle,
@@ -29,6 +28,9 @@ const Input = ({
     errorText,
     isCalendar,
     onCalendarPress,
+    value,
+    setValue,
+    isPassword,
 }) => {
     return (
         <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : undefined}>
@@ -71,6 +73,9 @@ const Input = ({
                                     ]}
                                     placeholder={placeholder}
                                     placeholderTextColor={GRAY_3}
+                                    value={value}
+                                    onChangeText={setValue}
+                                    secureTextEntry={isPassword}
                                 />
                             )
                         }

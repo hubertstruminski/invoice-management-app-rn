@@ -5,6 +5,7 @@ import {
     View, 
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { TouchableLayout } from '..';
 
 import { MAIN_ORANGE } from '../../contants/colors';
 import styles from './basicViewStyle';
@@ -34,9 +35,9 @@ const BasicView = ({
                     }
                 ]}
             >      
-                <View style={styles.headerContainer}>
+                <TouchableLayout containerStyle={styles.headerContainer}>
                     {headerComponent}
-                </View>
+                </TouchableLayout>
                 <View style={styles.shadow}>
                     <View style={[styles.container, containerStyle]}>
                         {children}

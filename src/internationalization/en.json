@@ -93,5 +93,9 @@
         "invoice": "Invoice details",
         "product": "Product details",
         "tax": "Tax details"
+    },
+    "formErrors": {
+        "label": "Error",
+        "incorrectCredentials": "Invalid credentials!"
     }
 }
