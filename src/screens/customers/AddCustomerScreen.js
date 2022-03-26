@@ -10,6 +10,7 @@ import {
     TouchableLayout, 
 } from '../../components';
 import { WHITE } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 import styles from '../screenStyle';
 
 const AddCustomerScreen = () => {
@@ -19,7 +20,7 @@ const AddCustomerScreen = () => {
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title="Add customer" />}
+            headerComponent={<Header title={languages.addEntity.addCustomer} />}
         >
             <ScrollView 
                 style={[
@@ -31,61 +32,61 @@ const AddCustomerScreen = () => {
             >
                 <TouchableLayout>
                     <Input 
-                        leftTitle="Full name"
-                        placeholder="Enter full name"
+                        leftTitle={languages.labels.fullName}
+                        placeholder={languages.placeholders.fullName}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Email"
-                        placeholder="Enter email"
+                        leftTitle={languages.labels.email}
+                        placeholder={languages.placeholders.email}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Street"
-                        placeholder="Enter street"
+                        leftTitle={languages.labels.street}
+                        placeholder={languages.placeholders.street}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="City"
-                        placeholder="Enter city"
+                        leftTitle={languages.labels.city}
+                        placeholder={languages.placeholders.city}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Country"
-                        placeholder="Enter country"
+                        leftTitle={languages.labels.country}
+                        placeholder={languages.placeholders.country}
                         containerStyle={globalStyles.regularBottomSpace}
-                        rightTitle="Optional"
+                        rightTitle={languages.labels.optional}
                     />
                     <Input 
-                        leftTitle="Phone number"
-                        placeholder="Enter phone number"
+                        leftTitle={languages.labels.phoneNumber}
+                        placeholder={languages.placeholders.phoneNumber}
                         containerStyle={globalStyles.regularBottomSpace}
-                        rightTitle="Optional"
+                        rightTitle={languages.labels.optional}
                     />
                     <Input 
-                        leftTitle="NIP"
-                        placeholder="Enter NIP"
+                        leftTitle={languages.labels.nip}
+                        placeholder={languages.placeholders.nip}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Additional informations"
-                        placeholder="Enter additional informations"
+                        leftTitle={languages.labels.additionalInformations}
+                        placeholder={languages.placeholders.additionalInformations}
                         containerStyle={styles.lastInputSpace}
-                        rightTitle="Optional"
+                        rightTitle={languages.labels.optional}
                     />
                     <Button 
                         color={WHITE}
-                        text="Save"
+                        text={languages.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                     />
                 </TouchableLayout>

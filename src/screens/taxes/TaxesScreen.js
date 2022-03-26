@@ -17,6 +17,7 @@ import {
     TRANSPARENT, 
 } from '../../contants/colors';
 import { TAX_ENTITY } from '../../contants/constants';
+import { languages } from '../../internationalization/languages';
 import { TAXES } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -28,14 +29,14 @@ const TaxesScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header title="Taxes" />
+                <Header title={languages.dashboardTiles.taxes} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add tax"
+                        text={languages.addEntity.addTax}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddTaxScreen')}

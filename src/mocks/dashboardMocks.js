@@ -14,30 +14,31 @@ import {
     PRODUCT_ENTITY, 
     TAX_ENTITY, 
 } from '../contants/constants';
+import { languages } from '../internationalization/languages';
 
 export const DASHBOARD_TILES = [
     { 
-        title: 'My companies', 
+        title: languages.dashboardTiles.companies, 
         icon: <CompaniesIcon />, 
         label: COMPANY_ENTITY,
     },
     { 
-        title: 'Customers', 
+        title: languages.dashboardTiles.customers, 
         icon: <CustomersIcon />, 
         label: CUSTOMER_ENTITY,
     },
     { 
-        title: 'Invoices', 
+        title: languages.dashboardTiles.invoices, 
         icon: <InvoicesIcon />, 
         label: INVOICE_ENTITY,
     },
     { 
-        title: 'Products', 
+        title: languages.dashboardTiles.products, 
         icon: <ProductsIcon />, 
         label: PRODUCT_ENTITY,
     },
     { 
-        title: 'Taxes', 
+        title: languages.dashboardTiles.taxes, 
         icon: <TaxesIcon />, 
         label: TAX_ENTITY,
     },

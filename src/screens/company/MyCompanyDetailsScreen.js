@@ -14,6 +14,7 @@ import {
     ResponsiveText, 
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 
 const MyCompanyDetailsScreen = ({
     companyDetails: {
@@ -27,7 +28,7 @@ const MyCompanyDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title="Company details" />}
+            headerComponent={<Header title={languages.details.company} />}
         >
             <ScrollView 
                 style={globalStyles.addEntityScrollViewContainer} 
@@ -50,7 +51,7 @@ const MyCompanyDetailsScreen = ({
                         <ResponsiveText 
                             fontStyle="labelDetails"
                             color={MAIN_GRAY}
-                            text={"Postalcode" + ":"} 
+                            text={languages.labels.postalCode + ":"} 
                             customStyle={globalStyles.smallLabelSpace}
                         />
                         <ResponsiveText 

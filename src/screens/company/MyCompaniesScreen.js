@@ -17,6 +17,7 @@ import {
     TRANSPARENT, 
 } from '../../contants/colors';
 import { COMPANY_ENTITY } from '../../contants/constants';
+import { languages } from '../../internationalization/languages';
 import { COMPANIES } from '../../mocks';
 
 const MyCompaniesScreen = ({
@@ -27,14 +28,14 @@ const MyCompaniesScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header title="My companies" />
+                <Header title={languages.dashboardTiles.companies} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add company"
+                        text={languages.addEntity.addCompany}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}

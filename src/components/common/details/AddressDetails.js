@@ -1,3 +1,4 @@
+import { lang } from 'moment';
 import React from 'react';
 
 import { 
@@ -5,6 +6,7 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 
 const AddressDetails = ({
     children,
@@ -18,7 +20,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="labelDetails"
                 color={MAIN_GRAY}
-                text={"Street" + ":"} 
+                text={languages.labels.street + ":"} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
@@ -31,7 +33,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="labelDetails"
                 color={MAIN_GRAY}
-                text={"City" + ":"} 
+                text={languages.labels.city + ":"} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
@@ -43,7 +45,7 @@ const AddressDetails = ({
             <ResponsiveText 
                 fontStyle="labelDetails"
                 color={MAIN_GRAY}
-                text={"Country" + ":"} 
+                text={languages.labels.country + ":"} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 

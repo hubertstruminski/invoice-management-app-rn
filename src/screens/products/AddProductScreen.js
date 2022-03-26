@@ -14,6 +14,7 @@ import {
     TouchableLayout, 
 } from '../../components';
 import { WHITE } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 import { TAXES } from '../../mocks';
 import styles from '../screenStyle';
 
@@ -30,7 +31,7 @@ const AddProductScreen = () => {
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title="Add product" />}
+            headerComponent={<Header title={languages.addEntity.addProduct} />}
         >
             <ScrollView 
                 style={[
@@ -42,54 +43,54 @@ const AddProductScreen = () => {
             >
                 <TouchableLayout callback={closeDropdown}>
                     <Input 
-                        leftTitle="Name"
-                        placeholder="Enter name"
+                        leftTitle={languages.labels.name}
+                        placeholder={languages.placeholders.name}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Description"
-                        rightTitle="Optional"
-                        placeholder="Enter description"
+                        leftTitle={languages.labels.description}
+                        rightTitle={languages.labels.optional}
+                        placeholder={languages.placeholders.description}
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Price"
-                        placeholder="Enter price"
+                        leftTitle={languages.labels.price}
+                        placeholder={languages.placeholders.price}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Amount"
-                        placeholder="Enter amount"
+                        leftTitle={languages.labels.amount}
+                        placeholder={languages.placeholders.amount}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Discount"
-                        rightTitle="Optional"
+                        leftTitle={languages.labels.discount}
+                        rightTitle={languages.labels.optional}
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Unit"
-                        placeholder="TIME"
+                        leftTitle={languages.labels.unit}
+                        placeholder={languages.placeholders.time}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Dropdown 
-                        leftTitle="Tax"
-                        placeholder="Choose tax"
+                        leftTitle={languages.labels.tax}
+                        placeholder={languages.placeholders.tax}
                         containerStyle={styles.lastInputSpace}
                         data={TAXES}
                         ref={taxRef}
                     />
                     <Button 
                         color={WHITE}
-                        text="Save"
+                        text={languages.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                     />
                 </TouchableLayout>

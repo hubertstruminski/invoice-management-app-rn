@@ -9,6 +9,7 @@ import { ResponsiveText } from '../..';
 import { BackArrowIcon } from '../../../../assets';
 import { MAIN_GRAY } from '../../../contants/colors';
 import styles from './headerStyle';
+import { languages } from '../../../internationalization/languages';
 
 const Header = ({
     withBackArrow = true,
@@ -44,7 +45,7 @@ const Header = ({
                         <View>
                             <ResponsiveText 
                                 fontStyle="header"
-                                text="Logout"
+                                text={languages.headers.logout}
                                 color={MAIN_GRAY}
                             />
                         </View>

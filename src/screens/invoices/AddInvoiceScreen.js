@@ -23,6 +23,7 @@ import {
     PRODUCTS, 
 } from '../../mocks';
 import styles from '../screenStyle';
+import { languages } from '../../internationalization/languages';
 
 const AddInvoiceScreen = () => {
     const currentDate = new Date();
@@ -68,7 +69,7 @@ const AddInvoiceScreen = () => {
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title="Add invoice" />}
+            headerComponent={<Header title={languages.addEntity.addInvoice} />}
         >
             <ScrollView 
                 style={[
@@ -80,17 +81,17 @@ const AddInvoiceScreen = () => {
             >
                 <TouchableLayout callback={closeDropdowns}>
                     <Input 
-                        leftTitle="Number"
-                        placeholder="Enter number"
+                        leftTitle={languages.labels.number}
+                        placeholder={languages.placeholders.number}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle="Date"
+                        leftTitle={languages.labels.date}
                         placeholder={moment(date).format("DD.MM.YYYY")}
+                        errorText={languages.labels.errorText}
                         withWarning
-                        errorText="Error text"
                         containerStyle={globalStyles.regularBottomSpace}
                         leftIcon={<CalendarIcon />}
                         onCalendarPress={toggleDateModal}
@@ -101,12 +102,12 @@ const AddInvoiceScreen = () => {
                         open={isOpenDateModal}
                         mode="date"
                         date={date}
-                        title="Select date"
+                        title={languages.calendar.selectDate}
                         onConfirm={confirmDateModal}
                         onCancel={closeDateModal}
                     />
                     <Input 
-                        leftTitle="Deadline"
+                        leftTitle={languages.labels.deadline}
                         placeholder={moment(deadline).format("DD.MM.YYYY")}
                         containerStyle={globalStyles.regularBottomSpace}
                         leftIcon={<CalendarIcon />}
@@ -118,33 +119,33 @@ const AddInvoiceScreen = () => {
                         open={isOpenDeadlineModal}
                         mode="date"
                         date={deadline}
-                        title="Select deadline"
+                        title={languages.calendar.selectDeadline}
                         onConfirm={confirmDeadlineModal}
                         onCancel={closeDeadlineModal}
                     />
                     <Dropdown 
-                        leftTitle="Customer"
-                        placeholder="Choose customer"
+                        leftTitle={languages.labels.customer}
+                        placeholder={languages.placeholders.customer}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={CUSTOMERS}
                         ref={customerRef}
                     />
                     <Dropdown 
-                        leftTitle="Product"
-                        rightTitle="Optional"
-                        placeholder="Choose product"
+                        leftTitle={languages.labels.product}
+                        rightTitle={languages.labels.optional}
+                        placeholder={languages.placeholders.product}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={PRODUCTS}
                         ref={productRef}
                     />
                     <Input 
-                        leftTitle="Comment"
+                        leftTitle={languages.labels.comment}
                         containerStyle={styles.lastInputSpace}
-                        rightTitle="Optional"
+                        rightTitle={languages.labels.optional}
                     />
                     <Button 
                         color={WHITE}
-                        text="Save"
+                        text={languages.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                     />
                 </TouchableLayout>

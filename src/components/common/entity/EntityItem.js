@@ -39,6 +39,7 @@ import {
     setInvoiceDetails,
     setCustomerDetails,
 } from '../../../redux/actions';
+import { languages } from '../../../internationalization/languages';
 
 const EntityItem = ({
     children,
@@ -108,7 +109,7 @@ const EntityItem = ({
                             <ResponsiveText 
                                 fontStyle="details"
                                 color={MAIN_ORANGE}
-                                text="See details"
+                                text={languages.buttons.seeDetails}
                             />
                         </View>
                     </TouchableWithoutFeedback>

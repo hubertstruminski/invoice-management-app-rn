@@ -7,6 +7,7 @@ import {
     EntityTile,
     globalStyles,
 } from '../../components';
+import { languages } from '../../internationalization/languages';
 import { DASHBOARD_TILES } from '../../mocks';
 
 const DashboardScreen = () => {
@@ -16,7 +17,7 @@ const DashboardScreen = () => {
             headerComponent={
                 <Header 
                     withBackArrow={false} 
-                    title="Dashboard" 
+                    title={languages.headers.dashboard}
                 />
             }
         >

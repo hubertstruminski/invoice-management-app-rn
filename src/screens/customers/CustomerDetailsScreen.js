@@ -15,6 +15,7 @@ import {
     ResponsiveText, 
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 import { INVOICES } from '../../mocks';
 
 const CustomerDetailsScreen = ({
@@ -33,7 +34,7 @@ const CustomerDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title="Customer details" />}
+            headerComponent={<Header title={languages.details.customer} />}
         >
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -47,11 +48,16 @@ const CustomerDetailsScreen = ({
                             text={fullName}
                             customStyle={globalStyles.largeSpace}
                         />
-                        <View style={[globalStyles.detailsContainer, globalStyles.regularBottomSpace]}>
+                        <View 
+                            style={[
+                                globalStyles.detailsContainer, 
+                                globalStyles.regularBottomSpace,
+                            ]}
+                        >
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={"Email" + ":"} 
+                                text={languages.labels.email + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -63,7 +69,7 @@ const CustomerDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={"Phone number" + ":"} 
+                                text={languages.labels.phoneNumber + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -75,7 +81,7 @@ const CustomerDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={"NIP" + ":"} 
+                                text={languages.labels.nip + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -98,7 +104,7 @@ const CustomerDetailsScreen = ({
                         <ResponsiveText 
                             fontStyle="smallDetailsTitle"
                             color={MAIN_GRAY}
-                            text="Documents"
+                            text={languages.labels.documents}
                             customStyle={[
                                 globalStyles.textAlignCenter, 
                                 globalStyles.regularBottomSpace,

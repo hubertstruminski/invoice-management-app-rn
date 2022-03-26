@@ -14,6 +14,7 @@ import {
     ResponsiveText, 
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 
 const TaxDetailsScreen = ({
     taxDetails: {
@@ -25,7 +26,7 @@ const TaxDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title="Tax details" />}
+            headerComponent={<Header title={languages.details.tax} />}
         >
             <ScrollView 
                 style={globalStyles.addEntityScrollViewContainer} 
@@ -45,7 +46,7 @@ const TaxDetailsScreen = ({
                     <ResponsiveText 
                         fontStyle="labelDetails"
                         color={MAIN_GRAY}
-                        text={"Amount" + ":"} 
+                        text={languages.labels.amount + ":"} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
@@ -56,7 +57,7 @@ const TaxDetailsScreen = ({
                     />
                     <DescriptionSection 
                         fontStyle="labelDetails"
-                        descriptionLabel={"Description" + ":"} 
+                        descriptionLabel={languages.labels.description + ":"} 
                         descriptionLabelStyle={globalStyles.smallLabelSpace}
                         description={description}
                     />

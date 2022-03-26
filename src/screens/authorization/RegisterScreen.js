@@ -16,6 +16,7 @@ import {
     UserIcon, 
     LockIcon, 
 } from '../../../assets';
+import { languages } from '../../internationalization/languages';
 
 const RegisterScreen = ({
     navigation: {
@@ -28,34 +29,34 @@ const RegisterScreen = ({
             headerComponent={<Header withLogout={false} />}
         >
             <ResponsiveText 
-                text="Get Started!"
+                text={languages.hi}
                 color={MAIN_GRAY}
                 fontStyle="registerTitle"
                 customStyle={styles.appTitleContainer}
             />
             <Input 
-                leftTitle="Email"
-                placeholder="Enter email"
+                leftTitle={languages.labels.email}
+                placeholder={languages.placeholders.email}
                 leftIcon={<UserIcon />}
             />
             <Input 
-                leftTitle="Full name"
-                placeholder="Enter full name"
+                leftTitle={languages.labels.fullName}
+                placeholder={languages.placeholders.fullName}
             />
             <Input 
-                leftTitle="Password"
-                placeholder="Enter password"
+                leftTitle={languages.labels.password}
+                placeholder={languages.placeholders.password}
                 leftIcon={<LockIcon />}
             />
             <Input 
-                leftTitle="Confirm password"
-                placeholder="Enter password"
+                leftTitle={languages.labels.confirmPassword}
+                placeholder={languages.placeholders.password}
                 leftIcon={<LockIcon />}
                 containerStyle={styles.lastInputSpace}
             />   
             <Button 
                 color={WHITE}
-                text="Create an Account"
+                text={languages.buttons.registerAccount}
                 onPress={() => navigate('DashboardScreen')}
             />
         </BasicView>

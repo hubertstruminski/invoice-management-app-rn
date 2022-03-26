@@ -7,6 +7,7 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 
 const InvoicePartDocument = ({
     item,
@@ -16,14 +17,14 @@ const InvoicePartDocument = ({
             <ResponsiveText 
                 fontStyle="header"
                 color={MAIN_GRAY}
-                text="Invoice"
+                text={languages.labels.invoice}
                 customStyle={globalStyles.regularBottomSpace}
             />
             <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Number" + ": "}
+                    text={languages.labels.number + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"
@@ -35,7 +36,7 @@ const InvoicePartDocument = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Date" + ": "}
+                    text={languages.labels.date + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"
@@ -47,7 +48,7 @@ const InvoicePartDocument = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Deadline" + ": "}
+                    text={languages.labels.deadline + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"

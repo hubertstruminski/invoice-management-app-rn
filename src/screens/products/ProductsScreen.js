@@ -17,6 +17,7 @@ import {
     TRANSPARENT, 
 } from '../../contants/colors';
 import { PRODUCT_ENTITY } from '../../contants/constants';
+import { languages } from '../../internationalization/languages';
 import { PRODUCTS } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -28,14 +29,14 @@ const ProductsScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header title="Products" />
+                <Header title={languages.dashboardTiles.products} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add product"
+                        text={languages.addEntity.addProduct}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddProductScreen')}

@@ -6,6 +6,7 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 import entityItemStyle from './entityItemStyle';
 
 const ProductItem = ({
@@ -30,7 +31,7 @@ const ProductItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Price" + ": "}
+                    text={languages.labels.price + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"
@@ -42,7 +43,7 @@ const ProductItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Amount" + ": "}
+                    text={languages.labels.amount + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"

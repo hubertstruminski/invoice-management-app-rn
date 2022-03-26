@@ -1,0 +1,97 @@
+{
+    "appTitle": "Invoice Management App",
+    "hi": "Get Started!",
+    "buttons": {
+        "logIn": "Log In",
+        "registerAccount": "Register an Account",
+        "seeDetails": "See details",
+        "save": "Save"
+    },
+    "placeholders": {
+        "email": "Enter email",
+        "password": "Enter password",
+        "fullName": "Enter full name",
+        "companyName": "Enter company name",
+        "street": "Enter street",
+        "postalCode": "Enter postalcode",
+        "city": "Enter city",
+        "country": "Enter country",
+        "phoneNumber": "Enter phone number",
+        "nip": "Enter NIP",
+        "additionalInformations": "Enter additional informations",
+        "number": "Enter number",
+        "customer": "Choose customer",
+        "product": "Choose product",
+        "name": "Enter name",
+        "price": "Enter price",
+        "amount": "Enter amount",
+        "description": "Enter description",
+        "time": "TIME",
+        "tax": "Choose tax"
+    },
+    "labels": {
+        "email": "Email",
+        "password": "Password",
+        "fullName": "Full name",
+        "confirmPassword": "Confirm password",
+        "deadline": "Deadline",
+        "price": "Price",
+        "amount": "Amount",
+        "companyName": "Company name",
+        "street": "Street",
+        "postalCode": "Postalcode",
+        "city": "City",
+        "country": "Country",
+        "errorText": "Error text",
+        "phoneNumber": "Phone number",
+        "optional": "Optional",
+        "nip": "NIP",
+        "additionalInformations": "Additional informations",
+        "number": "Number",
+        "date": "Date",
+        "customer": "Customer",
+        "product": "Product",
+        "comment": "Comment",
+        "name": "Name",
+        "description": "Description",
+        "discount": "Discount",
+        "unit": "Unit",
+        "tax": "Tax",
+        "documents": "Documents",
+        "notSent": "not sent",
+        "sent": "sent",
+        "status": "Status",
+        "invoice": "Invoice",
+        "invoiceNumber": "Invoice number",
+        "products": "Products"
+    },
+    "headers": {
+        "dashboard": "Dashboard",
+        "logout": "Logout"
+    },
+    "dashboardTiles": {
+        "companies": "My companies",
+        "customers": "Customers",
+        "products": "Products",
+        "invoices": "Invoices",
+        "taxes": "Taxes"
+    },
+    "addEntity": {
+        "addCompany": "Add company",
+        "addCustomer": "Add customer",
+        "addInvoice": "Add invoice",
+        "addProduct": "Add product",
+        "addTax": "Add tax"
+    },
+    "calendar": {
+        "selectDate": "Select date",
+        "selectDeadline": "Select deadline"
+    },
+    "details": {
+        "company": "Company details",
+        "customer": "Customer details",
+        "invoice": "Invoice details",
+        "product": "Product details",
+        "tax": "Tax details"
+    }
+}

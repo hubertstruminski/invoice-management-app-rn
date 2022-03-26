@@ -17,6 +17,7 @@ import {
     TRANSPARENT, 
 } from '../../contants/colors';
 import { INVOICE_ENTITY } from '../../contants/constants';
+import { languages } from '../../internationalization/languages';
 import { INVOICES } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -28,14 +29,14 @@ const InvoicesScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header title="Invoices" />
+                <Header title={languages.dashboardTiles.invoices} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add invoice"
+                        text={languages.addEntity.addInvoice}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={() => navigate('AddInvoiceScreen')}

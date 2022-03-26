@@ -7,6 +7,7 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 
 const CustomerDetails = ({
     item,
@@ -16,7 +17,7 @@ const CustomerDetails = ({
             <ResponsiveText 
                 fontStyle="smallDetailsTitle"
                 color={MAIN_GRAY}
-                text="Customer"
+                text={languages.labels.customer}
                 customStyle={[
                     globalStyles.regularBottomSpace, 
                     globalStyles.textAlignCenter
@@ -33,7 +34,7 @@ const CustomerDetails = ({
                     <ResponsiveText 
                         fontStyle="labelDetails"
                         color={MAIN_GRAY}
-                        text={"Full name" + ":"} 
+                        text={languages.labels.fullName + ":"} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
@@ -45,7 +46,7 @@ const CustomerDetails = ({
                     <ResponsiveText 
                         fontStyle="labelDetails"
                         color={MAIN_GRAY}
-                        text={"Phone number" + ":"} 
+                        text={languages.labels.phoneNumber + ":"} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 

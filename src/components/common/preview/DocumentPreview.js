@@ -2,7 +2,6 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { 
-    CustomerPartDocument,
     globalStyles, 
     InvoicePartDocument, 
     ResponsiveText, 
@@ -17,11 +16,10 @@ import {
     MAIN_GRAY, 
     RED, 
 } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 import styles from './previewStyle';
 
-const DocumentPreview = ({
-    item,
-}) => {
+const DocumentPreview = ({ item }) => {
     return (
         <View style={styles.documentShadow}>
             <View style={styles.documentContainer}>
@@ -34,16 +32,21 @@ const DocumentPreview = ({
                 >
                     <InvoicePartDocument item={item} />
                     <View style={styles.statusContainer}>
-                        <View style={[globalStyles.rowCenter, globalStyles.regularBottomSpace]}>
+                        <View 
+                            style={[
+                                globalStyles.rowCenter, 
+                                globalStyles.regularBottomSpace,
+                            ]}
+                        >
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={MAIN_GRAY}
-                                text={"Status" + ": "}
+                                text={languages.labels.status + ": "}
                             />
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={item?.sentStatus ? GREEN : RED}
-                                text={item?.sentStatus ? "sent" : "not sent"}
+                                text={item?.sentStatus ? languages.labels.sent : languages.labels.notSent}
                             />
                         </View>
                         <View style={globalStyles.rowCenter}>

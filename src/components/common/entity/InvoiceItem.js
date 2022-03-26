@@ -8,6 +8,7 @@ import {
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 import entityItemStyle from './entityItemStyle';
+import { languages } from '../../../internationalization/languages';
 
 const InvoiceItem = ({
     number, 
@@ -32,7 +33,7 @@ const InvoiceItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={"Deadline" + ": "}
+                    text={languages.labels.deadline + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"

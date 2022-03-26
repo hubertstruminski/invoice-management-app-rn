@@ -17,6 +17,7 @@ import {
     TRANSPARENT, 
 } from '../../contants/colors';
 import { CUSTOMER_ENTITY } from '../../contants/constants';
+import { languages } from '../../internationalization/languages';
 import { CUSTOMERS } from '../../mocks';
 import { hp } from '../../tools';
 
@@ -28,14 +29,14 @@ const CustomersScreen = ({
     return (
         <BasicView 
             headerComponent={
-                <Header title="Customers" />
+                <Header title={languages.dashboardTiles.customers} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text="Add customer"
+                        text={languages.addEntity.addCustomer}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}

@@ -6,6 +6,7 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 
 const InvoiceDatePeriod = ({
     date,
@@ -16,7 +17,7 @@ const InvoiceDatePeriod = ({
             <ResponsiveText 
                 fontStyle="labelDetails"
                 color={MAIN_GRAY}
-                text={"Date" + ":"} 
+                text={languages.labels.date + ":"} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
@@ -28,7 +29,7 @@ const InvoiceDatePeriod = ({
             <ResponsiveText 
                 fontStyle="labelDetails"
                 color={MAIN_GRAY}
-                text={"Deadline" + ":"} 
+                text={languages.labels.deadline + ":"} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 

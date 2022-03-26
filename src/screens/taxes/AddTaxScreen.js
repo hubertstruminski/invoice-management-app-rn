@@ -13,6 +13,7 @@ import {
     TouchableLayout, 
 } from '../../components';
 import { WHITE } from '../../contants/colors';
+import { languages } from '../../internationalization/languages';
 
 const AddTaxScreen = () => {
     return (
@@ -21,7 +22,7 @@ const AddTaxScreen = () => {
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title="Add tax" />}
+            headerComponent={<Header title={languages.addEntity.addTax} />}
         >
             <ScrollView 
                 style={[
@@ -38,28 +39,28 @@ const AddTaxScreen = () => {
                 <TouchableLayout>
                     <View style={globalStyles.flex}>
                         <Input 
-                            leftTitle="Name"
-                            placeholder="Enter name"
+                            leftTitle={languages.labels.name}
+                            placeholder={languages.placeholders.name}
+                            errorText={languages.labels.errorText}
                             withWarning
-                            errorText="Error text"
                             containerStyle={globalStyles.mediumBottomSpace}
                         />
                         <Input 
-                            leftTitle="Description"
-                            placeholder="Enter description"
+                            leftTitle={languages.labels.description}
+                            placeholder={languages.placeholders.description}
                             containerStyle={globalStyles.mediumBottomSpace}
-                            rightTitle="Optional"
+                            rightTitle={languages.labels.optional}
                         />
                         <Input 
-                            leftTitle="Amount"
-                            placeholder="Enter amount"
+                            leftTitle={languages.labels.amount}
+                            placeholder={languages.placeholders.amount}
+                            errorText={languages.labels.errorText}
                             withWarning
-                            errorText="Error text"
                         />
                     </View>
                     <Button 
                         color={WHITE}
-                        text="Save" 
+                        text={languages.buttons.save}
                     />
                 </TouchableLayout>
             </ScrollView>

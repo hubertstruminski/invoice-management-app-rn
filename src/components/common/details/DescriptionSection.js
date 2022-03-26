@@ -5,11 +5,12 @@ import {
     ResponsiveText, 
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
+import { languages } from '../../../internationalization/languages';
 
 const DescriptionSection = ({ 
     separatorStyle, 
     fontStyle = "smallDetailsTitle",
-    descriptionLabel = "Description",
+    descriptionLabel = languages.labels.description,
     description,
     descriptionLabelStyle = [globalStyles.regularBottomSpace, globalStyles.textAlignCenter],
 }) => {
