@@ -1,4 +1,8 @@
-import { SET_CHOSEN_INVOICE_DETAILS } from '../actions/types';
+import { INVOICES } from '../../mocks';
+import { 
+    REMOVE_INVOICE, 
+    SET_CHOSEN_INVOICE_DETAILS, 
+} from '../actions/types';
 
 const initialState = {
     invoiceDetails: {
@@ -8,6 +12,7 @@ const initialState = {
         customer: null,
         description: '',
     },
+    invoices: INVOICES,
 }
 
 export default function(state = initialState, action) {
@@ -16,6 +21,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 invoiceDetails: action.payload,
+            };
+        case REMOVE_INVOICE:
+            return {
+                ...state,
+                invoices: state.invoices.filter(item => item.id !== action.payload),
             };
         default:
             return state;

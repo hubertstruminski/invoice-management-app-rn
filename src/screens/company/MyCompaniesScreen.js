@@ -3,6 +3,7 @@ import {
     FlatList, 
     View, 
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -18,12 +19,12 @@ import {
 } from '../../contants/colors';
 import { COMPANY_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { COMPANIES } from '../../mocks';
 
 const MyCompaniesScreen = ({
     navigation: {
         navigate,
     },
+    companies,
 }) => {
     return (
         <BasicView 
@@ -43,7 +44,7 @@ const MyCompaniesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={COMPANIES}
+                data={companies}
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
@@ -66,4 +67,8 @@ const MyCompaniesScreen = ({
     );
 }
 
-export default MyCompaniesScreen;
+const mapStateToProps = state => ({
+    companies: state.company.companies,
+});
+
+export default connect(mapStateToProps, { })(MyCompaniesScreen);

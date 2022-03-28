@@ -3,6 +3,7 @@ import {
     FlatList, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -18,13 +19,13 @@ import {
 } from '../../contants/colors';
 import { TAX_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { TAXES } from '../../mocks';
 import { hp } from '../../tools';
 
 const TaxesScreen = ({
     navigation: {
         navigate,
     },
+    taxes,
 }) => {
     return (
         <BasicView 
@@ -43,7 +44,7 @@ const TaxesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={TAXES}
+                data={taxes}
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
@@ -66,4 +67,8 @@ const TaxesScreen = ({
     );
 }
 
-export default TaxesScreen;
+const mapStateToProps = state => ({
+    taxes: state.tax.taxes,
+});
+
+export default connect(mapStateToProps, { })(TaxesScreen);

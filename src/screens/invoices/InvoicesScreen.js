@@ -3,6 +3,7 @@ import {
     FlatList, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -18,13 +19,13 @@ import {
 } from '../../contants/colors';
 import { INVOICE_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { INVOICES } from '../../mocks';
 import { hp } from '../../tools';
 
 const InvoicesScreen = ({
     navigation: {
         navigate,
     },
+    invoices,
 }) => {
     return (
         <BasicView 
@@ -43,7 +44,7 @@ const InvoicesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={INVOICES}
+                data={invoices}
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
@@ -70,4 +71,8 @@ const InvoicesScreen = ({
     );
 }
 
-export default InvoicesScreen;
+const mapStateToProps = state => ({
+    invoices: state.invoice.invoices,
+});
+
+export default connect(mapStateToProps, { })(InvoicesScreen);

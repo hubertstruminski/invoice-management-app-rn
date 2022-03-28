@@ -4,6 +4,7 @@ import {
     TextInput,
     TouchableWithoutFeedback, 
 } from 'react-native';
+import MaskInput from 'react-native-mask-input';
 
 import { 
     globalStyles, 
@@ -31,7 +32,11 @@ const Input = ({
     value,
     setValue,
     isPassword,
+    mask,
 }) => {
+
+    
+
     return (
         <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : undefined}>
             <View 
@@ -65,7 +70,7 @@ const Input = ({
                                     customStyle={leftIcon && styles.leftPlaceholderSpace}
                                 />
                             ) : (
-                                <TextInput 
+                                <MaskInput 
                                     style={[
                                         responsiveTextStyles["inputText"],
                                         leftIcon && styles.leftPlaceholderSpace,
@@ -74,8 +79,11 @@ const Input = ({
                                     placeholder={placeholder}
                                     placeholderTextColor={GRAY_3}
                                     value={value}
-                                    onChangeText={setValue}
+                                    onChangeText={(masked, unmasked) => {
+                                        mask ? setValue(masked) : setValue(unmasked);
+                                    }}
                                     secureTextEntry={isPassword}
+                                    mask={mask}
                                 />
                             )
                         }

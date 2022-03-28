@@ -6146,6 +6146,11 @@
   dependencies:
     "react-localization" "^1.0.17"
 
+"react-native-mask-input@^1.2.0":
+  "integrity" "sha512-0bLJ9Szlly4tt59RrbLBS5TSJAGVoH22Hpka85HQ3q4qy10AH+UkcDkozXEonSY5oJK6sobnmzKQ4px5+mkCWg=="
+  "resolved" "https://registry.npmjs.org/react-native-mask-input/-/react-native-mask-input-1.2.0.tgz"
+  "version" "1.2.0"
+
 "react-native-reanimated@~2.2.4":
   "integrity" "sha512-Nn648MfEEnTCEiWsl1YmfkojiLyV0NMY0EiRdDRbZNfJVfxBuyqhCxI/4Jd7aBi162qpgf8XK2mByYgvF4zLrQ=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.2.4.tgz"

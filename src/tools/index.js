@@ -6,6 +6,11 @@ import { navigateFromTile } from './navigation';
 import { 
     validateNewAccountForm, 
     handleFormErrors, 
+    validateNewCompanyForm,
+    validateNewTaxForm,
+    validateNewCustomerForm,
+    validateNewProductForm,
+    validateNewInvoiceForm,
 } from './validators';
 
 export {
@@ -14,4 +19,9 @@ export {
     navigateFromTile,
     validateNewAccountForm,
     handleFormErrors,
+    validateNewCompanyForm,
+    validateNewTaxForm,
+    validateNewCustomerForm,
+    validateNewProductForm,
+    validateNewInvoiceForm,
 };

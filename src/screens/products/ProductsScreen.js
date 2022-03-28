@@ -3,6 +3,7 @@ import {
     FlatList, 
     View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -25,6 +26,7 @@ const ProductsScreen = ({
     navigation: {
         navigate,
     },
+    products,
 }) => {
     return (
         <BasicView 
@@ -43,7 +45,7 @@ const ProductsScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={PRODUCTS}
+                data={products}
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
@@ -67,4 +69,8 @@ const ProductsScreen = ({
     );
 }
 
-export default ProductsScreen;
+const mapStateToProps = state => ({
+    products: state.product.products,
+}); 
+
+export default connect(mapStateToProps, { })(ProductsScreen);

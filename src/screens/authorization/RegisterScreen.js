@@ -1,6 +1,5 @@
 import React, {
     useCallback,
-    useEffect,
     useState,
 } from 'react';
 
@@ -40,7 +39,6 @@ const RegisterScreen = ({
 
     const createAccount = useCallback(() => {
         const errorObject = validateNewAccountForm(email, fullName, password, confirmPassword);
-        console.log(errorObject);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {

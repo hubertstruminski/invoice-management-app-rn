@@ -38,6 +38,11 @@ import {
     setTaxDetails, 
     setInvoiceDetails,
     setCustomerDetails,
+    removeCompany,
+    removeCustomer,
+    removeInvoice,
+    removeProduct,
+    removeTax,
 } from '../../../redux/actions';
 import { languages } from '../../../internationalization/languages';
 
@@ -51,6 +56,11 @@ const EntityItem = ({
     setProductDetails,
     setInvoiceDetails,
     setCustomerDetails,
+    removeCompany,
+    removeCustomer,
+    removeProduct,
+    removeInvoice,
+    removeTax,
 }) => {
     const { navigate } = useNavigation();
 
@@ -91,6 +101,28 @@ const EntityItem = ({
         }
     }
 
+    const removeItem = () => {
+        switch(type) {
+            case COMPANY_ENTITY:
+                removeCompany(id);
+                break;
+            case CUSTOMER_ENTITY:
+                removeCustomer(id);
+                break;
+            case INVOICE_ENTITY:
+                removeInvoice(id);
+                break;
+            case PRODUCT_ENTITY:
+                removeProduct(id);
+                break;
+            case TAX_ENTITY:
+                removeTax(id);
+                break;
+            default: 
+                break;
+        }
+    }
+
     return (
         <View style={globalStyles.shadow}>
             <View 
@@ -118,7 +150,7 @@ const EntityItem = ({
                     <TouchableIcon containerStyle={styles.iconSpace}>
                         <EditIcon />
                     </TouchableIcon>
-                    <TouchableIcon>
+                    <TouchableIcon onLongPress={removeItem}>
                         <TrashIcon />
                     </TouchableIcon>
                 </View>
@@ -133,4 +165,9 @@ export default connect(() => ({}), {
     setProductDetails,
     setInvoiceDetails,
     setCustomerDetails,
+    removeCompany,
+    removeCustomer,
+    removeProduct,
+    removeInvoice,
+    removeTax,
 })(EntityItem);

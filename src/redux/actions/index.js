@@ -1,9 +1,24 @@
 import { closeAllDropdowns } from './dropdownActions';
-import { setCompanyDetails } from './companyActions';
-import { setTaxDetails } from './taxActions';
-import { setProductDetails } from './productActions';
-import { setInvoiceDetails } from './invoiceActions';
-import { setCustomerDetails } from './customerActions';
+import { 
+    setCompanyDetails, 
+    removeCompany,
+} from './companyActions';
+import { 
+    setTaxDetails, 
+    removeTax, 
+} from './taxActions';
+import { 
+    setProductDetails, 
+    removeProduct, 
+} from './productActions';
+import { 
+    setInvoiceDetails, 
+    removeInvoice, 
+} from './invoiceActions';
+import { 
+    setCustomerDetails, 
+    removeCustomer, 
+} from './customerActions';
 
 export {
     closeAllDropdowns,
@@ -12,4 +27,9 @@ export {
     setProductDetails,
     setInvoiceDetails,
     setCustomerDetails,
+    removeCompany,
+    removeTax,
+    removeCustomer,
+    removeProduct,
+    removeInvoice,
 };

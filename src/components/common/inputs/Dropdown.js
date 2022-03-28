@@ -18,6 +18,7 @@ import {
 import { 
     GRAY_3, 
     MAIN_GRAY,
+    RED,
 } from '../../../contants/colors';
 import styles from './inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
@@ -29,6 +30,9 @@ const Dropdown = forwardRef(({
     rightTitle,
     placeholder,
     data,
+    setId,
+    errorText,
+    id,
 }, ref) => {
     const [filteredData, setFilteredData] = useState([]);
     const [showData, setShowData] = useState(false);
@@ -61,8 +65,10 @@ const Dropdown = forwardRef(({
                 <DropdownItem 
                     key={index}
                     name={resultName}
+                    id={item.id}
                     isLastItem={index === filteredData.length - 1}
                     setValue={setValue}
+                    setId={setId}
                     closeDropdown={() => ref.current.closeDropdown()}
                 />
             );
@@ -71,6 +77,7 @@ const Dropdown = forwardRef(({
 
     const toggleDropdown = useCallback(() => {
         setValue('');
+        setId && setId(null);
         setShowData(!showData);
     }, [showData]);
 
@@ -116,6 +123,14 @@ const Dropdown = forwardRef(({
                         {renderItems()}
                     </View>   
                 </View>
+            }
+            { !id && errorText && !showData &&
+                <ResponsiveText 
+                    fontStyle="errorInputText"
+                    color={RED}
+                    text={errorText}
+                    customStyle={styles.errorSpace}
+                /> 
             }
         </View>
     );

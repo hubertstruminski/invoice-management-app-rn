@@ -1,4 +1,9 @@
-import { SET_CHOSEN_COMPANY_DETAILS } from '../actions/types';
+import { COMPANIES } from '../../mocks';
+import {
+    REMOVE_COMPANY,
+    SET_CHOSEN_COMPANY_DETAILS, 
+    SET_COMPANIES, 
+} from '../actions/types';
 
 const initialState = {
     companyDetails: {
@@ -8,6 +13,7 @@ const initialState = {
         city: '',
         country: '',
     },
+    companies: COMPANIES,
 }
 
 export default function(state = initialState, action) {
@@ -17,46 +23,16 @@ export default function(state = initialState, action) {
                 ...state,
                 companyDetails: action.payload,
             };
-        // case SET_COMPANY_NAME:
-        //     return {
-        //         ...state,
-        //         companyDetails: {
-        //             ...state.companyDetails,
-        //             name: action.payload,
-        //         },
-        //     };
-        // case SET_COMPANY_STREET:
-        //     return {
-        //         ...state,
-        //         companyDetails: {
-        //             ...state.companyDetails,
-        //             street: action.payload,
-        //         },
-        //     };
-        //     case SET_COMPANY_POSTALCODE:
-        //     return {
-        //         ...state,
-        //         companyDetails: {
-        //             ...state.companyDetails,
-        //             postalCode: action.payload,
-        //         },
-        //     };
-        //     case SET_COMPANY_CITY:
-        //     return {
-        //         ...state,
-        //         companyDetails: {
-        //             ...state.companyDetails,
-        //             city: action.payload,
-        //         },
-        //     };
-        //     case SET_COMPANY_COUNTRY:
-        //     return {
-        //         ...state,
-        //         companyDetails: {
-        //             ...state.companyDetails,
-        //             country: action.payload,
-        //         },
-        //     };
+        case SET_COMPANIES:
+            return {
+                ...state,
+                companies: action.payload,
+            };
+        case REMOVE_COMPANY:
+            return {
+                ...state,
+                companies: state.companies.filter(item => item.id !== action.payload),
+            };
         default:
             return state;
     }

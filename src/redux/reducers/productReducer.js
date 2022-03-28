@@ -1,4 +1,8 @@
-import { SET_CHOSEN_PRODUCT_DETAILS } from '../actions/types';
+import { PRODUCTS } from '../../mocks';
+import { 
+    REMOVE_PRODUCT, 
+    SET_CHOSEN_PRODUCT_DETAILS, 
+} from '../actions/types';
 
 const initialState = {
     productDetails: {
@@ -12,6 +16,7 @@ const initialState = {
         tax: null,
         description: '',
     },
+    products: PRODUCTS,
 }
 
 export default function(state = initialState, action) {
@@ -20,6 +25,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 productDetails: action.payload,
+            };
+        case REMOVE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(item => item.id !== action.payload),
             };
         default:
             return state;

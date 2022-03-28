@@ -16,10 +16,13 @@ const DropdownItem = ({
     isLastItem,
     setValue,
     closeDropdown,
+    id,
+    setId,
 }) => {
 
     const onPress = () => {
         setValue(name);
+        setId && setId(id);
         closeDropdown();
     }
 

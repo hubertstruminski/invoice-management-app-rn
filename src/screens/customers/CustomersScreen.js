@@ -3,6 +3,7 @@ import {
     FlatList,
     View, 
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -18,13 +19,13 @@ import {
 } from '../../contants/colors';
 import { CUSTOMER_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { CUSTOMERS } from '../../mocks';
 import { hp } from '../../tools';
 
 const CustomersScreen = ({
     navigation: {
         navigate,
     },
+    customers,
 }) => {
     return (
         <BasicView 
@@ -44,7 +45,7 @@ const CustomersScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={CUSTOMERS}
+                data={customers}
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
@@ -67,4 +68,8 @@ const CustomersScreen = ({
     );
 }
 
-export default CustomersScreen;
+const mapStateToProps = state => ({
+    customers: state.customer.customers,
+});
+
+export default connect(mapStateToProps, { })(CustomersScreen);

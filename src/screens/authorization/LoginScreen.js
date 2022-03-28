@@ -33,10 +33,6 @@ const LoginScreen = ({
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    useEffect(() => {
-
-    }, []);
-
     const redirectToRegisterScreen = useCallback(() => navigate('RegisterScreen'), []);
 
     const logIn = useCallback(() => {

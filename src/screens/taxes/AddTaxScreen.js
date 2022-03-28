@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+    useCallback,
+    useState,
+} from 'react';
 import { 
     ScrollView, 
     View, 
@@ -14,8 +17,33 @@ import {
 } from '../../components';
 import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
+import { handleFormErrors } from '../../tools';
+import { validateNewTaxForm } from '../../tools';
 
-const AddTaxScreen = () => {
+const AddTaxScreen = ({
+    navigation: {
+        goBack,
+    },
+}) => {
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState('');
+
+    const [errors, setErrors] = useState([null, null]);
+
+    const createTax = useCallback(() => {
+        const errorObject = validateNewTaxForm(name, amount);
+        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
+    
+        if(isValidModel) {
+            goBack();
+        }
+    }, [
+        name, 
+        amount,
+        errors,
+    ]);
+
     return (
         <BasicView 
             containerStyle={[
@@ -41,26 +69,34 @@ const AddTaxScreen = () => {
                         <Input 
                             leftTitle={languages.labels.name}
                             placeholder={languages.placeholders.name}
-                            errorText={languages.labels.errorText}
-                            withWarning
                             containerStyle={globalStyles.mediumBottomSpace}
+                            withWarning={errors[0] !== null}
+                            errorText={errors[0]}
+                            value={name}
+                            setValue={setName}
                         />
                         <Input 
                             leftTitle={languages.labels.description}
                             placeholder={languages.placeholders.description}
                             containerStyle={globalStyles.mediumBottomSpace}
                             rightTitle={languages.labels.optional}
+                            value={description}
+                            setValue={setDescription}
                         />
                         <Input 
                             leftTitle={languages.labels.amount}
                             placeholder={languages.placeholders.amount}
                             errorText={languages.labels.errorText}
-                            withWarning
+                            value={amount}
+                            setValue={setAmount}
+                            withWarning={errors[1] !== null}
+                            errorText={errors[1]}
                         />
                     </View>
                     <Button 
                         color={WHITE}
                         text={languages.buttons.save}
+                        onPress={createTax}
                     />
                 </TouchableLayout>
             </ScrollView>

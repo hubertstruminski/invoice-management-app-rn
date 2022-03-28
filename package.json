@@ -19,6 +19,7 @@
     "react-native-date-picker": "^4.2.0",
     "react-native-gesture-handler": "^2.1.1",
     "react-native-localization": "^2.3.1",
+    "react-native-mask-input": "^1.2.0",
     "react-native-reanimated": "~2.2.4",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-responsive-screen": "^1.4.2",

@@ -1,4 +1,8 @@
-import { SET_CHOSEN_CUSTOMER_DETAILS } from '../actions/types';
+import { CUSTOMERS } from '../../mocks';
+import { 
+    REMOVE_CUSTOMER, 
+    SET_CHOSEN_CUSTOMER_DETAILS, 
+} from '../actions/types';
 
 const initialState = {
     customerDetails: {
@@ -12,6 +16,7 @@ const initialState = {
         country: '',
         description: '',
     },
+    customers: CUSTOMERS
 }
 
 export default function(state = initialState, action) {
@@ -20,6 +25,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 customerDetails: action.payload,
+            };
+        case REMOVE_CUSTOMER:
+            return {
+                ...state,
+                customers: state.customers.filter(item => item.id !== action.payload),
             };
         default:
             return state;
