@@ -6,6 +6,7 @@ import {
 
 const initialState = {
     taxDetails: {
+        id: 0,
         name: '',
         amount: 0,
         description: '',

@@ -6,11 +6,14 @@ import {
 
 const initialState = {
     invoiceDetails: {
+        id: 0,
         number: '',
         date: '',
         deadline: '',
         customer: null,
+        product: null,
         description: '',
+        sentStatus: false,
     },
     invoices: INVOICES,
 }

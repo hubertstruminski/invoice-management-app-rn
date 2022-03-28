@@ -12,6 +12,7 @@ import {
     validateNewProductForm,
     validateNewInvoiceForm,
 } from './validators';
+import { initFutureDate } from '../tools/tools';
 
 export {
     hp,
@@ -24,4 +25,5 @@ export {
     validateNewCustomerForm,
     validateNewProductForm,
     validateNewInvoiceForm,
+    initFutureDate,
 };

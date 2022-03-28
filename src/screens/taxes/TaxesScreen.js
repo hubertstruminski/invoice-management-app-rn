@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useCallback,
+} from 'react';
 import { 
     FlatList, 
     View,
@@ -19,6 +21,7 @@ import {
 } from '../../contants/colors';
 import { TAX_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
+import { setTaxDetails } from '../../redux/actions';
 import { hp } from '../../tools';
 
 const TaxesScreen = ({
@@ -26,7 +29,19 @@ const TaxesScreen = ({
         navigate,
     },
     taxes,
+    setTaxDetails,
 }) => {
+
+    const openAddTaxForm = useCallback(() => {
+        setTaxDetails({
+            id: 0,
+            name: '',
+            amount: '',
+            description: '',
+        });
+        navigate('AddTaxScreen', { isEdit: false });
+    }, []);
+
     return (
         <BasicView 
             headerComponent={
@@ -40,7 +55,7 @@ const TaxesScreen = ({
                         text={languages.addEntity.addTax}
                         backgroundColor={TRANSPARENT}
                         isOutline
-                        onPress={() => navigate('AddTaxScreen')}
+                        onPress={openAddTaxForm}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -50,7 +65,7 @@ const TaxesScreen = ({
                         key={index}
                         height={hp(64)}
                         type={TAX_ENTITY}
-                        id={item.id}
+                        item={item}
                     >
                         <TaxItem 
                             name={item.name}
@@ -71,4 +86,6 @@ const mapStateToProps = state => ({
     taxes: state.tax.taxes,
 });
 
-export default connect(mapStateToProps, { })(TaxesScreen);
+export default connect(mapStateToProps, { 
+    setTaxDetails,
+})(TaxesScreen);

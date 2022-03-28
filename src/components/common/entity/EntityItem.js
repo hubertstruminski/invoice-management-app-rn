@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+} from 'react';
 import { 
+    ImageEditor,
     TouchableWithoutFeedback, 
     View, 
 } from 'react-native';
@@ -26,13 +29,6 @@ import {
 import { hp } from '../../../tools';
 import styles from './entityItemStyle';
 import { 
-    COMPANIES, 
-    CUSTOMERS, 
-    INVOICES, 
-    PRODUCTS, 
-    TAXES, 
-} from '../../../mocks';
-import { 
     setCompanyDetails, 
     setProductDetails, 
     setTaxDetails, 
@@ -50,7 +46,6 @@ const EntityItem = ({
     children,
     height = hp(64),
     type,
-    id,
     setCompanyDetails,
     setTaxDetails,
     setProductDetails,
@@ -61,37 +56,46 @@ const EntityItem = ({
     removeProduct,
     removeInvoice,
     removeTax,
+    companies,
+    customers,
+    invoices,
+    products,
+    taxes,
+    item: {
+        id,
+    },
+    item,
 }) => {
     const { navigate } = useNavigation();
 
     const redirectToDetails = () => {
         switch(type) {
             case COMPANY_ENTITY:
-                const chosenCompany = COMPANIES.find(item => item.id === id);
+                const chosenCompany = companies.find(item => item.id === id);
                 setCompanyDetails(chosenCompany);
 
                 navigate('MyCompanyDetailsScreen');
                 break;
             case CUSTOMER_ENTITY:
-                const chosenCustomer = CUSTOMERS.find(item => item.id === id);
+                const chosenCustomer = customers.find(item => item.id === id);
                 setCustomerDetails(chosenCustomer);
 
                 navigate('CustomerDetailsScreen');
                 break;
             case INVOICE_ENTITY:
-                const chosenInvoice = INVOICES.find(item => item.id === id);
+                const chosenInvoice = invoices.find(item => item.id === id);
                 setInvoiceDetails(chosenInvoice);
 
                 navigate('InvoiceDetailsScreen');
                 break;
             case PRODUCT_ENTITY:
-                const chosenProduct = PRODUCTS.find(item => item.id === id);
+                const chosenProduct = products.find(item => item.id === id);
                 setProductDetails(chosenProduct);
 
                 navigate('ProductDetailsScreen');
                 break;
             case TAX_ENTITY:
-                const chosenTax = TAXES.find(item => item.id === id);
+                const chosenTax = taxes.find(item => item.id === id);
                 setTaxDetails(chosenTax);
 
                 navigate('TaxDetailsScreen');
@@ -101,7 +105,7 @@ const EntityItem = ({
         }
     }
 
-    const removeItem = () => {
+    const removeItem = useCallback(() => {
         switch(type) {
             case COMPANY_ENTITY:
                 removeCompany(id);
@@ -121,7 +125,80 @@ const EntityItem = ({
             default: 
                 break;
         }
-    }
+    }, [id, type]);
+
+    const updateItem = useCallback(() => {
+        switch(type) {
+            case COMPANY_ENTITY:
+                const companyPayload = {
+                    id: item.id,
+                    name: item.name,
+                    street: item.street,
+                    postalCode: item.postalCode,
+                    city: item.city,
+                    country: item.country,
+                };
+                setCompanyDetails(companyPayload);
+                navigate('AddCompanyScreen', { isEdit: true });
+                break;
+            case CUSTOMER_ENTITY:
+                const customerPayload = {
+                    id: item.id,
+                    fullName: item.fullName,
+                    email: item.email,
+                    phoneNumber: item.phoneNumber,
+                    nip: item.nip,
+                    street: item.street,
+                    city: item.city,
+                    country: item.country,
+                    description: item.description,
+                };
+                setCustomerDetails(customerPayload);
+                navigate('AddCustomerScreen', { isEdit: true });
+                break;
+            case INVOICE_ENTITY:
+                const invoicePayload = {
+                    id: item.id,
+                    number: item.number,
+                    date: item.date,
+                    deadline: item.deadline,
+                    customer: item.customer,
+                    description: item.description,
+                    sentStatus: item.sentStatus,
+                };
+                setInvoiceDetails(invoicePayload);
+                navigate('AddInvoiceScreen', { isEdit: true });
+                break;
+            case PRODUCT_ENTITY:
+                const productPayload = {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    amount: item.amount,
+                    discount: item.discount,
+                    unit: item.unit,
+                    invoice: item.invoice,
+                    customer: item.customer,
+                    tax: item.tax,
+                    description: item.description,
+                };
+                setProductDetails(productPayload);
+                navigate('AddProductScreen', { isEdit: true });
+                break;
+            case TAX_ENTITY:
+                const taxPayload = {
+                    id: item.id,
+                    name: item.name,
+                    amount: item.amount,
+                    description: item.description,
+                };
+                setTaxDetails(taxPayload);
+                navigate('AddTaxScreen', { isEdit: true });
+                break;
+            default: 
+                break;
+        }
+    }, [type, item]);
 
     return (
         <View style={globalStyles.shadow}>
@@ -147,7 +224,10 @@ const EntityItem = ({
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={globalStyles.rowCenter}>
-                    <TouchableIcon containerStyle={styles.iconSpace}>
+                    <TouchableIcon 
+                        onPress={updateItem}
+                        containerStyle={styles.iconSpace}
+                    >
                         <EditIcon />
                     </TouchableIcon>
                     <TouchableIcon onLongPress={removeItem}>
@@ -159,7 +239,15 @@ const EntityItem = ({
     );
 }
 
-export default connect(() => ({}), {
+const mapStateToProps = state => ({
+    companies: state.company.companies,
+    customers: state.customer.customers,
+    invoices: state.invoice.invoices,
+    products: state.product.products,
+    taxes: state.tax.taxes,
+});
+
+export default connect(mapStateToProps, {
     setCompanyDetails,
     setTaxDetails,
     setProductDetails,

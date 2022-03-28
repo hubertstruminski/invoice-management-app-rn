@@ -1,8 +1,10 @@
 import React, { 
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -24,6 +26,10 @@ const AddCompanyScreen = ({
     navigation: {
         goBack,
     },
+    companyDetails,
+    route: {
+        params,
+    },
 }) => {
     const [companyName, setCompanyName] = useState('');
     const [street, setStreet] = useState('');
@@ -33,12 +39,22 @@ const AddCompanyScreen = ({
 
     const [errors, setErrors] = useState([null, null, null, null, null]);
 
+    useEffect(() => {
+        setCompanyName(companyDetails?.name);
+        setStreet(companyDetails?.street);
+        setPostalCode(companyDetails?.postalCode);
+        setCity(companyDetails?.city);
+        setCountry(companyDetails?.country);
+    }, [companyDetails]);
+
     const createCompany = useCallback(() => {
         const errorObject = validateNewCompanyForm(companyName, street, postalCode, city, country);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
-            goBack();
+            if(params?.isEdit) {
+                
+            }
         }
     }, [
         companyName,
@@ -123,4 +139,8 @@ const AddCompanyScreen = ({
     );
 }
 
-export default AddCompanyScreen;
+const mapStateToProps = state => ({
+    companyDetails: state.company.companyDetails,
+});
+
+export default connect(mapStateToProps, { })(AddCompanyScreen);

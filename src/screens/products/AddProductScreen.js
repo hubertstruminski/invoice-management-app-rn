@@ -2,6 +2,7 @@ import React, {
     useCallback,
     useRef,
     useState,
+    useEffect,
 } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
@@ -28,7 +29,11 @@ const AddProductScreen = ({
         goBack,
     },
     taxes,
+    productDetails,
 }) => {
+    console.log(productDetails?.price);
+    console.log(productDetails?.amount);
+    console.log(productDetails?.discount);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -40,6 +45,16 @@ const AddProductScreen = ({
     const [errors, setErrors] = useState([null, null, null, null]);
 
     let taxRef = useRef(null);
+
+    useEffect(() => {
+        setName(productDetails?.name);
+        setDescription(productDetails?.description);
+        setPrice(productDetails?.price?.toString());
+        setAmount(productDetails?.amount?.toString());
+        setDiscount(productDetails?.discount?.toString());
+        setUnit(productDetails?.unit);
+        setTaxId(productDetails?.tax?.id);
+    }, [productDetails]);
 
     const closeDropdown = useCallback(() => {
         taxRef.current.isOpen && taxRef.current.closeDropdown();
@@ -139,6 +154,7 @@ const AddProductScreen = ({
                         data={taxes}
                         ref={taxRef}
                         setId={setTaxId}
+                        chosenEntityName={productDetails?.tax?.name}
                     />
                     <Button 
                         color={WHITE}
@@ -154,6 +170,7 @@ const AddProductScreen = ({
 
 const mapStateToProps = state => ({
     taxes: state.tax.taxes,
+    productDetails: state.product.productDetails,
 });
 
 export default connect(mapStateToProps, { })(AddProductScreen);

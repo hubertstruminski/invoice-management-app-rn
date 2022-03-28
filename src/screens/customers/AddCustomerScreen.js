@@ -1,8 +1,10 @@
 import React, {
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -24,6 +26,7 @@ const AddCustomerScreen = ({
     navigation: {
         goBack,
     },
+    customerDetails,
 }) => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,6 +38,17 @@ const AddCustomerScreen = ({
     const [additionalInformations, setAdditionalInformations] = useState('');
 
     const [errors, setErrors] = useState([null, null, null, null, null]);
+
+    useEffect(() => {
+        setFullName(customerDetails?.fullName);
+        setEmail(customerDetails?.email);
+        setStreet(customerDetails?.street);
+        setCity(customerDetails?.city);
+        setCountry(customerDetails?.country);
+        setPhoneNumber(customerDetails?.phoneNumber);
+        setNip(customerDetails?.nip);
+        setAdditionalInformations(customerDetails?.description);
+    }, [customerDetails]);
 
     const createCustomer = useCallback(() => {
         const errorObject = validateNewCustomerForm(fullName, email, street, city, nip);
@@ -155,4 +169,8 @@ const AddCustomerScreen = ({
     );
 }
 
-export default AddCustomerScreen;
+const mapStateToProps = state => ({
+    customerDetails: state.customer.customerDetails,
+});
+
+export default connect(mapStateToProps, { })(AddCustomerScreen);

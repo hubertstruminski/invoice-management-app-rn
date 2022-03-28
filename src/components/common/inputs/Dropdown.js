@@ -33,6 +33,7 @@ const Dropdown = forwardRef(({
     setId,
     errorText,
     id,
+    chosenEntityName,
 }, ref) => {
     const [filteredData, setFilteredData] = useState([]);
     const [showData, setShowData] = useState(false);
@@ -43,12 +44,16 @@ const Dropdown = forwardRef(({
     }, [data]);
 
     useEffect(() => {
+        chosenEntityName && setValue(chosenEntityName);
+    }, [chosenEntityName]);
+
+    useEffect(() => {
         if(value === '') {
             setFilteredData(data);
         } else {
             setFilteredData(data.filter(item => {
                 const resultName = item.fullName ? item.fullName : item.name;
-                return resultName.toLowerCase().includes(value.toLowerCase());
+                return resultName?.toLowerCase().includes(value?.toLowerCase());
             }));
         }
     }, [value, data]);

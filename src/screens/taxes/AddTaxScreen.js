@@ -1,11 +1,13 @@
 import React, {
     useCallback,
+    useEffect,
     useState,
 } from 'react';
 import { 
     ScrollView, 
     View, 
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { 
     BasicView, 
@@ -24,12 +26,19 @@ const AddTaxScreen = ({
     navigation: {
         goBack,
     },
+    taxDetails,
 }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
 
     const [errors, setErrors] = useState([null, null]);
+
+    useEffect(() => {
+        setName(taxDetails?.name);
+        setDescription(taxDetails?.description);
+        setAmount(taxDetails?.amount?.toString());
+    }, [taxDetails]);
 
     const createTax = useCallback(() => {
         const errorObject = validateNewTaxForm(name, amount);
@@ -104,4 +113,8 @@ const AddTaxScreen = ({
     );
 }
 
-export default AddTaxScreen;
+const mapStateToProps = state => ({
+    taxDetails: state.tax.taxDetails,
+});
+
+export default connect(mapStateToProps, { })(AddTaxScreen);

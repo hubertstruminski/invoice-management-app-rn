@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+} from 'react';
 import { 
     FlatList,
     View, 
@@ -19,6 +21,7 @@ import {
 } from '../../contants/colors';
 import { CUSTOMER_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
+import { setCustomerDetails } from '../../redux/actions';
 import { hp } from '../../tools';
 
 const CustomersScreen = ({
@@ -26,7 +29,24 @@ const CustomersScreen = ({
         navigate,
     },
     customers,
+    setCustomerDetails,
 }) => {
+
+    const openAddCustomerForm = useCallback(() => {
+        setCustomerDetails({
+            id: 0,
+            fullName: '',
+            email: '',
+            phoneNumber: '',
+            nip: '',
+            street: '',
+            city: '',
+            country: '',
+            description: '',
+        });
+        navigate('AddCustomerScreen', { isEdit: false })
+    }, []);
+
     return (
         <BasicView 
             headerComponent={
@@ -41,7 +61,7 @@ const CustomersScreen = ({
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
-                        onPress={() => navigate('AddCustomerScreen')}
+                        onPress={openAddCustomerForm}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -51,7 +71,7 @@ const CustomersScreen = ({
                         key={index}
                         height={hp(96)}
                         type={CUSTOMER_ENTITY}
-                        id={item.id}
+                        item={item}
                     >
                         <CustomerItem 
                             fullName={item.fullName}
@@ -72,4 +92,6 @@ const mapStateToProps = state => ({
     customers: state.customer.customers,
 });
 
-export default connect(mapStateToProps, { })(CustomersScreen);
+export default connect(mapStateToProps, { 
+    setCustomerDetails,
+})(CustomersScreen);

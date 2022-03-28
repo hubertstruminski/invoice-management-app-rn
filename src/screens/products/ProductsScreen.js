@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+} from 'react';
 import { 
     FlatList, 
     View,
@@ -19,7 +21,7 @@ import {
 } from '../../contants/colors';
 import { PRODUCT_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { PRODUCTS } from '../../mocks';
+import { setProductDetails } from '../../redux/actions';
 import { hp } from '../../tools';
 
 const ProductsScreen = ({
@@ -27,7 +29,25 @@ const ProductsScreen = ({
         navigate,
     },
     products,
+    setProductDetails,
 }) => {
+
+    const openAddProductForm = useCallback(() => {
+        setProductDetails({
+            id: 0,
+            name: '',
+            price: '',
+            amount: '',
+            discount: '',
+            unit: '',
+            invoice: null,
+            customer: null,
+            tax: null,
+            description: '',
+        });
+        navigate('AddProductScreen', { isEdit: false });
+    }, []);
+
     return (
         <BasicView 
             headerComponent={
@@ -41,7 +61,7 @@ const ProductsScreen = ({
                         text={languages.addEntity.addProduct}
                         backgroundColor={TRANSPARENT}
                         isOutline
-                        onPress={() => navigate('AddProductScreen')}
+                        onPress={openAddProductForm}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -51,7 +71,7 @@ const ProductsScreen = ({
                         key={index}
                         height={hp(128)}
                         type={PRODUCT_ENTITY}
-                        id={item.id}
+                        item={item}
                     >
                         <ProductItem 
                             name={item.name}
@@ -73,4 +93,6 @@ const mapStateToProps = state => ({
     products: state.product.products,
 }); 
 
-export default connect(mapStateToProps, { })(ProductsScreen);
+export default connect(mapStateToProps, { 
+    setProductDetails,
+})(ProductsScreen);

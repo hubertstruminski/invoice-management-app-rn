@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+} from 'react';
 import { 
     FlatList, 
     View,
@@ -19,14 +21,33 @@ import {
 } from '../../contants/colors';
 import { INVOICE_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { hp } from '../../tools';
+import { setInvoiceDetails } from '../../redux/actions';
+import { 
+    hp, 
+    initFutureDate, 
+} from '../../tools';
 
 const InvoicesScreen = ({
     navigation: {
         navigate,
     },
     invoices,
+    setInvoiceDetails,
 }) => {
+
+    const openAddInvoiceForm = useCallback(() => {
+        setInvoiceDetails({
+            id: 0,
+            number: '',
+            date: new Date(),
+            deadline: initFutureDate(),
+            customer: null,
+            description: '',
+            sentStatus: false,
+        });
+        navigate('AddInvoiceScreen', { isEdit: false });
+    }, []);
+
     return (
         <BasicView 
             headerComponent={
@@ -40,7 +61,7 @@ const InvoicesScreen = ({
                         text={languages.addEntity.addInvoice}
                         backgroundColor={TRANSPARENT}
                         isOutline
-                        onPress={() => navigate('AddInvoiceScreen')}
+                        onPress={openAddInvoiceForm}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -50,7 +71,7 @@ const InvoicesScreen = ({
                         key={index}
                         height={hp(112)}
                         type={INVOICE_ENTITY}
-                        id={item.id}
+                        item={item}
                     >
                         <InvoiceItem 
                             number={item.number}
@@ -75,4 +96,6 @@ const mapStateToProps = state => ({
     invoices: state.invoice.invoices,
 });
 
-export default connect(mapStateToProps, { })(InvoicesScreen);
+export default connect(mapStateToProps, { 
+    setInvoiceDetails,
+})(InvoicesScreen);

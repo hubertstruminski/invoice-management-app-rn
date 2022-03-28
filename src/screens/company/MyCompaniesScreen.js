@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+} from 'react';
 import { 
     FlatList, 
     View, 
@@ -19,13 +21,28 @@ import {
 } from '../../contants/colors';
 import { COMPANY_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
+import { setCompanyDetails } from '../../redux/actions';
 
 const MyCompaniesScreen = ({
     navigation: {
         navigate,
     },
     companies,
+    setCompanyDetails,
 }) => {
+
+    const openAddCompanyForm = useCallback(() => {
+        setCompanyDetails({
+            id: 0,
+            name: '',
+            street: '',
+            postalCode: '',
+            city: '',
+            country: '',
+        })
+        navigate('AddCompanyScreen', { isEdit: false });
+    }, []);
+
     return (
         <BasicView 
             headerComponent={
@@ -40,7 +57,7 @@ const MyCompaniesScreen = ({
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
-                        onPress={() => navigate('AddCompanyScreen')}
+                        onPress={openAddCompanyForm}
                     />
                 } 
                 showsVerticalScrollIndicator={false}
@@ -48,7 +65,7 @@ const MyCompaniesScreen = ({
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}
-                        id={item.id}
+                        item={item}
                         type={COMPANY_ENTITY}
                     >
                         <ResponsiveText 
@@ -71,4 +88,6 @@ const mapStateToProps = state => ({
     companies: state.company.companies,
 });
 
-export default connect(mapStateToProps, { })(MyCompaniesScreen);
+export default connect(mapStateToProps, { 
+    setCompanyDetails,
+})(MyCompaniesScreen);

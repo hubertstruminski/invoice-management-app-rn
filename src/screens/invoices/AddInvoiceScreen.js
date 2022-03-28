@@ -1,5 +1,6 @@
 import React, {
     useCallback,
+    useEffect,
     useRef,
     useState,
 } from 'react';
@@ -23,6 +24,7 @@ import styles from '../screenStyle';
 import { languages } from '../../internationalization/languages';
 import { 
     handleFormErrors, 
+    initFutureDate, 
     validateNewInvoiceForm, 
 } from '../../tools';
 
@@ -32,11 +34,10 @@ const AddInvoiceScreen = ({
     },
     customers,
     products,
+    invoiceDetails,
 }) => {
     const currentDate = new Date();
-
-    const futureDate = new Date();
-    futureDate.setMonth(futureDate.getMonth() + 2);
+    const futureDate = initFutureDate();
     
     const [number, setNumber] = useState('');
     const [date, setDate] = useState(currentDate);
@@ -52,6 +53,15 @@ const AddInvoiceScreen = ({
 
     let customerRef = useRef(null);
     let productRef = useRef(null);
+
+    useEffect(() => {
+        setNumber(invoiceDetails?.number);
+        setDate(new Date(invoiceDetails?.date));
+        setDeadline(new Date(invoiceDetails?.deadline));
+        setCustomerId(invoiceDetails?.customer?.id);
+        setProductId(invoiceDetails?.product?.id);
+        setComment(invoiceDetails?.description);
+    }, []);
 
     const closeDropdowns = useCallback(() => {
         customerRef.current.isOpen && customerRef.current.closeDropdown();
@@ -169,7 +179,8 @@ const AddInvoiceScreen = ({
                         errorText={errors[2]}       
                         ref={customerRef}
                         setId={setCustomerId}  
-                        id={customerId}   
+                        id={customerId}  
+                        chosenEntityName={invoiceDetails?.customer?.fullName} 
                     />
                     <Dropdown 
                         leftTitle={languages.labels.product}
@@ -178,7 +189,8 @@ const AddInvoiceScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                         data={products}
                         ref={productRef}
-                        setId={setProductId}             
+                        setId={setProductId} 
+                        chosenEntityName={invoiceDetails?.product?.name}            
                     />
                     <Input 
                         leftTitle={languages.labels.comment}
@@ -202,6 +214,7 @@ const AddInvoiceScreen = ({
 const mapStateToProps = state => ({
     products: state.product.products,
     customers: state.customer.customers,
+    invoiceDetails: state.invoice.invoiceDetails,
 });
 
 export default connect(mapStateToProps, { })(AddInvoiceScreen);

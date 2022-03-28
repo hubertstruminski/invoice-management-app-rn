@@ -2,6 +2,8 @@ import { closeAllDropdowns } from './dropdownActions';
 import { 
     setCompanyDetails, 
     removeCompany,
+    addCompany,
+    updateCompany,
 } from './companyActions';
 import { 
     setTaxDetails, 
@@ -32,4 +34,6 @@ export {
     removeCustomer,
     removeProduct,
     removeInvoice,
+    addCompany,
+    updateCompany,
 };
