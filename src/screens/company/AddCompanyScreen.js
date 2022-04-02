@@ -17,6 +17,10 @@ import {
 import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
 import { 
+    addCompany, 
+    updateCompany, 
+} from '../../redux/actions';
+import { 
     handleFormErrors, 
     validateNewCompanyForm, 
 } from '../../tools';
@@ -30,6 +34,8 @@ const AddCompanyScreen = ({
     route: {
         params,
     },
+    addCompany,
+    updateCompany,
 }) => {
     const [companyName, setCompanyName] = useState('');
     const [street, setStreet] = useState('');
@@ -52,9 +58,22 @@ const AddCompanyScreen = ({
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
+            let payload = {
+                name: companyName,
+                street,
+                postalCode,
+                city,
+                country,
+            };
+
             if(params?.isEdit) {
-                
+                payload = { ...payload, id: companyDetails.id };
+                updateCompany(payload);
+            } else {
+                payload = { ...payload, id: (new Date()).getTime() };
+                addCompany(payload);
             }
+            goBack();
         }
     }, [
         companyName,
@@ -143,4 +162,7 @@ const mapStateToProps = state => ({
     companyDetails: state.company.companyDetails,
 });
 
-export default connect(mapStateToProps, { })(AddCompanyScreen);
+export default connect(mapStateToProps, { 
+    addCompany,
+    updateCompany,
+})(AddCompanyScreen);
