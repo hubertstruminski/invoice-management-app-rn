@@ -20,6 +20,8 @@ import {
 import { 
     setCustomerDetails, 
     removeCustomer, 
+    addCustomer,
+    updateCustomer,
 } from './customerActions';
 
 export {
@@ -36,4 +38,6 @@ export {
     removeInvoice,
     addCompany,
     updateCompany,
+    addCustomer,
+    updateCustomer,
 };

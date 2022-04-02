@@ -1,7 +1,9 @@
 import { CUSTOMERS } from '../../mocks';
 import { 
+    ADD_CUSTOMER,
     REMOVE_CUSTOMER, 
-    SET_CHOSEN_CUSTOMER_DETAILS, 
+    SET_CHOSEN_CUSTOMER_DETAILS,
+    UPDATE_CUSTOMER, 
 } from '../actions/types';
 
 const initialState = {
@@ -30,6 +32,17 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 customers: state.customers.filter(item => item.id !== action.payload),
+            };
+        case ADD_CUSTOMER:
+            return {
+                ...state,
+                customers: [...state.customers, action.payload],
+            };
+        case UPDATE_CUSTOMER:
+            return {
+                ...state,
+                customers: state.customers.map(item => item.id === action.payload.id ?
+                    action.payload : item),
             };
         default:
             return state;

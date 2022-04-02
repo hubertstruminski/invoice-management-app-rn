@@ -1,6 +1,8 @@
 import { 
+    ADD_CUSTOMER,
     REMOVE_CUSTOMER, 
-    SET_CHOSEN_CUSTOMER_DETAILS, 
+    SET_CHOSEN_CUSTOMER_DETAILS,
+    UPDATE_CUSTOMER, 
 } from "./types";
 
 export const setCustomerDetails = value => ({
@@ -11,4 +13,14 @@ export const setCustomerDetails = value => ({
 export const removeCustomer = id => ({
     type: REMOVE_CUSTOMER,
     payload: id,
+});
+
+export const addCustomer = value => ({
+    type: ADD_CUSTOMER,
+    payload: value,
+});
+
+export const updateCustomer = value => ({
+    type: UPDATE_CUSTOMER,
+    payload: value,
 });

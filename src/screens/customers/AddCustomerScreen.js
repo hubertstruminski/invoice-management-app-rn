@@ -17,6 +17,10 @@ import {
 import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
 import { 
+    addCustomer, 
+    updateCustomer, 
+} from '../../redux/actions';
+import { 
     handleFormErrors, 
     validateNewCustomerForm, 
 } from '../../tools';
@@ -27,6 +31,11 @@ const AddCustomerScreen = ({
         goBack,
     },
     customerDetails,
+    addCustomer,
+    updateCustomer,
+    route: {
+        params,
+    }
 }) => {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -55,6 +64,24 @@ const AddCustomerScreen = ({
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
+            let payload = {
+                fullName,
+                email,
+                phoneNumber,
+                nip,
+                street,
+                city,
+                country,
+                description: additionalInformations,
+            };
+
+            if(params?.isEdit) {
+                payload = { ...payload, id: customerDetails.id };
+                updateCustomer(payload);
+            } else {
+                payload = { ...payload, id: (new Date()).getTime() };
+                addCustomer(payload);
+            }
             goBack();
         }
     }, [
@@ -173,4 +200,7 @@ const mapStateToProps = state => ({
     customerDetails: state.customer.customerDetails,
 });
 
-export default connect(mapStateToProps, { })(AddCustomerScreen);
+export default connect(mapStateToProps, { 
+    addCustomer,
+    updateCustomer,
+})(AddCustomerScreen);
