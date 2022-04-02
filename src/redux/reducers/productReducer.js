@@ -1,7 +1,9 @@
 import { PRODUCTS } from '../../mocks';
 import { 
+    ADD_PRODUCT,
     REMOVE_PRODUCT, 
-    SET_CHOSEN_PRODUCT_DETAILS, 
+    SET_CHOSEN_PRODUCT_DETAILS,
+    UPDATE_PRODUCT, 
 } from '../actions/types';
 
 const initialState = {
@@ -32,6 +34,17 @@ export default function(state = initialState, action) {
                 ...state,
                 products: state.products.filter(item => item.id !== action.payload),
             };
+        case ADD_PRODUCT:
+            return {
+                ...state,
+                products: [...state.products, action.payload],
+            };
+        case UPDATE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.map(item => item.id === action.payload.id ?
+                    action.payload : item),
+            }; 
         default:
             return state;
     }

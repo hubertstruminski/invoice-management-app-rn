@@ -19,6 +19,10 @@ import {
 import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
 import { 
+    addProduct, 
+    updateProduct, 
+} from '../../redux/actions';
+import { 
     handleFormErrors, 
     validateNewProductForm, 
 } from '../../tools';
@@ -29,11 +33,15 @@ const AddProductScreen = ({
         goBack,
     },
     taxes,
+    customers,
+    invoices,
     productDetails,
+    addProduct,
+    updateProduct,
+    route: {
+        params,
+    },
 }) => {
-    console.log(productDetails?.price);
-    console.log(productDetails?.amount);
-    console.log(productDetails?.discount);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -65,8 +73,28 @@ const AddProductScreen = ({
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
-            const foundTax  = taxes.find(item => item.id === taxId);
-            console.log("id: " + foundTax?.id + ", name: " + foundTax?.name);
+            let payload = {
+                name,
+                price,
+                amount,
+                discount,
+                unit,
+                tax: taxes.find(item => item.id === taxId),
+                description,
+            };
+
+            if(params?.isEdit) {
+                payload = { 
+                    ...payload, id: 
+                    productDetails.id,
+                    customer: customers.find(item => item.id === productDetails?.customer?.id),
+                    invoice: invoices.find(item => item.id === productDetails?.invoice?.id),
+                };
+                updateProduct(payload);
+            } else {
+                payload = { ...payload, id: (new Date()).getTime() };
+                addProduct(payload);
+            }
             goBack();
         }
     }, [
@@ -171,6 +199,11 @@ const AddProductScreen = ({
 const mapStateToProps = state => ({
     taxes: state.tax.taxes,
     productDetails: state.product.productDetails,
+    customers: state.customer.customers,
+    invoices: state.invoice.invoices,
 });
 
-export default connect(mapStateToProps, { })(AddProductScreen);
+export default connect(mapStateToProps, { 
+    addProduct,
+    updateProduct,
+})(AddProductScreen);

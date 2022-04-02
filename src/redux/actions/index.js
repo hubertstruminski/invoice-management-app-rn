@@ -14,6 +14,8 @@ import {
 import { 
     setProductDetails, 
     removeProduct, 
+    addProduct,
+    updateProduct,
 } from './productActions';
 import { 
     setInvoiceDetails, 
@@ -44,4 +46,6 @@ export {
     updateCustomer,
     addTax,
     updateTax,
+    addProduct,
+    updateProduct,
 };
