@@ -1,7 +1,9 @@
 import { TAXES } from '../../mocks';
 import { 
+    ADD_TAX,
     REMOVE_TAX, 
-    SET_CHOSEN_TAX_DETAILS, 
+    SET_CHOSEN_TAX_DETAILS,
+    UPDATE_TAX, 
 } from '../actions/types';
 
 const initialState = {
@@ -25,6 +27,17 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 taxes: state.taxes.filter(item => item.id !== action.payload),
+            };
+        case ADD_TAX:
+            return {
+                ...state,
+                taxes: [...state.taxes, action.payload],
+            };
+        case UPDATE_TAX:
+            return {
+                ...state,
+                taxes: state.taxes.map(item => item.id === action.payload.id ?
+                    action.payload : item),
             };
         default:
             return state;

@@ -7,7 +7,9 @@ import {
 } from './companyActions';
 import { 
     setTaxDetails, 
-    removeTax, 
+    removeTax,
+    addTax,
+    updateTax, 
 } from './taxActions';
 import { 
     setProductDetails, 
@@ -40,4 +42,6 @@ export {
     updateCompany,
     addCustomer,
     updateCustomer,
+    addTax,
+    updateTax,
 };

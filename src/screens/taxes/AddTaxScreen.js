@@ -19,6 +19,10 @@ import {
 } from '../../components';
 import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
+import { 
+    addTax, 
+    updateTax, 
+} from '../../redux/actions';
 import { handleFormErrors } from '../../tools';
 import { validateNewTaxForm } from '../../tools';
 
@@ -27,6 +31,11 @@ const AddTaxScreen = ({
         goBack,
     },
     taxDetails,
+    route: {
+        params,
+    },
+    addTax,
+    updateTax,
 }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -45,6 +54,19 @@ const AddTaxScreen = ({
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
+            let payload = {
+                name,
+                amount,
+                description,
+            };
+
+            if(params?.isEdit) {
+                payload = { ...payload, id: taxDetails.id };
+                updateTax(payload);
+            } else {
+                payload = { ...payload, id: (new Date()).getTime() };
+                addTax(payload);
+            }
             goBack();
         }
     }, [
@@ -117,4 +139,7 @@ const mapStateToProps = state => ({
     taxDetails: state.tax.taxDetails,
 });
 
-export default connect(mapStateToProps, { })(AddTaxScreen);
+export default connect(mapStateToProps, { 
+    addTax,
+    updateTax,
+})(AddTaxScreen);
