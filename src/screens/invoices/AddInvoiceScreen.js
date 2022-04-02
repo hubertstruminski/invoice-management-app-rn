@@ -27,6 +27,10 @@ import {
     initFutureDate, 
     validateNewInvoiceForm, 
 } from '../../tools';
+import { 
+    addInvoice, 
+    updateInvoice, 
+} from '../../redux/actions';
 
 const AddInvoiceScreen = ({
     navigation: {
@@ -35,6 +39,11 @@ const AddInvoiceScreen = ({
     customers,
     products,
     invoiceDetails,
+    route: {
+        params,
+    },
+    addInvoice,
+    updateInvoice,
 }) => {
     const currentDate = new Date();
     const futureDate = initFutureDate();
@@ -91,8 +100,31 @@ const AddInvoiceScreen = ({
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
 
         if(isValidModel) {
-            console.log("product: " + JSON.stringify(products.find(item => item.id === productId)));
-            console.log("customer: " + JSON.stringify(customers.find(item => item.id === customerId)));
+            let payload = {
+                number,
+                date,
+                deadline,
+                customer: customers.find(item => item.id === customerId),
+                // product: null,
+                description: comment,
+            };
+
+            if(params?.isEdit) {
+                payload = { 
+                    ...payload, 
+                    id: invoiceDetails.id,
+                    sentStatus: invoiceDetails.sentStatus,
+                };
+                updateInvoice(payload);
+            } else {
+                payload = { 
+                    ...payload, 
+                    id: (new Date()).getTime(),
+                    sentStatus: false, 
+                    product: products.find(item => item.id === productId),
+                };
+                addInvoice(payload);
+            }
             goBack();
         }
     }, [
@@ -217,4 +249,7 @@ const mapStateToProps = state => ({
     invoiceDetails: state.invoice.invoiceDetails,
 });
 
-export default connect(mapStateToProps, { })(AddInvoiceScreen);
+export default connect(mapStateToProps, { 
+    addInvoice,
+    updateInvoice,
+})(AddInvoiceScreen);

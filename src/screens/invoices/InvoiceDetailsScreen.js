@@ -18,7 +18,6 @@ import {
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
-import { PRODUCTS } from '../../mocks';
 
 const InvoiceDetailsScreen = ({
     invoiceDetails: {
@@ -28,6 +27,7 @@ const InvoiceDetailsScreen = ({
         customer,
         description,
     },
+    products,
 }) => {
     return (
         <BasicView 
@@ -90,7 +90,7 @@ const InvoiceDetailsScreen = ({
                         </View>
                     </View>
                 )}
-                data={PRODUCTS.filter(product => product.customer?.id === customer?.id)}
+                data={products.filter(product => product.customer?.id === customer?.id)}
                 renderItem={({ item, index }) => (
                     <ProductPreview 
                         key={index}
@@ -104,6 +104,7 @@ const InvoiceDetailsScreen = ({
 
 const mapStateToProps = state => ({
     invoiceDetails: state.invoice.invoiceDetails,
+    products: state.product.products,
 });
 
 export default connect(mapStateToProps, { })(InvoiceDetailsScreen);
