@@ -65,7 +65,9 @@ const InvoicesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={invoices}
+                data={invoices
+                    .sort((a, b) => new Date(b.deadline) - new Date(a.deadline))
+                }
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}

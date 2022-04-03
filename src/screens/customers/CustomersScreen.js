@@ -65,7 +65,9 @@ const CustomersScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={customers}
+                data={customers.
+                    sort((a, b) => a.fullName.localeCompare(b.fullName))
+                }
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}

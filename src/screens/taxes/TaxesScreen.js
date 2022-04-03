@@ -59,7 +59,9 @@ const TaxesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={taxes}
+                data={taxes
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                }
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}

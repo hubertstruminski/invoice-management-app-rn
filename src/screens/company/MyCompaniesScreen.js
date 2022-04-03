@@ -61,7 +61,9 @@ const MyCompaniesScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={companies}
+                data={companies
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                }
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}

@@ -65,7 +65,9 @@ const ProductsScreen = ({
                     />
                 } 
                 showsVerticalScrollIndicator={false}
-                data={products}
+                data={products
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                }
                 renderItem={({ item, index }) => (
                     <EntityItem 
                         key={index}

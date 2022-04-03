@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { 
+    useCallback, 
+    useRef,
+} from 'react';
 import { 
     View, 
-    TextInput,
     TouchableWithoutFeedback, 
 } from 'react-native';
 import MaskInput from 'react-native-mask-input';
@@ -34,11 +36,12 @@ const Input = ({
     isPassword,
     mask,
 }) => {
+    let inputRef = useRef(null);
 
-    
+    const onInputPress = useCallback(() => inputRef?.current?.focus(), [inputRef]);
 
     return (
-        <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : undefined}>
+        <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : onInputPress}>
             <View 
                 style={[
                     styles.container,
@@ -71,10 +74,11 @@ const Input = ({
                                 />
                             ) : (
                                 <MaskInput 
+                                    ref={inputRef}
                                     style={[
                                         responsiveTextStyles["inputText"],
                                         leftIcon && styles.leftPlaceholderSpace,
-                                        styles.input,
+                                        styles.input, 
                                     ]}
                                     placeholder={placeholder}
                                     placeholderTextColor={GRAY_3}
