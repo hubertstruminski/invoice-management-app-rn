@@ -75,13 +75,13 @@ const InvoiceDetailsScreen = ({
                                     <InvoiceCalendarIcon /> 
                                 </View>
                             </View>
-                            <CustomerDetails 
-                                item={customer}
-                            />
-                            <DescriptionSection 
-                                separatorStyle={globalStyles.regularBottomSpace} 
-                                description={description}
-                            />
+                            <CustomerDetails item={customer} />
+                            {description !== '' &&
+                                <DescriptionSection 
+                                    separatorStyle={globalStyles.regularBottomSpace} 
+                                    description={description}
+                                />
+                            }
                             <ResponsiveText 
                                 fontStyle="smallDetailsTitle"
                                 color={MAIN_GRAY}

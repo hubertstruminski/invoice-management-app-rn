@@ -29,8 +29,11 @@ const CustomerDetailsScreen = ({
         city,
         country,
         description,
-    }
+    },
+    invoices,
 }) => {
+    const documents = invoices.filter(invoice => invoice.customer.id === id);
+
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -66,18 +69,22 @@ const CustomerDetailsScreen = ({
                                 text={email}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
-                            <ResponsiveText 
-                                fontStyle="labelDetails"
-                                color={MAIN_GRAY}
-                                text={languages.labels.phoneNumber + ":"} 
-                                customStyle={globalStyles.smallLabelSpace}
-                            />
-                            <ResponsiveText 
-                                fontStyle="rightInputTitle"
-                                color={MAIN_GRAY}
-                                text={phoneNumber}
-                                customStyle={globalStyles.regularBottomSpace}
-                            />
+                            {phoneNumber !== '' &&
+                                <React.Fragment>
+                                    <ResponsiveText 
+                                        fontStyle="labelDetails"
+                                        color={MAIN_GRAY}
+                                        text={languages.labels.phoneNumber + ":"} 
+                                        customStyle={globalStyles.smallLabelSpace}
+                                    />
+                                    <ResponsiveText 
+                                        fontStyle="rightInputTitle"
+                                        color={MAIN_GRAY}
+                                        text={phoneNumber}
+                                        customStyle={globalStyles.regularBottomSpace}
+                                    />
+                                </React.Fragment>
+                            }
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
@@ -96,23 +103,27 @@ const CustomerDetailsScreen = ({
                                 city={city}
                                 country={country}
                             />
-                            <DescriptionSection 
-                                separatorStyle={globalStyles.regularBottomSpace}
-                                description={description}
-                            />
+                            {description !== '' &&
+                                <DescriptionSection 
+                                    separatorStyle={globalStyles.regularBottomSpace}
+                                    description={description}
+                                />
+                            }
                         </View>
-                        <ResponsiveText 
-                            fontStyle="smallDetailsTitle"
-                            color={MAIN_GRAY}
-                            text={languages.labels.documents}
-                            customStyle={[
-                                globalStyles.textAlignCenter, 
-                                globalStyles.regularBottomSpace,
-                            ]}
-                        />
+                        {documents?.length !== 0 &&
+                            <ResponsiveText 
+                                fontStyle="smallDetailsTitle"
+                                color={MAIN_GRAY}
+                                text={languages.labels.documents}
+                                customStyle={[
+                                    globalStyles.textAlignCenter, 
+                                    globalStyles.regularBottomSpace,
+                                ]}
+                            />
+                        }
                     </View>
                 )}
-                data={INVOICES.filter(invoice => invoice.customer.id === id)}
+                data={documents}
                 renderItem={({ item, index }) => (
                     <DocumentPreview 
                         key={index} 
@@ -126,6 +137,7 @@ const CustomerDetailsScreen = ({
 
 const mapStateToProps = state => ({
     customerDetails: state.customer.customerDetails,
+    invoices: state.invoice.invoices,
 });
 
 export default connect(mapStateToProps, { })(CustomerDetailsScreen);

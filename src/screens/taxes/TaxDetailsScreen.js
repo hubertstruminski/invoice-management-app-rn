@@ -55,12 +55,14 @@ const TaxDetailsScreen = ({
                         text={amount + "%"}
                         customStyle={globalStyles.mediumBottomSpace}
                     />
-                    <DescriptionSection 
-                        fontStyle="labelDetails"
-                        descriptionLabel={languages.labels.description + ":"} 
-                        descriptionLabelStyle={globalStyles.smallLabelSpace}
-                        description={description}
-                    />
+                    {description !== '' &&
+                        <DescriptionSection 
+                            fontStyle="labelDetails"
+                            descriptionLabel={languages.labels.description + ":"} 
+                            descriptionLabelStyle={globalStyles.smallLabelSpace}
+                            description={description}
+                        />
+                    }
                 </View>
                 <View style={globalStyles.bottomIconDetailsContainer}>
                     <TaxDetailsIcon />

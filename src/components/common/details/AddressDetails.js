@@ -42,18 +42,22 @@ const AddressDetails = ({
                 text={city}
                 customStyle={separatorStyle}
             />
-            <ResponsiveText 
-                fontStyle="labelDetails"
-                color={MAIN_GRAY}
-                text={languages.labels.country + ":"} 
-                customStyle={globalStyles.smallLabelSpace}
-            />
-            <ResponsiveText 
-                fontStyle="rightInputTitle"
-                color={MAIN_GRAY}
-                text={country}
-                customStyle={separatorStyle}
-            />
+            {country !== '' &&
+                <React.Fragment> 
+                    <ResponsiveText 
+                        fontStyle="labelDetails"
+                        color={MAIN_GRAY}
+                        text={languages.labels.country + ":"} 
+                        customStyle={globalStyles.smallLabelSpace}
+                    />
+                    <ResponsiveText 
+                        fontStyle="rightInputTitle"
+                        color={MAIN_GRAY}
+                        text={country}
+                        customStyle={separatorStyle}
+                    />
+                </React.Fragment>
+            }
         </React.Fragment>
     );
 }

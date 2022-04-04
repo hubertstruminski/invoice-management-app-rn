@@ -57,7 +57,7 @@ const AddInvoiceScreen = ({
     const [comment, setComment] = useState('');
     const [chosenProducts, setChosenProducts] = useState([]);
 
-    const [errors, setErrors] = useState([null, null, null]);
+    const [errors, setErrors] = useState([null, null, null, null]);
 
     const [isOpenDateModal, setIsOpenDateModal] = useState(false);
     const [isOpenDeadlineModal, setIsOpenDeadlineModal] = useState(false);
@@ -97,7 +97,7 @@ const AddInvoiceScreen = ({
     const closeDeadlineModal = useCallback(() => setIsOpenDeadlineModal(false), []);
 
     const createInvoice = useCallback(() => {
-        const errorObject = validateNewInvoiceForm(number, date, deadline, customerId);
+        const errorObject = validateNewInvoiceForm(number, date, deadline, customerId, chosenProducts);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
 
         if(isValidModel) {
@@ -230,6 +230,7 @@ const AddInvoiceScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                         data={products}
                         ref={productRef}
+                        errorText={errors[3]}
                         chosenEntityName={invoiceDetails?.product?.name}            
                         multiple
                         setChosenEntities={setChosenProducts}

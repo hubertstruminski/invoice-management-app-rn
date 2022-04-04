@@ -190,9 +190,11 @@ const ProductDetailsScreen = ({
                             <CoinIcon />
                         </View>
                     </View>
-                    <DescriptionSection 
-                        description={description}
-                    />
+                    {description !== '' && 
+                        <DescriptionSection 
+                            description={description}
+                        />
+                    }
                 </View>
             </ScrollView>
         </BasicView>

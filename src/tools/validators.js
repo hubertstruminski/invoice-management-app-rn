@@ -55,12 +55,13 @@ export const validateNewProductForm = (name, price, amount, unit) => {
     return errors;
 }
 
-export const validateNewInvoiceForm = (number, date, deadline, customerId) => {
+export const validateNewInvoiceForm = (number, date, deadline, customerId, chosenProducts) => {
     const errors = {};
 
     errors.number = validateInvoiceNumber(number);
     errors.date = validateDateRange(date, deadline);
     errors.customerId = validateEntityObject(customerId, "Customer");
+    errors.chosenProducts = validateInvoiceProductsList(chosenProducts);
 
     return errors;
 }
@@ -180,6 +181,14 @@ export const validateInvoiceNumber = (number) => {
         } else {
             return new ValidProperty(true);
         }
+    }
+}
+
+export const validateInvoiceProductsList = (products) => {
+    if(products.length === 0) {
+        return new ValidProperty(false, "You must choose at least 1 product!");
+    } else {
+        return new ValidProperty(true);
     }
 }
 
