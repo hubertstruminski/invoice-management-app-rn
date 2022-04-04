@@ -29,7 +29,8 @@ import {
 } from '../../tools';
 import { 
     addInvoice, 
-    updateInvoice, 
+    updateInvoice,
+    updateProduct, 
 } from '../../redux/actions';
 
 const AddInvoiceScreen = ({
@@ -44,6 +45,7 @@ const AddInvoiceScreen = ({
     },
     addInvoice,
     updateInvoice,
+    updateProduct,
 }) => {
     const currentDate = new Date();
     const futureDate = initFutureDate();
@@ -52,8 +54,8 @@ const AddInvoiceScreen = ({
     const [date, setDate] = useState(currentDate);
     const [deadline, setDeadline] = useState(futureDate);
     const [customerId, setCustomerId] = useState(null);
-    const [productId, setProductId] = useState(null);
     const [comment, setComment] = useState('');
+    const [chosenProducts, setChosenProducts] = useState([]);
 
     const [errors, setErrors] = useState([null, null, null]);
 
@@ -68,7 +70,6 @@ const AddInvoiceScreen = ({
         setDate(new Date(invoiceDetails?.date));
         setDeadline(new Date(invoiceDetails?.deadline));
         setCustomerId(invoiceDetails?.customer?.id);
-        setProductId(invoiceDetails?.product?.id);
         setComment(invoiceDetails?.description);
     }, []);
 
@@ -105,9 +106,14 @@ const AddInvoiceScreen = ({
                 date,
                 deadline,
                 customer: customers.find(item => item.id === customerId),
-                // product: null,
                 description: comment,
             };
+
+            const result = [];
+            chosenProducts.forEach(item => {
+                const foundElement = products.find(product => product.id === item.id);
+                foundElement && result.push(foundElement);
+            });
 
             if(params?.isEdit) {
                 payload = { 
@@ -116,25 +122,28 @@ const AddInvoiceScreen = ({
                     sentStatus: invoiceDetails.sentStatus,
                 };
                 updateInvoice(payload);
+                
             } else {
                 payload = { 
                     ...payload, 
                     id: (new Date()).getTime(),
                     sentStatus: false, 
-                    product: products.find(item => item.id === productId),
                 };
                 addInvoice(payload);
             }
+            result.map(item => ({ ...item, invoice: payload }))
+            .forEach(item => updateProduct(item));
+
             goBack();
         }
     }, [
         number,
         date,
         customerId,
-        productId,
         errors,
         products,
         customers,
+        chosenProducts,
     ]);
 
     const numberMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
@@ -215,14 +224,16 @@ const AddInvoiceScreen = ({
                         chosenEntityName={invoiceDetails?.customer?.fullName} 
                     />
                     <Dropdown 
-                        leftTitle={languages.labels.product}
+                        leftTitle={languages.labels.products}
                         rightTitle={languages.labels.optional}
                         placeholder={languages.placeholders.product}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={products}
                         ref={productRef}
-                        setId={setProductId} 
                         chosenEntityName={invoiceDetails?.product?.name}            
+                        multiple
+                        setChosenEntities={setChosenProducts}
+                        chosenEntities={chosenProducts}
                     />
                     <Input 
                         leftTitle={languages.labels.comment}
@@ -252,4 +263,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { 
     addInvoice,
     updateInvoice,
+    updateProduct,
 })(AddInvoiceScreen);

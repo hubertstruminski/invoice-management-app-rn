@@ -27,7 +27,8 @@
         "amount": "Enter amount",
         "description": "Enter description",
         "time": "TIME",
-        "tax": "Choose tax"
+        "tax": "Choose tax",
+        "multipleProducts": "Choose multiple products"
     },
     "labels": {
         "email": "Email",
@@ -50,7 +51,6 @@
         "number": "Number",
         "date": "Date",
         "customer": "Customer",
-        "product": "Product",
         "comment": "Comment",
         "name": "Name",
         "description": "Description",

@@ -1,7 +1,4 @@
-import { 
-    CUSTOMERS, 
-    PRODUCTS, 
-} from ".";
+import { CUSTOMERS } from '.';
 
 export const INVOICES = [
     { 

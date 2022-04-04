@@ -13,7 +13,6 @@ const initialState = {
         date: '',
         deadline: '',
         customer: null,
-        product: null,
         description: '',
         sentStatus: false,
     },

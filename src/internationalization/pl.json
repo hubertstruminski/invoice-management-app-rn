@@ -27,7 +27,8 @@
         "amount": "Wprowadź ilość",
         "description": "Wprowadź opis",
         "time": "CZAS",
-        "tax": "Wybierz podatek"
+        "tax": "Wybierz podatek",
+        "multipleProducts": "Wybierz wiele produktów"
     },
     "labels": {
         "email": "Email",
@@ -50,7 +51,6 @@
         "number": "Numer",
         "date": "Data",
         "customer": "Klient",
-        "product": "Produkt",
         "comment": "Komentarz",
         "name": "Nazwa",
         "description": "Opis",

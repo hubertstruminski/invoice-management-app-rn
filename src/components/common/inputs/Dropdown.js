@@ -23,6 +23,8 @@ import {
 import styles from './inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { ArrowDownIcon } from '../../../../assets';
+import { hp } from '../../../tools';
+import { languages } from '../../../internationalization/languages';
 
 const Dropdown = forwardRef(({
     containerStyle,
@@ -34,6 +36,9 @@ const Dropdown = forwardRef(({
     errorText,
     id,
     chosenEntityName,
+    multiple,
+    setChosenEntities,
+    chosenEntities,
 }, ref) => {
     const [filteredData, setFilteredData] = useState([]);
     const [showData, setShowData] = useState(false);
@@ -75,10 +80,21 @@ const Dropdown = forwardRef(({
                     setValue={setValue}
                     setId={setId}
                     closeDropdown={() => ref.current.closeDropdown()}
+                    multiple={multiple}
+                    setChosenEntities={setChosenEntities}
+                    chosenEntities={chosenEntities}
+                    isMark={chosenEntities?.find(item => item.name === resultName) !== undefined}
+                    isFirstItem={index === 0}
                 />
             );
         });
-    }, [filteredData, ref]);
+    }, [
+        filteredData, 
+        ref,
+        multiple, 
+        setChosenEntities, 
+        chosenEntities,
+    ]);
 
     const toggleDropdown = useCallback(() => {
         setValue('');
@@ -107,17 +123,32 @@ const Dropdown = forwardRef(({
                     />
                 }
             </View>
-            <View style={styles.inputContainer}>
-                <TextInput 
-                    style={[
-                        responsiveTextStyles["inputText"],
-                        styles.input,
-                    ]}
-                    placeholder={placeholder}
-                    placeholderTextColor={GRAY_3}
-                    value={value}
-                    onChangeText={setValue}
-                />
+            <View 
+                style={[
+                    styles.inputContainer, {
+                        height: multiple ? undefined : hp(48),
+                    }
+                ]}
+            >
+                {multiple ? (
+                        <ResponsiveText 
+                            fontStyle="inputText"
+                            color={chosenEntities?.length !== 0 ? MAIN_GRAY : GRAY_3}
+                            text={chosenEntities?.length === 0 ? 
+                                languages.placeholders.multipleProducts : chosenEntities?.map(item => item.name).join(', ')}
+                        />
+                    ) :
+                    <TextInput 
+                        style={[
+                            responsiveTextStyles["inputText"],
+                            styles.input,
+                        ]}
+                        placeholder={placeholder}
+                        placeholderTextColor={GRAY_3}
+                        value={value}
+                        onChangeText={setValue}
+                    />
+                }
                 <TouchableIcon onPress={toggleDropdown}>
                     <ArrowDownIcon />
                 </TouchableIcon>
