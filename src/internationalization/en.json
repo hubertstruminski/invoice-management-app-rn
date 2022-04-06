@@ -96,6 +96,24 @@
     },
     "formErrors": {
         "label": "Error",
-        "incorrectCredentials": "Invalid credentials!"
+        "incorrectCredentials": "Invalid credentials!",
+        "requiredEmail": "Email is required!",
+        "invalidEmail": "Invalid email!",
+        "isRequired": "is required!",
+        "requiredPassword": "Password is required!",
+        "passwordRules": "Password must have at least 6 characters!",
+        "samePasswords": "Passwords must be the same!",
+        "requiredPostalCode": "Postal code is required!",
+        "postalCodeFormat": "Invalid format! Use 00-000.",
+        "requiredNip": "NIP is required!",
+        "nipFormat": "Invalid format! Type 10 digits without spaces.",
+        "requiredPrice": "Price is required!",
+        "priceFormat": "Invalid format! Use 0.00 format.",
+        "requiredAmount": "Amount is required!",
+        "amountFormat": "Invalid format! Use only digits.",
+        "requiredNumber": "Number is required!",
+        "numberFormat": "Invalid format! Use only 6-digit number.",
+        "requiredProducts": "You must choose at least 1 product!",
+        "dateDeadlineRule": "Date can not be later than deadline!"
     }
 }

@@ -4,8 +4,8 @@ import React, {
     useState,
     useEffect,
 } from 'react';
-import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
@@ -115,7 +115,8 @@ const AddProductScreen = ({
             ]}
             headerComponent={<Header title={languages.addEntity.addProduct} />}
         >
-            <ScrollView 
+            <KeyboardAwareScrollView 
+                extraHeight={150}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,
@@ -191,7 +192,7 @@ const AddProductScreen = ({
                         onPress={createProduct}
                     />
                 </TouchableLayout>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }

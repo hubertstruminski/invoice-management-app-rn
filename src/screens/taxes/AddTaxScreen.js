@@ -3,11 +3,9 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { 
-    ScrollView, 
-    View, 
-} from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
@@ -83,7 +81,8 @@ const AddTaxScreen = ({
             ]}
             headerComponent={<Header title={languages.addEntity.addTax} />}
         >
-            <ScrollView 
+            <KeyboardAwareScrollView 
+                extraHeight={150}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,
@@ -130,7 +129,7 @@ const AddTaxScreen = ({
                         onPress={createTax}
                     />
                 </TouchableLayout>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }

@@ -2,9 +2,11 @@ import React, {
     useCallback,
     useEffect,
     useState,
+    useRef,
 } from 'react';
-import { ScrollView } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
@@ -37,6 +39,8 @@ const AddCompanyScreen = ({
     addCompany,
     updateCompany,
 }) => {
+    let scrollRef = useRef(null);
+
     const [companyName, setCompanyName] = useState('');
     const [street, setStreet] = useState('');
     const [postalCode, setPostalCode] = useState('');
@@ -91,7 +95,8 @@ const AddCompanyScreen = ({
             containerStyle={globalStyles.alignCenter}
             headerComponent={<Header title={languages.addEntity.addCompany} />}
         >
-            <ScrollView 
+            <KeyboardAwareScrollView 
+                extraHeight={150}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,
@@ -100,6 +105,7 @@ const AddCompanyScreen = ({
                 contentContainerStyle={globalStyles.alignCenter}
             >
                 <TouchableLayout>
+                    <View>
                     <Input 
                         leftTitle={languages.labels.companyName}
                         placeholder={languages.placeholders.companyName}
@@ -146,6 +152,7 @@ const AddCompanyScreen = ({
                         errorText={errors[4]}
                         containerStyle={styles.lastInputSpace}
                     />
+                    </View>
                     <Button 
                         color={WHITE}
                         text={languages.buttons.save}
@@ -153,7 +160,7 @@ const AddCompanyScreen = ({
                         onPress={createCompany}
                     />
                 </TouchableLayout>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }

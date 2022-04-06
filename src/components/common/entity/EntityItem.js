@@ -165,6 +165,7 @@ const EntityItem = ({
                     customer: item.customer,
                     description: item.description,
                     sentStatus: item.sentStatus,
+                    products: item.products,
                 };
                 setInvoiceDetails(invoicePayload);
                 navigate('AddInvoiceScreen', { isEdit: true });

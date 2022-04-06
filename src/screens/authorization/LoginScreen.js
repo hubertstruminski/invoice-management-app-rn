@@ -35,11 +35,11 @@ const LoginScreen = ({
     const redirectToRegisterScreen = useCallback(() => navigate('RegisterScreen'), []);
 
     const logIn = useCallback(() => {
-        if(email.toLowerCase() === 'admin@gmail.com' && password === '123456') {
+        // if(email.toLowerCase() === 'admin@gmail.com' && password === '123456') {
             navigate('DashboardScreen');
-        } else {
-            Alert.alert(languages.formErrors.label, languages.formErrors.incorrectCredentials);
-        }
+        // } else {
+        //     Alert.alert(languages.formErrors.label, languages.formErrors.incorrectCredentials);
+        // }
     }, [email, password]);
 
     return (

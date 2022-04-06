@@ -15,6 +15,7 @@ const initialState = {
         customer: null,
         description: '',
         sentStatus: false,
+        products: [],
     },
     invoices: INVOICES,
 }

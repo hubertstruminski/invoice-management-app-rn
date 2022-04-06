@@ -1,10 +1,11 @@
 import ValidProperty from '../classes/ValidProperty';
+import { languages } from '../internationalization/languages';
 
 export const validateNewAccountForm = (email, fullName, password, confirmPassword) => {
     const errors = {}; 
 
     errors.email = validateEmail(email);
-    errors.fullName = validateString(fullName, "Full name");
+    errors.fullName = validateString(fullName, languages.labels.fullName);
     errors.password = validatePassword(password);
     errors.confirmPassword = validateConfirmPassword(password, confirmPassword);
 
@@ -14,11 +15,11 @@ export const validateNewAccountForm = (email, fullName, password, confirmPasswor
 export const validateNewCompanyForm = (companyName, street, postalCode, city, country) => {
     const errors = {};
 
-    errors.companyName = validateString(companyName, "Company name");
-    errors.street = validateString(street, "Street");
+    errors.companyName = validateString(companyName, languages.labels.companyName);
+    errors.street = validateString(street, languages.labels.street);
     errors.postalCode = validatePostalCode(postalCode);
-    errors.city = validateString(city, "City");
-    errors.country = validateString(country, "Country");
+    errors.city = validateString(city, languages.labels.city);
+    errors.country = validateString(country, languages.labels.country);
 
     return errors;
 }
@@ -26,8 +27,8 @@ export const validateNewCompanyForm = (companyName, street, postalCode, city, co
 export const validateNewTaxForm = (name, amount) => {
     const errors = {};
 
-    errors.name = validateString(name, "Name");
-    errors.amount = validateString(amount, "Amount");
+    errors.name = validateString(name, languages.labels.name);
+    errors.amount = validateString(amount, languages.labels.amount);
 
     return errors;
 }
@@ -35,10 +36,10 @@ export const validateNewTaxForm = (name, amount) => {
 export const validateNewCustomerForm = (fullName, email, street, city, nip) => {
     const errors = {};
     
-    errors.fullName = validateString(fullName, "Full name");
+    errors.fullName = validateString(fullName, languages.labels.fullName);
     errors.email = validateEmail(email);
-    errors.street = validateString(street, "Street");
-    errors.city = validateString(city, "City");
+    errors.street = validateString(street, languages.labels.street);
+    errors.city = validateString(city, languages.labels.city);
     errors.nip = validateNIP(nip);
 
     return errors;
@@ -47,10 +48,10 @@ export const validateNewCustomerForm = (fullName, email, street, city, nip) => {
 export const validateNewProductForm = (name, price, amount, unit) => {
     const errors = {};
 
-    errors.name = validateString(name, "Name");
+    errors.name = validateString(name, languages.labels.name);
     errors.price = validatePrice(price);
     errors.amount = validateAmount(amount);
-    errors.unit = validateString(unit, "Unit");
+    errors.unit = validateString(unit, languages.labels.unit);
 
     return errors;
 }
@@ -60,7 +61,7 @@ export const validateNewInvoiceForm = (number, date, deadline, customerId, chose
 
     errors.number = validateInvoiceNumber(number);
     errors.date = validateDateRange(date, deadline);
-    errors.customerId = validateEntityObject(customerId, "Customer");
+    errors.customerId = validateEntityObject(customerId, languages.labels.customer);
     errors.chosenProducts = validateInvoiceProductsList(chosenProducts);
 
     return errors;
@@ -86,10 +87,10 @@ export const handleFormErrors = (errorObject, errorMessages, setErrorMessages) =
 
 export const validateEmail = (email) => {
     if(email === '') {
-        return new ValidProperty(false, "Email is required!");
+        return new ValidProperty(false, languages.formErrors.requiredEmail);
     } else {
         if(!/.{1,}@.{1,}\.{1}.{1,}/.test(email)) {
-            return new ValidProperty(false, "Invalid email!");
+            return new ValidProperty(false, languages.formErrors.invalidEmail);
         } else {
             return new ValidProperty(true);
         }
@@ -98,7 +99,7 @@ export const validateEmail = (email) => {
 
 export const validateString = (value, fieldName) => {
     if(value === '') {
-        return new ValidProperty(false, fieldName + " " + "is required!");
+        return new ValidProperty(false, fieldName + " " + languages.formErrors.isRequired);
     } else {
         return new ValidProperty(true);
     }
@@ -106,10 +107,10 @@ export const validateString = (value, fieldName) => {
 
 export const validatePassword = (password) => {
     if(password === '') {
-        return new ValidProperty(false, "Password is required!");
+        return new ValidProperty(false, languages.formErrors.requiredPassword);
     } else {
         if(!/.{6,}/.test(password)) {
-            return new ValidProperty(false, "Password must have at least 6 characters!");
+            return new ValidProperty(false, languages.formErrors.passwordRules);
         } else {
             return new ValidProperty(true);
         }
@@ -118,7 +119,7 @@ export const validatePassword = (password) => {
 
 export const validateConfirmPassword = (password, confirmPassword) => {
     if(password !== confirmPassword) {
-        return new ValidProperty(false, "Passwords must be the same!");
+        return new ValidProperty(false, languages.formErrors.samePasswords);
     } else {
         return new ValidProperty(true);
     }
@@ -126,10 +127,10 @@ export const validateConfirmPassword = (password, confirmPassword) => {
 
 export const validatePostalCode = (postalCode) => {
     if(postalCode === '') {
-        return new ValidProperty(false, "Postal code is required!");
+        return new ValidProperty(false, languages.formErrors.requiredPostalCode);
     } else {
         if(!/\d{2}-\d{3}/.test(postalCode)) {
-            return new ValidProperty(false, "Invalid format! Use 00-000.");
+            return new ValidProperty(false, languages.formErrors.postalCodeFormat);
         } else {
             return new ValidProperty(true);
         }
@@ -138,10 +139,10 @@ export const validatePostalCode = (postalCode) => {
 
 export const validateNIP = (nip) => {
     if(nip === '') {
-        return new ValidProperty(false, "NIP is required!");
+        return new ValidProperty(false, languages.formErrors.requiredNip);
     } else {
         if(!/\d{10}/.test(nip)) {
-            return new ValidProperty(false, "Invalid format! Type 10 digits without spaces.");
+            return new ValidProperty(false, languages.formErrors.nipFormat);
         } else {
             return new ValidProperty(true);
         }
@@ -150,10 +151,10 @@ export const validateNIP = (nip) => {
 
 export const validatePrice = (price) => {
     if(price === '') {
-        return new ValidProperty(false, "Price is required!");
+        return new ValidProperty(false, languages.formErrors.requiredPrice);
     } else {
         if(!/\d{1,}\.\d{2}/.test(price)) {
-            return new ValidProperty(false, "Invalid format! Use 0.00 format.");
+            return new ValidProperty(false, languages.formErrors.priceFormat);
         } else {
             return new ValidProperty(true);
         }
@@ -162,10 +163,10 @@ export const validatePrice = (price) => {
 
 export const validateAmount = (amount) => {
     if(amount === '') {
-        return new ValidProperty(false, "Amount is required!");
+        return new ValidProperty(false, languages.formErrors.requiredAmount);
     } else {
         if(!/\d{1,}/.test(amount)) {
-            return new ValidProperty(false, "Invalid format! Use only digits.");
+            return new ValidProperty(false, languages.formErrors.amountFormat);
         } else {
             return new ValidProperty(true);
         }
@@ -174,10 +175,10 @@ export const validateAmount = (amount) => {
 
 export const validateInvoiceNumber = (number) => {
     if(number === '') {
-        return new ValidProperty(false, "Number is required!");
+        return new ValidProperty(false, languages.formErrors.requiredNumber);
     } else {
         if(!/\d{6}/.test(number)) {
-            return new ValidProperty(false, "Invalid format! Use only 6-digit number.");
+            return new ValidProperty(false, languages.formErrors.numberFormat);
         } else {
             return new ValidProperty(true);
         }
@@ -186,7 +187,7 @@ export const validateInvoiceNumber = (number) => {
 
 export const validateInvoiceProductsList = (products) => {
     if(products.length === 0) {
-        return new ValidProperty(false, "You must choose at least 1 product!");
+        return new ValidProperty(false, languages.formErrors.requiredProducts);
     } else {
         return new ValidProperty(true);
     }
@@ -194,7 +195,7 @@ export const validateInvoiceProductsList = (products) => {
 
 export const validateDateRange = (date, deadline) => {
     if(date > deadline) {
-        return new ValidProperty(false, "Date can not be lower than deadline!");
+        return new ValidProperty(false, languages.formErrors.dateDeadlineRule);
     } else {
         return new ValidProperty(true);
     }
@@ -202,7 +203,7 @@ export const validateDateRange = (date, deadline) => {
 
 export const validateEntityObject = (customerId, fieldName) => {
     if(customerId === null) {
-        return new ValidProperty(false, fieldName + " is required!");
+        return new ValidProperty(false, fieldName + " " + languages.formErrors.isRequired);
     } else {
         return new ValidProperty(true);
     }

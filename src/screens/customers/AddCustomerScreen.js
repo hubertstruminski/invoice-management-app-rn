@@ -3,8 +3,8 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
@@ -104,13 +104,15 @@ const AddCustomerScreen = ({
             ]}
             headerComponent={<Header title={languages.addEntity.addCustomer} />}
         >
-            <ScrollView 
+
+            <KeyboardAwareScrollView 
+                extraHeight={150}
+                contentContainerStyle={globalStyles.alignCenter}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,
                 ]} 
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={[globalStyles.alignCenter]}
             >
                 <TouchableLayout>
                     <Input 
@@ -191,7 +193,7 @@ const AddCustomerScreen = ({
                         customStyle={globalStyles.largeBottomPadding}
                     />
                 </TouchableLayout>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }

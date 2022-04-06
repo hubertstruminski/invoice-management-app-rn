@@ -10,6 +10,9 @@ import { TouchableLayout } from '..';
 import { MAIN_ORANGE } from '../../contants/colors';
 import styles from './basicViewStyle';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+
 const BasicView = ({
     children,
     headerComponent,
@@ -39,9 +42,14 @@ const BasicView = ({
                     {headerComponent}
                 </TouchableLayout>
                 <View style={styles.shadow}>
+                    {/* <KeyboardAwareScrollView  extraScrollHeight={100}
+                    // s
+                    // tyle={[containerStyle]}
+                    > */}
                     <View style={[styles.container, containerStyle]}>
                         {children}
                     </View>
+                    {/* </KeyboardAwareScrollView> */}
                 </View>
             </View>
         </React.Fragment>

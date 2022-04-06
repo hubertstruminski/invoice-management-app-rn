@@ -96,6 +96,24 @@
     },
     "formErrors": {
         "label": "Błąd",
-        "incorrectCredentials": "Niepoprawne dane logowania!"
+        "incorrectCredentials": "Niepoprawne dane logowania!",
+        "requiredEmail": "Email jest wymagany!",
+        "invalidEmail": "Niepoprawny email!",
+        "isRequired": "jest wymagany!",
+        "requiredPassword": "Hasło jest wymagane!",
+        "passwordRules": "Hasło musi mieć co najmniej 6 znaków",
+        "samePasswords": "Hasła muszą być takie same!",
+        "requiredPostalCode": "Kod pocztowy jest wymagany!",
+        "postalCodeFormat": "Niepoprawny format! Użyj 00-000.",
+        "requiredNip": "NIP jest wymagany!",
+        "nipFormat": "Niepoprawny format! Wpisz 10 cyfr bez spacji.",
+        "requiredPrice": "Cena jest wymagana!",
+        "priceFormat": "Niepoprawny format! Użyj 0.00 formatu.",
+        "requiredAmount": "Ilość jesy wymagana!",
+        "amountFormat": "Niepoprawny format! Użyj tylko cyfr.",
+        "requiredNumber": "Numer jest wymagany!",
+        "numberFormat": "Niepoprawny format! Użyj tylko 6-cyfrowej liczby.",
+        "requiredProducts": "Musisz wybrać co najmniej 1 produkt",
+        "dateDeadlineRule": "Data nie może być późniejsza niż termin!"
     }
 }

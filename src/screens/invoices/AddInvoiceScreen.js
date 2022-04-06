@@ -4,10 +4,10 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { ScrollView } from 'react-native';
 import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
 import { connect } from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { CalendarIcon } from '../../../assets';
 import { 
@@ -30,7 +30,6 @@ import {
 import { 
     addInvoice, 
     updateInvoice,
-    updateProduct, 
 } from '../../redux/actions';
 
 const AddInvoiceScreen = ({
@@ -45,7 +44,6 @@ const AddInvoiceScreen = ({
     },
     addInvoice,
     updateInvoice,
-    updateProduct,
 }) => {
     const currentDate = new Date();
     const futureDate = initFutureDate();
@@ -71,7 +69,12 @@ const AddInvoiceScreen = ({
         setDeadline(new Date(invoiceDetails?.deadline));
         setCustomerId(invoiceDetails?.customer?.id);
         setComment(invoiceDetails?.description);
-    }, []);
+        const products = invoiceDetails?.products
+            ?.map(item => ({ name: item.name, id: item.id }));
+        if(Array.isArray(products) && products.length !== 0) {
+            setChosenProducts(products);
+        }
+    }, [invoiceDetails]);
 
     const closeDropdowns = useCallback(() => {
         customerRef.current.isOpen && customerRef.current.closeDropdown();
@@ -115,6 +118,8 @@ const AddInvoiceScreen = ({
                 foundElement && result.push(foundElement);
             });
 
+            payload = { ...payload, products: result };
+
             if(params?.isEdit) {
                 payload = { 
                     ...payload, 
@@ -122,7 +127,6 @@ const AddInvoiceScreen = ({
                     sentStatus: invoiceDetails.sentStatus,
                 };
                 updateInvoice(payload);
-                
             } else {
                 payload = { 
                     ...payload, 
@@ -131,9 +135,6 @@ const AddInvoiceScreen = ({
                 };
                 addInvoice(payload);
             }
-            result.map(item => ({ ...item, invoice: payload }))
-            .forEach(item => updateProduct(item));
-
             goBack();
         }
     }, [
@@ -156,7 +157,8 @@ const AddInvoiceScreen = ({
             ]}
             headerComponent={<Header title={languages.addEntity.addInvoice} />}
         >
-            <ScrollView 
+            <KeyboardAwareScrollView 
+                extraHeight={150}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,
@@ -225,7 +227,6 @@ const AddInvoiceScreen = ({
                     />
                     <Dropdown 
                         leftTitle={languages.labels.products}
-                        rightTitle={languages.labels.optional}
                         placeholder={languages.placeholders.product}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={products}
@@ -250,7 +251,7 @@ const AddInvoiceScreen = ({
                         onPress={createInvoice}
                     />
                 </TouchableLayout>
-            </ScrollView>
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }
@@ -264,5 +265,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { 
     addInvoice,
     updateInvoice,
-    updateProduct,
 })(AddInvoiceScreen);

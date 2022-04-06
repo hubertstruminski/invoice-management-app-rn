@@ -26,9 +26,8 @@ const InvoiceDetailsScreen = ({
         deadline,
         customer,
         description,
-        id,
+        products,
     },
-    products,
 }) => {
     return (
         <BasicView 
@@ -91,7 +90,7 @@ const InvoiceDetailsScreen = ({
                         </View>
                     </View>
                 )}
-                data={products.filter(product => product.invoice.id === id)}
+                data={products}
                 renderItem={({ item, index }) => (
                     <ProductPreview 
                         key={index}

@@ -111,7 +111,7 @@ const ProductDetailsScreen = ({
                             <PlantIcon />
                         </View>
                     </View>
-                    <ResponsiveText 
+                    {/* <ResponsiveText 
                         fontStyle="smallDetailsTitle"
                         color={MAIN_GRAY}
                         text={languages.labels.invoice}
@@ -146,7 +146,7 @@ const ProductDetailsScreen = ({
                             <ChartIcon />
                         </View>
                     </View>
-                    <CustomerDetails item={customer} />
+                    <CustomerDetails item={customer} /> */}
                     <ResponsiveText 
                         fontStyle="smallDetailsTitle"
                         color={MAIN_GRAY}
