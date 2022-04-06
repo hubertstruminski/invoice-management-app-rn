@@ -1,44 +1,35 @@
 import React, {
   useEffect,
 } from 'react';
-import SplashScreen from  "react-native-splash-screen";
- 
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
+import { 
   Platform,
-  Text,
+  AppState, 
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import { Provider } from 'react-redux';
+
+import { setLanguage } from './src/internationalization/languages';
+import AppNavigator from './src/navigation/AppNavigator';
+import { store } from './src/redux/store/store';
 
 const App = () => {
- 
   useEffect(() => {
     Platform.OS === 'android' && SplashScreen.hide();
+    
+    const languageSubscription = AppState.addEventListener('change', nextAppState => {
+      if(nextAppState === "active") {
+        setLanguage();
+      }
+    });
+
+    return () => languageSubscription.remove();
   });
   
   return (
-    <SafeAreaView style={{backgroundColor: 'orange'}}>
-      <StatusBar />
-      <ScrollView 
-        style={styles.flex}
-        contentContainerStyle={styles.center}
-      >
-        <Text>Main Screen</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  flex: {
-    flex: 1,
-  },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-});
 
 export default App;
