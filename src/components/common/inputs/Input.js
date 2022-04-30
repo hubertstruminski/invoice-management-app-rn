@@ -4,9 +4,11 @@ import React, {
 } from 'react';
 import { 
     View, 
-    TouchableWithoutFeedback, 
+    TouchableWithoutFeedback,
+    Platform, 
 } from 'react-native';
 import MaskInput from 'react-native-mask-input';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import { 
     globalStyles, 
@@ -20,6 +22,7 @@ import {
 import styles from './inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { WarningIcon } from '../../../../assets';
+import { hp } from '../../../tools';
 
 const Input = ({
     containerStyle,
@@ -78,7 +81,9 @@ const Input = ({
                                     style={[
                                         responsiveTextStyles["inputText"],
                                         leftIcon && styles.leftPlaceholderSpace,
-                                        styles.input, 
+                                        styles.input, {
+                                            height: Platform.OS === 'android' ? hp(48) : undefined,
+                                        },
                                     ]}
                                     placeholder={placeholder}
                                     placeholderTextColor={GRAY_3}
@@ -88,6 +93,7 @@ const Input = ({
                                     }}
                                     secureTextEntry={isPassword}
                                     mask={mask}
+                                    textAlignVertical="center"
                                 />
                             )
                         }
