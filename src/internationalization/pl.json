@@ -70,7 +70,7 @@
         "logout": "Wyloguj się"
     },
     "dashboardTiles": {
-        "companies": "Moje firmy",
+        "companies": "Moja firma",
         "customers": "Klienci",
         "products": "Produkty",
         "invoices": "Faktury",
@@ -115,5 +115,19 @@
         "numberFormat": "Niepoprawny format! Użyj tylko 6-cyfrowej liczby.",
         "requiredProducts": "Musisz wybrać co najmniej 1 produkt",
         "dateDeadlineRule": "Data nie może być późniejsza niż termin!"
+    },
+    "pdf": {
+        "customerName": "Imię i nazwisko klienta",
+        "customerEmail": "Email klienta",
+        "productName": "Nazwa produktu",
+        "taxAmount": "Ilość podatku",
+        "total": "Suma",
+        "shareInvoice": "Prześlij fakturę"
+    },
+    "alert": {
+        "no": "Nie",
+        "yes": "Tak",
+        "confirmationLabel": "Potwierdzenie",
+        "areYouSureLabel": "Jesteś pewien, że chcesz usunąć ten element?"
     }
 }

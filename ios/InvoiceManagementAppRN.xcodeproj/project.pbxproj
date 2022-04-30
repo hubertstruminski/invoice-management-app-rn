@@ -12,10 +12,12 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		25B2BD9B5C2A33B293474F0F /* libPods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE391F7EB30BB04C592A7CC /* libPods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.a */; };
+		28C363EA617CCECAC39C8E03 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734FB33CB9E06C8CE8388BF3 /* ExpoModulesProvider.swift */; };
 		61EF329A91FC4A45A34C6DE3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B31235CC98B43FE9218BD52 /* Roboto-Regular.ttf */; };
 		803321C478B74BEB1FD142B1 /* libPods-InvoiceManagementAppRN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1468F8A4227FE96B466F38 /* libPods-InvoiceManagementAppRN.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9A7CB0F27C9B4BC784900382 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95C85B4E4A214745A2E08B37 /* Roboto-Bold.ttf */; };
+		A6B6864FE0D1B3EAAB413332 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD1239B35DF26C4E14D567 /* ExpoModulesProvider.swift */; };
 		E83464C39F154E6D8D961884 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB9F4D447EC04AD398603CAF /* Roboto-Medium.ttf */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,7 @@
 		00E356F21AD99517003FC87E /* InvoiceManagementAppRNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvoiceManagementAppRNTests.m; sourceTree = "<group>"; };
 		04E04C69C190C30365BD90A0 /* Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.release.xcconfig"; path = "Target Support Files/Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests/Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.release.xcconfig"; sourceTree = "<group>"; };
 		069346A6E924F422BA62689E /* Pods-InvoiceManagementAppRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvoiceManagementAppRN.debug.xcconfig"; path = "Target Support Files/Pods-InvoiceManagementAppRN/Pods-InvoiceManagementAppRN.debug.xcconfig"; sourceTree = "<group>"; };
+		0DDD1239B35DF26C4E14D567 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* InvoiceManagementAppRN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvoiceManagementAppRN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = InvoiceManagementAppRN/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = InvoiceManagementAppRN/AppDelegate.m; sourceTree = "<group>"; };
@@ -43,13 +46,14 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = InvoiceManagementAppRN/main.m; sourceTree = "<group>"; };
 		390A025F93D21E7DD161E553 /* Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.debug.xcconfig"; path = "Target Support Files/Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests/Pods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.debug.xcconfig"; sourceTree = "<group>"; };
 		52702950F613CF69402A1C5C /* Pods-InvoiceManagementAppRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvoiceManagementAppRN.release.xcconfig"; path = "Target Support Files/Pods-InvoiceManagementAppRN/Pods-InvoiceManagementAppRN.release.xcconfig"; sourceTree = "<group>"; };
-		5B31235CC98B43FE9218BD52 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5B31235CC98B43FE9218BD52 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		734FB33CB9E06C8CE8388BF3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-InvoiceManagementAppRN/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = InvoiceManagementAppRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		95C85B4E4A214745A2E08B37 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		95C85B4E4A214745A2E08B37 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		CCE391F7EB30BB04C592A7CC /* libPods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InvoiceManagementAppRN-InvoiceManagementAppRNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1468F8A4227FE96B466F38 /* libPods-InvoiceManagementAppRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InvoiceManagementAppRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FB9F4D447EC04AD398603CAF /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		FB9F4D447EC04AD398603CAF /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001570D64CE89F2A9D823C1F /* InvoiceManagementAppRN */ = {
+			isa = PBXGroup;
+			children = (
+				734FB33CB9E06C8CE8388BF3 /* ExpoModulesProvider.swift */,
+			);
+			name = InvoiceManagementAppRN;
+			sourceTree = "<group>";
+		};
 		00E356EF1AD99517003FC87E /* InvoiceManagementAppRNTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +135,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3BE767853C5D5E1EC7425F89 /* InvoiceManagementAppRNTests */ = {
+			isa = PBXGroup;
+			children = (
+				0DDD1239B35DF26C4E14D567 /* ExpoModulesProvider.swift */,
+			);
+			name = InvoiceManagementAppRNTests;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +160,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				064FE7EA18410A066D19A7A3 /* Pods */,
 				C55D084000D8402EA1BFA859 /* Resources */,
+				A4B25420E1B97DDFDA207E90 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -155,6 +176,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A4B25420E1B97DDFDA207E90 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				001570D64CE89F2A9D823C1F /* InvoiceManagementAppRN */,
+				3BE767853C5D5E1EC7425F89 /* InvoiceManagementAppRNTests */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		C55D084000D8402EA1BFA859 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +193,6 @@
 				5B31235CC98B43FE9218BD52 /* Roboto-Regular.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* InvoiceManagementAppRNTests.m in Sources */,
+				A6B6864FE0D1B3EAAB413332 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +463,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				28C363EA617CCECAC39C8E03 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +488,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = InvoiceManagementAppRNTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,7 +512,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = InvoiceManagementAppRNTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -520,7 +551,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hubertstruminski.mobile.InvoiceManagementAppRN;
 				PRODUCT_NAME = InvoiceManagementAppRN;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -545,7 +576,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hubertstruminski.mobile.InvoiceManagementAppRN;
 				PRODUCT_NAME = InvoiceManagementAppRN;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -599,7 +630,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -657,7 +688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",

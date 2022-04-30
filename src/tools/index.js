@@ -12,7 +12,11 @@ import {
     validateNewProductForm,
     validateNewInvoiceForm,
 } from './validators';
-import { initFutureDate } from '../tools/tools';
+import { 
+    initFutureDate, 
+    showConfirmationDelete, 
+} from '../tools/tools';
+import { generateHTML } from './pdfHelpers';
 
 export {
     hp,
@@ -26,4 +30,6 @@ export {
     validateNewProductForm,
     validateNewInvoiceForm,
     initFutureDate,
+    generateHTML,
+    showConfirmationDelete,
 };

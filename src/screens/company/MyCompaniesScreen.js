@@ -51,6 +51,7 @@ const MyCompaniesScreen = ({
         >
             <FlatList
                 ListHeaderComponent={
+                    companies?.length < 1 &&
                     <Button 
                         color={MAIN_GRAY}
                         text={languages.addEntity.addCompany}

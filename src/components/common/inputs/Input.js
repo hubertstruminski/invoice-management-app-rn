@@ -41,27 +41,27 @@ const Input = ({
     const onInputPress = useCallback(() => inputRef?.current?.focus(), [inputRef]);
 
     return (
-        <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : onInputPress}>
-            <View 
-                style={[
-                    styles.container,
-                    containerStyle,
-                ]}
-            >
-                <View style={styles.titleContainer}>
+        <View 
+            style={[
+                styles.container,
+                containerStyle,
+            ]}
+        >
+            <View style={styles.titleContainer}>
+                <ResponsiveText 
+                    fontStyle="inputText"
+                    text={leftTitle}
+                    color={MAIN_GRAY}
+                />
+                { rightTitle &&
                     <ResponsiveText 
-                        fontStyle="inputText"
-                        text={leftTitle}
-                        color={MAIN_GRAY}
+                        fontStyle="rightInputTitle"
+                        text={rightTitle}
+                        color={GRAY_3}
                     />
-                    { rightTitle &&
-                        <ResponsiveText 
-                            fontStyle="rightInputTitle"
-                            text={rightTitle}
-                            color={GRAY_3}
-                        />
-                    }
-                </View>
+                }
+            </View>
+            <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : onInputPress}>
                 <View style={styles.inputContainer}>
                     <View style={globalStyles.rowCenter}>
                         {leftIcon}
@@ -94,16 +94,16 @@ const Input = ({
                     </View>
                     { withWarning && <WarningIcon /> }
                 </View> 
-                { errorText &&
-                    <ResponsiveText 
-                        fontStyle="errorInputText"
-                        color={RED}
-                        text={errorText}
-                        customStyle={styles.errorSpace}
-                    /> 
-                }
-            </View>
-        </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+            { errorText &&
+                <ResponsiveText 
+                    fontStyle="errorInputText"
+                    color={RED}
+                    text={errorText}
+                    customStyle={styles.errorSpace}
+                /> 
+            }
+        </View>
     );
 }
 

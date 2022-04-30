@@ -70,7 +70,7 @@
         "logout": "Logout"
     },
     "dashboardTiles": {
-        "companies": "My companies",
+        "companies": "My company",
         "customers": "Customers",
         "products": "Products",
         "invoices": "Invoices",
@@ -115,5 +115,19 @@
         "numberFormat": "Invalid format! Use only 6-digit number.",
         "requiredProducts": "You must choose at least 1 product!",
         "dateDeadlineRule": "Date can not be later than deadline!"
+    },
+    "pdf": {
+        "customerName": "Customer name",
+        "customerEmail": "Customer email",
+        "productName": "Product name",
+        "taxAmount": "Tax amount",
+        "total": "Total",
+        "shareInvoice": "Share invoice"
+    },
+    "alert": {
+        "no": "No",
+        "yes": "Yes",
+        "confirmationLabel": "Confirmation",
+        "areYouSureLabel": "Are you sure you want delete this entity?"
     }
 }

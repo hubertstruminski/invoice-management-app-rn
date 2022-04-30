@@ -26,7 +26,7 @@ import {
     PRODUCT_ENTITY, 
     TAX_ENTITY, 
 } from '../../../contants/constants';
-import { hp } from '../../../tools';
+import { hp, showConfirmationDelete } from '../../../tools';
 import styles from './entityItemStyle';
 import { 
     setCompanyDetails, 
@@ -108,19 +108,19 @@ const EntityItem = ({
     const removeItem = useCallback(() => {
         switch(type) {
             case COMPANY_ENTITY:
-                removeCompany(id);
+                showConfirmationDelete(() => removeCompany(id));
                 break;
             case CUSTOMER_ENTITY:
-                removeCustomer(id);
+                showConfirmationDelete(() => removeCustomer(id));
                 break;
             case INVOICE_ENTITY:
-                removeInvoice(id);
+                showConfirmationDelete(() => removeInvoice(id));
                 break;
             case PRODUCT_ENTITY:
-                removeProduct(id);
+                showConfirmationDelete(() => removeProduct(id));
                 break;
             case TAX_ENTITY:
-                removeTax(id);
+                showConfirmationDelete(() => removeTax(id));
                 break;
             default: 
                 break;
@@ -231,7 +231,7 @@ const EntityItem = ({
                     >
                         <EditIcon />
                     </TouchableIcon>
-                    <TouchableIcon onLongPress={removeItem}>
+                    <TouchableIcon onPress={removeItem}>
                         <TrashIcon />
                     </TouchableIcon>
                 </View>

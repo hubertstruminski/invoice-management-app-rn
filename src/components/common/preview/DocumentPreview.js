@@ -1,5 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
+import Share from 'react-native-share';
+import * as Print from 'expo-print';
 
 import { 
     globalStyles, 
@@ -18,8 +20,31 @@ import {
 } from '../../../contants/colors';
 import { languages } from '../../../internationalization/languages';
 import styles from './previewStyle';
+import { generateHTML } from '../../../tools';
 
-const DocumentPreview = ({ item }) => {
+const DocumentPreview = ({ 
+    item,
+}) => {
+
+    const generatePdf = async () => {
+        const { uri } = await Print.printToFileAsync({
+            html: generateHTML(item),
+          });
+
+        const shareOptions = {
+            title: languages.pdf.shareInvoice,
+            failOnCancel: false,
+            saveToFiles: true,
+            urls: [uri],
+        };
+      
+        try {
+            await Share.open(shareOptions);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <View style={styles.documentShadow}>
             <View style={styles.documentContainer}>
@@ -55,7 +80,7 @@ const DocumentPreview = ({ item }) => {
                             >
                                 <MessageIcon />
                             </TouchableIcon>
-                            <TouchableIcon>
+                            <TouchableIcon onPress={generatePdf}>
                                 <PdfIcon />
                             </TouchableIcon>
                         </View>
