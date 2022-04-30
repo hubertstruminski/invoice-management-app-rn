@@ -1,9 +1,8 @@
 import moment from 'moment';
 
 import { languages } from "../internationalization/languages";
-import { COMPANIES } from '../mocks';
 
-export function generateHTML(invoice) {
+export function generateHTML(invoice, companies) {
 
     const { 
         number,
@@ -19,7 +18,7 @@ export function generateHTML(invoice) {
         postalCode,
         city,
         country,
-    } = COMPANIES[0];
+    } = companies?.[0];
 
     let result = 0;
     products.forEach(item => result += item.price);

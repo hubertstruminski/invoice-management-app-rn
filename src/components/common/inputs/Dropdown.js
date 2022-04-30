@@ -5,10 +5,7 @@ import React, {
     useImperativeHandle,
     useCallback,
 } from 'react';
-import { 
-    View, 
-    TextInput,
-} from 'react-native';
+import { View } from 'react-native';
 
 import { 
     DropdownItem, 
@@ -21,7 +18,6 @@ import {
     RED,
 } from '../../../contants/colors';
 import styles from './inputStyle';
-import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { ArrowDownIcon } from '../../../../assets';
 import { hp } from '../../../tools';
 import { languages } from '../../../internationalization/languages';
@@ -127,6 +123,7 @@ const Dropdown = forwardRef(({
                 style={[
                     styles.inputContainer, {
                         height: multiple ? undefined : hp(48),
+                        borderColor: (!id && errorText && !showData) ? RED : GRAY_3,
                     }
                 ]}
             >
@@ -138,16 +135,16 @@ const Dropdown = forwardRef(({
                                 languages.placeholders.multipleProducts : chosenEntities?.map(item => item.name).join(', ')}
                         />
                     ) :
-                    <TextInput 
-                        style={[
-                            responsiveTextStyles["inputText"],
-                            styles.input,
-                        ]}
-                        placeholder={placeholder}
-                        placeholderTextColor={GRAY_3}
-                        value={value}
-                        onChangeText={setValue}
-                    />
+                        <ResponsiveText 
+                            fontStyle="inputText"
+                            color={value !== '' ? MAIN_GRAY : GRAY_3}
+                            text={value === '' ? placeholder : value}
+                            customStyle={[
+                                styles.input, {
+                                    flex: 1,
+                                }
+                            ]}
+                        />
                 }
                 <TouchableIcon onPress={toggleDropdown}>
                     <ArrowDownIcon />

@@ -1,7 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { 
+    Alert, 
+    View, 
+} from 'react-native';
 import Share from 'react-native-share';
 import * as Print from 'expo-print';
+import { connect } from 'react-redux';
 
 import { 
     globalStyles, 
@@ -24,11 +28,17 @@ import { generateHTML } from '../../../tools';
 
 const DocumentPreview = ({ 
     item,
+    companies,
 }) => {
 
     const generatePdf = async () => {
+        if(companies?.length < 1) {
+            Alert.alert('Error', 'You must have added company!');
+            return;
+        }
+
         const { uri } = await Print.printToFileAsync({
-            html: generateHTML(item),
+            html: generateHTML(item, companies),
           });
 
         const shareOptions = {
@@ -91,4 +101,8 @@ const DocumentPreview = ({
     );
 }
 
-export default DocumentPreview;
+const mapStateToProps = state => ({
+    companies: state.company.companies,
+});
+
+export default connect(mapStateToProps, { })(DocumentPreview);

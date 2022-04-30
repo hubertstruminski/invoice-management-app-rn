@@ -8,7 +8,6 @@ import {
     Platform, 
 } from 'react-native';
 import MaskInput from 'react-native-mask-input';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import { 
     globalStyles, 
@@ -21,7 +20,6 @@ import {
 } from '../../../contants/colors';
 import styles from './inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
-import { WarningIcon } from '../../../../assets';
 import { hp } from '../../../tools';
 
 const Input = ({
@@ -65,7 +63,13 @@ const Input = ({
                 }
             </View>
             <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : onInputPress}>
-                <View style={styles.inputContainer}>
+                <View 
+                    style={[
+                        styles.inputContainer, {
+                            borderColor: withWarning ? RED : GRAY_3,
+                        }
+                    ]}
+                >
                     <View style={globalStyles.rowCenter}>
                         {leftIcon}
                         { isCalendar ? (
@@ -83,8 +87,9 @@ const Input = ({
                                         leftIcon && styles.leftPlaceholderSpace,
                                         styles.input, {
                                             height: Platform.OS === 'android' ? hp(48) : undefined,
+                                            flex: 1,
                                         },
-                                    ]}
+                                    ]}  
                                     placeholder={placeholder}
                                     placeholderTextColor={GRAY_3}
                                     value={value}
@@ -97,8 +102,7 @@ const Input = ({
                                 />
                             )
                         }
-                    </View>
-                    { withWarning && <WarningIcon /> }
+                    </View> 
                 </View> 
             </TouchableWithoutFeedback>
             { errorText &&

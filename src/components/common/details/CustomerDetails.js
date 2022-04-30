@@ -43,17 +43,21 @@ const CustomerDetails = ({
                         text={item?.fullName}
                         customStyle={globalStyles.regularBottomSpace}
                     />
-                    <ResponsiveText 
-                        fontStyle="labelDetails"
-                        color={MAIN_GRAY}
-                        text={languages.labels.phoneNumber + ":"} 
-                        customStyle={globalStyles.smallLabelSpace}
-                    />
-                    <ResponsiveText 
-                        fontStyle="rightInputTitle"
-                        color={MAIN_GRAY}
-                        text={item?.phoneNumber}
-                    />
+                    {item?.phoneNumber?.length > 0 &&
+                        <React.Fragment>
+                            <ResponsiveText 
+                                fontStyle="labelDetails"
+                                color={MAIN_GRAY}
+                                text={languages.labels.phoneNumber + ":"} 
+                                customStyle={globalStyles.smallLabelSpace}
+                            />
+                            <ResponsiveText 
+                                fontStyle="rightInputTitle"
+                                color={MAIN_GRAY}
+                                text={item?.phoneNumber}
+                            />
+                        </React.Fragment>
+                    }
                 </View>
                 <View>
                     <HomeOfficeIcon />

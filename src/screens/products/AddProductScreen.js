@@ -50,7 +50,7 @@ const AddProductScreen = ({
     const [unit, setUnit] = useState('');
     const [taxId, setTaxId] = useState(null);
 
-    const [errors, setErrors] = useState([null, null, null, null]);
+    const [errors, setErrors] = useState([null, null, null, null, null, null]);
 
     let taxRef = useRef(null);
 
@@ -69,7 +69,7 @@ const AddProductScreen = ({
     }, [taxRef]);
 
     const createProduct = useCallback(() => {
-        const errorObject = validateNewProductForm(name, price, amount, unit);
+        const errorObject = validateNewProductForm(name, price, amount, unit, discount, taxId);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
@@ -166,6 +166,8 @@ const AddProductScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                         value={discount}
                         setValue={setDiscount}
+                        withWarning={errors[4] !== null}
+                        errorText={errors[4]}
                     />
                     <Input 
                         leftTitle={languages.labels.unit}
@@ -183,7 +185,9 @@ const AddProductScreen = ({
                         data={taxes}
                         ref={taxRef}
                         setId={setTaxId}
+                        id={taxId}
                         chosenEntityName={productDetails?.tax?.name}
+                        errorText={errors[5]}
                     />
                     <Button 
                         color={WHITE}

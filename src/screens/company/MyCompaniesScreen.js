@@ -78,8 +78,10 @@ const MyCompaniesScreen = ({
                         />
                     </EntityItem>
                 )}
-                style={globalStyles.flatListContainer}
-                contentContainerStyle={globalStyles.alignCenter}
+                contentContainerStyle={[
+                    globalStyles.alignCenter, 
+                    globalStyles.flatListContainer,
+                ]}
                 ListFooterComponent={<View />}
                 ListFooterComponentStyle={globalStyles.largeSpace}
             />

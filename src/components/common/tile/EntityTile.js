@@ -11,18 +11,29 @@ import {
 } from '../..';
 import { MAIN_GRAY } from '../../../contants/colors';
 import styles from './entityTileStyle';
-import { navigateFromTile } from '../../../tools';
+import { 
+    hp, 
+    navigateFromTile, 
+} from '../../../tools';
 
 const EntityTile = ({
     icon,
     title,
     customStyle,
     label,
+    isLast,
 }) => {
     const { navigate } = useNavigation();
 
     return (
-        <View style={[globalStyles.shadow, customStyle]}>
+        <View 
+            style={[
+                globalStyles.shadow, 
+                customStyle, {
+                    marginBottom: isLast ? hp(24) : 0
+                }
+            ]}
+        >
             <TouchableWithoutFeedback 
                 onPress={() => navigateFromTile(label, navigate)}
             >

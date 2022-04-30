@@ -2,10 +2,12 @@ import React, {
     useCallback,
     useState,
 } from 'react';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
     Button, 
+    globalStyles, 
     Header, 
     Input, 
     ResponsiveText
@@ -57,55 +59,61 @@ const RegisterScreen = ({
             containerStyle={styles.container}
             headerComponent={<Header withLogout={false} />}
         >
-            <ResponsiveText 
-                text={languages.hi}
-                color={MAIN_GRAY}
-                fontStyle="registerTitle"
-                customStyle={styles.appTitleContainer}
-            />
-            <Input 
-                leftTitle={languages.labels.email}
-                placeholder={languages.placeholders.email}
-                leftIcon={<UserIcon />}
-                value={email}
-                setValue={setEmail}
-                withWarning={errors[0] !== null}
-                errorText={errors[0]}
-            />
-            <Input 
-                leftTitle={languages.labels.fullName}
-                placeholder={languages.placeholders.fullName}
-                value={fullName}
-                setValue={setFullName}
-                withWarning={errors[1] !== null}
-                errorText={errors[1]}
-            />
-            <Input 
-                leftTitle={languages.labels.password}
-                placeholder={languages.placeholders.password}
-                value={password}
-                setValue={setPassword}
-                leftIcon={<LockIcon />}
-                withWarning={errors[2] !== null}
-                errorText={errors[2]}
-                isPassword
-            />
-            <Input 
-                leftTitle={languages.labels.confirmPassword}
-                placeholder={languages.placeholders.password}
-                value={confirmPassword}
-                setValue={setConfirmPassword}
-                leftIcon={<LockIcon />}
-                containerStyle={styles.lastInputSpace}
-                withWarning={errors[3] !== null}
-                errorText={errors[3]}
-                isPassword
-            />   
-            <Button 
-                color={WHITE}
-                text={languages.buttons.registerAccount}
-                onPress={createAccount}
-            />
+            <KeyboardAwareScrollView 
+                extraHeight={150}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={globalStyles.alignCenter}
+            >
+                <ResponsiveText 
+                    text={languages.hi}
+                    color={MAIN_GRAY}
+                    fontStyle="registerTitle"
+                    customStyle={styles.appTitleContainer}
+                />
+                <Input 
+                    leftTitle={languages.labels.email}
+                    placeholder={languages.placeholders.email}
+                    leftIcon={<UserIcon />}
+                    value={email}
+                    setValue={setEmail}
+                    withWarning={errors[0] !== null}
+                    errorText={errors[0]}
+                />
+                <Input 
+                    leftTitle={languages.labels.fullName}
+                    placeholder={languages.placeholders.fullName}
+                    value={fullName}
+                    setValue={setFullName}
+                    withWarning={errors[1] !== null}
+                    errorText={errors[1]}
+                />
+                <Input 
+                    leftTitle={languages.labels.password}
+                    placeholder={languages.placeholders.password}
+                    value={password}
+                    setValue={setPassword}
+                    leftIcon={<LockIcon />}
+                    withWarning={errors[2] !== null}
+                    errorText={errors[2]}
+                    isPassword
+                />
+                <Input 
+                    leftTitle={languages.labels.confirmPassword}
+                    placeholder={languages.placeholders.password}
+                    value={confirmPassword}
+                    setValue={setConfirmPassword}
+                    leftIcon={<LockIcon />}
+                    containerStyle={styles.lastInputSpace}
+                    withWarning={errors[3] !== null}
+                    errorText={errors[3]}
+                    isPassword
+                />   
+                <Button 
+                    color={WHITE}
+                    text={languages.buttons.registerAccount}
+                    onPress={createAccount}
+                />
+            </KeyboardAwareScrollView>
         </BasicView>
     );
 }

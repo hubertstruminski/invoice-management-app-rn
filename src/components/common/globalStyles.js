@@ -34,7 +34,7 @@ export default StyleSheet.create({
         shadowOffset: { width: 0, height: hp(2) },
         shadowOpacity: 0.25,
         shadowRadius: 8, 
-        elevation: 3,
+        elevation: 4,
         backgroundColor: WHITE,
         borderRadius: 16,
         marginTop: hp(24),
@@ -113,5 +113,12 @@ export default StyleSheet.create({
     },
     mediumRightSpace: {
         marginRight: wp(32),
+    },
+    zeroPaddingHorizontal: {
+        paddingHorizontal: 0,
+    },
+    fullWidthWithSmallPadding: {
+        width: '100%',
+        paddingHorizontal: wp(16),
     }
 });

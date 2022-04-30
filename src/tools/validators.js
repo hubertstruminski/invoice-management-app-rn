@@ -45,13 +45,15 @@ export const validateNewCustomerForm = (fullName, email, street, city, nip) => {
     return errors;
 }
 
-export const validateNewProductForm = (name, price, amount, unit) => {
+export const validateNewProductForm = (name, price, amount, unit, discount, taxId) => {
     const errors = {};
 
     errors.name = validateString(name, languages.labels.name);
     errors.price = validatePrice(price);
     errors.amount = validateAmount(amount);
     errors.unit = validateString(unit, languages.labels.unit);
+    errors.discount = validateDiscount(discount);
+    errors.taxId = validateEntityObject(taxId, languages.labels.tax);
 
     return errors;
 }
@@ -161,6 +163,18 @@ export const validatePrice = (price) => {
     }
 }
 
+export const validateDiscount = discount => {
+    if(discount !== '') {
+        if(!/\d{1,}/.test(discount)) {
+            return new ValidProperty(false, languages.formErrors.amountFormat);
+        } else {
+            return new ValidProperty(true);    
+        }
+    } else {
+        return new ValidProperty(true);
+    }
+}
+
 export const validateAmount = (amount) => {
     if(amount === '') {
         return new ValidProperty(false, languages.formErrors.requiredAmount);
@@ -202,7 +216,7 @@ export const validateDateRange = (date, deadline) => {
 }
 
 export const validateEntityObject = (customerId, fieldName) => {
-    if(customerId === null) {
+    if(!customerId) {
         return new ValidProperty(false, fieldName + " " + languages.formErrors.isRequired);
     } else {
         return new ValidProperty(true);

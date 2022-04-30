@@ -29,11 +29,18 @@ const DashboardScreen = () => {
                         icon={item.icon}
                         title={item.title}
                         label={item.label}
+                        isLast={DASHBOARD_TILES.length - 1 === index}
                     />
                 )}
                 numColumns={2}
-                style={globalStyles.flatListContainer}
-                columnWrapperStyle={globalStyles.spaceBetween}
+                style={[
+                    globalStyles.flatListContainer, 
+                    globalStyles.zeroPaddingHorizontal
+                ]}
+                columnWrapperStyle={[
+                    globalStyles.spaceBetween, 
+                    globalStyles.fullWidthWithSmallPadding
+                ]}
             />
         </BasicView>
     );

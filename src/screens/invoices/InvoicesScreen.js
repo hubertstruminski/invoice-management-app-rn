@@ -82,10 +82,10 @@ const InvoicesScreen = ({
                         />
                     </EntityItem>
                 )}
-                style={globalStyles.flatListContainer}
                 contentContainerStyle={[
                     globalStyles.alignCenter,
                     globalStyles.flexGrow,
+                    globalStyles.flatListContainer,
                 ]}
                 ListFooterComponent={<View />}
                 ListFooterComponentStyle={globalStyles.largeSpace}

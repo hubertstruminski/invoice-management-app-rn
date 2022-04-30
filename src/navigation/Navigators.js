@@ -49,7 +49,10 @@ export default () => {
     return (
         <AppStackNavigator.Navigator
             initialRouteName="LoginScreen"
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ 
+                headerShown: false, 
+                animationEnabled: false, 
+            }}
             mode="modal"
         >
             {routes.map((item, index) => (
