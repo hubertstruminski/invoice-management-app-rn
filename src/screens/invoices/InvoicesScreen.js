@@ -1,6 +1,8 @@
 import React, { 
     useCallback, 
+    useEffect, 
 } from 'react';
+
 import { 
     FlatList, 
     View,
@@ -21,7 +23,10 @@ import {
 } from '../../contants/colors';
 import { INVOICE_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { setInvoiceDetails } from '../../redux/actions';
+import { 
+    setInvoiceDetails, 
+    fetchInvoices, 
+} from '../../redux/actions';
 import { 
     hp, 
     initFutureDate, 
@@ -33,7 +38,12 @@ const InvoicesScreen = ({
     },
     invoices,
     setInvoiceDetails,
+    fetchInvoices,
 }) => {
+
+    useEffect(() => {
+        // fetchInvoices();
+    }, []);
 
     const openAddInvoiceForm = useCallback(() => {
         setInvoiceDetails({
@@ -100,4 +110,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setInvoiceDetails,
+    fetchInvoices,
 })(InvoicesScreen);

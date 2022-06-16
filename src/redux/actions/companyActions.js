@@ -1,5 +1,8 @@
+import axios from "axios";
+import { API_URL } from "../../contants/constants";
 import { 
     ADD_COMPANY,
+    FETCH_COMPANIES,
     REMOVE_COMPANY,
     SET_CHOSEN_COMPANY_DETAILS,
     UPDATE_COMPANY, 
@@ -24,3 +27,21 @@ export const updateCompany = value => ({
     type: UPDATE_COMPANY,
     payload: value,
 });
+
+const setCompanies = value => ({
+    type: FETCH_COMPANIES,
+    payload: value,
+});
+
+export const fetchCompanies = () => {
+    return async dispatch => {
+        const response = await axios({
+            method: 'GET',
+            url: `${API_URL}/api/companies`,
+        });
+
+        if(response.status === 200) {
+            dispatch(setCompanies(response.data));
+        }
+    }
+};

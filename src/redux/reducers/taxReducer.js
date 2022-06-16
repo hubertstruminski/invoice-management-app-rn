@@ -1,6 +1,7 @@
 import { TAXES } from '../../mocks';
 import { 
     ADD_TAX,
+    FETCH_TAXES,
     REMOVE_TAX, 
     SET_CHOSEN_TAX_DETAILS,
     UPDATE_TAX, 
@@ -13,11 +14,16 @@ const initialState = {
         amount: 0,
         description: '',
     },
-    taxes: TAXES,
+    taxes: [],
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case FETCH_TAXES:
+            return {
+                ...state,
+                taxes: action.payload,
+            };
         case SET_CHOSEN_TAX_DETAILS:
             return {
                 ...state,

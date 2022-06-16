@@ -26,6 +26,7 @@ import {
     validateNewAccountForm, 
     handleFormErrors, 
 } from '../../tools';
+import { createUserAccount } from '../../redux/actions';
 
 const RegisterScreen = ({
     navigation: {
@@ -39,12 +40,22 @@ const RegisterScreen = ({
 
     const [errors, setErrors] = useState([null , null, null, null]);
 
-    const createAccount = useCallback(() => {
+    const createAccount = useCallback(async () => {
         const errorObject = validateNewAccountForm(email, fullName, password, confirmPassword);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
-            navigate('DashboardScreen');
+            const payload = {
+                email, 
+                password, 
+                fullName,
+            };
+
+            const response = await createUserAccount(payload);
+
+            if(response.status === 200) {
+                navigate('DashboardScreen');
+            }
         }
     }, [
         email,

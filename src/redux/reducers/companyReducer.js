@@ -1,6 +1,7 @@
 import { COMPANIES } from '../../mocks';
 import {
     ADD_COMPANY,
+    FETCH_COMPANIES,
     REMOVE_COMPANY,
     SET_CHOSEN_COMPANY_DETAILS, 
     SET_COMPANIES,
@@ -16,11 +17,16 @@ const initialState = {
         city: '',
         country: '',
     },
-    companies: COMPANIES,
+    companies: [],
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case FETCH_COMPANIES:
+            return {
+                ...state,
+                companies: action.payload,
+            };
         case SET_CHOSEN_COMPANY_DETAILS:
             return {
                 ...state,

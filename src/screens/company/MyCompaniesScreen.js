@@ -1,5 +1,5 @@
 import React, { 
-    useCallback, 
+    useCallback, useEffect, 
 } from 'react';
 import { 
     FlatList, 
@@ -21,7 +21,7 @@ import {
 } from '../../contants/colors';
 import { COMPANY_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { setCompanyDetails } from '../../redux/actions';
+import { fetchCompanies, setCompanyDetails } from '../../redux/actions';
 
 const MyCompaniesScreen = ({
     navigation: {
@@ -29,7 +29,12 @@ const MyCompaniesScreen = ({
     },
     companies,
     setCompanyDetails,
+    fetchCompanies,
 }) => {
+
+    useEffect(() => {
+        fetchCompanies();
+    }, []);
 
     const openAddCompanyForm = useCallback(() => {
         setCompanyDetails({
@@ -95,4 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setCompanyDetails,
+    fetchCompanies,
 })(MyCompaniesScreen);

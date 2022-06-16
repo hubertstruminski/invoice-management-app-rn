@@ -1,6 +1,7 @@
 import { PRODUCTS } from '../../mocks';
 import { 
     ADD_PRODUCT,
+    FETCH_PRODUCTS,
     REMOVE_PRODUCT, 
     SET_CHOSEN_PRODUCT_DETAILS,
     UPDATE_PRODUCT, 
@@ -19,11 +20,16 @@ const initialState = {
         tax: null,
         description: '',
     },
-    products: PRODUCTS,
+    products: [],
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case FETCH_PRODUCTS:
+            return {
+                ...state,
+                products: action.payload,
+            };
         case SET_CHOSEN_PRODUCT_DETAILS:
             return {
                 ...state,

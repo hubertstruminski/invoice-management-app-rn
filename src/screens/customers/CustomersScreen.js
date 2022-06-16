@@ -1,6 +1,8 @@
 import React, { 
     useCallback, 
+    useEffect, 
 } from 'react';
+
 import { 
     FlatList,
     View, 
@@ -21,7 +23,7 @@ import {
 } from '../../contants/colors';
 import { CUSTOMER_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { setCustomerDetails } from '../../redux/actions';
+import { fetchCustomers, setCustomerDetails } from '../../redux/actions';
 import { hp } from '../../tools';
 
 const CustomersScreen = ({
@@ -30,7 +32,12 @@ const CustomersScreen = ({
     },
     customers,
     setCustomerDetails,
+    fetchCustomers,
 }) => {
+
+    useEffect(() => {
+        fetchCustomers();
+    }, []);
 
     const openAddCustomerForm = useCallback(() => {
         setCustomerDetails({
@@ -98,4 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setCustomerDetails,
+    fetchCustomers,
 })(CustomersScreen);

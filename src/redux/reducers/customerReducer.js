@@ -1,6 +1,7 @@
 import { CUSTOMERS } from '../../mocks';
 import { 
     ADD_CUSTOMER,
+    FETCH_CUSTOMERS,
     REMOVE_CUSTOMER, 
     SET_CHOSEN_CUSTOMER_DETAILS,
     UPDATE_CUSTOMER, 
@@ -18,11 +19,16 @@ const initialState = {
         country: '',
         description: '',
     },
-    customers: CUSTOMERS
+    customers: [],
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case FETCH_CUSTOMERS:
+            return {
+                ...state,
+                customers: action.payload,
+            };
         case SET_CHOSEN_CUSTOMER_DETAILS:
             return {
                 ...state,
