@@ -4,6 +4,7 @@ import React, {
     useState,
     useEffect,
 } from 'react';
+
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -20,6 +21,7 @@ import { WHITE } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
 import { 
     addProduct, 
+    fetchTaxes, 
     updateProduct, 
 } from '../../redux/actions';
 import { 
@@ -27,6 +29,11 @@ import {
     validateNewProductForm, 
 } from '../../tools';
 import styles from '../screenStyle';
+import {
+    addProductRequest, 
+    updateProductRequest, 
+} from '../../redux/requests';
+import { useInitData } from '../../services';
 
 const AddProductScreen = ({
     navigation: {
@@ -54,6 +61,8 @@ const AddProductScreen = ({
 
     let taxRef = useRef(null);
 
+    useInitData(fetchTaxes);
+
     useEffect(() => {
         setName(productDetails?.name);
         setDescription(productDetails?.description);
@@ -68,32 +77,33 @@ const AddProductScreen = ({
         taxRef.current.isOpen && taxRef.current.closeDropdown();
     }, [taxRef]);
 
-    const createProduct = useCallback(() => {
+    const createProduct = useCallback(async () => {
         const errorObject = validateNewProductForm(name, price, amount, unit, discount, taxId);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
             let payload = {
                 name,
-                price,
+                price: Number(price),
                 amount,
                 discount,
                 unit,
-                tax: taxes.find(item => item.id === taxId),
+                taxId: taxId,
                 description,
             };
 
             if(params?.isEdit) {
-                payload = { 
-                    ...payload, id: 
-                    productDetails.id,
-                    customer: customers.find(item => item.id === productDetails?.customer?.id),
-                    invoice: invoices.find(item => item.id === productDetails?.invoice?.id),
-                };
-                updateProduct(payload);
+                const response = await updateProductRequest(productDetails.id, payload);
+                if(response.status === 200) {
+                    payload = { ...payload, id: productDetails.id };
+                    updateProduct(payload);
+                }
             } else {
-                payload = { ...payload, id: (new Date()).getTime() };
-                addProduct(payload);
+                const response = await addProductRequest(payload);
+                if(response.status === 201) {
+                    payload = { ...payload, id: response.data?.id };
+                    addProduct(payload);
+                }
             }
             goBack();
         }
@@ -101,9 +111,10 @@ const AddProductScreen = ({
         name, 
         price,
         amount,
+        discount,
         unit,
-        taxes,
         taxId,
+        description,
         errors,
     ]);
 

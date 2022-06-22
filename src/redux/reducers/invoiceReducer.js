@@ -18,7 +18,7 @@ const initialState = {
         sentStatus: false,
         products: [],
     },
-    invoices: INVOICES,
+    invoices: [],
 }
 
 export default function(state = initialState, action) {

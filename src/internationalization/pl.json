@@ -114,7 +114,7 @@
         "requiredNumber": "Numer jest wymagany!",
         "numberFormat": "Niepoprawny format! Użyj tylko 6-cyfrowej liczby.",
         "requiredProducts": "Musisz wybrać co najmniej 1 produkt",
-        "dateDeadlineRule": "Data nie może być późniejsza niż termin!"
+        "dateDeadlineRule": "Termin nie może być w przeszłości"
     },
     "pdf": {
         "customerName": "Imię i nazwisko klienta",

@@ -25,6 +25,7 @@ import {
     validateNewCustomerForm, 
 } from '../../tools';
 import styles from '../screenStyle';
+import { addCustomerRequest, updateCustomerRequest } from '../../redux/requests';
 
 const AddCustomerScreen = ({
     navigation: {
@@ -59,7 +60,7 @@ const AddCustomerScreen = ({
         setAdditionalInformations(customerDetails?.description);
     }, [customerDetails]);
 
-    const createCustomer = useCallback(() => {
+    const createCustomer = useCallback(async () => {
         const errorObject = validateNewCustomerForm(fullName, email, street, city, nip);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
@@ -76,11 +77,17 @@ const AddCustomerScreen = ({
             };
 
             if(params?.isEdit) {
-                payload = { ...payload, id: customerDetails.id };
-                updateCustomer(payload);
+                const response = await updateCustomerRequest(customerDetails.id, payload);
+                if(response.status === 200) {
+                    payload = { ...payload, id: customerDetails.id };
+                    updateCustomer(payload);
+                }
             } else {
-                payload = { ...payload, id: (new Date()).getTime() };
-                addCustomer(payload);
+                const response = await addCustomerRequest(payload);
+                if(response.status === 201) {
+                    payload = { ...payload, id: response.data?.id };
+                    addCustomer(payload);
+                }
             }
             goBack();
         }
@@ -91,6 +98,7 @@ const AddCustomerScreen = ({
         city,
         nip,
         errors,
+        additionalInformations,
     ]);
 
     const phoneNumberMask = [/\+/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/];

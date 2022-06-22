@@ -40,6 +40,9 @@ import {
     removeProduct,
     removeTax,
 } from '../../../redux/actions';
+import { 
+    removeCompanyById, removeCustomerById, removeInvoiceById, removeProductById, removeTaxById,
+} from '../../../redux/requests';
 import { languages } from '../../../internationalization/languages';
 
 const EntityItem = ({
@@ -108,19 +111,64 @@ const EntityItem = ({
     const removeItem = useCallback(() => {
         switch(type) {
             case COMPANY_ENTITY:
-                showConfirmationDelete(() => removeCompany(id));
+                showConfirmationDelete(async () => {
+                   try {
+                        const response = await removeCompanyById(id);
+                        if(response.status === 200) {
+                            removeCompany(id);
+                        }
+                    } catch(error) {
+                        console.log(error);
+                    }
+                });
                 break;
             case CUSTOMER_ENTITY:
-                showConfirmationDelete(() => removeCustomer(id));
+                showConfirmationDelete(async () => {
+                    try {
+                        const response = await removeCustomerById(id);
+                        if(response.status === 200) {
+                            removeCustomer(id)
+                        }
+                    } catch(error) {
+                        console.log(error);
+                    }
+                });
                 break;
             case INVOICE_ENTITY:
-                showConfirmationDelete(() => removeInvoice(id));
+                showConfirmationDelete(async () => {
+                    try {
+                        const response = await removeInvoiceById(id);
+                        if(response.status === 200) {
+                            removeInvoice(id);
+                        }
+                    } catch(error) {
+                        console.log(error);
+                    }
+                });
                 break;
             case PRODUCT_ENTITY:
-                showConfirmationDelete(() => removeProduct(id));
+                showConfirmationDelete(async () => {
+                    try {
+                        const response = await removeProductById(id);
+                        if(response.status === 200) {
+                            removeProduct(id);
+                        }
+                    } catch(error) {
+                        console.log(error);
+                    }
+                });
                 break;
             case TAX_ENTITY:
-                showConfirmationDelete(() => removeTax(id));
+                showConfirmationDelete(async () => {
+                    try {
+                        const response = await removeTaxById(id);
+                        if(response.status === 200) {
+                            removeTax(id);
+                        }
+                    } catch(error) {
+                       console.log(error);
+                    }
+                });
                 break;
             default: 
                 break;

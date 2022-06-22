@@ -21,7 +21,11 @@ import {
 } from '../../contants/colors';
 import { PRODUCT_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { setProductDetails, fetchProducts, } from '../../redux/actions';
+import { 
+    setProductDetails,
+    fetchProducts, 
+} from '../../redux/actions';
+import { useInitData } from '../../services';
 import { hp } from '../../tools';
 
 const ProductsScreen = ({
@@ -30,12 +34,8 @@ const ProductsScreen = ({
     },
     products,
     setProductDetails,
-    fetchProducts,
 }) => {
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
+    useInitData(fetchProducts);
 
     const openAddProductForm = useCallback(() => {
         setProductDetails({
@@ -104,5 +104,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setProductDetails,
-    fetchProducts,
 })(ProductsScreen);

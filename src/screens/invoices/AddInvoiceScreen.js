@@ -4,6 +4,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
+
 import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
 import { connect } from 'react-redux';
@@ -29,8 +30,15 @@ import {
 } from '../../tools';
 import { 
     addInvoice, 
+    fetchCustomers, 
+    fetchProducts, 
     updateInvoice,
 } from '../../redux/actions';
+import { 
+    addInvoiceRequest, 
+    updateInvoiceRequest, 
+} from '../../redux/requests';
+import { useInitData } from '../../services';
 
 const AddInvoiceScreen = ({
     navigation: {
@@ -45,11 +53,11 @@ const AddInvoiceScreen = ({
     addInvoice,
     updateInvoice,
 }) => {
-    const currentDate = new Date();
+    // const currentDate = new Date();
     const futureDate = initFutureDate();
     
     const [number, setNumber] = useState('');
-    const [date, setDate] = useState(currentDate);
+    // const [date, setDate] = useState(currentDate);
     const [deadline, setDeadline] = useState(futureDate);
     const [customerId, setCustomerId] = useState(null);
     const [comment, setComment] = useState('');
@@ -57,15 +65,18 @@ const AddInvoiceScreen = ({
 
     const [errors, setErrors] = useState([null, null, null, null]);
 
-    const [isOpenDateModal, setIsOpenDateModal] = useState(false);
+    // const [isOpenDateModal, setIsOpenDateModal] = useState(false);
     const [isOpenDeadlineModal, setIsOpenDeadlineModal] = useState(false);
 
     let customerRef = useRef(null);
     let productRef = useRef(null);
 
+    useInitData(fetchCustomers);
+    useInitData(fetchProducts);
+
     useEffect(() => {
         setNumber(invoiceDetails?.number);
-        setDate(new Date(invoiceDetails?.date));
+        // setDate(new Date(invoiceDetails?.date));
         setDeadline(new Date(invoiceDetails?.deadline));
         setCustomerId(invoiceDetails?.customer?.id);
         setComment(invoiceDetails?.description);
@@ -81,65 +92,77 @@ const AddInvoiceScreen = ({
         productRef.current.isOpen && productRef.current.closeDropdown();
     }, [customerRef, productRef]);
 
-    const confirmDateModal = useCallback((value) => {
-        setIsOpenDateModal(false);                   
-        setDate(value);
-    }, []);
+    // const confirmDateModal = useCallback((value) => {
+    //     setIsOpenDateModal(false);                   
+    //     setDate(value);
+    // }, []);
 
     const confirmDeadlineModal = useCallback((value) => {
         setIsOpenDeadlineModal(false);                   
         setDeadline(value);
     }, []);
 
-    const toggleDateModal = 
-    useCallback(() => setIsOpenDateModal(!isOpenDateModal), [isOpenDateModal]);
+    // const toggleDateModal = 
+    // useCallback(() => setIsOpenDateModal(!isOpenDateModal), [isOpenDateModal]);
     const toggleDeadlineModal = 
     useCallback(() => setIsOpenDeadlineModal(!isOpenDeadlineModal), [isOpenDeadlineModal]);
 
-    const closeDateModal = useCallback(() => setIsOpenDateModal(false), []);
+    // const closeDateModal = useCallback(() => setIsOpenDateModal(false), []);
     const closeDeadlineModal = useCallback(() => setIsOpenDeadlineModal(false), []);
 
-    const createInvoice = useCallback(() => {
-        const errorObject = validateNewInvoiceForm(number, date, deadline, customerId, chosenProducts);
+    const createInvoice = useCallback(async () => {
+        const errorObject = validateNewInvoiceForm(number, 
+            // date, 
+            deadline, customerId, chosenProducts);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
 
         if(isValidModel) {
             let payload = {
                 number,
-                date,
+                // date,
                 deadline,
-                customer: customers.find(item => item.id === customerId),
+                customerId: customerId,
                 description: comment,
+                sentStatus: invoiceDetails.sentStatus,
             };
 
             const result = [];
             chosenProducts.forEach(item => {
                 const foundElement = products.find(product => product.id === item.id);
-                foundElement && result.push(foundElement);
+                foundElement && result.push(foundElement.id);
             });
 
-            payload = { ...payload, products: result };
+            payload = { ...payload, productIds: result };
 
             if(params?.isEdit) {
-                payload = { 
-                    ...payload, 
-                    id: invoiceDetails.id,
-                    sentStatus: invoiceDetails.sentStatus,
-                };
-                updateInvoice(payload);
+                const response = await updateInvoiceRequest(invoiceDetails.id, payload);
+                if(response.status === 200) {
+                    payload = { 
+                        ...payload, 
+                        id: invoiceDetails.id,
+                        customer: response.data?.customer,
+                        products: response.data?.products,
+                    };
+                    updateInvoice(payload);
+                }
             } else {
-                payload = { 
-                    ...payload, 
-                    id: (new Date()).getTime(),
-                    sentStatus: false, 
-                };
-                addInvoice(payload);
+                const response = await addInvoiceRequest(payload);
+                if(response.status === 201) {
+                    payload = { 
+                        ...payload, 
+                        id: response.data?.id,
+                        sentStatus: false,  
+                        customer: response.data?.customer,
+                        products: response.data?.products,
+                    };
+                    addInvoice(payload);
+                }
             }
             goBack();
         }
     }, [
         number,
-        date,
+        // date,
         customerId,
         errors,
         products,
@@ -177,7 +200,7 @@ const AddInvoiceScreen = ({
                         setValue={setNumber}
                         mask={numberMask}
                     />
-                    <Input 
+                    {/* <Input 
                         leftTitle={languages.labels.date}
                         placeholder={moment(date).format("DD.MM.YYYY")}
                         errorText={languages.labels.errorText}
@@ -196,12 +219,14 @@ const AddInvoiceScreen = ({
                         title={languages.calendar.selectDate}
                         onConfirm={confirmDateModal}
                         onCancel={closeDateModal}
-                    />
+                    /> */}
                     <Input 
                         leftTitle={languages.labels.deadline}
                         placeholder={moment(deadline).format("DD.MM.YYYY")}
                         containerStyle={globalStyles.regularBottomSpace}
                         leftIcon={<CalendarIcon />}
+                        errorText={errors[1]}
+                        withWarning={errors[1] !== null}
                         onCalendarPress={toggleDeadlineModal}
                         isCalendar
                     />

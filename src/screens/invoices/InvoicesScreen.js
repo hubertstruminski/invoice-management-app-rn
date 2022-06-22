@@ -27,6 +27,7 @@ import {
     setInvoiceDetails, 
     fetchInvoices, 
 } from '../../redux/actions';
+import { useInitData } from '../../services';
 import { 
     hp, 
     initFutureDate, 
@@ -38,12 +39,8 @@ const InvoicesScreen = ({
     },
     invoices,
     setInvoiceDetails,
-    fetchInvoices,
 }) => {
-
-    useEffect(() => {
-        // fetchInvoices();
-    }, []);
+    useInitData(fetchInvoices);
 
     const openAddInvoiceForm = useCallback(() => {
         setInvoiceDetails({
@@ -110,5 +107,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setInvoiceDetails,
-    fetchInvoices,
 })(InvoicesScreen);

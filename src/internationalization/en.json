@@ -114,7 +114,7 @@
         "requiredNumber": "Number is required!",
         "numberFormat": "Invalid format! Use only 6-digit number.",
         "requiredProducts": "You must choose at least 1 product!",
-        "dateDeadlineRule": "Date can not be later than deadline!"
+        "dateDeadlineRule": "Deadline can not be in the past"
     },
     "pdf": {
         "customerName": "Customer name",

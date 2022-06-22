@@ -25,6 +25,7 @@ import { TAX_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
 import { setTaxDetails } from '../../redux/actions';
 import { fetchTaxes } from '../../redux/actions/taxActions';
+import { useInitData } from '../../services';
 import { hp } from '../../tools';
 
 const TaxesScreen = ({
@@ -33,12 +34,8 @@ const TaxesScreen = ({
     },
     taxes,
     setTaxDetails,
-    fetchTaxes,
 }) => {
-
-    useEffect(() => {
-        fetchTaxes();
-    }, []);
+    useInitData(fetchTaxes);
 
     const openAddTaxForm = useCallback(() => {
         setTaxDetails({
@@ -100,5 +97,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setTaxDetails,
-    fetchTaxes,
 })(TaxesScreen);

@@ -27,6 +27,7 @@ import {
     validateNewCompanyForm, 
 } from '../../tools';
 import styles from '../screenStyle';
+import { addCompanyRequest, updateCompanyRequest } from '../../redux/requests';
 
 const AddCompanyScreen = ({
     navigation: {
@@ -57,7 +58,7 @@ const AddCompanyScreen = ({
         setCountry(companyDetails?.country);
     }, [companyDetails]);
 
-    const createCompany = useCallback(() => {
+    const createCompany = useCallback(async () => {
         const errorObject = validateNewCompanyForm(companyName, street, postalCode, city, country);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
@@ -71,11 +72,17 @@ const AddCompanyScreen = ({
             };
 
             if(params?.isEdit) {
-                payload = { ...payload, id: companyDetails.id };
-                updateCompany(payload);
+                const response = await updateCompanyRequest(companyDetails.id, payload);
+                if(response.status === 200) {
+                    payload = { ...payload, id: companyDetails.id };
+                    updateCompany(payload);
+                }
             } else {
-                payload = { ...payload, id: (new Date()).getTime() };
-                addCompany(payload);
+                const response = await addCompanyRequest(payload);
+                if(response.status === 201) {
+                    payload = { ...payload, id: response.data?.id };
+                    addCompany(payload);
+                }
             }
             goBack();
         }

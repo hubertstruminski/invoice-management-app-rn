@@ -62,8 +62,7 @@ const RegisterScreen = ({
                 } 
             } catch(error) {
                 console.log(error);
-            }
-            
+            }   
         }
     }, [
         email,

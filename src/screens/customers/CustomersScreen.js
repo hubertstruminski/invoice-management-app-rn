@@ -23,7 +23,11 @@ import {
 } from '../../contants/colors';
 import { CUSTOMER_ENTITY } from '../../contants/constants';
 import { languages } from '../../internationalization/languages';
-import { fetchCustomers, setCustomerDetails } from '../../redux/actions';
+import { 
+    fetchCustomers, 
+    setCustomerDetails, 
+} from '../../redux/actions';
+import { useInitData } from '../../services';
 import { hp } from '../../tools';
 
 const CustomersScreen = ({
@@ -32,12 +36,8 @@ const CustomersScreen = ({
     },
     customers,
     setCustomerDetails,
-    fetchCustomers,
 }) => {
-
-    useEffect(() => {
-        fetchCustomers();
-    }, []);
+    useInitData(fetchCustomers);
 
     const openAddCustomerForm = useCallback(() => {
         setCustomerDetails({
@@ -105,5 +105,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { 
     setCustomerDetails,
-    fetchCustomers,
 })(CustomersScreen);

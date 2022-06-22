@@ -16,7 +16,8 @@ import {
 } from '../../components';
 import { MAIN_GRAY } from '../../contants/colors';
 import { languages } from '../../internationalization/languages';
-import { INVOICES } from '../../mocks';
+import { fetchInvoices } from '../../redux/actions';
+import { useInitData } from '../../services';
 
 const CustomerDetailsScreen = ({
     customerDetails: {
@@ -32,6 +33,7 @@ const CustomerDetailsScreen = ({
     },
     invoices,
 }) => {
+    useInitData(fetchInvoices);
     const documents = invoices.filter(invoice => invoice.customer.id === id);
 
     return (

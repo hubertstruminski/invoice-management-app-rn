@@ -60,11 +60,13 @@ export const validateNewProductForm = (name, price, amount, unit, discount, taxI
     return errors;
 }
 
-export const validateNewInvoiceForm = (number, date, deadline, customerId, chosenProducts) => {
+export const validateNewInvoiceForm = (number, 
+    // date, 
+    deadline, customerId, chosenProducts) => {
     const errors = {};
 
     errors.number = validateInvoiceNumber(number);
-    errors.date = validateDateRange(date, deadline);
+    errors.date = validateDateRange(new Date(), deadline);
     errors.customerId = validateEntityObject(customerId, languages.labels.customer);
     errors.chosenProducts = validateInvoiceProductsList(chosenProducts);
 

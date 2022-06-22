@@ -23,6 +23,7 @@ import {
 } from '../../redux/actions';
 import { handleFormErrors } from '../../tools';
 import { validateNewTaxForm } from '../../tools';
+import { addTaxRequest, updateTaxRequest } from '../../redux/requests';
 
 const AddTaxScreen = ({
     navigation: {
@@ -47,7 +48,7 @@ const AddTaxScreen = ({
         setAmount(taxDetails?.amount?.toString());
     }, [taxDetails]);
 
-    const createTax = useCallback(() => {
+    const createTax = useCallback(async () => {
         const errorObject = validateNewTaxForm(name, amount);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
@@ -59,11 +60,17 @@ const AddTaxScreen = ({
             };
 
             if(params?.isEdit) {
-                payload = { ...payload, id: taxDetails.id };
-                updateTax(payload);
+                const response = await updateTaxRequest(taxDetails.id, payload);
+                if(response.status === 200) {
+                    payload = { ...payload, id: taxDetails.id };
+                    updateTax(payload);
+                }
             } else {
-                payload = { ...payload, id: (new Date()).getTime() };
-                addTax(payload);
+                const response = await addTaxRequest(payload);
+                if(response.status === 201) {
+                    payload = { ...payload, id: response.data?.id };
+                    addTax(payload);
+                }
             }
             goBack();
         }
@@ -71,6 +78,7 @@ const AddTaxScreen = ({
         name, 
         amount,
         errors,
+        description,
     ]);
 
     return (
