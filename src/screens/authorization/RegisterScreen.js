@@ -2,6 +2,8 @@ import React, {
     useCallback,
     useState,
 } from 'react';
+
+import { Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
@@ -10,7 +12,8 @@ import {
     globalStyles, 
     Header, 
     Input, 
-    ResponsiveText
+    ResponsiveText,
+    TouchableLayout
 } from '../../components';
 import { 
     MAIN_GRAY, 
@@ -50,12 +53,17 @@ const RegisterScreen = ({
                 password, 
                 fullName,
             };
+ 
+            try {
+                const response = await createUserAccount(payload);
 
-            const response = await createUserAccount(payload);
-
-            if(response.status === 200) {
-                navigate('DashboardScreen');
+                if(response.status === 200) {
+                    navigate('LoginScreen', { isCreated: true });
+                } 
+            } catch(error) {
+                console.log(error);
             }
+            
         }
     }, [
         email,
@@ -71,10 +79,11 @@ const RegisterScreen = ({
             headerComponent={<Header withLogout={false} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={150}
+                extraHeight={Platform.OS === 'ios' ? 200 : 150}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={globalStyles.alignCenter}
             >
+                <TouchableLayout containerStyle={globalStyles.alignCenter}>
                 <ResponsiveText 
                     text={languages.hi}
                     color={MAIN_GRAY}
@@ -89,6 +98,7 @@ const RegisterScreen = ({
                     setValue={setEmail}
                     withWarning={errors[0] !== null}
                     errorText={errors[0]}
+                    keyboardType="email-address"
                 />
                 <Input 
                     leftTitle={languages.labels.fullName}
@@ -97,6 +107,7 @@ const RegisterScreen = ({
                     setValue={setFullName}
                     withWarning={errors[1] !== null}
                     errorText={errors[1]}
+                    autoCapitalize="words"
                 />
                 <Input 
                     leftTitle={languages.labels.password}
@@ -107,6 +118,7 @@ const RegisterScreen = ({
                     withWarning={errors[2] !== null}
                     errorText={errors[2]}
                     isPassword
+                    textContentType="newPassword"
                 />
                 <Input 
                     leftTitle={languages.labels.confirmPassword}
@@ -118,12 +130,14 @@ const RegisterScreen = ({
                     withWarning={errors[3] !== null}
                     errorText={errors[3]}
                     isPassword
+                    textContentType="newPassword"
                 />   
                 <Button 
                     color={WHITE}
                     text={languages.buttons.registerAccount}
                     onPress={createAccount}
                 />
+                </TouchableLayout>
             </KeyboardAwareScrollView>
         </BasicView>
     );

@@ -1,13 +1,16 @@
 import React from 'react';
+
 import { 
     Platform, 
     StatusBar, 
     View, 
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import Toast from 'react-native-toast-message';
 
 import { TouchableLayout } from '..';
 import { MAIN_ORANGE } from '../../contants/colors';
+import { hp } from '../../tools';
 import styles from './basicViewStyle';
 
 const BasicView = ({
@@ -34,7 +37,8 @@ const BasicView = ({
                         justifyContent: headerComponent ? 'space-between' : 'flex-end',
                     }
                 ]}
-            >      
+            >
+                <Toast position="top" topOffset={hp(-50)} />  
                 <TouchableLayout containerStyle={styles.headerContainer}>
                     {headerComponent}
                 </TouchableLayout>

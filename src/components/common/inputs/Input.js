@@ -36,6 +36,9 @@ const Input = ({
     setValue,
     isPassword,
     mask,
+    keyboardType,
+    autoCapitalize,
+    textContentType,
 }) => {
     let inputRef = useRef(null);
 
@@ -91,7 +94,10 @@ const Input = ({
                                         },
                                     ]}  
                                     placeholder={placeholder}
+                                    textContentType={textContentType}
                                     placeholderTextColor={GRAY_3}
+                                    autoCapitalize={autoCapitalize ? autoCapitalize : "none"}
+                                    keyboardType={keyboardType ? keyboardType : "default"}
                                     value={value}
                                     onChangeText={(masked, unmasked) => {
                                         mask ? setValue(masked) : setValue(unmasked);
@@ -99,6 +105,7 @@ const Input = ({
                                     secureTextEntry={isPassword}
                                     mask={mask}
                                     textAlignVertical="center"
+                                    blurOnSubmit={false}
                                 />
                             )
                         }

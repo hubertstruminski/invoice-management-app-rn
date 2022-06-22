@@ -10,19 +10,21 @@ import { BackArrowIcon } from '../../../../assets';
 import { MAIN_GRAY } from '../../../contants/colors';
 import styles from './headerStyle';
 import { languages } from '../../../internationalization/languages';
+import { useAuthorization } from '../../../services/authorization';
 
 const Header = ({
     withBackArrow = true,
     title,
     withLogout = true,
 }) => {
-    const { goBack, navigate } = useNavigation();
+    const navigation = useNavigation();
+    const { logOut } = useAuthorization(navigation);
 
     return (
         <View style={styles.container}>
             {withBackArrow ? (
                 <View style={styles.leftContainer}>
-                    <TouchableWithoutFeedback onPress={() => goBack()}>
+                    <TouchableWithoutFeedback onPress={() => navigation?.goBack()}>
                         <View>
                             <BackArrowIcon />
                         </View>
@@ -41,7 +43,7 @@ const Header = ({
             }
             <View style={styles.rightContainer}>
                 {withLogout &&
-                    <TouchableWithoutFeedback onPress={() => navigate('LoginScreen')}>
+                    <TouchableWithoutFeedback onPress={logOut}>
                         <View>
                             <ResponsiveText 
                                 fontStyle="header"

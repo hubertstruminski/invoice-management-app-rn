@@ -4,12 +4,17 @@ import React, {
 import { NavigationContainer } from '@react-navigation/native';
 
 import AppStackNavigator from './Navigators';
+import { useAuthorization } from '../services/authorization';
 
 const AppNavigator = () => {
     const navigation = useRef(null);
+    const { checkIfJWTExpired } = useAuthorization(navigation?.current);
 
     return (
-        <NavigationContainer ref={navigation}>
+        <NavigationContainer 
+            onStateChange={checkIfJWTExpired} 
+            ref={navigation}
+        >
             <AppStackNavigator />
         </NavigationContainer>
     );

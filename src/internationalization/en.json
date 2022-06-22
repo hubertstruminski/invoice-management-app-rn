@@ -129,5 +129,9 @@
         "yes": "Yes",
         "confirmationLabel": "Confirmation",
         "areYouSureLabel": "Are you sure you want delete this entity?"
+    },
+    "info": {
+        "accountCreated": "Your account has been created successfully",
+        "successLabel": "Success"
     }
 }

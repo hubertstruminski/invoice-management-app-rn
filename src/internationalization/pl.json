@@ -129,5 +129,9 @@
         "yes": "Tak",
         "confirmationLabel": "Potwierdzenie",
         "areYouSureLabel": "Jesteś pewien, że chcesz usunąć ten element?"
+    },
+    "info": {
+        "accountCreated": "Konto zostało utworzone pomyślnie",
+        "successLabel": "Sukces"
     }
 }

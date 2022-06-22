@@ -11,8 +11,10 @@ import { Provider } from 'react-redux';
 import { setLanguage } from './src/internationalization/languages';
 import AppNavigator from './src/navigation/AppNavigator';
 import { store } from './src/redux/store/store';
+import { useInitAxios } from './src/services/axios';
 
 const App = () => {
+  useInitAxios();
   useEffect(() => {
     Platform.OS === 'android' && SplashScreen.hide();
     

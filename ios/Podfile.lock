@@ -367,6 +367,8 @@ PODS:
     - React-perflogger (= 0.67.3)
   - ReactNativeLocalization (2.3.1):
     - React-Core
+  - RNCAsyncStorage (1.17.6):
+    - React-Core
   - RNCMaskedView (0.1.11):
     - React
   - RNGestureHandler (2.1.1):
@@ -478,6 +480,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -588,6 +591,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeLocalization:
     :path: "../node_modules/react-native-localization"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
@@ -659,6 +664,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: af1946623656f9c5fd64ca6f36f3863516193446
   ReactCommon: 650e33cde4fb7d36781cd3143f5276da0abb2f96
   ReactNativeLocalization: 076497d7ca70341c751cd3b3e7c86187332a182d
+  RNCAsyncStorage: 466b9df1a14bccda91da86e0b7d9a345d78e1673
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: e1ad51d31a580755079d5124d3ab66f0fcaa8311
   RNReanimated: e28dfaa950064b674fde0a9b736e62b9dff500a7

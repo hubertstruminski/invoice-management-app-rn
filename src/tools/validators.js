@@ -1,3 +1,5 @@
+import * as EmailValidator from 'email-validator';
+
 import ValidProperty from '../classes/ValidProperty';
 import { languages } from '../internationalization/languages';
 
@@ -91,7 +93,7 @@ export const validateEmail = (email) => {
     if(email === '') {
         return new ValidProperty(false, languages.formErrors.requiredEmail);
     } else {
-        if(!/.{1,}@.{1,}\.{1}.{1,}/.test(email)) {
+        if(!EmailValidator.validate(email)) {
             return new ValidProperty(false, languages.formErrors.invalidEmail);
         } else {
             return new ValidProperty(true);

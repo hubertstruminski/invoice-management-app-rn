@@ -51,7 +51,7 @@ export default () => {
             initialRouteName="LoginScreen"
             screenOptions={{ 
                 headerShown: false, 
-                animationEnabled: false, 
+                // animationEnabled: false, 
             }}
             mode="modal"
         >

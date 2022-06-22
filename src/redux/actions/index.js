@@ -34,7 +34,10 @@ import {
     updateCustomer,
     fetchCustomers,
 } from './customerActions';
-import { createUserAccount } from './authActions';
+import { 
+    createUserAccount, 
+    logIn, 
+} from './authActions';
 
 export {
     closeAllDropdowns,
@@ -64,4 +67,5 @@ export {
     fetchInvoices,
     fetchCustomers,
     createUserAccount,
+    logIn,
 };
