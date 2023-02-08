@@ -30,6 +30,7 @@ import {
     handleFormErrors, 
 } from '../../tools';
 import { createUserAccount } from '../../redux/actions';
+import { validateEmail } from '../../tools/validators';
 
 const RegisterScreen = ({
     navigation: {
@@ -42,6 +43,12 @@ const RegisterScreen = ({
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const [errors, setErrors] = useState([null , null, null, null]);
+
+    const onEmailChange = (text) => {
+        const validEmailObj = { email: validateEmail(text) };
+        handleFormErrors(validEmailObj, errors, setErrors);
+        setEmail(text);
+    }
 
     const createAccount = useCallback(async () => {
         const errorObject = validateNewAccountForm(email, fullName, password, confirmPassword);
@@ -94,7 +101,7 @@ const RegisterScreen = ({
                     placeholder={languages.placeholders.email}
                     leftIcon={<UserIcon />}
                     value={email}
-                    setValue={setEmail}
+                    setValue={onEmailChange}
                     withWarning={errors[0] !== null}
                     errorText={errors[0]}
                     keyboardType="email-address"
