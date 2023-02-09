@@ -3,7 +3,7 @@ import { SvgXml } from 'react-native-svg';
 import { 
     wp, 
     hp, 
-} from '../../../src/tools';
+} from '../../../src/core/tools';
 
 export default ({
     width = 288,
