@@ -1,21 +1,18 @@
-import React, {
-    useCallback,
-} from 'react';
+import React from 'react';
+
 import { 
     View, 
     TouchableWithoutFeedback,
-    Keyboard,
 } from 'react-native';
+
+import { useKeyboardDismiss } from '../../../services';
 
 const TouchableLayout = ({ 
     children,
     callback, 
     containerStyle,
 }) => {
-    const dismissKeyboard = useCallback(() => {
-        Keyboard.dismiss();
-        callback && callback();
-    }, [callback]);
+    const dismissKeyboard = useKeyboardDismiss(callback);
 
     return (
         <TouchableWithoutFeedback onPress={dismissKeyboard}>

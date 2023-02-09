@@ -3,12 +3,12 @@ import React from 'react';
 import { ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
 import { MAIN_GRAY } from '../../../constants/colors';
-import { languages } from '../../../internationalization/languages';
+import { strings } from '../../../internationalization/strings';
 
 const DescriptionSection = ({ 
     separatorStyle, 
     fontStyle = "smallDetailsTitle",
-    descriptionLabel = languages.labels.description,
+    descriptionLabel = strings.labels.description,
     description,
     descriptionLabelStyle = [globalStyles.regularBottomSpace, globalStyles.textAlignCenter],
 }) => {

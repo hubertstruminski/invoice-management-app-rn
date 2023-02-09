@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { languages } from '../internationalization/languages';
+import { strings } from '../internationalization/strings';
 
 export function generateHTML(invoice, companies) {
 
@@ -122,7 +122,7 @@ export function generateHTML(invoice, companies) {
             <body>
                 <div class="wrapper">
                     <div class="header appName appLabel">
-                        <p>${languages.appTitle}</p>
+                        <p>${strings.appTitle}</p>
                     </div>
                     <div class="fullWidth">
                         <div class="columnContainer dataLabel dataBackground">
@@ -134,12 +134,12 @@ export function generateHTML(invoice, companies) {
                             </div>
                             <div class="dataContainer">
                                 <div class="leftDataContainer">
-                                    <p class="bold">${languages.labels.invoice?.toUpperCase()}</p>
-                                    <p class="smallDataSpace">${languages.labels.date}:</p>
-                                    <p>${languages.labels.deadline}:</p>
-                                    <p class="smallDataSpace">${languages.pdf.customerName}:</p>
-                                    <p>${languages.pdf.customerEmail}:</p>
-                                    <p class="smallDataSpace">${languages.labels.nip}:</p>
+                                    <p class="bold">${strings.labels.invoice?.toUpperCase()}</p>
+                                    <p class="smallDataSpace">${strings.labels.date}:</p>
+                                    <p>${strings.labels.deadline}:</p>
+                                    <p class="smallDataSpace">${strings.pdf.customerName}:</p>
+                                    <p>${strings.pdf.customerEmail}:</p>
+                                    <p class="smallDataSpace">${strings.labels.nip}:</p>
                                 </div>
                                 <div class="rightDataContainer">
                                     <p class="bold">${number}</p>
@@ -154,12 +154,12 @@ export function generateHTML(invoice, companies) {
                         <div class="header tableSpace">
                             <table class="fullWidth">
                                 <tr>
-                                    <th>${languages.pdf.productName}</th>
-                                    <th>${languages.labels.amount}</th>
-                                    <th>${languages.labels.unit}</th>
-                                    <th>${languages.labels.discount}</th>
-                                    <th>${languages.pdf.taxAmount}</th>
-                                    <th>${languages.labels.price}</th>
+                                    <th>${strings.pdf.productName}</th>
+                                    <th>${strings.labels.amount}</th>
+                                    <th>${strings.labels.unit}</th>
+                                    <th>${strings.labels.discount}</th>
+                                    <th>${strings.pdf.taxAmount}</th>
+                                    <th>${strings.labels.price}</th>
                                 </tr>
                                 ${products.map(item => {
                                     return `
@@ -174,7 +174,7 @@ export function generateHTML(invoice, companies) {
                                     `;
                                 })}                    
                                 <tr>
-                                    <td>${languages.pdf.total}</td>
+                                    <td>${strings.pdf.total}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

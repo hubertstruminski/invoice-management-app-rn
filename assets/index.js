@@ -23,6 +23,7 @@ import MobileIcon from './icons-js/details/preview/mobile';
 import PenIcon from './icons-js/details/preview/pen';
 import MessageIcon from './icons-js/message';
 import PdfIcon from './icons-js/pdf';
+import AppIcon from './icons-js/app-icon';
 
 export {
     LockIcon,
@@ -50,4 +51,5 @@ export {
     PenIcon,
     MessageIcon, 
     PdfIcon,
+    AppIcon,
 };

@@ -1,12 +1,11 @@
-import React, { 
-    useCallback, 
-    useRef,
-} from 'react';
+import React from 'react';
+
 import { 
     View, 
     TouchableWithoutFeedback,
     Platform, 
 } from 'react-native';
+
 import MaskInput from 'react-native-mask-input';
 
 import { ResponsiveText } from '../..';
@@ -19,6 +18,7 @@ import {
 import styles from '../../../styles/inputs/inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { hp } from '../../../tools';
+import { useInput } from '../../../services';
 
 const Input = ({
     containerStyle,
@@ -38,9 +38,10 @@ const Input = ({
     autoCapitalize,
     textContentType,
 }) => {
-    let inputRef = useRef(null);
-
-    const onInputPress = useCallback(() => inputRef?.current?.focus(), [inputRef]);
+    const { 
+        inputRef,
+        onInputPress,
+    } = useInput();
 
     return (
         <View 

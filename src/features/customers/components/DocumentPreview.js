@@ -22,7 +22,7 @@ import {
     MAIN_GRAY, 
     RED, 
 } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import styles from '../../../core/styles/previewStyle';
 import { generateHTML } from '../../../core/tools';
 
@@ -42,7 +42,7 @@ const DocumentPreview = ({
           });
 
         const shareOptions = {
-            title: languages.pdf.shareInvoice,
+            title: strings.pdf.shareInvoice,
             failOnCancel: false,
             saveToFiles: true,
             urls: [uri],
@@ -76,12 +76,12 @@ const DocumentPreview = ({
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={MAIN_GRAY}
-                                text={languages.labels.status + ": "}
+                                text={strings.labels.status + ": "}
                             />
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={item?.sentStatus ? GREEN : RED}
-                                text={item?.sentStatus ? languages.labels.sent : languages.labels.notSent}
+                                text={item?.sentStatus ? strings.labels.sent : strings.labels.notSent}
                             />
                         </View>
                         <View style={globalStyles.rowCenter}>

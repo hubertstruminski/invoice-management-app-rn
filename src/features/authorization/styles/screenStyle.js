@@ -7,8 +7,6 @@ import {
 
 export default StyleSheet.create({
     appTitleContainer: {
-        width: wp(213),
-        textAlign: 'center',
         marginBottom: hp(48),
     },
     container: {

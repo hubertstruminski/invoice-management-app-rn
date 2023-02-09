@@ -4,7 +4,7 @@ import React, {
     useEffect,
 } from 'react';
 
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 
 import Toast from 'react-native-toast-message';
 import * as EmailValidator from 'email-validator';
@@ -13,7 +13,6 @@ import {
     BasicView, 
     Button, 
     Input, 
-    ResponsiveText, 
     TouchableLayout,
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
@@ -25,9 +24,10 @@ import {
 import styles from '../styles/screenStyle';
 import { 
     UserIcon, 
-    LockIcon, 
+    LockIcon,
+    AppIcon, 
 } from '../../../../assets';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { logIn } from '../axios';
 import { saveAsyncStorageString } from '../../../core/storage';
 import { JWT_TOKEN_KEY } from '../../../core/constants/constants';
@@ -48,8 +48,8 @@ const LoginScreen = ({
         params?.isCreated &&
         Toast.show({
             type: 'success',
-            text1: languages.info.successLabel,
-            text2: languages.info.accountCreated,
+            text1: strings.info.successLabel,
+            text2: strings.info.accountCreated,
         });
     }, [params?.isCreated]);
 
@@ -66,7 +66,7 @@ const LoginScreen = ({
                         await saveAsyncStorageString(JWT_TOKEN_KEY, response.data?.accessToken);
                         navigate('DashboardScreen');
                     } else {
-                        Alert.alert(languages.formErrors.label, languages.formErrors.incorrectCredentials);
+                        Alert.alert(strings.formErrors.label, strings.formErrors.incorrectCredentials);
                     }
                 } catch(error) {
                     console.log(error);
@@ -74,7 +74,7 @@ const LoginScreen = ({
                     setEmailError(null);
                 }
             } else {
-                setEmailError(languages.formErrors.invalidEmail);
+                setEmailError(strings.formErrors.invalidEmail);
             }
         }
     }, [email, password]);
@@ -82,15 +82,12 @@ const LoginScreen = ({
     return (
         <BasicView>
             <TouchableLayout containerStyle={styles.container}>
-                <ResponsiveText 
-                    text={languages.appTitle}
-                    color={MAIN_GRAY}
-                    fontStyle="appTitle"
-                    customStyle={styles.appTitleContainer}
-                />
+                <View style={styles.appTitleContainer}>
+                    <AppIcon />
+                </View>     
                 <Input 
-                    leftTitle={languages.labels.email}
-                    placeholder={languages.placeholders.email}
+                    leftTitle={strings.labels.email}
+                    placeholder={strings.placeholders.email}
                     leftIcon={<UserIcon />}
                     value={email}
                     setValue={setEmail}
@@ -99,8 +96,8 @@ const LoginScreen = ({
                     errorText={emailError}
                 />
                 <Input 
-                    leftTitle={languages.labels.password}
-                    placeholder={languages.placeholders.password}
+                    leftTitle={strings.labels.password}
+                    placeholder={strings.placeholders.password}
                     leftIcon={<LockIcon />}
                     containerStyle={globalStyles.lastInputSpace}
                     value={password}
@@ -110,12 +107,12 @@ const LoginScreen = ({
                 />
                 <Button 
                     color={WHITE}
-                    text={languages.buttons.logIn}
+                    text={strings.buttons.logIn}
                     onPress={onLogInPress}
                 />
                 <Button 
                     color={MAIN_GRAY}
-                    text={languages.buttons.registerAccount}
+                    text={strings.buttons.registerAccount}
                     backgroundColor={TRANSPARENT}
                     isOutline
                     onPress={redirectToRegisterScreen}

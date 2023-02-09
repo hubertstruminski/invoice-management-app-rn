@@ -5,7 +5,7 @@ import moment from 'moment';
 import { ResponsiveText } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import entityItemStyle from '../../../core/styles/entityItemStyle';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { MAIN_GRAY } from '../../../core/constants/colors';
 
 const InvoiceItem = ({
@@ -31,7 +31,7 @@ const InvoiceItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={languages.labels.deadline + ": "}
+                    text={strings.labels.deadline + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"

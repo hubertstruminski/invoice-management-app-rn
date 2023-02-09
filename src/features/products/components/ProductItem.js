@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { ResponsiveText } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import entityItemStyle from '../../../core/styles/entityItemStyle';
 
 const ProductItem = ({
@@ -30,7 +30,7 @@ const ProductItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={languages.labels.price + ": "}
+                    text={strings.labels.price + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"
@@ -42,7 +42,7 @@ const ProductItem = ({
                 <ResponsiveText 
                     fontStyle="boldSmallText"
                     color={MAIN_GRAY}
-                    text={languages.labels.amount + ": "}
+                    text={strings.labels.amount + ": "}
                 />
                 <ResponsiveText 
                     fontStyle="regularSmallText"

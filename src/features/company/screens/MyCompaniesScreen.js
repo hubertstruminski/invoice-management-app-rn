@@ -1,12 +1,17 @@
 import React, { 
     useCallback, 
-    useEffect, 
 } from 'react';
+
 import { 
     FlatList, 
     View, 
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { 
+    useDispatch, 
+    useSelector, 
+} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -20,39 +25,67 @@ import {
     MAIN_GRAY, 
     TRANSPARENT, 
 } from '../../../core/constants/colors';
-import { COMPANY_ENTITY } from '../../../core/constants/constants';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     fetchCompanies, 
-    setCompanyDetails, 
+    removeCompany, 
 } from '../../../core/redux/actions';
+import { removeCompanyById } from '../../../core/redux/requests';
 import { useInitData } from '../../../core/services';
 
-const MyCompaniesScreen = ({
-    navigation: {
-        navigate,
-    },
-    companies,
-    setCompanyDetails,
-}) => {
+const MyCompaniesScreen = () => {
+    const companies = useSelector(state => state.company.companies);
+
     useInitData(fetchCompanies);
+    const dispatch = useDispatch();
+    const { navigate } = useNavigation();
 
     const openAddCompanyForm = useCallback(() => {
-        setCompanyDetails({
+        dispatch(setCompanyDetails({
             id: 0,
             name: '',
             street: '',
             postalCode: '',
             city: '',
             country: '',
-        })
+        }));
         navigate('AddCompanyScreen', { isEdit: false });
     }, []);
+
+    const redirectToDetails = (id) => {
+        const chosenCompany = companies.find(item => item.id === id);
+        dispatch(setCompanyDetails(chosenCompany));
+        navigate('MyCompanyDetailsScreen');
+    }
+
+    const removeItem = async (id) => {
+        try {
+            const response = await removeCompanyById(id);
+            if(response.status === 200) {
+                dispatch(removeCompany(id));
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    };
+
+    const updateItem = (item) => {
+        const companyPayload = {
+            id: item.id,
+            name: item.name,
+            street: item.street,
+            postalCode: item.postalCode,
+            city: item.city,
+            country: item.country,
+        };
+        dispatch(setCompanyDetails(companyPayload));
+        navigate('AddCompanyScreen', { isEdit: true });
+    };
 
     return (
         <BasicView 
             headerComponent={
-                <Header title={languages.dashboardTiles.companies} />
+                <Header title={strings.dashboardTiles.companies} />
             }
         >
             <FlatList
@@ -60,7 +93,7 @@ const MyCompaniesScreen = ({
                     // companies?.length < 1 &&
                     <Button 
                         color={MAIN_GRAY}
-                        text={languages.addEntity.addCompany}
+                        text={strings.addEntity.addCompany}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
@@ -75,7 +108,9 @@ const MyCompaniesScreen = ({
                     <EntityItem 
                         key={index}
                         item={item}
-                        type={COMPANY_ENTITY}
+                        openDetails={redirectToDetails}
+                        removeItem={removeItem}
+                        updateItem={updateItem}
                     >
                         <ResponsiveText 
                             fontStyle="header"
@@ -95,10 +130,5 @@ const MyCompaniesScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    companies: state.company.companies,
-});
 
-export default connect(mapStateToProps, { 
-    setCompanyDetails,
-})(MyCompaniesScreen);
+export default MyCompaniesScreen;

@@ -6,7 +6,7 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
 import styles from '../../../core/styles/previewStyle';
 import { PRODUCT_PREVIEW_ICONS } from '../mocks';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 
 const ProductPreview = ({
     item,
@@ -37,7 +37,7 @@ const ProductPreview = ({
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={MAIN_GRAY}
-                                text={languages.labels.price + ": "}
+                                text={strings.labels.price + ": "}
                             />
                             <ResponsiveText 
                                 fontStyle="regularSmallText"
@@ -49,7 +49,7 @@ const ProductPreview = ({
                             <ResponsiveText 
                                 fontStyle="boldSmallText"
                                 color={MAIN_GRAY}
-                                text={languages.labels.amount + ": "}
+                                text={strings.labels.amount + ": "}
                             />
                             <ResponsiveText 
                                 fontStyle="regularSmallText"

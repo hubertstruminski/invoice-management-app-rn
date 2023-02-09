@@ -15,7 +15,7 @@ import {
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     addCustomer, 
     updateCustomer, 
@@ -109,7 +109,7 @@ const AddCustomerScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={languages.addEntity.addCustomer} />}
+            headerComponent={<Header title={strings.addEntity.addCustomer} />}
         >
 
             <KeyboardAwareScrollView 
@@ -123,8 +123,8 @@ const AddCustomerScreen = ({
             >
                 <TouchableLayout>
                     <Input 
-                        leftTitle={languages.labels.fullName}
-                        placeholder={languages.placeholders.fullName}
+                        leftTitle={strings.labels.fullName}
+                        placeholder={strings.placeholders.fullName}
                         withWarning={errors[0] !== null}
                         errorText={errors[0]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -132,8 +132,8 @@ const AddCustomerScreen = ({
                         setValue={setFullName}
                     />
                     <Input 
-                        leftTitle={languages.labels.email}
-                        placeholder={languages.placeholders.email}
+                        leftTitle={strings.labels.email}
+                        placeholder={strings.placeholders.email}
                         withWarning={errors[1] !== null}
                         errorText={errors[1]}
                         value={email}
@@ -141,8 +141,8 @@ const AddCustomerScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.street}
-                        placeholder={languages.placeholders.street}
+                        leftTitle={strings.labels.street}
+                        placeholder={strings.placeholders.street}
                         withWarning={errors[2] !== null}
                         errorText={errors[2]}
                         value={street}
@@ -150,8 +150,8 @@ const AddCustomerScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.city}
-                        placeholder={languages.placeholders.city}
+                        leftTitle={strings.labels.city}
+                        placeholder={strings.placeholders.city}
                         withWarning={errors[3] !== null}
                         errorText={errors[3]}
                         value={city}
@@ -159,25 +159,25 @@ const AddCustomerScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.country}
-                        placeholder={languages.placeholders.country}
+                        leftTitle={strings.labels.country}
+                        placeholder={strings.placeholders.country}
                         containerStyle={globalStyles.regularBottomSpace}
-                        rightTitle={languages.labels.optional}
+                        rightTitle={strings.labels.optional}
                         value={country}
                         setValue={setCountry}
                     />
                     <Input 
-                        leftTitle={languages.labels.phoneNumber}
-                        placeholder={languages.placeholders.phoneNumber}
+                        leftTitle={strings.labels.phoneNumber}
+                        placeholder={strings.placeholders.phoneNumber}
                         containerStyle={globalStyles.regularBottomSpace}
-                        rightTitle={languages.labels.optional}
+                        rightTitle={strings.labels.optional}
                         value={phoneNumber}
                         setValue={setPhoneNumber}
                         mask={phoneNumberMask}
                     />
                     <Input 
-                        leftTitle={languages.labels.nip}
-                        placeholder={languages.placeholders.nip}
+                        leftTitle={strings.labels.nip}
+                        placeholder={strings.placeholders.nip}
                         withWarning={errors[4] !== null}
                         errorText={errors[4]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -186,16 +186,16 @@ const AddCustomerScreen = ({
                         mask={nipMask}
                     />
                     <Input 
-                        leftTitle={languages.labels.additionalInformations}
-                        placeholder={languages.placeholders.additionalInformations}
+                        leftTitle={strings.labels.additionalInformations}
+                        placeholder={strings.placeholders.additionalInformations}
                         containerStyle={globalStyles.lastInputSpace}
-                        rightTitle={languages.labels.optional}
+                        rightTitle={strings.labels.optional}
                         value={additionalInformations}
                         setValue={setAdditionalInformations}
                     />
                     <Button 
                         color={WHITE}
-                        text={languages.buttons.save}
+                        text={strings.buttons.save}
                         onPress={createCustomer}
                         customStyle={globalStyles.largeBottomPadding}
                     />

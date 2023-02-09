@@ -1,3 +1,8 @@
+import { 
+    useEffect, 
+    useState, 
+} from 'react';
+
 import { CommonActions } from '@react-navigation/native';
 import jwt_decode from 'jwt-decode';
 import moment from 'moment';
@@ -8,8 +13,49 @@ import {
 } from '../storage';
 import { JWT_TOKEN_KEY } from '../constants/constants';
 
+export const logOut = async (navigation) => {
+    await removeAsyncStorageItem(JWT_TOKEN_KEY);
+    if(navigation?.getCurrentRoute?.()?.name != 'LoginScreen') {
+        navigation?.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'LoginScreen' }],
+            })
+        );
+    }
+} 
+
 export const useAuthorization = (navigation) => {
-    const checkIfJWTExpired = async () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => { 
+        if(isMounted) {
+            checkIfTokenIsActive()
+            .then(isActive => {
+                if(isActive) {
+                    navigation?.dispatch(
+                        CommonActions.reset({
+                            index: 0,
+                            routes: [{ name: 'DashboardScreen' }],
+                        })
+                    );
+                } else {
+                    logOut(navigation);
+                }
+            });
+        }
+    }, [isMounted]);
+
+    const onStateChange = async () => {
+        const isActive = await checkIfTokenIsActive();
+        isActive === false && logOut(navigation);
+    }
+    
+    const setNavigationReady = () => {
+        setIsMounted(true);
+    }
+    
+    const checkIfTokenIsActive = async () => {
         const accessToken = await getAsyncStorageString(JWT_TOKEN_KEY);
     
         if(accessToken) {
@@ -18,26 +64,14 @@ export const useAuthorization = (navigation) => {
             const expirationDate = moment(new Date(decodedToken.exp * 1000));
             const now = moment(Date.now());
 
-            if(now.isAfter(expirationDate)) {
-                console.log("jwt is expired");
-                logOut();
-            }
+            return !now.isAfter(expirationDate);
         }
+        return;
     }
 
-    const logOut = async () => {
-        await removeAsyncStorageItem(JWT_TOKEN_KEY);
-        navigation?.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'LoginScreen' }],
-            })
-        );
-    }
-
-    return {
-        checkIfJWTExpired, 
-        logOut,
+    return { 
+        setNavigationReady,
+        onStateChange,
     };
 }
 

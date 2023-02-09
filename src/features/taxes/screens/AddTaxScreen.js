@@ -16,7 +16,7 @@ import {
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     addTax, 
     updateTax, 
@@ -86,7 +86,7 @@ const AddTaxScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={languages.addEntity.addTax} />}
+            headerComponent={<Header title={strings.addEntity.addTax} />}
         >
             <KeyboardAwareScrollView 
                 extraHeight={150}
@@ -104,8 +104,8 @@ const AddTaxScreen = ({
                 <TouchableLayout>
                     <View style={globalStyles.flex}>
                         <Input 
-                            leftTitle={languages.labels.name}
-                            placeholder={languages.placeholders.name}
+                            leftTitle={strings.labels.name}
+                            placeholder={strings.placeholders.name}
                             containerStyle={globalStyles.mediumBottomSpace}
                             withWarning={errors[0] !== null}
                             errorText={errors[0]}
@@ -113,17 +113,17 @@ const AddTaxScreen = ({
                             setValue={setName}
                         />
                         <Input 
-                            leftTitle={languages.labels.description}
-                            placeholder={languages.placeholders.description}
+                            leftTitle={strings.labels.description}
+                            placeholder={strings.placeholders.description}
                             containerStyle={globalStyles.mediumBottomSpace}
-                            rightTitle={languages.labels.optional}
+                            rightTitle={strings.labels.optional}
                             value={description}
                             setValue={setDescription}
                         />
                         <Input 
-                            leftTitle={languages.labels.amount}
-                            placeholder={languages.placeholders.amount}
-                            errorText={languages.labels.errorText}
+                            leftTitle={strings.labels.amount}
+                            placeholder={strings.placeholders.amount}
+                            errorText={strings.labels.errorText}
                             value={amount}
                             setValue={setAmount}
                             withWarning={errors[1] !== null}
@@ -132,7 +132,7 @@ const AddTaxScreen = ({
                     </View>
                     <Button 
                         color={WHITE}
-                        text={languages.buttons.save}
+                        text={strings.buttons.save}
                         onPress={createTax}
                     />
                 </TouchableLayout>

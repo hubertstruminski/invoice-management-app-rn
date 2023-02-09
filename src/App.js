@@ -10,7 +10,7 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 
-import { setLanguage } from './core/internationalization/languages';
+import { setLanguage } from './core/internationalization/strings';
 import AppNavigator from './core/navigation/AppNavigator';
 import { store } from './core/redux/store/store'; 
 import { useInitAxios } from './core/services';

@@ -21,7 +21,7 @@ import {
 } from '../../../core/components';
 import { WHITE } from '../../../core/constants/colors';
 import globalStyles from '../../../core/styles/globalStyles';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     handleFormErrors, 
     initFutureDate, 
@@ -177,7 +177,7 @@ const AddInvoiceScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={languages.addEntity.addInvoice} />}
+            headerComponent={<Header title={strings.addEntity.addInvoice} />}
         >
             <KeyboardAwareScrollView 
                 extraHeight={150}
@@ -190,8 +190,8 @@ const AddInvoiceScreen = ({
             >
                 <TouchableLayout callback={closeDropdowns}>
                     <Input 
-                        leftTitle={languages.labels.number}
-                        placeholder={languages.placeholders.number}
+                        leftTitle={strings.labels.number}
+                        placeholder={strings.placeholders.number}
                         errorText={errors[0]}
                         withWarning={errors[0] !== null}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -200,9 +200,9 @@ const AddInvoiceScreen = ({
                         mask={numberMask}
                     />
                     {/* <Input 
-                        leftTitle={languages.labels.date}
+                        leftTitle={strings.labels.date}
                         placeholder={moment(date).format("DD.MM.YYYY")}
-                        errorText={languages.labels.errorText}
+                        errorText={strings.labels.errorText}
                         errorText={errors[1]}
                         withWarning={errors[1] !== null}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -215,12 +215,12 @@ const AddInvoiceScreen = ({
                         open={isOpenDateModal}
                         mode="date"
                         date={date}
-                        title={languages.calendar.selectDate}
+                        title={strings.calendar.selectDate}
                         onConfirm={confirmDateModal}
                         onCancel={closeDateModal}
                     /> */}
                     <Input 
-                        leftTitle={languages.labels.deadline}
+                        leftTitle={strings.labels.deadline}
                         placeholder={moment(deadline).format("DD.MM.YYYY")}
                         containerStyle={globalStyles.regularBottomSpace}
                         leftIcon={<CalendarIcon />}
@@ -234,13 +234,13 @@ const AddInvoiceScreen = ({
                         open={isOpenDeadlineModal}
                         mode="date"
                         date={deadline}
-                        title={languages.calendar.selectDeadline}
+                        title={strings.calendar.selectDeadline}
                         onConfirm={confirmDeadlineModal}
                         onCancel={closeDeadlineModal}
                     />
                     <Dropdown 
-                        leftTitle={languages.labels.customer}
-                        placeholder={languages.placeholders.customer}
+                        leftTitle={strings.labels.customer}
+                        placeholder={strings.placeholders.customer}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={customers}
                         errorText={errors[2]}       
@@ -250,8 +250,8 @@ const AddInvoiceScreen = ({
                         chosenEntityName={invoiceDetails?.customer?.fullName} 
                     />
                     <Dropdown 
-                        leftTitle={languages.labels.products}
-                        placeholder={languages.placeholders.product}
+                        leftTitle={strings.labels.products}
+                        placeholder={strings.placeholders.product}
                         containerStyle={globalStyles.regularBottomSpace}
                         data={products}
                         ref={productRef}
@@ -262,15 +262,15 @@ const AddInvoiceScreen = ({
                         chosenEntities={chosenProducts}
                     />
                     <Input 
-                        leftTitle={languages.labels.comment}
+                        leftTitle={strings.labels.comment}
                         containerStyle={globalStyles.lastInputSpace}
-                        rightTitle={languages.labels.optional}
+                        rightTitle={strings.labels.optional}
                         value={comment}
                         setValue={setComment}
                     />
                     <Button 
                         color={WHITE}
-                        text={languages.buttons.save}
+                        text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createInvoice}
                     />

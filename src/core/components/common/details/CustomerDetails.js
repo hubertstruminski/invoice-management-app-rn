@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { View } from 'react-native';
 
 import { HomeOfficeIcon } from '../../../../../assets';
 import {  ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
 import { MAIN_GRAY } from '../../../constants/colors';
-import { languages } from '../../../internationalization/languages';
+import { strings } from '../../../internationalization/strings';
 
 const CustomerDetails = ({
     item,
@@ -15,7 +16,7 @@ const CustomerDetails = ({
             <ResponsiveText 
                 fontStyle="smallDetailsTitle"
                 color={MAIN_GRAY}
-                text={languages.labels.customer}
+                text={strings.labels.customer}
                 customStyle={[
                     globalStyles.regularBottomSpace, 
                     globalStyles.textAlignCenter
@@ -32,7 +33,7 @@ const CustomerDetails = ({
                     <ResponsiveText 
                         fontStyle="labelDetails"
                         color={MAIN_GRAY}
-                        text={languages.labels.fullName + ":"} 
+                        text={strings.labels.fullName + ":"} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
@@ -46,7 +47,7 @@ const CustomerDetails = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.phoneNumber + ":"} 
+                                text={strings.labels.phoneNumber + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 

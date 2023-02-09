@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 
-import { languages } from '../internationalization/languages';
+import { strings } from '../internationalization/strings';
 
 export const initFutureDate = () => {
     const futureDate = new Date();
@@ -11,15 +11,15 @@ export const initFutureDate = () => {
 
 export const showConfirmationDelete = (onSuccessCallback) => {
     Alert.alert(
-        languages.alert.confirmationLabel, 
-        languages.alert.areYouSureLabel,
+        strings.alert.confirmationLabel, 
+        strings.alert.areYouSureLabel,
         [
             {
-                text: languages.alert.no,
+                text: strings.alert.no,
                 style: "cancel",
             },
             {
-                text: languages.alert.yes,
+                text: strings.alert.yes,
                 onPress: onSuccessCallback,
             }
         ]

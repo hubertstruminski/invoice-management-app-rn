@@ -1,13 +1,17 @@
 import React, { 
-    useCallback, 
-    useEffect, 
+    useCallback,  
 } from 'react';
 
 import { 
     FlatList,
     View, 
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { 
+    useDispatch, 
+    useSelector, 
+} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -21,26 +25,26 @@ import {
     MAIN_GRAY, 
     TRANSPARENT, 
 } from '../../../core/constants/colors';
-import { CUSTOMER_ENTITY } from '../../../core/constants/constants';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     fetchCustomers, 
+    removeCustomer, 
     setCustomerDetails, 
 } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
 import { hp } from '../../../core/tools';
+import { removeCustomerById } from '../../../core/redux/requests';
 
-const CustomersScreen = ({
-    navigation: {
-        navigate,
-    },
-    customers,
-    setCustomerDetails,
-}) => {
+const CustomersScreen = () => {
+    const customers = useSelector(state => state.customer.customers);
+
+    const { navigate } = useNavigation();
+    const dispatch = useDispatch();
+
     useInitData(fetchCustomers);
 
     const openAddCustomerForm = useCallback(() => {
-        setCustomerDetails({
+        dispatch(setCustomerDetails({
             id: 0,
             fullName: '',
             email: '',
@@ -50,21 +54,54 @@ const CustomersScreen = ({
             city: '',
             country: '',
             description: '',
-        });
+        }));
         navigate('AddCustomerScreen', { isEdit: false })
     }, []);
+
+    const openDetails = (id) => {
+        const chosenCustomer = customers.find(item => item.id === id);
+        dispatch(setCustomerDetails(chosenCustomer));
+        navigate('CustomerDetailsScreen');
+    }
+
+    const removeItem = async (id) => {
+        try {
+            const response = await removeCustomerById(id);
+            if(response.status === 200) {
+                dispatch(removeCustomer(id));
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    };
+
+    const updateItem = (item) => {
+        const customerPayload = {
+            id: item.id,
+            fullName: item.fullName,
+            email: item.email,
+            phoneNumber: item.phoneNumber,
+            nip: item.nip,
+            street: item.street,
+            city: item.city,
+            country: item.country,
+            description: item.description,
+        };
+        dispatch(setCustomerDetails(customerPayload));
+        navigate('AddCustomerScreen', { isEdit: true });
+    };
 
     return (
         <BasicView 
             headerComponent={
-                <Header title={languages.dashboardTiles.customers} />
+                <Header title={strings.dashboardTiles.customers} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text={languages.addEntity.addCustomer}
+                        text={strings.addEntity.addCustomer}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         customStyle={globalStyles.mediumToSpace}
@@ -79,8 +116,10 @@ const CustomersScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(96)}
-                        type={CUSTOMER_ENTITY}
                         item={item}
+                        openDetails={openDetails}
+                        removeItem={removeItem}
+                        updateItem={updateItem}
                     >
                         <CustomerItem 
                             fullName={item.fullName}
@@ -99,10 +138,4 @@ const CustomersScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    customers: state.customer.customers,
-});
-
-export default connect(mapStateToProps, { 
-    setCustomerDetails,
-})(CustomersScreen);
+export default CustomersScreen;

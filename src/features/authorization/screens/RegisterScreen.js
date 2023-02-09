@@ -24,7 +24,7 @@ import {
     UserIcon, 
     LockIcon, 
 } from '../../../../assets';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     validateNewAccountForm, 
     handleFormErrors, 
@@ -91,14 +91,14 @@ const RegisterScreen = ({
             >
                 <TouchableLayout containerStyle={globalStyles.alignCenter}>
                 <ResponsiveText 
-                    text={languages.hi}
+                    text={strings.hi}
                     color={MAIN_GRAY}
                     fontStyle="registerTitle"
                     customStyle={styles.appTitleContainer}
                 />
                 <Input 
-                    leftTitle={languages.labels.email}
-                    placeholder={languages.placeholders.email}
+                    leftTitle={strings.labels.email}
+                    placeholder={strings.placeholders.email}
                     leftIcon={<UserIcon />}
                     value={email}
                     setValue={onEmailChange}
@@ -107,8 +107,8 @@ const RegisterScreen = ({
                     keyboardType="email-address"
                 />
                 <Input 
-                    leftTitle={languages.labels.fullName}
-                    placeholder={languages.placeholders.fullName}
+                    leftTitle={strings.labels.fullName}
+                    placeholder={strings.placeholders.fullName}
                     value={fullName}
                     setValue={setFullName}
                     withWarning={errors[1] !== null}
@@ -116,8 +116,8 @@ const RegisterScreen = ({
                     autoCapitalize="words"
                 />
                 <Input 
-                    leftTitle={languages.labels.password}
-                    placeholder={languages.placeholders.password}
+                    leftTitle={strings.labels.password}
+                    placeholder={strings.placeholders.password}
                     value={password}
                     setValue={setPassword}
                     leftIcon={<LockIcon />}
@@ -127,8 +127,8 @@ const RegisterScreen = ({
                     textContentType="newPassword"
                 />
                 <Input 
-                    leftTitle={languages.labels.confirmPassword}
-                    placeholder={languages.placeholders.password}
+                    leftTitle={strings.labels.confirmPassword}
+                    placeholder={strings.placeholders.password}
                     value={confirmPassword}
                     setValue={setConfirmPassword}
                     leftIcon={<LockIcon />}
@@ -140,7 +140,7 @@ const RegisterScreen = ({
                 />   
                 <Button 
                     color={WHITE}
-                    text={languages.buttons.registerAccount}
+                    text={strings.buttons.registerAccount}
                     onPress={createAccount}
                 />
                 </TouchableLayout>

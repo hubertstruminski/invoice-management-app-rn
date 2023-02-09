@@ -17,7 +17,7 @@ import {
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     addCompany, 
     updateCompany, 
@@ -99,7 +99,7 @@ const AddCompanyScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={languages.addEntity.addCompany} />}
+            headerComponent={<Header title={strings.addEntity.addCompany} />}
         >
             <KeyboardAwareScrollView 
                 extraHeight={150}
@@ -113,8 +113,8 @@ const AddCompanyScreen = ({
                 <TouchableLayout>
                     <View>
                     <Input 
-                        leftTitle={languages.labels.companyName}
-                        placeholder={languages.placeholders.companyName}
+                        leftTitle={strings.labels.companyName}
+                        placeholder={strings.placeholders.companyName}
                         value={companyName}
                         setValue={setCompanyName}
                         withWarning={errors[0] !== null}
@@ -122,8 +122,8 @@ const AddCompanyScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.street}
-                        placeholder={languages.placeholders.street}
+                        leftTitle={strings.labels.street}
+                        placeholder={strings.placeholders.street}
                         value={street}
                         setValue={setStreet}
                         withWarning={errors[1] !== null}
@@ -131,8 +131,8 @@ const AddCompanyScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.postalCode}
-                        placeholder={languages.placeholders.postalCode}
+                        leftTitle={strings.labels.postalCode}
+                        placeholder={strings.placeholders.postalCode}
                         value={postalCode}
                         setValue={setPostalCode}
                         withWarning={errors[2] !== null}
@@ -141,8 +141,8 @@ const AddCompanyScreen = ({
                         mask={postalCodeMask}
                     />
                     <Input 
-                        leftTitle={languages.labels.city}
-                        placeholder={languages.placeholders.city}
+                        leftTitle={strings.labels.city}
+                        placeholder={strings.placeholders.city}
                         value={city}
                         setValue={setCity}
                         withWarning={errors[3] !== null}
@@ -150,8 +150,8 @@ const AddCompanyScreen = ({
                         containerStyle={globalStyles.regularBottomSpace}
                     />
                     <Input 
-                        leftTitle={languages.labels.country}
-                        placeholder={languages.placeholders.country}
+                        leftTitle={strings.labels.country}
+                        placeholder={strings.placeholders.country}
                         value={country}
                         setValue={setCountry}
                         withWarning={errors[4] !== null}
@@ -161,7 +161,7 @@ const AddCompanyScreen = ({
                     </View>
                     <Button 
                         color={WHITE}
-                        text={languages.buttons.save}
+                        text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createCompany}
                     />

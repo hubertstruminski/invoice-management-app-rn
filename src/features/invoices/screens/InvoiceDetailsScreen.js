@@ -17,7 +17,7 @@ import {
 import { ProductPreview } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 
 const InvoiceDetailsScreen = ({
     invoiceDetails: {
@@ -32,7 +32,7 @@ const InvoiceDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
-            headerComponent={<Header title={languages.details.invoice} />}
+            headerComponent={<Header title={strings.details.invoice} />}
         >
             <FlatList 
                 showsVerticalScrollIndicator={false}
@@ -48,7 +48,7 @@ const InvoiceDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="headerDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.invoiceNumber + ": "}
+                                text={strings.labels.invoiceNumber + ": "}
                             />
                             <ResponsiveText 
                                 fontStyle="regularHeaderDetails"
@@ -84,7 +84,7 @@ const InvoiceDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="smallDetailsTitle"
                                 color={MAIN_GRAY}
-                                text={languages.labels.products}
+                                text={strings.labels.products}
                                 customStyle={[globalStyles.textAlignCenter, globalStyles.regularBottomSpace]}
                             /> 
                         </View>

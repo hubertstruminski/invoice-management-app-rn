@@ -20,7 +20,7 @@ import {
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 
 const ProductDetailsScreen = ({
     productDetails: {
@@ -38,7 +38,7 @@ const ProductDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
-            headerComponent={<Header title={languages.details.product} />}
+            headerComponent={<Header title={strings.details.product} />}
         >
             <ScrollView 
                 showsVerticalScrollIndicator={false}
@@ -62,7 +62,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.price + ":"} 
+                                text={strings.labels.price + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -74,7 +74,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.amount + ":"} 
+                                text={strings.labels.amount + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -86,7 +86,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.discount + ":"} 
+                                text={strings.labels.discount + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -98,7 +98,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.unit + ":"} 
+                                text={strings.labels.unit + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -114,7 +114,7 @@ const ProductDetailsScreen = ({
                     {/* <ResponsiveText 
                         fontStyle="smallDetailsTitle"
                         color={MAIN_GRAY}
-                        text={languages.labels.invoice}
+                        text={strings.labels.invoice}
                         customStyle={[globalStyles.regularBottomSpace, globalStyles.textAlignCenter]}
                     />
                     <View 
@@ -128,7 +128,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.number + ":"} 
+                                text={strings.labels.number + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -150,7 +150,7 @@ const ProductDetailsScreen = ({
                     <ResponsiveText 
                         fontStyle="smallDetailsTitle"
                         color={MAIN_GRAY}
-                        text={languages.labels.tax}
+                        text={strings.labels.tax}
                         customStyle={[globalStyles.regularBottomSpace, globalStyles.textAlignCenter]}
                     />
                     <View 
@@ -164,7 +164,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.name + ":"} 
+                                text={strings.labels.name + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -176,7 +176,7 @@ const ProductDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.amount + ":"} 
+                                text={strings.labels.amount + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 

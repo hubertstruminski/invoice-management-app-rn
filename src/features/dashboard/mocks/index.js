@@ -14,31 +14,31 @@ import {
     PRODUCT_ENTITY, 
     TAX_ENTITY, 
 } from '../../../core/constants/constants';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 
 export const DASHBOARD_TILES = [
     { 
-        title: languages.dashboardTiles.companies, 
+        title: strings.dashboardTiles.companies, 
         icon: <CompaniesIcon />, 
         label: COMPANY_ENTITY,
     },
     { 
-        title: languages.dashboardTiles.customers, 
+        title: strings.dashboardTiles.customers, 
         icon: <CustomersIcon />, 
         label: CUSTOMER_ENTITY,
     },
     { 
-        title: languages.dashboardTiles.invoices, 
+        title: strings.dashboardTiles.invoices, 
         icon: <InvoicesIcon />, 
         label: INVOICE_ENTITY,
     },
     { 
-        title: languages.dashboardTiles.products, 
+        title: strings.dashboardTiles.products, 
         icon: <ProductsIcon />, 
         label: PRODUCT_ENTITY,
     },
     { 
-        title: languages.dashboardTiles.taxes, 
+        title: strings.dashboardTiles.taxes, 
         icon: <TaxesIcon />, 
         label: TAX_ENTITY,
     },

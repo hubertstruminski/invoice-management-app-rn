@@ -7,7 +7,11 @@ import {
     View,
 } from 'react-native';
 
-import { connect } from 'react-redux';
+import { 
+    useDispatch, 
+    useSelector, 
+} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -21,26 +25,26 @@ import {
     MAIN_GRAY, 
     TRANSPARENT, 
 } from '../../../core/constants/colors';
-import { PRODUCT_ENTITY } from '../../../core/constants/constants';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     setProductDetails,
-    fetchProducts, 
+    fetchProducts,
+    removeProduct, 
 } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
 import { hp } from '../../../core/tools';
+import { removeProductById } from '../../../core/redux/requests';
 
-const ProductsScreen = ({
-    navigation: {
-        navigate,
-    },
-    products,
-    setProductDetails,
-}) => {
+const ProductsScreen = () => {
+    const products = useSelector(state => state.product.products);
+
+    const { navigate } = useNavigation();
+    const dispatch = useDispatch();
+
     useInitData(fetchProducts);
 
     const openAddProductForm = useCallback(() => {
-        setProductDetails({
+        dispatch(setProductDetails({
             id: 0,
             name: '',
             price: '',
@@ -51,21 +55,55 @@ const ProductsScreen = ({
             customer: null,
             tax: null,
             description: '',
-        });
+        }));
         navigate('AddProductScreen', { isEdit: false });
     }, []);
+
+    const openDetails = (id) => {
+        const chosenProduct = products.find(item => item.id === id);
+        dispatch(setProductDetails(chosenProduct));
+        navigate('ProductDetailsScreen');
+    }
+
+    const removeItem = async (id) => {
+        try {
+            const response = await removeProductById(id);
+            if(response.status === 200) {
+                dispatch(removeProduct(id));
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    };
+
+    const updateItem = (item) => {
+        const productPayload = {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            amount: item.amount,
+            discount: item.discount,
+            unit: item.unit,
+            invoice: item.invoice,
+            customer: item.customer,
+            tax: item.tax,
+            description: item.description,
+        };
+        dispatch(setProductDetails(productPayload));
+        navigate('AddProductScreen', { isEdit: true });
+    };
 
     return (
         <BasicView 
             headerComponent={
-                <Header title={languages.dashboardTiles.products} />
+                <Header title={strings.dashboardTiles.products} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text={languages.addEntity.addProduct}
+                        text={strings.addEntity.addProduct}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={openAddProductForm}
@@ -79,8 +117,10 @@ const ProductsScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(128)}
-                        type={PRODUCT_ENTITY}
                         item={item}
+                        openDetails={openDetails}
+                        removeItem={removeItem}
+                        updateItem={updateItem}
                     >
                         <ProductItem 
                             name={item.name}
@@ -100,10 +140,4 @@ const ProductsScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    products: state.product.products,
-}); 
-
-export default connect(mapStateToProps, { 
-    setProductDetails,
-})(ProductsScreen);
+export default ProductsScreen;

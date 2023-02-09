@@ -18,7 +18,7 @@ import {
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     addProduct, 
     fetchTaxes, 
@@ -123,7 +123,7 @@ const AddProductScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={languages.addEntity.addProduct} />}
+            headerComponent={<Header title={strings.addEntity.addProduct} />}
         >
             <KeyboardAwareScrollView 
                 extraHeight={150}
@@ -136,8 +136,8 @@ const AddProductScreen = ({
             >
                 <TouchableLayout callback={closeDropdown}>
                     <Input 
-                        leftTitle={languages.labels.name}
-                        placeholder={languages.placeholders.name}
+                        leftTitle={strings.labels.name}
+                        placeholder={strings.placeholders.name}
                         withWarning={errors[0] !== null}
                         errorText={errors[0]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -145,16 +145,16 @@ const AddProductScreen = ({
                         setValue={setName}
                     />
                     <Input 
-                        leftTitle={languages.labels.description}
-                        rightTitle={languages.labels.optional}
-                        placeholder={languages.placeholders.description}
+                        leftTitle={strings.labels.description}
+                        rightTitle={strings.labels.optional}
+                        placeholder={strings.placeholders.description}
                         containerStyle={globalStyles.regularBottomSpace}
                         value={description}
                         setValue={setDescription}
                     />
                     <Input 
-                        leftTitle={languages.labels.price}
-                        placeholder={languages.placeholders.price}
+                        leftTitle={strings.labels.price}
+                        placeholder={strings.placeholders.price}
                         withWarning={errors[1] !== null}
                         errorText={errors[1]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -162,8 +162,8 @@ const AddProductScreen = ({
                         setValue={setPrice}
                     />
                     <Input 
-                        leftTitle={languages.labels.amount}
-                        placeholder={languages.placeholders.amount}
+                        leftTitle={strings.labels.amount}
+                        placeholder={strings.placeholders.amount}
                         withWarning={errors[2] !== null}
                         errorText={errors[2]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -171,8 +171,8 @@ const AddProductScreen = ({
                         setValue={setAmount}
                     />
                     <Input 
-                        leftTitle={languages.labels.discount}
-                        rightTitle={languages.labels.optional}
+                        leftTitle={strings.labels.discount}
+                        rightTitle={strings.labels.optional}
                         containerStyle={globalStyles.regularBottomSpace}
                         value={discount}
                         setValue={setDiscount}
@@ -180,8 +180,8 @@ const AddProductScreen = ({
                         errorText={errors[4]}
                     />
                     <Input 
-                        leftTitle={languages.labels.unit}
-                        placeholder={languages.placeholders.time}
+                        leftTitle={strings.labels.unit}
+                        placeholder={strings.placeholders.time}
                         withWarning={errors[3] !== null}
                         errorText={errors[3]}
                         containerStyle={globalStyles.regularBottomSpace}
@@ -189,8 +189,8 @@ const AddProductScreen = ({
                         setValue={setUnit}
                     />
                     <Dropdown 
-                        leftTitle={languages.labels.tax}
-                        placeholder={languages.placeholders.tax}
+                        leftTitle={strings.labels.tax}
+                        placeholder={strings.placeholders.tax}
                         containerStyle={globalStyles.lastInputSpace}
                         data={taxes}
                         ref={taxRef}
@@ -201,7 +201,7 @@ const AddProductScreen = ({
                     />
                     <Button 
                         color={WHITE}
-                        text={languages.buttons.save}
+                        text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createProduct}
                     />

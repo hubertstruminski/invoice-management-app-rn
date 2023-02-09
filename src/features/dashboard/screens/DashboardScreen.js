@@ -8,7 +8,7 @@ import {
 import { EntityTile } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { DASHBOARD_TILES } from '../mocks';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 
 const DashboardScreen = () => {
     return (
@@ -17,7 +17,7 @@ const DashboardScreen = () => {
             headerComponent={
                 <Header 
                     withBackArrow={false} 
-                    title={languages.headers.dashboard}
+                    title={strings.headers.dashboard}
                 />
             }
         >

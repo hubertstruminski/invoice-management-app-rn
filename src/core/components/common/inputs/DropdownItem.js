@@ -1,13 +1,18 @@
-import React, {
-    useState,
-}from 'react';
+import React from 'react';
+
 import { 
     View, 
     TouchableWithoutFeedback, 
 } from 'react-native'; 
 
 import { ResponsiveText } from '../..';
-import { GRAY_4, MAIN_GRAY, MAIN_ORANGE, WHITE } from '../../../constants/colors';
+import { 
+    GRAY_4, 
+    MAIN_GRAY, 
+    MAIN_ORANGE, 
+    WHITE, 
+} from '../../../constants/colors';
+import { useDropdownItem } from '../../../services';
 import styles from '../../../styles/inputs/dropdownItemStyle';
 
 const DropdownItem = ({
@@ -23,25 +28,19 @@ const DropdownItem = ({
     isMark,
     isFirstItem,
 }) => {
-    const [isChecked, setIsChecked] = useState(isMark);
-
-    const onPress = () => {
-        setValue(name);
-        setId && setId(id);
-        closeDropdown();
-    }
-
-    const onMultipleSelect = () => {
-        const newValue = !isChecked;
-
-        if(newValue) {
-            setChosenEntities(oldState => [...oldState, { name, id }]);
-        } else {
-            const copy = [...chosenEntities];  
-            setChosenEntities(copy.filter(item => item.name !== name))
-        }
-        setIsChecked(newValue);
-    }
+    const { 
+        onMultipleSelect, 
+        onPress, 
+    } = useDropdownItem({
+        name,
+        setValue,
+        setId,
+        setChosenEntities,
+        chosenEntities,
+        closeDropdown,
+        id, 
+        isMark,
+    });
 
 
     return (

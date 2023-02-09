@@ -1,15 +1,17 @@
 import React from 'react';
+
 import { 
     TouchableWithoutFeedback, 
     View, 
 } from 'react-native';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { ResponsiveText } from '..';
 import { BackArrowIcon } from '../../../../assets';
 import styles from '../../styles/headerStyle';
-import { languages } from '../../internationalization/languages';
-import { useAuthorization } from '../../services';
+import { strings } from '../../internationalization/strings';
+import { logOut } from '../../services';
 import { MAIN_GRAY } from '../../constants/colors';
 
 const Header = ({
@@ -18,7 +20,6 @@ const Header = ({
     withLogout = true,
 }) => {
     const navigation = useNavigation();
-    const { logOut } = useAuthorization(navigation);
 
     return (
         <View style={styles.container}>
@@ -33,7 +34,7 @@ const Header = ({
                     <View style={styles.leftContainer} />
                 )
             }
-            { title &&
+            {title &&
                 <ResponsiveText 
                     fontStyle="header"
                     text={title}
@@ -43,11 +44,11 @@ const Header = ({
             }
             <View style={styles.rightContainer}>
                 {withLogout &&
-                    <TouchableWithoutFeedback onPress={logOut}>
+                    <TouchableWithoutFeedback onPress={() => logOut(navigation)}>
                         <View>
                             <ResponsiveText 
                                 fontStyle="header"
-                                text={languages.headers.logout}
+                                text={strings.headers.logout}
                                 color={MAIN_GRAY}
                             />
                         </View>

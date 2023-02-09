@@ -1,13 +1,17 @@
 import React, { 
-    useCallback, 
-    useEffect, 
+    useCallback,  
 } from 'react';
 
 import { 
     FlatList, 
     View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { 
+    useDispatch, 
+    useSelector, 
+} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -21,25 +25,25 @@ import {
     MAIN_GRAY, 
     TRANSPARENT, 
 } from '../../../core/constants/colors';
-import { INVOICE_ENTITY } from '../../../core/constants/constants';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { 
     setInvoiceDetails, 
-    fetchInvoices, 
+    fetchInvoices,
+    removeInvoice, 
 } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
 import { 
     hp, 
     initFutureDate, 
 } from '../../../core/tools';
+import { removeInvoiceById } from '../../../core/redux/requests';
 
-const InvoicesScreen = ({
-    navigation: {
-        navigate,
-    },
-    invoices,
-    setInvoiceDetails,
-}) => {
+const InvoicesScreen = () => {
+    const invoices = useSelector(state => state.invoice.invoices);
+
+    const { navigate } = useNavigation();
+    const dispatch = useDispatch();
+
     useInitData(fetchInvoices);
 
     const openAddInvoiceForm = useCallback(() => {
@@ -55,17 +59,49 @@ const InvoicesScreen = ({
         navigate('AddInvoiceScreen', { isEdit: false });
     }, []);
 
+    const openDetails = (id) => {
+        const chosenInvoice = invoices.find(item => item.id === id);
+        dispatch(setInvoiceDetails(chosenInvoice));
+        navigate('InvoiceDetailsScreen');
+    }
+
+    const removeItem = async (id) => {
+        try {
+            const response = await removeInvoiceById(id);
+            if(response.status === 200) {
+                dispatch(removeInvoice(id));
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    };
+
+    const updateItem = (item) => {
+        const invoicePayload = {
+            id: item.id,
+            number: item.number,
+            date: item.date,
+            deadline: item.deadline,
+            customer: item.customer,
+            description: item.description,
+            sentStatus: item.sentStatus,
+            products: item.products,
+        };
+        dispatch(setInvoiceDetails(invoicePayload));
+        navigate('AddInvoiceScreen', { isEdit: true });
+    };
+
     return (
         <BasicView 
             headerComponent={
-                <Header title={languages.dashboardTiles.invoices} />
+                <Header title={strings.dashboardTiles.invoices} />
             }
         >
             <FlatList
                 ListHeaderComponent={
                     <Button 
                         color={MAIN_GRAY}
-                        text={languages.addEntity.addInvoice}
+                        text={strings.addEntity.addInvoice}
                         backgroundColor={TRANSPARENT}
                         isOutline
                         onPress={openAddInvoiceForm}
@@ -79,8 +115,10 @@ const InvoicesScreen = ({
                     <EntityItem 
                         key={index}
                         height={hp(112)}
-                        type={INVOICE_ENTITY}
                         item={item}
+                        openDetails={openDetails}
+                        removeItem={removeItem}
+                        updateItem={updateItem}
                     >
                         <InvoiceItem 
                             number={item.number}
@@ -101,10 +139,4 @@ const InvoicesScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    invoices: state.invoice.invoices,
-});
-
-export default connect(mapStateToProps, { 
-    setInvoiceDetails,
-})(InvoicesScreen);
+export default InvoicesScreen;

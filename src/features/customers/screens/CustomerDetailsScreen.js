@@ -15,7 +15,7 @@ import {
 import { DocumentPreview } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
-import { languages } from '../../../core/internationalization/languages';
+import { strings } from '../../../core/internationalization/strings';
 import { fetchInvoices } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
 
@@ -39,7 +39,7 @@ const CustomerDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={languages.details.customer} />}
+            headerComponent={<Header title={strings.details.customer} />}
         >
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -62,7 +62,7 @@ const CustomerDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.email + ":"} 
+                                text={strings.labels.email + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -76,7 +76,7 @@ const CustomerDetailsScreen = ({
                                     <ResponsiveText 
                                         fontStyle="labelDetails"
                                         color={MAIN_GRAY}
-                                        text={languages.labels.phoneNumber + ":"} 
+                                        text={strings.labels.phoneNumber + ":"} 
                                         customStyle={globalStyles.smallLabelSpace}
                                     />
                                     <ResponsiveText 
@@ -90,7 +90,7 @@ const CustomerDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="labelDetails"
                                 color={MAIN_GRAY}
-                                text={languages.labels.nip + ":"} 
+                                text={strings.labels.nip + ":"} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
@@ -116,7 +116,7 @@ const CustomerDetailsScreen = ({
                             <ResponsiveText 
                                 fontStyle="smallDetailsTitle"
                                 color={MAIN_GRAY}
-                                text={languages.labels.documents}
+                                text={strings.labels.documents}
                                 customStyle={[
                                     globalStyles.textAlignCenter, 
                                     globalStyles.regularBottomSpace,
