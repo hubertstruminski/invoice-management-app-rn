@@ -59,7 +59,7 @@ const DropdownItem = ({
                 ]}
             >
                 <ResponsiveText 
-                    fontStyle="errorInputText"
+                    fontStyle='errorInputText'
                     color={multiple && isChecked ? WHITE : MAIN_GRAY}
                     text={name}
                 />

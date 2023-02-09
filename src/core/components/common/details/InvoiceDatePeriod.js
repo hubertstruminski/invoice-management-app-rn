@@ -14,27 +14,27 @@ const InvoiceDatePeriod = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="labelDetails"
+                fontStyle='labelDetails'
                 color={MAIN_GRAY}
-                text={strings.labels.date + ":"} 
+                text={strings.labels.date + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
-                fontStyle="rightInputTitle"
+                fontStyle='rightInputTitle'
                 color={MAIN_GRAY}
-                text={moment(new Date(date)).format("DD.MM.YYYY")}
+                text={moment(new Date(date)).format('DD.MM.YYYY')}
                 customStyle={globalStyles.regularBottomSpace}
             />
             <ResponsiveText 
-                fontStyle="labelDetails"
+                fontStyle='labelDetails'
                 color={MAIN_GRAY}
-                text={strings.labels.deadline + ":"} 
+                text={strings.labels.deadline + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
-                fontStyle="rightInputTitle"
+                fontStyle='rightInputTitle'
                 color={MAIN_GRAY}
-                text={moment(new Date(deadline)).format("DD.MM.YYYY")}
+                text={moment(new Date(deadline)).format('DD.MM.YYYY')}
             />
         </React.Fragment>
     );

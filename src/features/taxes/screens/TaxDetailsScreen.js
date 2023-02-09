@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { 
     ScrollView, 
     View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 
 import { TaxDetailsIcon } from '../../../../assets';
 import { 
@@ -17,12 +19,13 @@ import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
 const TaxDetailsScreen = ({
-    taxDetails: {
+}) => {
+    const {
         name,
         amount,
         description,
-    },
-}) => {
+    } = useSelector(state => state.tax.taxDetails);
+
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -37,28 +40,28 @@ const TaxDetailsScreen = ({
                 ]}
             >
                 <ResponsiveText 
-                    fontStyle="headerDetails"
+                    fontStyle='headerDetails'
                     color={MAIN_GRAY}
                     text={name}
                     customStyle={globalStyles.largeSpace}
                 />
                 <View style={globalStyles.detailsContainer}>
                     <ResponsiveText 
-                        fontStyle="labelDetails"
+                        fontStyle='labelDetails'
                         color={MAIN_GRAY}
-                        text={strings.labels.amount + ":"} 
+                        text={strings.labels.amount + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
-                        fontStyle="rightInputTitle"
+                        fontStyle='rightInputTitle'
                         color={MAIN_GRAY}
-                        text={amount + "%"}
+                        text={amount + '%'}
                         customStyle={globalStyles.mediumBottomSpace}
                     />
                     {description !== '' &&
                         <DescriptionSection 
-                            fontStyle="labelDetails"
-                            descriptionLabel={strings.labels.description + ":"} 
+                            fontStyle='labelDetails'
+                            descriptionLabel={strings.labels.description + ':'} 
                             descriptionLabelStyle={globalStyles.smallLabelSpace}
                             description={description}
                         />
@@ -72,8 +75,4 @@ const TaxDetailsScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    taxDetails: state.tax.taxDetails,
-});
-
-export default connect(mapStateToProps, { })(TaxDetailsScreen);
+export default TaxDetailsScreen

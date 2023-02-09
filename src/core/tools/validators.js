@@ -105,7 +105,7 @@ export const validateEmail = (email) => {
 
 export const validateString = (value, fieldName) => {
     if(value === '') {
-        return new ValidProperty(false, fieldName + " " + strings.formErrors.isRequired);
+        return new ValidProperty(false, fieldName + ' ' + strings.formErrors.isRequired);
     } else {
         return new ValidProperty(true);
     }
@@ -221,7 +221,7 @@ export const validateDateRange = (date, deadline) => {
 
 export const validateEntityObject = (customerId, fieldName) => {
     if(!customerId) {
-        return new ValidProperty(false, fieldName + " " + strings.formErrors.isRequired);
+        return new ValidProperty(false, fieldName + ' ' + strings.formErrors.isRequired);
     } else {
         return new ValidProperty(true);
     }

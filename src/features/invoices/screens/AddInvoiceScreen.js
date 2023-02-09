@@ -201,7 +201,7 @@ const AddInvoiceScreen = ({
                     />
                     {/* <Input 
                         leftTitle={strings.labels.date}
-                        placeholder={moment(date).format("DD.MM.YYYY")}
+                        placeholder={moment(date).format('DD.MM.YYYY')}
                         errorText={strings.labels.errorText}
                         errorText={errors[1]}
                         withWarning={errors[1] !== null}
@@ -213,7 +213,7 @@ const AddInvoiceScreen = ({
                     <DatePicker 
                         modal
                         open={isOpenDateModal}
-                        mode="date"
+                        mode='date'
                         date={date}
                         title={strings.calendar.selectDate}
                         onConfirm={confirmDateModal}
@@ -221,7 +221,7 @@ const AddInvoiceScreen = ({
                     /> */}
                     <Input 
                         leftTitle={strings.labels.deadline}
-                        placeholder={moment(deadline).format("DD.MM.YYYY")}
+                        placeholder={moment(deadline).format('DD.MM.YYYY')}
                         containerStyle={globalStyles.regularBottomSpace}
                         leftIcon={<CalendarIcon />}
                         errorText={errors[1]}
@@ -232,7 +232,7 @@ const AddInvoiceScreen = ({
                     <DatePicker 
                         modal
                         open={isOpenDeadlineModal}
-                        mode="date"
+                        mode='date'
                         date={deadline}
                         title={strings.calendar.selectDeadline}
                         onConfirm={confirmDeadlineModal}

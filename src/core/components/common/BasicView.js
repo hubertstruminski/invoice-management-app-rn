@@ -39,7 +39,7 @@ const BasicView = ({
                     }
                 ]}
             >
-                <Toast position="top" topOffset={hp(-50)} />  
+                <Toast position='top' topOffset={hp(-50)} />  
                 <TouchableLayout containerStyle={styles.headerContainer}>
                     {headerComponent}
                 </TouchableLayout>

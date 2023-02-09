@@ -1,17 +1,9 @@
-import React, {
-    useCallback,
-} from 'react';
+import React from 'react';
 
 import { 
     FlatList, 
     View,
 } from 'react-native';
-
-import { 
-    useSelector, 
-    useDispatch, 
-} from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -26,61 +18,17 @@ import {
     TRANSPARENT, 
 } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { setTaxDetails } from '../../../core/redux/actions';
-import { 
-    fetchTaxes, 
-    removeTax, 
-} from '../../../core/redux/actions/taxActions';
-import { useInitData } from '../../../core/services';
 import { hp } from '../../../core/tools';
-import { removeTaxById } from '../../../core/redux/requests';
+import { useTaxesScreen } from '../services';
 
 const TaxesScreen = () => {
-    const taxes = useSelector(state => state.tax.taxes);
-
-    const { navigate } = useNavigation();
-    const dispatch = useDispatch();
-
-    useInitData(fetchTaxes);
-
-    const openAddTaxForm = useCallback(() => {
-        setTaxDetails({
-            id: 0,
-            name: '',
-            amount: '',
-            description: '',
-        });
-        navigate('AddTaxScreen', { isEdit: false });
-    }, []);
-
-
-    const openDetails = (id) => {
-        const chosenTax = taxes.find(item => item.id === id);
-        dispatch(setTaxDetails(chosenTax));
-        navigate('TaxDetailsScreen');
-    }
-
-    const removeItem = async (id) => {
-        try {
-            const response = await removeTaxById(id);
-            if(response.status === 200) {
-                dispatch(removeTax(id));
-            }
-        } catch(error) {
-            console.log(error);
-        }
-    };
-
-    const updateItem = (item) => {
-        const taxPayload = {
-            id: item.id,
-            name: item.name,
-            amount: item.amount,
-            description: item.description,
-        };
-        dispatch(setTaxDetails(taxPayload));
-        navigate('AddTaxScreen', { isEdit: true });
-    };
+    const {  
+        openAddTaxForm,
+        openDetails,
+        removeItem,
+        taxes,
+        updateItem,
+    } = useTaxesScreen();
 
     return (
         <BasicView 
@@ -128,4 +76,4 @@ const TaxesScreen = () => {
     );
 }
 
-export default TaxesScreen
+export default TaxesScreen;

@@ -40,7 +40,7 @@ const EntityTile = ({
                 <View style={styles.container}>
                     {icon}
                     <ResponsiveText 
-                        fontStyle="header"
+                        fontStyle='header'
                         color={MAIN_GRAY}
                         text={title}
                     />

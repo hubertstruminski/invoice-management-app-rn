@@ -16,7 +16,7 @@ const ProductItem = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="header"
+                fontStyle='header'
                 color={MAIN_GRAY}
                 text={name}
                 customStyle={entityItemStyle.mediumBottomSpace}
@@ -28,24 +28,24 @@ const ProductItem = ({
                 ]}
             >
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.price + ": "}
+                    text={strings.labels.price + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
-                    text={price + " $"}
+                    text={price + ' $'}
                 />
             </View>
             <View style={globalStyles.rowCenter}>
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.amount + ": "}
+                    text={strings.labels.amount + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
                     text={amount}
                 />

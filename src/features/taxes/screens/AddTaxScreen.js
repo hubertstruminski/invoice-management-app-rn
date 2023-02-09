@@ -1,10 +1,7 @@
-import React, {
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
+import React from 'react';
+
 import { View } from 'react-native';
-import { connect } from 'react-redux';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
@@ -17,68 +14,23 @@ import {
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { 
-    addTax, 
-    updateTax, 
-} from '../../../core/redux/actions';
-import { handleFormErrors, validateNewTaxForm } from '../../../core/tools';
-import { addTaxRequest, updateTaxRequest } from '../../../core/redux/requests';
+import { useAddTaxScreen } from '../services';
 
 const AddTaxScreen = ({
-    navigation: {
-        goBack,
-    },
-    taxDetails,
     route: {
         params,
     },
-    addTax,
-    updateTax,
 }) => {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-
-    const [errors, setErrors] = useState([null, null]);
-
-    useEffect(() => {
-        setName(taxDetails?.name);
-        setDescription(taxDetails?.description);
-        setAmount(taxDetails?.amount?.toString());
-    }, [taxDetails]);
-
-    const createTax = useCallback(async () => {
-        const errorObject = validateNewTaxForm(name, amount);
-        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
-    
-        if(isValidModel) {
-            let payload = {
-                name,
-                amount,
-                description,
-            };
-
-            if(params?.isEdit) {
-                const response = await updateTaxRequest(taxDetails.id, payload);
-                if(response.status === 200) {
-                    payload = { ...payload, id: taxDetails.id };
-                    updateTax(payload);
-                }
-            } else {
-                const response = await addTaxRequest(payload);
-                if(response.status === 201) {
-                    payload = { ...payload, id: response.data?.id };
-                    addTax(payload);
-                }
-            }
-            goBack();
-        }
-    }, [
+    const {
+        createTax,
         name, 
-        amount,
-        errors,
-        description,
-    ]);
+        setName,
+        description, 
+        setDescription,
+        amount, 
+        setAmount,
+        errors, 
+    } = useAddTaxScreen(params);
 
     return (
         <BasicView 
@@ -141,11 +93,4 @@ const AddTaxScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    taxDetails: state.tax.taxDetails,
-});
-
-export default connect(mapStateToProps, { 
-    addTax,
-    updateTax,
-})(AddTaxScreen);
+export default AddTaxScreen;

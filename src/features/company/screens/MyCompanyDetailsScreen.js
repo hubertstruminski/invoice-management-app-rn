@@ -36,7 +36,7 @@ const MyCompanyDetailsScreen = ({
                 contentContainerStyle={[globalStyles.alignCenter, globalStyles.flex]}
             >
                 <ResponsiveText 
-                    fontStyle="headerDetails"
+                    fontStyle='headerDetails'
                     color={MAIN_GRAY}
                     text={name}
                     customStyle={globalStyles.largeSpace}
@@ -49,13 +49,13 @@ const MyCompanyDetailsScreen = ({
                         country={country}
                     >
                         <ResponsiveText 
-                            fontStyle="labelDetails"
+                            fontStyle='labelDetails'
                             color={MAIN_GRAY}
-                            text={strings.labels.postalCode + ":"} 
+                            text={strings.labels.postalCode + ':'} 
                             customStyle={globalStyles.smallLabelSpace}
                         />
                         <ResponsiveText 
-                            fontStyle="rightInputTitle"
+                            fontStyle='rightInputTitle'
                             color={MAIN_GRAY}
                             text={postalCode}
                             customStyle={globalStyles.mediumBottomSpace}

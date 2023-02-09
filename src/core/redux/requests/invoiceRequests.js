@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 import { API_URL } from '../../constants/constants';
 
@@ -24,3 +24,12 @@ export const updateInvoiceRequest = async (id, payload) => {
         data: payload,
     });
 }
+
+export const fetchInvoicesRequest = async () => {
+    return await axios({
+        method: 'GET',
+        url: `${API_URL}/api/invoices`,
+    });
+}
+
+

@@ -36,7 +36,7 @@ const Header = ({
             }
             {title &&
                 <ResponsiveText 
-                    fontStyle="header"
+                    fontStyle='header'
                     text={title}
                     color={MAIN_GRAY}
                     customStyle={styles.titleContainer}
@@ -47,7 +47,7 @@ const Header = ({
                     <TouchableWithoutFeedback onPress={() => logOut(navigation)}>
                         <View>
                             <ResponsiveText 
-                                fontStyle="header"
+                                fontStyle='header'
                                 text={strings.headers.logout}
                                 color={MAIN_GRAY}
                             />

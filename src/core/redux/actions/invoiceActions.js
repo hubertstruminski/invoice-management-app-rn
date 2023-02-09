@@ -1,13 +1,11 @@
-import axios from "axios";
-import { API_URL } from '../../constants/constants';
+import { fetchInvoicesRequest } from '../requests';
 import { 
     ADD_INVOICE,
     FETCH_INVOICES,
     REMOVE_INVOICE, 
     SET_CHOSEN_INVOICE_DETAILS,
     UPDATE_INVOICE, 
-} from "../types";
-
+} from '../types';
 
 export const setInvoiceDetails = value => ({
     type: SET_CHOSEN_INVOICE_DETAILS,
@@ -36,10 +34,7 @@ const setInvoices = value => ({
 
 export const fetchInvoices = () => {
     return async dispatch => {
-        const response = await axios({
-            method: 'GET',
-            url: `${API_URL}/api/invoices`,
-        });
+        const response = await fetchInvoicesRequest();
 
         if(response.status === 200) {
             dispatch(setInvoices(response.data));

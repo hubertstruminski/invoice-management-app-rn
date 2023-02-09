@@ -1,11 +1,8 @@
 import React from 'react';
-import { 
-    Alert, 
-    View, 
-} from 'react-native';
-import Share from 'react-native-share';
-import * as Print from 'expo-print';
-import { connect } from 'react-redux';
+
+import { View } from 'react-native';
+
+import { useSelector } from 'react-redux';
 
 import {  
     ResponsiveText, 
@@ -24,36 +21,11 @@ import {
 } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import styles from '../../../core/styles/previewStyle';
-import { generateHTML } from '../../../core/tools';
+import { usePDF } from '../services';
 
-const DocumentPreview = ({ 
-    item,
-    companies,
-}) => {
-
-    const generatePdf = async () => {
-        if(companies?.length < 1) {
-            Alert.alert('Error', 'You must have added company!');
-            return;
-        }
-
-        const { uri } = await Print.printToFileAsync({
-            html: generateHTML(item, companies),
-          });
-
-        const shareOptions = {
-            title: strings.pdf.shareInvoice,
-            failOnCancel: false,
-            saveToFiles: true,
-            urls: [uri],
-        };
-      
-        try {
-            await Share.open(shareOptions);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+const DocumentPreview = ({ item }) => {
+    const companies = useSelector(state => state.company.companies);
+    const generatePdf = usePDF(item, companies);
 
     return (
         <View style={styles.documentShadow}>
@@ -74,12 +46,12 @@ const DocumentPreview = ({
                             ]}
                         >
                             <ResponsiveText 
-                                fontStyle="boldSmallText"
+                                fontStyle='boldSmallText'
                                 color={MAIN_GRAY}
-                                text={strings.labels.status + ": "}
+                                text={strings.labels.status + ': '}
                             />
                             <ResponsiveText 
-                                fontStyle="boldSmallText"
+                                fontStyle='boldSmallText'
                                 color={item?.sentStatus ? GREEN : RED}
                                 text={item?.sentStatus ? strings.labels.sent : strings.labels.notSent}
                             />
@@ -101,8 +73,4 @@ const DocumentPreview = ({
     );
 }
 
-const mapStateToProps = state => ({
-    companies: state.company.companies,
-});
-
-export default connect(mapStateToProps, { })(DocumentPreview);
+export default DocumentPreview;

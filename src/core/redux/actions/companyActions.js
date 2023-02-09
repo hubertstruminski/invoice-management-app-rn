@@ -1,12 +1,11 @@
-import axios from "axios";
-import { API_URL } from '../../constants/constants';
+import { fetchCompaniesRequest } from '../requests';
 import { 
     ADD_COMPANY,
     FETCH_COMPANIES,
     REMOVE_COMPANY,
     SET_CHOSEN_COMPANY_DETAILS,
     UPDATE_COMPANY, 
-} from "../types";
+} from '../types';
 
 export const setCompanyDetails = value => ({
     type: SET_CHOSEN_COMPANY_DETAILS,
@@ -35,10 +34,7 @@ const setCompanies = value => ({
 
 export const fetchCompanies = () => {
     return async dispatch => {
-        const response = await axios({
-            method: 'GET',
-            url: `${API_URL}/api/companies`,
-        });
+        const response = await fetchCompaniesRequest();
 
         if(response.status === 200) {
             dispatch(setCompanies(response.data));

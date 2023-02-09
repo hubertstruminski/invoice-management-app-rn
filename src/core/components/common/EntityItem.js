@@ -53,7 +53,7 @@ const EntityItem = ({
                     <TouchableWithoutFeedback onPress={() => openDetails?.(id)}>
                         <View>
                             <ResponsiveText 
-                                fontStyle="details"
+                                fontStyle='details'
                                 color={MAIN_ORANGE}
                                 text={strings.buttons.seeDetails}
                             />

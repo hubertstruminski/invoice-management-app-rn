@@ -7,7 +7,7 @@ import { strings } from '../../../internationalization/strings';
 
 const DescriptionSection = ({ 
     separatorStyle, 
-    fontStyle = "smallDetailsTitle",
+    fontStyle = 'smallDetailsTitle',
     descriptionLabel = strings.labels.description,
     description,
     descriptionLabelStyle = [globalStyles.regularBottomSpace, globalStyles.textAlignCenter],
@@ -21,7 +21,7 @@ const DescriptionSection = ({
                 customStyle={descriptionLabelStyle}
             />
             <ResponsiveText 
-                fontStyle="rightInputTitle"
+                fontStyle='rightInputTitle'
                 color={MAIN_GRAY}
                 text={description}
                 customStyle={separatorStyle}

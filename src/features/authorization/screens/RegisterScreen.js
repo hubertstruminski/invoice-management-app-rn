@@ -1,7 +1,4 @@
-import React, {
-    useCallback,
-    useState,
-} from 'react';
+import React from 'react';
 
 import { Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -25,59 +22,21 @@ import {
     LockIcon, 
 } from '../../../../assets';
 import { strings } from '../../../core/internationalization/strings';
-import { 
-    validateNewAccountForm, 
-    handleFormErrors, 
-} from '../../../core/tools';
-import { createUserAccount } from '../axios';
-import { validateEmail } from '../../../core/tools/validators';
+import { useRegisterScreen } from '../services';
 
-const RegisterScreen = ({
-    navigation: {
-        navigate,
-    },
-}) => {
-    const [email, setEmail] = useState('');
-    const [fullName, setFullName] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const [errors, setErrors] = useState([null , null, null, null]);
-
-    const onEmailChange = (text) => {
-        const validEmailObj = { email: validateEmail(text) };
-        handleFormErrors(validEmailObj, errors, setErrors);
-        setEmail(text);
-    }
-
-    const createAccount = useCallback(async () => {
-        const errorObject = validateNewAccountForm(email, fullName, password, confirmPassword);
-        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
-    
-        if(isValidModel) {
-            const payload = {
-                email, 
-                password, 
-                fullName,
-            };
- 
-            try {
-                const response = await createUserAccount(payload);
-
-                if(response.status === 200) {
-                    navigate('LoginScreen', { isCreated: true });
-                } 
-            } catch(error) {
-                console.log(error);
-            }   
-        }
-    }, [
+const RegisterScreen = () => {
+    const {  
         email,
         fullName,
+        setFullName,
         password,
+        setPassword,
         confirmPassword,
+        setConfirmPassword,
+        onEmailChange,
+        createAccount,
         errors,
-    ]);
+    } = useRegisterScreen();
 
     return (
         <BasicView 
@@ -93,7 +52,7 @@ const RegisterScreen = ({
                 <ResponsiveText 
                     text={strings.hi}
                     color={MAIN_GRAY}
-                    fontStyle="registerTitle"
+                    fontStyle='registerTitle'
                     customStyle={styles.appTitleContainer}
                 />
                 <Input 
@@ -104,7 +63,7 @@ const RegisterScreen = ({
                     setValue={onEmailChange}
                     withWarning={errors[0] !== null}
                     errorText={errors[0]}
-                    keyboardType="email-address"
+                    keyboardType='email-address'
                 />
                 <Input 
                     leftTitle={strings.labels.fullName}
@@ -113,7 +72,7 @@ const RegisterScreen = ({
                     setValue={setFullName}
                     withWarning={errors[1] !== null}
                     errorText={errors[1]}
-                    autoCapitalize="words"
+                    autoCapitalize='words'
                 />
                 <Input 
                     leftTitle={strings.labels.password}
@@ -124,7 +83,7 @@ const RegisterScreen = ({
                     withWarning={errors[2] !== null}
                     errorText={errors[2]}
                     isPassword
-                    textContentType="newPassword"
+                    textContentType='newPassword'
                 />
                 <Input 
                     leftTitle={strings.labels.confirmPassword}
@@ -136,7 +95,7 @@ const RegisterScreen = ({
                     withWarning={errors[3] !== null}
                     errorText={errors[3]}
                     isPassword
-                    textContentType="newPassword"
+                    textContentType='newPassword'
                 />   
                 <Button 
                     color={WHITE}

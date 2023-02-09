@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { View } from 'react-native';
+
 import moment from 'moment';
 
 import { ResponsiveText } from '../../../core/components';
@@ -16,27 +18,27 @@ const InvoiceItem = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="header"
+                fontStyle='header'
                 color={MAIN_GRAY}
-                text={"#" + number}
+                text={'#' + number}
                 customStyle={entityItemStyle.smallBottomSpace}
             />
             <ResponsiveText 
-                fontStyle="regularSmallText"
+                fontStyle='regularSmallText'
                 color={MAIN_GRAY}
                 text={fullName}
                 customStyle={entityItemStyle.smallBottomSpace}
             />
             <View style={globalStyles.rowCenter}>
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.deadline + ": "}
+                    text={strings.labels.deadline + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
-                    text={moment(new Date(deadline)).format("DD.MM.YYYY")}
+                    text={moment(new Date(deadline)).format('DD.MM.YYYY')}
                 />
             </View>
         </React.Fragment>

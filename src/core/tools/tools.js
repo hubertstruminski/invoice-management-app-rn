@@ -16,7 +16,7 @@ export const showConfirmationDelete = (onSuccessCallback) => {
         [
             {
                 text: strings.alert.no,
-                style: "cancel",
+                style: 'cancel',
             },
             {
                 text: strings.alert.yes,

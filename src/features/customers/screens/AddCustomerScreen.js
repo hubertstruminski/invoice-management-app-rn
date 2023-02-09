@@ -1,9 +1,5 @@
-import React, {
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
@@ -16,92 +12,33 @@ import {
 import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { 
-    addCustomer, 
-    updateCustomer, 
-} from '../../../core/redux/actions';
-import { 
-    handleFormErrors, 
-    validateNewCustomerForm, 
-} from '../../../core/tools';
-import { addCustomerRequest, updateCustomerRequest } from '../../../core/redux/requests';
+import { useAddCustomerScreen } from '../services';
 
 const AddCustomerScreen = ({
-    navigation: {
-        goBack,
-    },
-    customerDetails,
-    addCustomer,
-    updateCustomer,
     route: {
         params,
     }
 }) => {
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [street, setStreet] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [nip, setNip] = useState('');
-    const [additionalInformations, setAdditionalInformations] = useState('');
-
-    const [errors, setErrors] = useState([null, null, null, null, null]);
-
-    useEffect(() => {
-        setFullName(customerDetails?.fullName);
-        setEmail(customerDetails?.email);
-        setStreet(customerDetails?.street);
-        setCity(customerDetails?.city);
-        setCountry(customerDetails?.country);
-        setPhoneNumber(customerDetails?.phoneNumber);
-        setNip(customerDetails?.nip);
-        setAdditionalInformations(customerDetails?.description);
-    }, [customerDetails]);
-
-    const createCustomer = useCallback(async () => {
-        const errorObject = validateNewCustomerForm(fullName, email, street, city, nip);
-        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
-    
-        if(isValidModel) {
-            let payload = {
-                fullName,
-                email,
-                phoneNumber,
-                nip,
-                street,
-                city,
-                country,
-                description: additionalInformations,
-            };
-
-            if(params?.isEdit) {
-                const response = await updateCustomerRequest(customerDetails.id, payload);
-                if(response.status === 200) {
-                    payload = { ...payload, id: customerDetails.id };
-                    updateCustomer(payload);
-                }
-            } else {
-                const response = await addCustomerRequest(payload);
-                if(response.status === 201) {
-                    payload = { ...payload, id: response.data?.id };
-                    addCustomer(payload);
-                }
-            }
-            goBack();
-        }
-    }, [
+    const {
+        createCustomer,
         fullName,
+        setFullName,
         email,
-        street,
-        city,
-        nip,
+        setEmail,
+        street, 
+        setStreet,
+        city, 
+        setCity,
+        country, 
+        setCountry,
+        phoneNumber, 
+        setPhoneNumber,
+        nip, 
+        setNip,
+        additionalInformations, 
+        setAdditionalInformations,
         errors,
-        additionalInformations,
-    ]);
-
-    const phoneNumberMask = [/\+/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/, /\s/, /\d/, /\d/, /\d/];
-    const nipMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+    } = useAddCustomerScreen(params);
 
     return (
         <BasicView 
@@ -205,11 +142,4 @@ const AddCustomerScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    customerDetails: state.customer.customerDetails,
-});
-
-export default connect(mapStateToProps, { 
-    addCustomer,
-    updateCustomer,
-})(AddCustomerScreen);
+export default AddCustomerScreen;

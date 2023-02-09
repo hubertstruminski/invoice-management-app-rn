@@ -1,12 +1,11 @@
-import axios from "axios";
-import { API_URL } from '../../constants/constants';
+import { fetchCustomersRequest } from '../requests';
 import { 
     ADD_CUSTOMER,
     FETCH_CUSTOMERS,
     REMOVE_CUSTOMER, 
     SET_CHOSEN_CUSTOMER_DETAILS,
     UPDATE_CUSTOMER, 
-} from "../types";
+} from '../types';
 
 export const setCustomerDetails = value => ({
     type: SET_CHOSEN_CUSTOMER_DETAILS,
@@ -35,10 +34,7 @@ const setCustomers = value => ({
 
 export const fetchCustomers = () => {
     return async dispatch => {
-        const response = await axios({
-            method: 'GET',
-            url: `${API_URL}/api/customers`,
-        });
+        const response = await fetchCustomersRequest();
 
         if(response.status === 200) {
             dispatch(setCustomers(response.data));

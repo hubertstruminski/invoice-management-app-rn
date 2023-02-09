@@ -26,10 +26,10 @@ export function generateHTML(invoice, companies) {
 
     return `
         <!doctype html>
-        <html lang="en">
+        <html lang='en'>
             <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta charset='utf-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1'>
 
                 <style>
                     @page {
@@ -120,39 +120,39 @@ export function generateHTML(invoice, companies) {
 
             </head>
             <body>
-                <div class="wrapper">
-                    <div class="header appName appLabel">
+                <div class='wrapper'>
+                    <div class='header appName appLabel'>
                         <p>${strings.appTitle}</p>
                     </div>
-                    <div class="fullWidth">
-                        <div class="columnContainer dataLabel dataBackground">
+                    <div class='fullWidth'>
+                        <div class='columnContainer dataLabel dataBackground'>
                             <div>
-                                <p class="bold">${name}</p>
-                                <p class="smallDataSpace">${street}</p>
+                                <p class='bold'>${name}</p>
+                                <p class='smallDataSpace'>${street}</p>
                                 <p>${postalCode} ${city}</p>
                                 <p>${country}</p>
                             </div>
-                            <div class="dataContainer">
-                                <div class="leftDataContainer">
-                                    <p class="bold">${strings.labels.invoice?.toUpperCase()}</p>
-                                    <p class="smallDataSpace">${strings.labels.date}:</p>
+                            <div class='dataContainer'>
+                                <div class='leftDataContainer'>
+                                    <p class='bold'>${strings.labels.invoice?.toUpperCase()}</p>
+                                    <p class='smallDataSpace'>${strings.labels.date}:</p>
                                     <p>${strings.labels.deadline}:</p>
-                                    <p class="smallDataSpace">${strings.pdf.customerName}:</p>
+                                    <p class='smallDataSpace'>${strings.pdf.customerName}:</p>
                                     <p>${strings.pdf.customerEmail}:</p>
-                                    <p class="smallDataSpace">${strings.labels.nip}:</p>
+                                    <p class='smallDataSpace'>${strings.labels.nip}:</p>
                                 </div>
-                                <div class="rightDataContainer">
-                                    <p class="bold">${number}</p>
-                                    <p class="smallDataSpace">${moment(new Date(date)).format("DD.MM.YYYY")}</p>
-                                    <p>${moment(new Date(deadline)).format("DD.MM.YYYY")}</p>
-                                    <p class="smallDataSpace">${customer?.fullName}</p>
+                                <div class='rightDataContainer'>
+                                    <p class='bold'>${number}</p>
+                                    <p class='smallDataSpace'>${moment(new Date(date)).format('DD.MM.YYYY')}</p>
+                                    <p>${moment(new Date(deadline)).format('DD.MM.YYYY')}</p>
+                                    <p class='smallDataSpace'>${customer?.fullName}</p>
                                     <p>${customer?.email}</p>
-                                    <p class="smallDataSpace">${customer?.nip}</p>
+                                    <p class='smallDataSpace'>${customer?.nip}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="header tableSpace">
-                            <table class="fullWidth">
+                        <div class='header tableSpace'>
+                            <table class='fullWidth'>
                                 <tr>
                                     <th>${strings.pdf.productName}</th>
                                     <th>${strings.labels.amount}</th>

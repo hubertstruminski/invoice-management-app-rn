@@ -1,13 +1,11 @@
-import axios from 'axios';
-import { API_URL } from '../../constants/constants';
-
+import { fetchTaxesRequest } from '../requests';
 import { 
     ADD_TAX,
     FETCH_TAXES,
     REMOVE_TAX, 
     SET_CHOSEN_TAX_DETAILS,
     UPDATE_TAX, 
-} from "../types";
+} from '../types';
 
 export const setTaxDetails = value => ({
     type: SET_CHOSEN_TAX_DETAILS,
@@ -36,10 +34,7 @@ const setTaxes = value => ({
 
 export const fetchTaxes = () => {
     return async dispatch => {
-        const response = await axios({
-            method: 'GET',
-            url: `${API_URL}/api/taxes`,
-        });
+        const response = await fetchTaxesRequest();
 
         if(response.status === 200) {
             dispatch(setTaxes(response.data));

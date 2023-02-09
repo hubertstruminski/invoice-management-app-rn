@@ -1,17 +1,9 @@
-import React, { 
-    useCallback,  
-} from 'react';
+import React from 'react';
 
 import { 
     FlatList,
     View, 
 } from 'react-native';
-
-import { 
-    useDispatch, 
-    useSelector, 
-} from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 
 import { 
     BasicView, 
@@ -26,71 +18,18 @@ import {
     TRANSPARENT, 
 } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { 
-    fetchCustomers, 
-    removeCustomer, 
-    setCustomerDetails, 
-} from '../../../core/redux/actions';
-import { useInitData } from '../../../core/services';
 import { hp } from '../../../core/tools';
-import { removeCustomerById } from '../../../core/redux/requests';
+import { useCustomersScreen } from '../services';
 
 const CustomersScreen = () => {
-    const customers = useSelector(state => state.customer.customers);
-
-    const { navigate } = useNavigation();
-    const dispatch = useDispatch();
-
-    useInitData(fetchCustomers);
-
-    const openAddCustomerForm = useCallback(() => {
-        dispatch(setCustomerDetails({
-            id: 0,
-            fullName: '',
-            email: '',
-            phoneNumber: '',
-            nip: '',
-            street: '',
-            city: '',
-            country: '',
-            description: '',
-        }));
-        navigate('AddCustomerScreen', { isEdit: false })
-    }, []);
-
-    const openDetails = (id) => {
-        const chosenCustomer = customers.find(item => item.id === id);
-        dispatch(setCustomerDetails(chosenCustomer));
-        navigate('CustomerDetailsScreen');
-    }
-
-    const removeItem = async (id) => {
-        try {
-            const response = await removeCustomerById(id);
-            if(response.status === 200) {
-                dispatch(removeCustomer(id));
-            }
-        } catch(error) {
-            console.log(error);
-        }
-    };
-
-    const updateItem = (item) => {
-        const customerPayload = {
-            id: item.id,
-            fullName: item.fullName,
-            email: item.email,
-            phoneNumber: item.phoneNumber,
-            nip: item.nip,
-            street: item.street,
-            city: item.city,
-            country: item.country,
-            description: item.description,
-        };
-        dispatch(setCustomerDetails(customerPayload));
-        navigate('AddCustomerScreen', { isEdit: true });
-    };
-
+    const {  
+        customers,
+        openAddCustomerForm,
+        openDetails,
+        removeItem,
+        updateItem,
+    } = useCustomersScreen();
+    
     return (
         <BasicView 
             headerComponent={

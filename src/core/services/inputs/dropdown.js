@@ -74,7 +74,7 @@ export function useDropdown({
 
     const toggleDropdown = useCallback(() => {
         setValue('');
-        setId && setId(null);
+        setId?.(null);
         setShowData(!showData);
     }, [showData]);
 

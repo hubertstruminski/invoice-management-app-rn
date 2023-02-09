@@ -5,23 +5,24 @@ import {
     PRODUCT_ENTITY, 
     TAX_ENTITY, 
 } from '../constants/constants';
+import { Screens } from '../constants/navigator';
 
 export const navigateFromTile = (label, navigate) => {
     switch(label) {
         case COMPANY_ENTITY:
-            navigate('MyCompaniesScreen');
+            navigate(Screens.MY_COMPANIES);
             break;
         case CUSTOMER_ENTITY:
-            navigate('CustomersScreen');
+            navigate(Screens.CUSTOMERS);
             break;
         case INVOICE_ENTITY:
-            navigate('InvoicesScreen');
+            navigate(Screens.INVOICES);
             break;
         case PRODUCT_ENTITY:
-            navigate('ProductsScreen');
+            navigate(Screens.PRODUCTS);
             break;
         case TAX_ENTITY:
-            navigate('TaxesScreen');
+            navigate(Screens.TAXES);
             break;
         default: 
             break;

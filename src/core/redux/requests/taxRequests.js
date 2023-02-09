@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 import { API_URL } from '../../constants/constants';
 
@@ -22,5 +22,12 @@ export const updateTaxRequest = async (id, payload) => {
         method: 'PUT',
         url: `${API_URL}/api/taxes/${id}`,
         data: payload,
+    });
+}
+
+export const fetchTaxesRequest = async () => {
+    return await axios({
+        method: 'GET',
+        url: `${API_URL}/api/taxes`,
     });
 }

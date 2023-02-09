@@ -18,5 +18,5 @@ export const setLanguage = () => {
     }
   });
 
-  result ? strings.setLanguage(result) : strings.setLanguage("en");
+  result ? strings.setLanguage(result) : strings.setLanguage('en');
 }

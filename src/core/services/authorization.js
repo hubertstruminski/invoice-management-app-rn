@@ -12,14 +12,15 @@ import {
     removeAsyncStorageItem, 
 } from '../storage';
 import { JWT_TOKEN_KEY } from '../constants/constants';
+import { Screens } from '../constants/navigator';
 
 export const logOut = async (navigation) => {
     await removeAsyncStorageItem(JWT_TOKEN_KEY);
-    if(navigation?.getCurrentRoute?.()?.name != 'LoginScreen') {
+    if(navigation?.getCurrentRoute?.()?.name != Screens.LOGIN) {
         navigation?.dispatch(
             CommonActions.reset({
                 index: 0,
-                routes: [{ name: 'LoginScreen' }],
+                routes: [{ name: Screens.LOGIN }],
             })
         );
     }
@@ -36,7 +37,7 @@ export const useAuthorization = (navigation) => {
                     navigation?.dispatch(
                         CommonActions.reset({
                             index: 0,
-                            routes: [{ name: 'DashboardScreen' }],
+                            routes: [{ name: Screens.DASHBOARD }],
                         })
                     );
                 } else {

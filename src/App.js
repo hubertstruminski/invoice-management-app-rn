@@ -21,7 +21,7 @@ const App = () => {
     Platform.OS === 'android' && SplashScreen.hide();
     
     const languageSubscription = AppState.addEventListener('change', nextAppState => {
-      if(nextAppState === "active") {
+      if(nextAppState === 'active') {
         setLanguage();
       }
     });

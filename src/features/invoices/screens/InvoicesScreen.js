@@ -37,6 +37,7 @@ import {
     initFutureDate, 
 } from '../../../core/tools';
 import { removeInvoiceById } from '../../../core/redux/requests';
+import { Screens } from '../../../core/constants/navigator';
 
 const InvoicesScreen = () => {
     const invoices = useSelector(state => state.invoice.invoices);
@@ -56,13 +57,13 @@ const InvoicesScreen = () => {
             description: '',
             sentStatus: false,
         });
-        navigate('AddInvoiceScreen', { isEdit: false });
+        navigate(Screens.ADD_INVOICE, { isEdit: false });
     }, []);
 
     const openDetails = (id) => {
         const chosenInvoice = invoices.find(item => item.id === id);
         dispatch(setInvoiceDetails(chosenInvoice));
-        navigate('InvoiceDetailsScreen');
+        navigate(Screens.INVOICE_DETAILS);
     }
 
     const removeItem = async (id) => {
@@ -88,7 +89,7 @@ const InvoicesScreen = () => {
             products: item.products,
         };
         dispatch(setInvoiceDetails(invoicePayload));
-        navigate('AddInvoiceScreen', { isEdit: true });
+        navigate(Screens.ADD_INVOICE, { isEdit: true });
     };
 
     return (

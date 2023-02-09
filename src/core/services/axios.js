@@ -9,7 +9,7 @@ export function useInitAxios() {
         const accessToken = await getAsyncStorageString(JWT_TOKEN_KEY);
         
         if(!config.url?.includes('/api/auth/')) {
-            config.headers['Authorization'] = "Bearer " + accessToken;
+            config.headers['Authorization'] = 'Bearer ' + accessToken;
         }
         return config;
     });
@@ -19,7 +19,7 @@ export function useInitAxios() {
             return response;
         }, 
         error => {
-            console.log("error: ", JSON.stringify(error));
+            console.log('error: ', JSON.stringify(error));
             // if(error?.response?.status > 299) {
                 // console.log(error.response);
                 // Toast.show({

@@ -32,7 +32,7 @@ const Button = ({
                 ]}
             >
                 <ResponsiveText 
-                    fontStyle="button"
+                    fontStyle='button'
                     color={color}
                     text={text}
                 />

@@ -55,13 +55,13 @@ const Dropdown = forwardRef(({
         >
             <View style={styles.titleContainer}>
                 <ResponsiveText 
-                    fontStyle="inputText"
+                    fontStyle='inputText'
                     text={leftTitle}
                     color={MAIN_GRAY}
                 />
                 { rightTitle &&
                     <ResponsiveText 
-                        fontStyle="rightInputTitle"
+                        fontStyle='rightInputTitle'
                         text={rightTitle}
                         color={GRAY_3}
                     />
@@ -77,14 +77,14 @@ const Dropdown = forwardRef(({
             >
                 {multiple ? (
                         <ResponsiveText 
-                            fontStyle="inputText"
+                            fontStyle='inputText'
                             color={chosenEntities?.length !== 0 ? MAIN_GRAY : GRAY_3}
                             text={chosenEntities?.length === 0 ? 
                                 strings.placeholders.multipleProducts : chosenEntities?.map(item => item.name).join(', ')}
                         />
                     ) :
                         <ResponsiveText 
-                            fontStyle="inputText"
+                            fontStyle='inputText'
                             color={value !== '' ? MAIN_GRAY : GRAY_3}
                             text={value === '' ? placeholder : value}
                             customStyle={[
@@ -107,7 +107,7 @@ const Dropdown = forwardRef(({
             }
             { !id && errorText && !showData &&
                 <ResponsiveText 
-                    fontStyle="errorInputText"
+                    fontStyle='errorInputText'
                     color={RED}
                     text={errorText}
                     customStyle={styles.errorSpace}

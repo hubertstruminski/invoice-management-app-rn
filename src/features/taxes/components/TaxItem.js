@@ -13,19 +13,19 @@ const TaxItem = ({
         <React.Fragment>
             <View style={globalStyles.rowCenter}>
                 <ResponsiveText 
-                    fontStyle="header"
+                    fontStyle='header'
                     color={MAIN_GRAY}
                     text={name}
                 />
                 <ResponsiveText 
-                    fontStyle="details"
+                    fontStyle='details'
                     color={MAIN_GRAY}
-                    text=" - "
+                    text=' - '
                 />
                 <ResponsiveText 
-                    fontStyle="details"
+                    fontStyle='details'
                     color={MAIN_GRAY}
-                    text={amount + "%"}
+                    text={amount + '%'}
                 />
             </View>
         </React.Fragment>

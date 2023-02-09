@@ -32,6 +32,7 @@ import {
 } from '../../../core/redux/actions';
 import { removeCompanyById } from '../../../core/redux/requests';
 import { useInitData } from '../../../core/services';
+import { Screens } from '../../../core/constants/navigator';
 
 const MyCompaniesScreen = () => {
     const companies = useSelector(state => state.company.companies);
@@ -49,13 +50,13 @@ const MyCompaniesScreen = () => {
             city: '',
             country: '',
         }));
-        navigate('AddCompanyScreen', { isEdit: false });
+        navigate(Screens.ADD_COMPANY, { isEdit: false });
     }, []);
 
     const redirectToDetails = (id) => {
         const chosenCompany = companies.find(item => item.id === id);
         dispatch(setCompanyDetails(chosenCompany));
-        navigate('MyCompanyDetailsScreen');
+        navigate(Screens.MY_COMPANY_DETAILS);
     }
 
     const removeItem = async (id) => {
@@ -79,7 +80,7 @@ const MyCompaniesScreen = () => {
             country: item.country,
         };
         dispatch(setCompanyDetails(companyPayload));
-        navigate('AddCompanyScreen', { isEdit: true });
+        navigate(Screens.ADD_COMPANY, { isEdit: true });
     };
 
     return (
@@ -113,7 +114,7 @@ const MyCompaniesScreen = () => {
                         updateItem={updateItem}
                     >
                         <ResponsiveText 
-                            fontStyle="header"
+                            fontStyle='header'
                             color={MAIN_GRAY}
                             text={item.name}
                         />

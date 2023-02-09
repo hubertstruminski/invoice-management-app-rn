@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { View } from 'react-native';
+
 import moment from 'moment';
 
 import { ResponsiveText } from '../../../core/components';
@@ -13,45 +15,45 @@ const InvoicePartDocument = ({
     return (
         <View>
             <ResponsiveText 
-                fontStyle="header"
+                fontStyle='header'
                 color={MAIN_GRAY}
                 text={strings.labels.invoice}
                 customStyle={globalStyles.regularBottomSpace}
             />
             <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.number + ": "}
+                    text={strings.labels.number + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
-                    text={"#" + item?.number}
+                    text={'#' + item?.number}
                 />
             </View>
             <View style={[globalStyles.rowCenter, globalStyles.smallLabelSpace]}>
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.date + ": "}
+                    text={strings.labels.date + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
-                    text={moment(new Date(item?.date)).format("DD.MM.YYYY")}
+                    text={moment(new Date(item?.date)).format('DD.MM.YYYY')}
                 />
             </View>
             <View style={globalStyles.rowCenter}>
                 <ResponsiveText 
-                    fontStyle="boldSmallText"
+                    fontStyle='boldSmallText'
                     color={MAIN_GRAY}
-                    text={strings.labels.deadline + ": "}
+                    text={strings.labels.deadline + ': '}
                 />
                 <ResponsiveText 
-                    fontStyle="regularSmallText"
+                    fontStyle='regularSmallText'
                     color={MAIN_GRAY}
-                    text={moment(new Date(item?.deadline)).format("DD.MM.YYYY")}
+                    text={moment(new Date(item?.deadline)).format('DD.MM.YYYY')}
                 />
             </View>
         </View>

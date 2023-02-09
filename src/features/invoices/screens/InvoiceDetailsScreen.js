@@ -46,14 +46,14 @@ const InvoiceDetailsScreen = ({
                             ]}
                         >
                             <ResponsiveText 
-                                fontStyle="headerDetails"
+                                fontStyle='headerDetails'
                                 color={MAIN_GRAY}
-                                text={strings.labels.invoiceNumber + ": "}
+                                text={strings.labels.invoiceNumber + ': '}
                             />
                             <ResponsiveText 
-                                fontStyle="regularHeaderDetails"
+                                fontStyle='regularHeaderDetails'
                                 color={MAIN_GRAY}
-                                text={"#" + number}
+                                text={'#' + number}
                             />
                         </View>
                         <View style={globalStyles.detailsContainer}>
@@ -82,7 +82,7 @@ const InvoiceDetailsScreen = ({
                                 />
                             }
                             <ResponsiveText 
-                                fontStyle="smallDetailsTitle"
+                                fontStyle='smallDetailsTitle'
                                 color={MAIN_GRAY}
                                 text={strings.labels.products}
                                 customStyle={[globalStyles.textAlignCenter, globalStyles.regularBottomSpace]}

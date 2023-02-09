@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { 
     FlatList,
     View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { useSelector, } from 'react-redux';
 
 import { 
     AddressDetails,
@@ -19,8 +21,9 @@ import { strings } from '../../../core/internationalization/strings';
 import { fetchInvoices } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
 
-const CustomerDetailsScreen = ({
-    customerDetails: {
+const CustomerDetailsScreen = () => {
+    const invoices = useSelector(state => state.invoice.invoices);
+    const {
         id,
         fullName,
         email,
@@ -30,9 +33,7 @@ const CustomerDetailsScreen = ({
         city,
         country,
         description,
-    },
-    invoices,
-}) => {
+    } = useSelector(state => state.customer.customerDetails);
     useInitData(fetchInvoices);
     const documents = invoices.filter(invoice => invoice.customer.id === id);
 
@@ -48,7 +49,7 @@ const CustomerDetailsScreen = ({
                 ListHeaderComponent={() => (
                     <View style={globalStyles.alignCenter}>
                         <ResponsiveText 
-                            fontStyle="headerDetails"
+                            fontStyle='headerDetails'
                             color={MAIN_GRAY}
                             text={fullName}
                             customStyle={globalStyles.largeSpace}
@@ -60,13 +61,13 @@ const CustomerDetailsScreen = ({
                             ]}
                         >
                             <ResponsiveText 
-                                fontStyle="labelDetails"
+                                fontStyle='labelDetails'
                                 color={MAIN_GRAY}
-                                text={strings.labels.email + ":"} 
+                                text={strings.labels.email + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
-                                fontStyle="rightInputTitle"
+                                fontStyle='rightInputTitle'
                                 color={MAIN_GRAY}
                                 text={email}
                                 customStyle={globalStyles.regularBottomSpace}
@@ -74,13 +75,13 @@ const CustomerDetailsScreen = ({
                             {phoneNumber !== '' &&
                                 <React.Fragment>
                                     <ResponsiveText 
-                                        fontStyle="labelDetails"
+                                        fontStyle='labelDetails'
                                         color={MAIN_GRAY}
-                                        text={strings.labels.phoneNumber + ":"} 
+                                        text={strings.labels.phoneNumber + ':'} 
                                         customStyle={globalStyles.smallLabelSpace}
                                     />
                                     <ResponsiveText 
-                                        fontStyle="rightInputTitle"
+                                        fontStyle='rightInputTitle'
                                         color={MAIN_GRAY}
                                         text={phoneNumber}
                                         customStyle={globalStyles.regularBottomSpace}
@@ -88,13 +89,13 @@ const CustomerDetailsScreen = ({
                                 </React.Fragment>
                             }
                             <ResponsiveText 
-                                fontStyle="labelDetails"
+                                fontStyle='labelDetails'
                                 color={MAIN_GRAY}
-                                text={strings.labels.nip + ":"} 
+                                text={strings.labels.nip + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
-                                fontStyle="rightInputTitle"
+                                fontStyle='rightInputTitle'
                                 color={MAIN_GRAY}
                                 text={nip}
                                 customStyle={globalStyles.regularBottomSpace}
@@ -114,7 +115,7 @@ const CustomerDetailsScreen = ({
                         </View>
                         {documents?.length !== 0 &&
                             <ResponsiveText 
-                                fontStyle="smallDetailsTitle"
+                                fontStyle='smallDetailsTitle'
                                 color={MAIN_GRAY}
                                 text={strings.labels.documents}
                                 customStyle={[
@@ -137,9 +138,4 @@ const CustomerDetailsScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    customerDetails: state.customer.customerDetails,
-    invoices: state.invoice.invoices,
-});
-
-export default connect(mapStateToProps, { })(CustomerDetailsScreen);
+export default CustomerDetailsScreen;

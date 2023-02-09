@@ -11,13 +11,13 @@ const CustomerItem = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="header"
+                fontStyle='header'
                 color={MAIN_GRAY}
                 text={fullName}
                 customStyle={entityItemStyle.smallBottomSpace}
             />
             <ResponsiveText 
-                fontStyle="regularSmallText"
+                fontStyle='regularSmallText'
                 color={MAIN_GRAY}
                 text={email}
             />

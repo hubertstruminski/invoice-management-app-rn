@@ -14,7 +14,7 @@ const CustomerDetails = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="smallDetailsTitle"
+                fontStyle='smallDetailsTitle'
                 color={MAIN_GRAY}
                 text={strings.labels.customer}
                 customStyle={[
@@ -31,13 +31,13 @@ const CustomerDetails = ({
             >
                 <View>
                     <ResponsiveText 
-                        fontStyle="labelDetails"
+                        fontStyle='labelDetails'
                         color={MAIN_GRAY}
-                        text={strings.labels.fullName + ":"} 
+                        text={strings.labels.fullName + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
-                        fontStyle="rightInputTitle"
+                        fontStyle='rightInputTitle'
                         color={MAIN_GRAY}
                         text={item?.fullName}
                         customStyle={globalStyles.regularBottomSpace}
@@ -45,13 +45,13 @@ const CustomerDetails = ({
                     {item?.phoneNumber?.length > 0 &&
                         <React.Fragment>
                             <ResponsiveText 
-                                fontStyle="labelDetails"
+                                fontStyle='labelDetails'
                                 color={MAIN_GRAY}
-                                text={strings.labels.phoneNumber + ":"} 
+                                text={strings.labels.phoneNumber + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
-                                fontStyle="rightInputTitle"
+                                fontStyle='rightInputTitle'
                                 color={MAIN_GRAY}
                                 text={item?.phoneNumber}
                             />

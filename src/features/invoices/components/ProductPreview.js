@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { View } from 'react-native';
 
 import { ResponsiveText } from '../../../core/components';
@@ -23,7 +24,7 @@ const ProductPreview = ({
             <View style={styles.productContainer}>
                 <View style={styles.columnContainer}>
                     <ResponsiveText 
-                        fontStyle="header"
+                        fontStyle='header'
                         color={MAIN_GRAY}
                         text={item?.name}
                     />
@@ -35,24 +36,24 @@ const ProductPreview = ({
                             ]}
                         >
                             <ResponsiveText 
-                                fontStyle="boldSmallText"
+                                fontStyle='boldSmallText'
                                 color={MAIN_GRAY}
-                                text={strings.labels.price + ": "}
+                                text={strings.labels.price + ': '}
                             />
                             <ResponsiveText 
-                                fontStyle="regularSmallText"
+                                fontStyle='regularSmallText'
                                 color={MAIN_GRAY}
-                                text={item?.price + " $"}
+                                text={item?.price + ' $'}
                             />
                         </View>
                         <View style={globalStyles.rowCenter}>
                             <ResponsiveText 
-                                fontStyle="boldSmallText"
+                                fontStyle='boldSmallText'
                                 color={MAIN_GRAY}
-                                text={strings.labels.amount + ": "}
+                                text={strings.labels.amount + ': '}
                             />
                             <ResponsiveText 
-                                fontStyle="regularSmallText"
+                                fontStyle='regularSmallText'
                                 color={MAIN_GRAY}
                                 text={item?.amount}
                             />

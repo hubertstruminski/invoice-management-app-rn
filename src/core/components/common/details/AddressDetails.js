@@ -15,26 +15,26 @@ const AddressDetails = ({
     return (
         <React.Fragment>
             <ResponsiveText 
-                fontStyle="labelDetails"
+                fontStyle='labelDetails'
                 color={MAIN_GRAY}
-                text={strings.labels.street + ":"} 
+                text={strings.labels.street + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
-                fontStyle="rightInputTitle"
+                fontStyle='rightInputTitle'
                 color={MAIN_GRAY}
                 text={street}
                 customStyle={separatorStyle}
             />
             {children}
             <ResponsiveText 
-                fontStyle="labelDetails"
+                fontStyle='labelDetails'
                 color={MAIN_GRAY}
-                text={strings.labels.city + ":"} 
+                text={strings.labels.city + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
-                fontStyle="rightInputTitle"
+                fontStyle='rightInputTitle'
                 color={MAIN_GRAY}
                 text={city}
                 customStyle={separatorStyle}
@@ -42,13 +42,13 @@ const AddressDetails = ({
             {country !== '' &&
                 <React.Fragment> 
                     <ResponsiveText 
-                        fontStyle="labelDetails"
+                        fontStyle='labelDetails'
                         color={MAIN_GRAY}
-                        text={strings.labels.country + ":"} 
+                        text={strings.labels.country + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
-                        fontStyle="rightInputTitle"
+                        fontStyle='rightInputTitle'
                         color={MAIN_GRAY}
                         text={country}
                         customStyle={separatorStyle}

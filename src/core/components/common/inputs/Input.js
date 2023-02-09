@@ -52,13 +52,13 @@ const Input = ({
         >
             <View style={styles.titleContainer}>
                 <ResponsiveText 
-                    fontStyle="inputText"
+                    fontStyle='inputText'
                     text={leftTitle}
                     color={MAIN_GRAY}
                 />
                 { rightTitle &&
                     <ResponsiveText 
-                        fontStyle="rightInputTitle"
+                        fontStyle='rightInputTitle'
                         text={rightTitle}
                         color={GRAY_3}
                     />
@@ -76,7 +76,7 @@ const Input = ({
                         {leftIcon}
                         { isCalendar ? (
                                 <ResponsiveText 
-                                    fontStyle="inputText"
+                                    fontStyle='inputText'
                                     color={MAIN_GRAY}
                                     text={placeholder}
                                     customStyle={leftIcon && styles.leftPlaceholderSpace}
@@ -85,7 +85,7 @@ const Input = ({
                                 <MaskInput 
                                     ref={inputRef}
                                     style={[
-                                        responsiveTextStyles["inputText"],
+                                        responsiveTextStyles['inputText'],
                                         leftIcon && styles.leftPlaceholderSpace,
                                         styles.input, {
                                             height: Platform.OS === 'android' ? hp(48) : undefined,
@@ -95,15 +95,15 @@ const Input = ({
                                     placeholder={placeholder}
                                     textContentType={textContentType}
                                     placeholderTextColor={GRAY_3}
-                                    autoCapitalize={autoCapitalize ? autoCapitalize : "none"}
-                                    keyboardType={keyboardType ? keyboardType : "default"}
+                                    autoCapitalize={autoCapitalize ? autoCapitalize : 'none'}
+                                    keyboardType={keyboardType ? keyboardType : 'default'}
                                     value={value}
                                     onChangeText={(masked, unmasked) => {
                                         mask ? setValue(masked) : setValue(unmasked);
                                     }}
                                     secureTextEntry={isPassword}
                                     mask={mask}
-                                    textAlignVertical="center"
+                                    textAlignVertical='center'
                                     blurOnSubmit={false}
                                 />
                             )
@@ -113,7 +113,7 @@ const Input = ({
             </TouchableWithoutFeedback>
             { errorText !== null &&
                 <ResponsiveText 
-                    fontStyle="errorInputText"
+                    fontStyle='errorInputText'
                     color={RED}
                     text={errorText}
                     customStyle={styles.errorSpace}

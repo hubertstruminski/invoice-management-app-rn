@@ -9,4 +9,4 @@ export const GRAY_4 = '#DADADE';
 export const RED = '#FF0000';
 export const GREEN = '#00cc00';
 
-export const TRANSPARENT = "transparent";
+export const TRANSPARENT = 'transparent';
