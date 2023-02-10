@@ -1,4 +1,7 @@
-import { useCallback } from 'react';
+import { 
+    useCallback, 
+    useMemo, 
+} from 'react';
 
 import { 
     useDispatch, 
@@ -14,6 +17,15 @@ import {
 import { useInitData } from '../../../core/services';
 import { removeCustomerById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
+import { EntityItem } from '../../../core/components';
+import { hp } from '../../../core/tools';
+import { CustomerItem } from '../components';
+import globalStyles from '../../../core/styles/globalStyles';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../../core/constants/colors';
+import { strings } from '../../../core/internationalization/strings';
 
 export function useCustomersScreen() {
     const customers = useSelector(state => state.customer.customers);
@@ -71,11 +83,36 @@ export function useCustomersScreen() {
         navigate(Screens.ADD_CUSTOMER, { isEdit: true });
     };
 
+    const renderItem = ({ item, index }) => (
+        <EntityItem 
+            key={index}
+            height={hp(96)}
+            item={item}
+            openDetails={openDetails}
+            removeItem={removeItem}
+            updateItem={updateItem}
+        >
+            <CustomerItem 
+                fullName={item.fullName}
+                email={item.email}
+            />
+        </EntityItem>
+    );
+
+    const renderHeader = useMemo(() => (
+        <Button 
+            color={MAIN_GRAY}
+            text={strings.addEntity.addCustomer}
+            backgroundColor={TRANSPARENT}
+            isOutline
+            customStyle={globalStyles.mediumToSpace}
+            onPress={openAddCustomerForm}
+        />
+    ), [openAddCustomerForm]);
+
     return {
         customers,
-        openAddCustomerForm,
-        openDetails,
-        removeItem,
-        updateItem,
+        renderItem,
+        renderHeader,
     };
 }

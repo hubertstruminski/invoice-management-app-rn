@@ -14,6 +14,7 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { useAddProductScreen } from '../services';
+import { hp } from '../../../core/tools';
 
 const AddProductScreen = ({
     route: {
@@ -52,7 +53,7 @@ const AddProductScreen = ({
             headerComponent={<Header title={strings.addEntity.addProduct} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={150}
+                extraHeight={hp(150)}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,

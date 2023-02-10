@@ -1,4 +1,7 @@
-import { useCallback } from 'react';
+import { 
+    useCallback, 
+    useMemo,
+} from 'react';
 
 import { 
     useDispatch, 
@@ -7,12 +10,23 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 import { 
+    EntityItem, 
+    ResponsiveText, 
+    Button,
+} from '../../../core/components';
+import { 
     fetchCompanies, 
     removeCompany, 
 } from '../../../core/redux/actions';
 import { removeCompanyById } from '../../../core/redux/requests';
 import { useInitData } from '../../../core/services';
 import { Screens } from '../../../core/constants/navigator';
+import { 
+    MAIN_GRAY, 
+    TRANSPARENT, 
+} from '../../../core/constants/colors';
+import { strings } from '../../../core/internationalization/strings';
+import globalStyles from '../../../core/styles/globalStyles';
 
 export function useMyCompaniesScreen() {
     const companies = useSelector(state => state.company.companies);
@@ -63,11 +77,36 @@ export function useMyCompaniesScreen() {
         navigate(Screens.ADD_COMPANY, { isEdit: true });
     };
 
+    const renderItem = ({ item, index }) => (
+        <EntityItem 
+            key={index}
+            item={item}
+            openDetails={redirectToDetails}
+            removeItem={removeItem}
+            updateItem={updateItem}
+        >
+            <ResponsiveText 
+                fontStyle='header'
+                color={MAIN_GRAY}
+                text={item.name}
+            />
+        </EntityItem>
+    );
+
+    const renderHeader = useMemo(() => (
+        <Button 
+            color={MAIN_GRAY}
+            text={strings.addEntity.addCompany}
+            backgroundColor={TRANSPARENT}
+            isOutline
+            customStyle={globalStyles.mediumToSpace}
+            onPress={openAddCompanyForm}
+        />
+    ), [openAddCompanyForm]);
+
     return {
         companies,
-        openAddCompanyForm,
-        redirectToDetails,
-        removeItem,
-        updateItem,
+        renderItem,
+        renderHeader,
     };
 }

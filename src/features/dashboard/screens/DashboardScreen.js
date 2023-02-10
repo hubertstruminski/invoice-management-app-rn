@@ -6,12 +6,13 @@ import {
     BasicView, 
     Header, 
 } from '../../../core/components';
-import { EntityTile } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { DASHBOARD_TILES } from '../mocks';
 import { strings } from '../../../core/internationalization/strings';
+import { useDashboardScreen } from '../services';
 
 const DashboardScreen = () => {
+    const renderItem = useDashboardScreen();
     return (
         <BasicView
             containerStyle={globalStyles.alignCenter} 
@@ -24,15 +25,7 @@ const DashboardScreen = () => {
         >
             <FlatList 
                 data={DASHBOARD_TILES}
-                renderItem={({ item, index }) => (
-                    <EntityTile 
-                        key={index}
-                        icon={item.icon}
-                        title={item.title}
-                        label={item.label}
-                        isLast={DASHBOARD_TILES.length - 1 === index}
-                    />
-                )}
+                renderItem={renderItem}
                 numColumns={2}
                 style={[
                     globalStyles.flatListContainer, 

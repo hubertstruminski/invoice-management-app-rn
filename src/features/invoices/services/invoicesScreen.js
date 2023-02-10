@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { 
     useDispatch, 
@@ -12,9 +12,13 @@ import {
     removeInvoice, 
 } from '../../../core/redux/actions';
 import { useInitData } from '../../../core/services';
-import { initFutureDate } from '../../../core/tools';
+import { hp, initFutureDate } from '../../../core/tools';
 import { removeInvoiceById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
+import { Button, EntityItem } from '../../../core/components';
+import { InvoiceItem } from '../components';
+import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
+import { strings } from '../../../core/internationalization/strings';
 
 export function useInvoicesScreen() {
     const invoices = useSelector(state => state.invoice.invoices);
@@ -69,11 +73,36 @@ export function useInvoicesScreen() {
         navigate(Screens.ADD_INVOICE, { isEdit: true });
     };
 
+    const renderItem = ({ item, index }) => (
+        <EntityItem 
+            key={index}
+            height={hp(112)}
+            item={item}
+            openDetails={openDetails}
+            removeItem={removeItem}
+            updateItem={updateItem}
+        >
+            <InvoiceItem 
+                number={item.number}
+                fullName={item.customer.fullName}
+                deadline={item.deadline}
+            />
+        </EntityItem>
+    );
+
+    const renderHeader = useMemo(() => (
+        <Button 
+            color={MAIN_GRAY}
+            text={strings.addEntity.addInvoice}
+            backgroundColor={TRANSPARENT}
+            isOutline
+            onPress={openAddInvoiceForm}
+        />
+    ), [openAddInvoiceForm]);
+
     return {
         invoices,
-        openAddInvoiceForm,
-        openDetails,
-        removeItem,
-        updateItem,
+        renderItem,
+        renderHeader,
     };
 }

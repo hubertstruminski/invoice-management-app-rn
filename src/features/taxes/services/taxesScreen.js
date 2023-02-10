@@ -1,4 +1,7 @@
-import { useCallback } from 'react';
+import { 
+    useCallback, 
+    useMemo, 
+} from 'react';
 
 import { 
     useSelector, 
@@ -14,6 +17,11 @@ import {
 import { useInitData } from '../../../core/services';
 import { removeTaxById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
+import { Button, EntityItem } from '../../../core/components';
+import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
+import { strings } from '../../../core/internationalization/strings';
+import { hp } from '../../../core/tools';
+import { TaxItem } from '../components';
 
 export function useTaxesScreen() {
     const taxes = useSelector(state => state.tax.taxes);
@@ -62,11 +70,35 @@ export function useTaxesScreen() {
         navigate(Screens.ADD_TAX, { isEdit: true });
     };
 
+    const renderItem = ({ item, index }) => (
+        <EntityItem
+            key={index}
+            height={hp(64)}
+            item={item}
+            openDetails={openDetails}
+            updateItem={updateItem}
+            removeItem={removeItem}
+        >
+            <TaxItem 
+                name={item.name}
+                amount={item.amount}
+            />
+        </EntityItem>
+    );
+    
+    const renderHeader = useMemo(() => (
+        <Button 
+            color={MAIN_GRAY}
+            text={strings.addEntity.addTax}
+            backgroundColor={TRANSPARENT}
+            isOutline
+            onPress={openAddTaxForm}
+        />
+    ), [openAddTaxForm]);
+
     return {
         taxes,
-        openAddTaxForm,
-        openDetails,
-        removeItem,
-        updateItem,
+        renderHeader,
+        renderItem,
     }
 }

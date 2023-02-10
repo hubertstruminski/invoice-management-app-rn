@@ -17,6 +17,7 @@ import { WHITE } from '../../../core/constants/colors';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
 import { useAddInvoiceScreen } from '../services';
+import { hp } from '../../../core/tools';
 
 const AddInvoiceScreen = ({
     route: {
@@ -56,7 +57,7 @@ const AddInvoiceScreen = ({
             headerComponent={<Header title={strings.addEntity.addInvoice} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={150}
+                extraHeight={hp(150)}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,

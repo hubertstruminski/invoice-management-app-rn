@@ -15,6 +15,7 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { useAddTaxScreen } from '../services';
+import { hp } from '../../../core/tools';
 
 const AddTaxScreen = ({
     route: {
@@ -41,7 +42,7 @@ const AddTaxScreen = ({
             headerComponent={<Header title={strings.addEntity.addTax} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={150}
+                extraHeight={hp(150)}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,

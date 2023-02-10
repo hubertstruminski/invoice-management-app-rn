@@ -8,26 +8,16 @@ import {
 import { 
     BasicView, 
     Header, 
-    Button,
-    EntityItem,
 } from '../../../core/components';
-import { InvoiceItem } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { 
-    MAIN_GRAY, 
-    TRANSPARENT, 
-} from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { hp } from '../../../core/tools';
 import { useInvoicesScreen } from '../services';
 
 const InvoicesScreen = () => {
     const {
         invoices,
-        openAddInvoiceForm,
-        openDetails,
-        removeItem,
-        updateItem,
+        renderItem,
+        renderHeader,
     } = useInvoicesScreen();
 
     return (
@@ -37,35 +27,12 @@ const InvoicesScreen = () => {
             }
         >
             <FlatList
-                ListHeaderComponent={
-                    <Button 
-                        color={MAIN_GRAY}
-                        text={strings.addEntity.addInvoice}
-                        backgroundColor={TRANSPARENT}
-                        isOutline
-                        onPress={openAddInvoiceForm}
-                    />
-                } 
+                ListHeaderComponent={renderHeader} 
                 showsVerticalScrollIndicator={false}
                 data={invoices
                     .sort((a, b) => new Date(b.deadline) - new Date(a.deadline))
                 }
-                renderItem={({ item, index }) => (
-                    <EntityItem 
-                        key={index}
-                        height={hp(112)}
-                        item={item}
-                        openDetails={openDetails}
-                        removeItem={removeItem}
-                        updateItem={updateItem}
-                    >
-                        <InvoiceItem 
-                            number={item.number}
-                            fullName={item.customer.fullName}
-                            deadline={item.deadline}
-                        />
-                    </EntityItem>
-                )}
+                renderItem={renderItem}
                 contentContainerStyle={[
                     globalStyles.alignCenter,
                     globalStyles.flexGrow,

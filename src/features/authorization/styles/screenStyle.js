@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { 
-    hp, 
-    wp, 
-} from '../../../core/tools';
+import { hp } from '../../../core/tools';
 
 export default StyleSheet.create({
     appTitleContainer: {

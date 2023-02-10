@@ -48,7 +48,6 @@ const AddCustomerScreen = ({
             ]}
             headerComponent={<Header title={strings.addEntity.addCustomer} />}
         >
-
             <KeyboardAwareScrollView 
                 extraHeight={150}
                 contentContainerStyle={globalStyles.alignCenter}

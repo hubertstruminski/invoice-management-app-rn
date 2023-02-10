@@ -1,4 +1,7 @@
-import { useCallback } from 'react';
+import { 
+    useCallback, 
+    useMemo, 
+} from 'react';
 
 import { 
     useDispatch, 
@@ -14,6 +17,11 @@ import {
 import { useInitData } from '../../../core/services';
 import { removeProductById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
+import { Button, EntityItem } from '../../../core/components';
+import { hp } from '../../../core/tools';
+import { ProductItem } from '../components';
+import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
+import { strings } from '../../../core/internationalization/strings';
 
 export function useProductsScreen() {
     const products = useSelector(state => state.product.products);
@@ -73,11 +81,36 @@ export function useProductsScreen() {
         navigate(Screens.ADD_PRODUCT, { isEdit: true });
     };
 
+    const renderItem = ({ item, index }) => (
+        <EntityItem 
+            key={index}
+            height={hp(128)}
+            item={item}
+            openDetails={openDetails}
+            removeItem={removeItem}
+            updateItem={updateItem}
+        >
+            <ProductItem 
+                name={item.name}
+                price={item.price}
+                amount={item.amount}
+            />
+        </EntityItem>
+    );
+
+    const renderHeader = useMemo(() => (
+        <Button 
+            color={MAIN_GRAY}
+            text={strings.addEntity.addProduct}
+            backgroundColor={TRANSPARENT}
+            isOutline
+            onPress={openAddProductForm}
+        />
+    ), [openAddProductForm]);
+
     return {
-        updateItem,
-        removeItem,
-        openDetails,
-        openAddProductForm,
         products,
+        renderHeader,
+        renderItem,
     };
 }

@@ -18,6 +18,7 @@ import {
     useAddCompanyScreen, 
     postalCodeMask, 
 } from '../services';
+import { hp } from '../../../core/tools';
 
 const AddCompanyScreen = ({
     route: {
@@ -45,7 +46,7 @@ const AddCompanyScreen = ({
             headerComponent={<Header title={strings.addEntity.addCompany} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={150}
+                extraHeight={hp(150)}
                 style={[
                     globalStyles.flatListContainer,
                     globalStyles.addEntityScrollViewContainer,

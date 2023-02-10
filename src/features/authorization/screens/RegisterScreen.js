@@ -23,6 +23,7 @@ import {
 } from '../../../../assets';
 import { strings } from '../../../core/internationalization/strings';
 import { useRegisterScreen } from '../services';
+import { hp } from '../../../core/tools';
 
 const RegisterScreen = () => {
     const {  
@@ -44,7 +45,7 @@ const RegisterScreen = () => {
             headerComponent={<Header withLogout={false} />}
         >
             <KeyboardAwareScrollView 
-                extraHeight={Platform.OS === 'ios' ? 200 : 150}
+                extraHeight={Platform.OS === 'ios' ? hp(200) : hp(150)}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={globalStyles.alignCenter}
             >
