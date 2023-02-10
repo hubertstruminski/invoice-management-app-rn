@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { 
     ScrollView, 
     View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 
 import { CompanyDetailsIcon } from '../../../../assets';
 import { 
@@ -16,15 +18,15 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
-const MyCompanyDetailsScreen = ({
-    companyDetails: {
+const MyCompanyDetailsScreen = () => {
+    const {
         name,
         street,
         postalCode,
         city,
         country,
-    }
-}) => {
+    } = useSelector(state => state.company.companyDetails);
+
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
@@ -70,8 +72,4 @@ const MyCompanyDetailsScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    companyDetails: state.company.companyDetails,
-});
-
-export default connect(mapStateToProps, { })(MyCompanyDetailsScreen);
+export default MyCompanyDetailsScreen;

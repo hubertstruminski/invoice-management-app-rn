@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { 
     FlatList,
     View,
 } from 'react-native';
-import { connect } from 'react-redux';
+
+import { useSelector } from 'react-redux';
 
 import { InvoiceCalendarIcon } from '../../../../assets';
 import { 
@@ -19,16 +21,16 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
-const InvoiceDetailsScreen = ({
-    invoiceDetails: {
+const InvoiceDetailsScreen = () => {
+    const {
         number,
         date,
         deadline,
         customer,
         description,
         products,
-    },
-}) => {
+    } = useSelector(state => state.invoice.invoiceDetails);
+    
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
@@ -102,9 +104,4 @@ const InvoiceDetailsScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    invoiceDetails: state.invoice.invoiceDetails,
-    products: state.product.products,
-});
-
-export default connect(mapStateToProps, { })(InvoiceDetailsScreen);
+export default InvoiceDetailsScreen;

@@ -1,13 +1,7 @@
-import React, {
-    useCallback,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import React from 'react';
 
 import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
-import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { CalendarIcon } from '../../../../assets';
@@ -22,154 +16,36 @@ import {
 import { WHITE } from '../../../core/constants/colors';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
-import { 
-    handleFormErrors, 
-    initFutureDate, 
-    validateNewInvoiceForm, 
-} from '../../../core/tools';
-import { 
-    addInvoice, 
-    fetchCustomers, 
-    fetchProducts, 
-    updateInvoice,
-} from '../../../core/redux/actions';
-import { 
-    addInvoiceRequest, 
-    updateInvoiceRequest, 
-} from '../../../core/redux/requests';
-import { useInitData } from '../../../core/services';
+import { useAddInvoiceScreen } from '../services';
 
 const AddInvoiceScreen = ({
-    navigation: {
-        goBack,
-    },
-    customers,
-    products,
-    invoiceDetails,
     route: {
         params,
     },
-    addInvoice,
-    updateInvoice,
 }) => {
-    // const currentDate = new Date();
-    const futureDate = initFutureDate();
-    
-    const [number, setNumber] = useState('');
-    // const [date, setDate] = useState(currentDate);
-    const [deadline, setDeadline] = useState(futureDate);
-    const [customerId, setCustomerId] = useState(null);
-    const [comment, setComment] = useState('');
-    const [chosenProducts, setChosenProducts] = useState([]);
-
-    const [errors, setErrors] = useState([null, null, null, null]);
-
-    // const [isOpenDateModal, setIsOpenDateModal] = useState(false);
-    const [isOpenDeadlineModal, setIsOpenDeadlineModal] = useState(false);
-
-    let customerRef = useRef(null);
-    let productRef = useRef(null);
-
-    useInitData(fetchCustomers);
-    useInitData(fetchProducts);
-
-    useEffect(() => {
-        setNumber(invoiceDetails?.number);
-        // setDate(new Date(invoiceDetails?.date));
-        setDeadline(new Date(invoiceDetails?.deadline));
-        setCustomerId(invoiceDetails?.customer?.id);
-        setComment(invoiceDetails?.description);
-        const products = invoiceDetails?.products
-            ?.map(item => ({ name: item.name, id: item.id }));
-        if(Array.isArray(products) && products.length !== 0) {
-            setChosenProducts(products);
-        }
-    }, [invoiceDetails]);
-
-    const closeDropdowns = useCallback(() => {
-        customerRef.current.isOpen && customerRef.current.closeDropdown();
-        productRef.current.isOpen && productRef.current.closeDropdown();
-    }, [customerRef, productRef]);
-
-    // const confirmDateModal = useCallback((value) => {
-    //     setIsOpenDateModal(false);                   
-    //     setDate(value);
-    // }, []);
-
-    const confirmDeadlineModal = useCallback((value) => {
-        setIsOpenDeadlineModal(false);                   
-        setDeadline(value);
-    }, []);
-
-    // const toggleDateModal = 
-    // useCallback(() => setIsOpenDateModal(!isOpenDateModal), [isOpenDateModal]);
-    const toggleDeadlineModal = 
-    useCallback(() => setIsOpenDeadlineModal(!isOpenDeadlineModal), [isOpenDeadlineModal]);
-
-    // const closeDateModal = useCallback(() => setIsOpenDateModal(false), []);
-    const closeDeadlineModal = useCallback(() => setIsOpenDeadlineModal(false), []);
-
-    const createInvoice = useCallback(async () => {
-        const errorObject = validateNewInvoiceForm(number, 
-            // date, 
-            deadline, customerId, chosenProducts);
-        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
-
-        if(isValidModel) {
-            let payload = {
-                number,
-                // date,
-                deadline,
-                customerId: customerId,
-                description: comment,
-                sentStatus: invoiceDetails.sentStatus,
-            };
-
-            const result = [];
-            chosenProducts.forEach(item => {
-                const foundElement = products.find(product => product.id === item.id);
-                foundElement && result.push(foundElement.id);
-            });
-
-            payload = { ...payload, productIds: result };
-
-            if(params?.isEdit) {
-                const response = await updateInvoiceRequest(invoiceDetails.id, payload);
-                if(response.status === 200) {
-                    payload = { 
-                        ...payload, 
-                        id: invoiceDetails.id,
-                        customer: response.data?.customer,
-                        products: response.data?.products,
-                    };
-                    updateInvoice(payload);
-                }
-            } else {
-                const response = await addInvoiceRequest(payload);
-                if(response.status === 201) {
-                    payload = { 
-                        ...payload, 
-                        id: response.data?.id,
-                        sentStatus: false,  
-                        customer: response.data?.customer,
-                        products: response.data?.products,
-                    };
-                    addInvoice(payload);
-                }
-            }
-            goBack();
-        }
-    }, [
-        number,
-        // date,
-        customerId,
-        errors,
+    const {
+        number, 
+        setNumber,
+        deadline, 
+        customerId, 
+        setCustomerId,
+        comment, 
+        setComment,
+        chosenProducts, 
+        setChosenProducts,
+        errors, 
+        isOpenDeadlineModal, 
+        invoiceDetails,
         products,
         customers,
-        chosenProducts,
-    ]);
-
-    const numberMask = [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+        customerRef,
+        productRef,
+        closeDropdowns,
+        confirmDeadlineModal,
+        toggleDeadlineModal,
+        closeDeadlineModal,
+        createInvoice,
+    } = useAddInvoiceScreen(params)
     
     return (
         <BasicView 
@@ -199,26 +75,6 @@ const AddInvoiceScreen = ({
                         setValue={setNumber}
                         mask={numberMask}
                     />
-                    {/* <Input 
-                        leftTitle={strings.labels.date}
-                        placeholder={moment(date).format('DD.MM.YYYY')}
-                        errorText={strings.labels.errorText}
-                        errorText={errors[1]}
-                        withWarning={errors[1] !== null}
-                        containerStyle={globalStyles.regularBottomSpace}
-                        leftIcon={<CalendarIcon />}
-                        onCalendarPress={toggleDateModal}
-                        isCalendar
-                    />
-                    <DatePicker 
-                        modal
-                        open={isOpenDateModal}
-                        mode='date'
-                        date={date}
-                        title={strings.calendar.selectDate}
-                        onConfirm={confirmDateModal}
-                        onCancel={closeDateModal}
-                    /> */}
                     <Input 
                         leftTitle={strings.labels.deadline}
                         placeholder={moment(deadline).format('DD.MM.YYYY')}
@@ -280,13 +136,4 @@ const AddInvoiceScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    products: state.product.products,
-    customers: state.customer.customers,
-    invoiceDetails: state.invoice.invoiceDetails,
-});
-
-export default connect(mapStateToProps, { 
-    addInvoice,
-    updateInvoice,
-})(AddInvoiceScreen);
+export default AddInvoiceScreen;

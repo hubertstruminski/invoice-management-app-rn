@@ -1,11 +1,7 @@
-import React, { 
-    useCallback,
-    useEffect,
-    useState,
-    useRef,
-} from 'react';
+import React from 'react';
+
 import { View } from 'react-native';
-import { connect } from 'react-redux';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
@@ -19,82 +15,29 @@ import globalStyles from '../../../core/styles/globalStyles';
 import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { 
-    addCompany, 
-    updateCompany, 
-} from '../../../core/redux/actions';
-import { 
-    handleFormErrors, 
-    validateNewCompanyForm, 
-} from '../../../core/tools';
-import { addCompanyRequest, updateCompanyRequest } from '../../../core/redux/requests';
+    useAddCompanyScreen, 
+    postalCodeMask, 
+} from '../services';
 
 const AddCompanyScreen = ({
-    navigation: {
-        goBack,
-    },
-    companyDetails,
     route: {
         params,
     },
-    addCompany,
-    updateCompany,
 }) => {
-    let scrollRef = useRef(null);
-
-    const [companyName, setCompanyName] = useState('');
-    const [street, setStreet] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-
-    const [errors, setErrors] = useState([null, null, null, null, null]);
-
-    useEffect(() => {
-        setCompanyName(companyDetails?.name);
-        setStreet(companyDetails?.street);
-        setPostalCode(companyDetails?.postalCode);
-        setCity(companyDetails?.city);
-        setCountry(companyDetails?.country);
-    }, [companyDetails]);
-
-    const createCompany = useCallback(async () => {
-        const errorObject = validateNewCompanyForm(companyName, street, postalCode, city, country);
-        const isValidModel = handleFormErrors(errorObject, errors, setErrors);
-    
-        if(isValidModel) {
-            let payload = {
-                name: companyName,
-                street,
-                postalCode,
-                city,
-                country,
-            };
-
-            if(params?.isEdit) {
-                const response = await updateCompanyRequest(companyDetails.id, payload);
-                if(response.status === 200) {
-                    payload = { ...payload, id: companyDetails.id };
-                    updateCompany(payload);
-                }
-            } else {
-                const response = await addCompanyRequest(payload);
-                if(response.status === 201) {
-                    payload = { ...payload, id: response.data?.id };
-                    addCompany(payload);
-                }
-            }
-            goBack();
-        }
-    }, [
-        companyName,
-        street,
-        postalCode,
-        city,
-        country,
-        errors,
-    ]);
-
-    const postalCodeMask = [/\d/, /\d/, '-', /\d/, /\d/, /\d/];
+    const {  
+        createCompany,
+        companyName, 
+        setCompanyName,
+        street, 
+        setStreet,
+        postalCode, 
+        setPostalCode,
+        city, 
+        setCity,
+        country, 
+        setCountry,
+        errors, 
+    } = useAddCompanyScreen(params);
 
     return (
         <BasicView 
@@ -171,11 +114,4 @@ const AddCompanyScreen = ({
     );
 }
 
-const mapStateToProps = state => ({
-    companyDetails: state.company.companyDetails,
-});
-
-export default connect(mapStateToProps, { 
-    addCompany,
-    updateCompany,
-})(AddCompanyScreen);
+export default AddCompanyScreen;
