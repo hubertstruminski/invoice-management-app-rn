@@ -19,6 +19,8 @@ import {
     addProduct,
     updateProduct,
     fetchProducts,
+    setChosenUnit,
+    setIsUnitModalVisible,
 } from './productActions';
 import { 
     setInvoiceDetails, 
@@ -62,4 +64,6 @@ export {
     fetchProducts,
     fetchInvoices,
     fetchCustomers,
+    setChosenUnit,
+    setIsUnitModalVisible,
 };

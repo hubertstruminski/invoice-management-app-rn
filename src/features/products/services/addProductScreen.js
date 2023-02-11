@@ -9,11 +9,15 @@ import {
     useDispatch, 
     useSelector, 
 } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { 
+    useIsFocused, 
+    useNavigation, 
+} from '@react-navigation/native';
 
 import { 
     addProduct, 
     fetchTaxes, 
+    setChosenUnit, 
     updateProduct, 
 } from '../../../core/redux/actions';
 import { 
@@ -25,17 +29,18 @@ import {
     updateProductRequest, 
 } from '../../../core/redux/requests';
 import { useInitData } from '../../../core/services';
+import { UNITS } from '../mocks';
 
 export function useAddProductScreen(params) {
     const taxes = useSelector(state => state.tax.taxes);
     const productDetails = useSelector(state => state.product.productDetails);
-    
+    const chosenUnitIndex = useSelector(state => state.product.chosenUnit);
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [amount, setAmount] = useState('');
     const [discount, setDiscount] = useState('');
-    const [unit, setUnit] = useState('');
     const [taxId, setTaxId] = useState(null);
 
     const [errors, setErrors] = useState([null, null, null, null, null, null]);
@@ -46,23 +51,29 @@ export function useAddProductScreen(params) {
 
     const { goBack } = useNavigation();
     const dispatch = useDispatch();
+    const isFocused = useIsFocused();
 
     useEffect(() => {
-        setName(productDetails?.name);
-        setDescription(productDetails?.description);
-        setPrice(productDetails?.price?.toString());
-        setAmount(productDetails?.amount?.toString());
-        setDiscount(productDetails?.discount?.toString());
-        setUnit(productDetails?.unit);
-        setTaxId(productDetails?.tax?.id);
-    }, [productDetails]);
+        if(productDetails && isFocused) {
+            setName(productDetails.name);
+            setDescription(productDetails.description);
+            setPrice(productDetails.price?.toString());
+            setAmount(productDetails.amount?.toString());
+            setDiscount(productDetails.discount?.toString());
+            
+            const index = UNITS?.findIndex(item => item === productDetails.unit);
+            dispatch(setChosenUnit(index !== -1 ? index : 0));
+            
+            setTaxId(productDetails.tax?.id);
+        }
+    }, [productDetails, isFocused]);
 
     const closeDropdown = useCallback(() => {
         taxRef.current.isOpen && taxRef.current.closeDropdown();
     }, [taxRef]);
 
     const createProduct = useCallback(async () => {
-        const errorObject = validateNewProductForm(name, price, amount, unit, discount, taxId);
+        const errorObject = validateNewProductForm(name, price, amount, discount, taxId);
         const isValidModel = handleFormErrors(errorObject, errors, setErrors);
     
         if(isValidModel) {
@@ -71,7 +82,7 @@ export function useAddProductScreen(params) {
                 price: Number(price),
                 amount,
                 discount,
-                unit,
+                unit: UNITS[chosenUnitIndex],
                 taxId: taxId,
                 description,
             };
@@ -96,7 +107,7 @@ export function useAddProductScreen(params) {
         price,
         amount,
         discount,
-        unit,
+        chosenUnitIndex,
         taxId,
         description,
         errors,
@@ -115,8 +126,6 @@ export function useAddProductScreen(params) {
         setAmount,
         discount, 
         setDiscount,
-        unit, 
-        setUnit,
         taxId, 
         setTaxId,
         errors, 

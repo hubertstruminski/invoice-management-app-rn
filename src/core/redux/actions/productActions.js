@@ -4,6 +4,8 @@ import {
     FETCH_PRODUCTS,
     REMOVE_PRODUCT, 
     SET_CHOSEN_PRODUCT_DETAILS,
+    SET_CHOSEN_UNIT,
+    SET_IS_UNIT_MODAL_VISIBLE,
     UPDATE_PRODUCT, 
 } from '../types';
 
@@ -29,6 +31,16 @@ export const updateProduct = value => ({
 
 const setProducts = value => ({
     type: FETCH_PRODUCTS,
+    payload: value,
+});
+
+export const setChosenUnit = (value) => ({
+    type: SET_CHOSEN_UNIT,
+    payload: value,
+});
+
+export const setIsUnitModalVisible = value => ({
+    type: SET_IS_UNIT_MODAL_VISIBLE,
     payload: value,
 });
 

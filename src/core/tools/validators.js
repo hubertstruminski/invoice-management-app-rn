@@ -47,13 +47,12 @@ export const validateNewCustomerForm = (fullName, email, street, city, nip) => {
     return errors;
 }
 
-export const validateNewProductForm = (name, price, amount, unit, discount, taxId) => {
+export const validateNewProductForm = (name, price, amount, discount, taxId) => {
     const errors = {};
 
     errors.name = validateString(name, strings.labels.name);
     errors.price = validatePrice(price);
     errors.amount = validateAmount(amount);
-    errors.unit = validateString(unit, strings.labels.unit);
     errors.discount = validateDiscount(discount);
     errors.taxId = validateEntityObject(taxId, strings.labels.tax);
 

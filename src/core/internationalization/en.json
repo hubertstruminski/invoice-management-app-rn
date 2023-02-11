@@ -5,7 +5,8 @@
         "logIn": "Log In",
         "registerAccount": "Register an Account",
         "seeDetails": "See details",
-        "save": "Save"
+        "save": "Save",
+        "cancel": "Cancel"
     },
     "placeholders": {
         "email": "Enter email",
@@ -29,7 +30,8 @@
         "time": "TIME",
         "tax": "Choose tax",
         "multipleProducts": "Choose multiple products",
-        "search": "Search"
+        "search": "Search",
+        "selectUnit": "Select a unit"
     },
     "labels": {
         "email": "Email",
@@ -64,7 +66,8 @@
         "status": "Status",
         "invoice": "Invoice",
         "invoiceNumber": "Invoice number",
-        "products": "Products"
+        "products": "Products",
+        "measureUnit": "Unit of measure"
     },
     "headers": {
         "dashboard": "Dashboard",

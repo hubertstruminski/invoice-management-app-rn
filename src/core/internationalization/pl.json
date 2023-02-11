@@ -5,7 +5,8 @@
         "logIn": "Zaloguj się",
         "registerAccount": "Utwórz konto",
         "seeDetails": "Zobacz szczegóły",
-        "save": "Zapisz"
+        "save": "Zapisz",
+        "cancel": "Anuluj"
     },
     "placeholders": {
         "email": "Wprowadź email",
@@ -29,7 +30,8 @@
         "time": "CZAS",
         "tax": "Wybierz podatek",
         "multipleProducts": "Wybierz wiele produktów",
-        "search": "Wyszukaj"
+        "search": "Wyszukaj",
+        "selectUnit": "Wybierz jednostkę"
     },
     "labels": {
         "email": "Email",
@@ -55,7 +57,7 @@
         "comment": "Komentarz",
         "name": "Nazwa",
         "description": "Opis",
-        "discount": "Promocja",
+        "discount": "Rabat",
         "unit": "Jednostka",
         "tax": "Podatek",
         "documents": "Dokumenty",
@@ -64,7 +66,8 @@
         "status": "Status",
         "invoice": "Faktura",
         "invoiceNumber": "Numer faktury",
-        "products": "Produkty"
+        "products": "Produkty",
+        "measureUnit": "Jednostka miary"
     },
     "headers": {
         "dashboard": "Tablica",

@@ -25,6 +25,8 @@ import MessageIcon from './icons-js/message';
 import PdfIcon from './icons-js/pdf';
 import AppIcon from './icons-js/app-icon';
 import SearchIcon from './icons-js/search';
+import ArrowRightIcon from './icons-js/arrowRight';
+import ConfirmIcon from './icons-js/confirm';
 
 export {
     LockIcon,
@@ -54,4 +56,6 @@ export {
     PdfIcon,
     AppIcon,
     SearchIcon,
+    ArrowRightIcon,
+    ConfirmIcon,
 };

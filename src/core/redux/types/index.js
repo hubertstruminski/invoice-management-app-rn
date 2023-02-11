@@ -25,6 +25,8 @@ import {
     REMOVE_PRODUCT,
     SET_CHOSEN_PRODUCT_DETAILS,
     UPDATE_PRODUCT,
+    SET_CHOSEN_UNIT,
+    SET_IS_UNIT_MODAL_VISIBLE,
 } from './productTypes';
 import {  
     ADD_TAX,
@@ -62,4 +64,6 @@ export {
     SET_CHOSEN_TAX_DETAILS,
     UPDATE_TAX,
     CLOSE_OPENED_DROPDOWNS,
+    SET_CHOSEN_UNIT,
+    SET_IS_UNIT_MODAL_VISIBLE,
 };
