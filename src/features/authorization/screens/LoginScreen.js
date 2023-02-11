@@ -9,11 +9,6 @@ import {
     TouchableLayout,
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { 
-    MAIN_GRAY, 
-    TRANSPARENT, 
-    WHITE, 
-} from '../../../core/constants/colors';
 import styles from '../styles/screenStyle';
 import { 
     UserIcon, 
@@ -22,6 +17,7 @@ import {
 } from '../../../../assets';
 import { strings } from '../../../core/internationalization/strings';
 import { useLoginScreen } from '../services';
+import { useTheme } from '../../../core/services';
 
 const LoginScreen = ({
     route: {
@@ -37,9 +33,10 @@ const LoginScreen = ({
         redirectToRegisterScreen,
         onLogInPress,
     } = useLoginScreen(params);
+    const { colors } = useTheme();
 
     return (
-        <BasicView>
+        <BasicView withHeader={false}>
             <TouchableLayout containerStyle={styles.container}>
                 <View style={styles.appTitleContainer}>
                     <AppIcon />
@@ -47,7 +44,7 @@ const LoginScreen = ({
                 <Input 
                     leftTitle={strings.labels.email}
                     placeholder={strings.placeholders.email}
-                    leftIcon={<UserIcon />}
+                    leftIcon={<UserIcon color={colors.BLACK} />}
                     value={email}
                     setValue={setEmail}
                     keyboardType='email-address'
@@ -57,22 +54,22 @@ const LoginScreen = ({
                 <Input 
                     leftTitle={strings.labels.password}
                     placeholder={strings.placeholders.password}
-                    leftIcon={<LockIcon />}
+                    leftIcon={<LockIcon color={colors.BLACK} />}
                     containerStyle={globalStyles.lastInputSpace}
                     value={password}
                     setValue={setPassword}
                     isPassword
                     textContentType='newPassword'
-                />
+                />  
                 <Button 
-                    color={WHITE}
+                    color={colors.WHITE}
                     text={strings.buttons.logIn}
                     onPress={onLogInPress}
                 />
                 <Button 
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={strings.buttons.registerAccount}
-                    backgroundColor={TRANSPARENT}
+                    backgroundColor={colors.TRANSPARENT}
                     isOutline
                     onPress={redirectToRegisterScreen}
                 />

@@ -33,5 +33,6 @@ export function useDropdownItem({
     return {
         onMultipleSelect,
         onPress,
+        isChecked,
     };
 }

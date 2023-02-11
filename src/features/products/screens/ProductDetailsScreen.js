@@ -14,14 +14,14 @@ import {
 import { 
     BasicView, 
     DescriptionSection, 
-    Header, 
     ResponsiveText, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
+import { useTheme } from '../../../core/services';
 
 const ProductDetailsScreen = () => {
+    const { colors } = useTheme();
     const {
         name,
         price,
@@ -35,15 +35,15 @@ const ProductDetailsScreen = () => {
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
-            headerComponent={<Header title={strings.details.product} />}
+            title={strings.details.product}
         >
             <ScrollView 
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={[globalStyles.alignCenter]}
+                contentContainerStyle={globalStyles.alignCenter}
             >
                 <ResponsiveText 
                     fontStyle='headerDetails'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={name}
                     customStyle={globalStyles.smallMediumDetailsSpace}
                 />
@@ -58,49 +58,49 @@ const ProductDetailsScreen = () => {
                         <View>
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.price + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={price + ' $'}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.amount + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={amount}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.discount + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={discount + '%'}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.unit + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={unit}
                             />
                         </View>
@@ -110,7 +110,7 @@ const ProductDetailsScreen = () => {
                     </View>
                     <ResponsiveText 
                         fontStyle='smallDetailsTitle'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={strings.labels.tax}
                         customStyle={[globalStyles.regularBottomSpace, globalStyles.textAlignCenter]}
                     />
@@ -124,25 +124,25 @@ const ProductDetailsScreen = () => {
                         <View>
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.name + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={tax?.name}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.amount + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={tax?.amount + '%'}
                                 customStyle={globalStyles.regularBottomSpace}
                             />

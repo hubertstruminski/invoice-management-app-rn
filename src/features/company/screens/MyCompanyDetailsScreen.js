@@ -11,14 +11,14 @@ import { CompanyDetailsIcon } from '../../../../assets';
 import { 
     AddressDetails,
     BasicView, 
-    Header, 
     ResponsiveText, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
+import { useTheme } from '../../../core/services';
 
 const MyCompanyDetailsScreen = () => {
+    const { colors } = useTheme();
     const {
         name,
         street,
@@ -30,7 +30,7 @@ const MyCompanyDetailsScreen = () => {
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={strings.details.company} />}
+            title={strings.details.company}
         >
             <ScrollView 
                 style={globalStyles.addEntityScrollViewContainer} 
@@ -39,7 +39,7 @@ const MyCompanyDetailsScreen = () => {
             >
                 <ResponsiveText 
                     fontStyle='headerDetails'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={name}
                     customStyle={globalStyles.largeSpace}
                 />
@@ -52,13 +52,13 @@ const MyCompanyDetailsScreen = () => {
                     >
                         <ResponsiveText 
                             fontStyle='labelDetails'
-                            color={MAIN_GRAY}
+                            color={colors.MAIN_GRAY}
                             text={strings.labels.postalCode + ':'} 
                             customStyle={globalStyles.smallLabelSpace}
                         />
                         <ResponsiveText 
                             fontStyle='rightInputTitle'
-                            color={MAIN_GRAY}
+                            color={colors.MAIN_GRAY}
                             text={postalCode}
                             customStyle={globalStyles.mediumBottomSpace}
                         />

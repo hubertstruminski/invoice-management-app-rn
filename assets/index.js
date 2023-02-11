@@ -24,6 +24,7 @@ import PenIcon from './icons-js/details/preview/pen';
 import MessageIcon from './icons-js/message';
 import PdfIcon from './icons-js/pdf';
 import AppIcon from './icons-js/app-icon';
+import SearchIcon from './icons-js/search';
 
 export {
     LockIcon,
@@ -52,4 +53,5 @@ export {
     MessageIcon, 
     PdfIcon,
     AppIcon,
+    SearchIcon,
 };

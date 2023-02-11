@@ -11,8 +11,10 @@ import { ResponsiveText } from '..';
 import { BackArrowIcon } from '../../../../assets';
 import styles from '../../styles/headerStyle';
 import { strings } from '../../internationalization/strings';
-import { logOut } from '../../services';
-import { MAIN_GRAY } from '../../constants/colors';
+import { 
+    logOut, 
+    useTheme, 
+} from '../../services';
 
 const Header = ({
     withBackArrow = true,
@@ -20,6 +22,7 @@ const Header = ({
     withLogout = true,
 }) => {
     const navigation = useNavigation();
+    const { colors } = useTheme();
 
     return (
         <View style={styles.container}>
@@ -27,7 +30,7 @@ const Header = ({
                 <View style={styles.leftContainer}>
                     <TouchableWithoutFeedback onPress={() => navigation?.goBack()}>
                         <View>
-                            <BackArrowIcon />
+                            <BackArrowIcon color={colors.MAIN_GRAY} />
                         </View>
                     </TouchableWithoutFeedback>
                 </View>) : (
@@ -38,7 +41,7 @@ const Header = ({
                 <ResponsiveText 
                     fontStyle='header'
                     text={title}
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     customStyle={styles.titleContainer}
                 />
             }
@@ -49,7 +52,7 @@ const Header = ({
                             <ResponsiveText 
                                 fontStyle='header'
                                 text={strings.headers.logout}
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                             />
                         </View>
                     </TouchableWithoutFeedback> 

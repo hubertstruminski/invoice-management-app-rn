@@ -7,24 +7,24 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { 
     BasicView, 
     Button, 
-    Header, 
     Input,
     TouchableLayout, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { 
     useAddCompanyScreen, 
     postalCodeMask, 
 } from '../services';
 import { hp } from '../../../core/tools';
+import { useTheme } from '../../../core/services';
 
 const AddCompanyScreen = ({
     route: {
         params,
     },
 }) => {
+    const { colors } = useTheme();
     const {  
         createCompany,
         companyName, 
@@ -43,7 +43,7 @@ const AddCompanyScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={strings.addEntity.addCompany} />}
+            title={strings.addEntity.addCompany}
         >
             <KeyboardAwareScrollView 
                 extraHeight={hp(150)}
@@ -104,7 +104,7 @@ const AddCompanyScreen = ({
                     />
                     </View>
                     <Button 
-                        color={WHITE}
+                        color={colors.WHITE}
                         text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createCompany}

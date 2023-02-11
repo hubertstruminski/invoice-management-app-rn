@@ -1,9 +1,15 @@
 import { usePDF } from './documentPreview';
-import { useAddCustomerScreen } from './addCustomerScreen';
+import { 
+    useAddCustomerScreen, 
+    phoneNumberMask, 
+    nipMask, 
+} from './addCustomerScreen';
 import { useCustomersScreen } from './customersScreen';
 
 export {
     usePDF,
     useAddCustomerScreen,
     useCustomersScreen,
+    phoneNumberMask,
+    nipMask,
 };

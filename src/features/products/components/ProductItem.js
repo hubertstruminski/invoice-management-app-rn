@@ -4,20 +4,21 @@ import { View } from 'react-native';
 
 import { ResponsiveText } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import entityItemStyle from '../../../core/styles/entityItemStyle';
+import { useTheme } from '../../../core/services';
 
 const ProductItem = ({
     name, 
     price,
     amount,
 }) => {
+    const { colors } = useTheme();
     return (
         <React.Fragment>
             <ResponsiveText 
                 fontStyle='header'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={name}
                 customStyle={entityItemStyle.mediumBottomSpace}
             />
@@ -29,24 +30,24 @@ const ProductItem = ({
             >
                 <ResponsiveText 
                     fontStyle='boldSmallText'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={strings.labels.price + ': '}
                 />
                 <ResponsiveText 
                     fontStyle='regularSmallText'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={price + ' $'}
                 />
             </View>
             <View style={globalStyles.rowCenter}>
                 <ResponsiveText 
                     fontStyle='boldSmallText'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={strings.labels.amount + ': '}
                 />
                 <ResponsiveText 
                     fontStyle='regularSmallText'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={amount}
                 />
             </View>

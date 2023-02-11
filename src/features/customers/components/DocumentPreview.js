@@ -14,22 +14,19 @@ import {
     MessageIcon, 
     PdfIcon, 
 } from '../../../../assets';
-import { 
-    GREEN,
-    MAIN_GRAY, 
-    RED, 
-} from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import styles from '../../../core/styles/previewStyle';
 import { usePDF } from '../services';
+import { useTheme } from '../../../core/services';
 
 const DocumentPreview = ({ item }) => {
+    const { colors } = useTheme();
     const companies = useSelector(state => state.company.companies);
     const generatePdf = usePDF(item, companies);
 
     return (
-        <View style={styles.documentShadow}>
-            <View style={styles.documentContainer}>
+        <View style={styles.documentShadow(colors)}>
+            <View style={styles.documentContainer(colors)}>
                 <View 
                     style={[
                         globalStyles.row, 
@@ -47,12 +44,12 @@ const DocumentPreview = ({ item }) => {
                         >
                             <ResponsiveText 
                                 fontStyle='boldSmallText'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.status + ': '}
                             />
                             <ResponsiveText 
                                 fontStyle='boldSmallText'
-                                color={item?.sentStatus ? GREEN : RED}
+                                color={item?.sentStatus ? colors.GREEN : colors.RED}
                                 text={item?.sentStatus ? strings.labels.sent : strings.labels.notSent}
                             />
                         </View>
@@ -60,10 +57,10 @@ const DocumentPreview = ({ item }) => {
                             <TouchableIcon 
                                 containerStyle={globalStyles.mediumRightSpace}
                             >
-                                <MessageIcon />
+                                <MessageIcon color={colors.MAIN_ORANGE} />
                             </TouchableIcon>
                             <TouchableIcon onPress={generatePdf}>
-                                <PdfIcon />
+                                <PdfIcon color={colors.MAIN_ORANGE} />
                             </TouchableIcon>
                         </View>
                     </View>

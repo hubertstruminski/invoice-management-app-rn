@@ -1,21 +1,17 @@
 import React from 'react';
 
 import { Platform } from 'react-native';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { 
     BasicView, 
     Button, 
-    Header, 
     Input, 
     ResponsiveText,
     TouchableLayout
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { 
-    MAIN_GRAY, 
-    WHITE 
-} from '../../../core/constants/colors';
 import styles from '../styles/screenStyle';
 import { 
     UserIcon, 
@@ -24,6 +20,7 @@ import {
 import { strings } from '../../../core/internationalization/strings';
 import { useRegisterScreen } from '../services';
 import { hp } from '../../../core/tools';
+import { useTheme } from '../../../core/services';
 
 const RegisterScreen = () => {
     const {  
@@ -38,11 +35,12 @@ const RegisterScreen = () => {
         createAccount,
         errors,
     } = useRegisterScreen();
+    const { colors } = useTheme();
 
     return (
         <BasicView 
             containerStyle={styles.container}
-            headerComponent={<Header withLogout={false} />}
+            withLogout={false}
         >
             <KeyboardAwareScrollView 
                 extraHeight={Platform.OS === 'ios' ? hp(200) : hp(150)}
@@ -52,14 +50,14 @@ const RegisterScreen = () => {
                 <TouchableLayout containerStyle={globalStyles.alignCenter}>
                 <ResponsiveText 
                     text={strings.hi}
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     fontStyle='registerTitle'
                     customStyle={styles.appTitleContainer}
                 />
                 <Input 
                     leftTitle={strings.labels.email}
                     placeholder={strings.placeholders.email}
-                    leftIcon={<UserIcon />}
+                    leftIcon={<UserIcon color={colors.BLACK} />}
                     value={email}
                     setValue={onEmailChange}
                     withWarning={errors[0] !== null}
@@ -80,7 +78,7 @@ const RegisterScreen = () => {
                     placeholder={strings.placeholders.password}
                     value={password}
                     setValue={setPassword}
-                    leftIcon={<LockIcon />}
+                    leftIcon={<LockIcon color={colors.BLACK} />}
                     withWarning={errors[2] !== null}
                     errorText={errors[2]}
                     isPassword
@@ -91,7 +89,7 @@ const RegisterScreen = () => {
                     placeholder={strings.placeholders.password}
                     value={confirmPassword}
                     setValue={setConfirmPassword}
-                    leftIcon={<LockIcon />}
+                    leftIcon={<LockIcon color={colors.BLACK} />}
                     containerStyle={globalStyles.lastInputSpace}
                     withWarning={errors[3] !== null}
                     errorText={errors[3]}
@@ -99,7 +97,7 @@ const RegisterScreen = () => {
                     textContentType='newPassword'
                 />   
                 <Button 
-                    color={WHITE}
+                    color={colors.WHITE}
                     text={strings.buttons.registerAccount}
                     onPress={createAccount}
                 />

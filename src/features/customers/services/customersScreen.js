@@ -1,4 +1,4 @@
-import { 
+import React, { 
     useCallback, 
     useMemo, 
 } from 'react';
@@ -14,26 +14,35 @@ import {
     removeCustomer, 
     setCustomerDetails, 
 } from '../../../core/redux/actions';
-import { useInitData } from '../../../core/services';
+import { 
+    useInitData, 
+    useSearchEntities, 
+    useTheme, 
+} from '../../../core/services';
 import { removeCustomerById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
-import { EntityItem } from '../../../core/components';
+import { 
+    EntityItem, 
+    Button, 
+} from '../../../core/components';
 import { hp } from '../../../core/tools';
 import { CustomerItem } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { 
-    MAIN_GRAY, 
-    TRANSPARENT, 
-} from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
 export function useCustomersScreen() {
     const customers = useSelector(state => state.customer.customers);
+    const {
+        filteredData,
+        renderSearchInput
+    } = useSearchEntities(customers, "fullName");
 
     const { navigate } = useNavigation();
     const dispatch = useDispatch();
 
     useInitData(fetchCustomers);
+
+    const { colors } = useTheme();
 
     const openAddCustomerForm = useCallback(() => {
         dispatch(setCustomerDetails({
@@ -100,18 +109,21 @@ export function useCustomersScreen() {
     );
 
     const renderHeader = useMemo(() => (
-        <Button 
-            color={MAIN_GRAY}
-            text={strings.addEntity.addCustomer}
-            backgroundColor={TRANSPARENT}
-            isOutline
-            customStyle={globalStyles.mediumToSpace}
-            onPress={openAddCustomerForm}
-        />
-    ), [openAddCustomerForm]);
+        <React.Fragment>
+            <Button 
+                color={colors.MAIN_GRAY}
+                text={strings.addEntity.addCustomer}
+                backgroundColor={colors.TRANSPARENT}
+                isOutline
+                customStyle={globalStyles.mediumToSpace}
+                onPress={openAddCustomerForm}
+            />
+            {renderSearchInput()}
+        </React.Fragment>
+    ), [openAddCustomerForm, colors, renderSearchInput]);
 
     return {
-        customers,
+        customers: filteredData,
         renderItem,
         renderHeader,
     };

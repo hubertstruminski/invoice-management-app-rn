@@ -4,6 +4,7 @@ import { ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
 import { MAIN_GRAY } from '../../../constants/colors';
 import { strings } from '../../../internationalization/strings';
+import { useTheme } from '../../../services';
 
 const DescriptionSection = ({ 
     separatorStyle, 
@@ -12,17 +13,18 @@ const DescriptionSection = ({
     description,
     descriptionLabelStyle = [globalStyles.regularBottomSpace, globalStyles.textAlignCenter],
 }) => {
+    const { colors } = useTheme();
     return (
         <React.Fragment>
             <ResponsiveText 
                 fontStyle={fontStyle}
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={descriptionLabel}
                 customStyle={descriptionLabelStyle}
             />
             <ResponsiveText 
                 fontStyle='rightInputTitle'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={description}
                 customStyle={separatorStyle}
             />

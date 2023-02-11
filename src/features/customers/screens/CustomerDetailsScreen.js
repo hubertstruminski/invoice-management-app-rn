@@ -11,17 +11,19 @@ import {
     AddressDetails,
     BasicView, 
     DescriptionSection, 
-    Header, 
     ResponsiveText, 
 } from '../../../core/components';
 import { DocumentPreview } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { fetchInvoices } from '../../../core/redux/actions';
-import { useInitData } from '../../../core/services';
+import { 
+    useInitData, 
+    useTheme, 
+} from '../../../core/services';
 
 const CustomerDetailsScreen = () => {
+    const { colors } = useTheme();
     const invoices = useSelector(state => state.invoice.invoices);
     const {
         id,
@@ -40,7 +42,7 @@ const CustomerDetailsScreen = () => {
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={strings.details.customer} />}
+            title={strings.details.customer}
         >
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -50,7 +52,7 @@ const CustomerDetailsScreen = () => {
                     <View style={globalStyles.alignCenter}>
                         <ResponsiveText 
                             fontStyle='headerDetails'
-                            color={MAIN_GRAY}
+                            color={colors.MAIN_GRAY}
                             text={fullName}
                             customStyle={globalStyles.largeSpace}
                         />
@@ -62,13 +64,13 @@ const CustomerDetailsScreen = () => {
                         >
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.email + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={email}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
@@ -76,13 +78,13 @@ const CustomerDetailsScreen = () => {
                                 <React.Fragment>
                                     <ResponsiveText 
                                         fontStyle='labelDetails'
-                                        color={MAIN_GRAY}
+                                        color={colors.MAIN_GRAY}
                                         text={strings.labels.phoneNumber + ':'} 
                                         customStyle={globalStyles.smallLabelSpace}
                                     />
                                     <ResponsiveText 
                                         fontStyle='rightInputTitle'
-                                        color={MAIN_GRAY}
+                                        color={colors.MAIN_GRAY}
                                         text={phoneNumber}
                                         customStyle={globalStyles.regularBottomSpace}
                                     />
@@ -90,13 +92,13 @@ const CustomerDetailsScreen = () => {
                             }
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.nip + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={nip}
                                 customStyle={globalStyles.regularBottomSpace}
                             />
@@ -116,7 +118,7 @@ const CustomerDetailsScreen = () => {
                         {documents?.length !== 0 &&
                             <ResponsiveText 
                                 fontStyle='smallDetailsTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.documents}
                                 customStyle={[
                                     globalStyles.textAlignCenter, 

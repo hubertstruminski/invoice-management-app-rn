@@ -5,20 +5,24 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { 
     BasicView, 
     Button, 
-    Header, 
     Input,
     TouchableLayout, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
-import { useAddCustomerScreen } from '../services';
+import { 
+    useAddCustomerScreen, 
+    nipMask, 
+    phoneNumberMask, 
+} from '../services';
+import { useTheme } from '../../../core/services';
 
 const AddCustomerScreen = ({
     route: {
         params,
     }
 }) => {
+    const { colors } = useTheme();
     const {
         createCustomer,
         fullName,
@@ -46,7 +50,7 @@ const AddCustomerScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={strings.addEntity.addCustomer} />}
+            title={strings.addEntity.addCustomer}
         >
             <KeyboardAwareScrollView 
                 extraHeight={150}
@@ -130,7 +134,7 @@ const AddCustomerScreen = ({
                         setValue={setAdditionalInformations}
                     />
                     <Button 
-                        color={WHITE}
+                        color={colors.WHITE}
                         text={strings.buttons.save}
                         onPress={createCustomer}
                         customStyle={globalStyles.largeBottomPadding}

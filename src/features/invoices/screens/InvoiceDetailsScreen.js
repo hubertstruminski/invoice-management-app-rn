@@ -12,16 +12,16 @@ import {
     BasicView, 
     CustomerDetails, 
     DescriptionSection, 
-    Header, 
     InvoiceDatePeriod, 
     ResponsiveText, 
 } from '../../../core/components';
 import { ProductPreview } from '../components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
+import { useTheme } from '../../../core/services';
 
 const InvoiceDetailsScreen = () => {
+    const { colors } = useTheme();
     const {
         number,
         date,
@@ -34,7 +34,7 @@ const InvoiceDetailsScreen = () => {
     return (
         <BasicView 
             containerStyle={[globalStyles.alignCenter, globalStyles.flex]}
-            headerComponent={<Header title={strings.details.invoice} />}
+            title={strings.details.invoice}
         >
             <FlatList 
                 showsVerticalScrollIndicator={false}
@@ -49,12 +49,12 @@ const InvoiceDetailsScreen = () => {
                         >
                             <ResponsiveText 
                                 fontStyle='headerDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.invoiceNumber + ': '}
                             />
                             <ResponsiveText 
                                 fontStyle='regularHeaderDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={'#' + number}
                             />
                         </View>
@@ -85,7 +85,7 @@ const InvoiceDetailsScreen = () => {
                             }
                             <ResponsiveText 
                                 fontStyle='smallDetailsTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.products}
                                 customStyle={[globalStyles.textAlignCenter, globalStyles.regularBottomSpace]}
                             /> 

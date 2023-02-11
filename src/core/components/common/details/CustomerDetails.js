@@ -5,17 +5,18 @@ import { View } from 'react-native';
 import { HomeOfficeIcon } from '../../../../../assets';
 import {  ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
-import { MAIN_GRAY } from '../../../constants/colors';
 import { strings } from '../../../internationalization/strings';
+import { useTheme } from '../../../services';
 
 const CustomerDetails = ({
     item,
 }) => {
+    const { colors } = useTheme();
     return (
         <React.Fragment>
             <ResponsiveText 
                 fontStyle='smallDetailsTitle'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={strings.labels.customer}
                 customStyle={[
                     globalStyles.regularBottomSpace, 
@@ -32,13 +33,13 @@ const CustomerDetails = ({
                 <View>
                     <ResponsiveText 
                         fontStyle='labelDetails'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={strings.labels.fullName + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
                         fontStyle='rightInputTitle'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={item?.fullName}
                         customStyle={globalStyles.regularBottomSpace}
                     />
@@ -46,13 +47,13 @@ const CustomerDetails = ({
                         <React.Fragment>
                             <ResponsiveText 
                                 fontStyle='labelDetails'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={strings.labels.phoneNumber + ':'} 
                                 customStyle={globalStyles.smallLabelSpace}
                             />
                             <ResponsiveText 
                                 fontStyle='rightInputTitle'
-                                color={MAIN_GRAY}
+                                color={colors.MAIN_GRAY}
                                 text={item?.phoneNumber}
                             />
                         </React.Fragment>

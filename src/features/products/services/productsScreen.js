@@ -1,4 +1,4 @@
-import { 
+import React, { 
     useCallback, 
     useMemo, 
 } from 'react';
@@ -14,17 +14,23 @@ import {
     fetchProducts,
     removeProduct, 
 } from '../../../core/redux/actions';
-import { useInitData } from '../../../core/services';
+import { useInitData, useSearchEntities } from '../../../core/services';
 import { removeProductById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
-import { Button, EntityItem } from '../../../core/components';
+import { 
+    Button, 
+    EntityItem, 
+} from '../../../core/components';
 import { hp } from '../../../core/tools';
 import { ProductItem } from '../components';
-import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
-export function useProductsScreen() {
+export function useProductsScreen(colors) {
     const products = useSelector(state => state.product.products);
+    const {
+        filteredData,
+        renderSearchInput
+    } = useSearchEntities(products, "name");
 
     const { navigate } = useNavigation();
     const dispatch = useDispatch();
@@ -99,17 +105,20 @@ export function useProductsScreen() {
     );
 
     const renderHeader = useMemo(() => (
-        <Button 
-            color={MAIN_GRAY}
-            text={strings.addEntity.addProduct}
-            backgroundColor={TRANSPARENT}
-            isOutline
-            onPress={openAddProductForm}
-        />
-    ), [openAddProductForm]);
+        <React.Fragment>
+            <Button 
+                color={colors.MAIN_GRAY}
+                text={strings.addEntity.addProduct}
+                backgroundColor={colors.TRANSPARENT}
+                isOutline
+                onPress={openAddProductForm}
+            />
+            {renderSearchInput()}
+        </React.Fragment>
+    ), [openAddProductForm, colors, renderSearchInput]);
 
     return {
-        products,
+        products: filteredData,
         renderHeader,
         renderItem,
     };

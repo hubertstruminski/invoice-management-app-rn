@@ -2,29 +2,24 @@ import React from 'react';
 
 import { FlatList } from 'react-native';
 
-import { 
-    BasicView, 
-    Header, 
-} from '../../../core/components';
+import { BasicView } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { DASHBOARD_TILES } from '../mocks';
 import { strings } from '../../../core/internationalization/strings';
 import { useDashboardScreen } from '../services';
+import { useTheme } from '../../../core/services';
 
 const DashboardScreen = () => {
-    const renderItem = useDashboardScreen();
+    const { colors } = useTheme();
+    const renderItem = useDashboardScreen(colors);
+    
     return (
         <BasicView
             containerStyle={globalStyles.alignCenter} 
-            headerComponent={
-                <Header 
-                    withBackArrow={false} 
-                    title={strings.headers.dashboard}
-                />
-            }
+            title={strings.headers.dashboard}
         >
             <FlatList 
-                data={DASHBOARD_TILES}
+                data={DASHBOARD_TILES(colors)}
                 renderItem={renderItem}
                 numColumns={2}
                 style={[

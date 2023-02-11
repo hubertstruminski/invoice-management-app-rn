@@ -81,5 +81,7 @@ export function useDropdown({
     return {
         toggleDropdown,
         renderItems,
+        value,
+        showData,
     }
 }

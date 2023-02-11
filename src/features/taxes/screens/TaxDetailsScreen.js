@@ -11,15 +11,14 @@ import { TaxDetailsIcon } from '../../../../assets';
 import { 
     BasicView, 
     DescriptionSection, 
-    Header, 
     ResponsiveText, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
+import { useTheme } from '../../../core/services';
 
-const TaxDetailsScreen = ({
-}) => {
+const TaxDetailsScreen = () => {
+    const { colors } = useTheme();
     const {
         name,
         amount,
@@ -29,7 +28,7 @@ const TaxDetailsScreen = ({
     return (
         <BasicView 
             containerStyle={globalStyles.alignCenter}
-            headerComponent={<Header title={strings.details.tax} />}
+            title={strings.details.tax}
         >
             <ScrollView 
                 style={globalStyles.addEntityScrollViewContainer} 
@@ -41,20 +40,20 @@ const TaxDetailsScreen = ({
             >
                 <ResponsiveText 
                     fontStyle='headerDetails'
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                     text={name}
                     customStyle={globalStyles.largeSpace}
                 />
                 <View style={globalStyles.detailsContainer}>
                     <ResponsiveText 
                         fontStyle='labelDetails'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={strings.labels.amount + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
                         fontStyle='rightInputTitle'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={amount + '%'}
                         customStyle={globalStyles.mediumBottomSpace}
                     />

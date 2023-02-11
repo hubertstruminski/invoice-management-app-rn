@@ -6,21 +6,21 @@ import {
     BasicView, 
     Button, 
     Dropdown, 
-    Header, 
     Input,
     TouchableLayout, 
 } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { WHITE } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 import { useAddProductScreen } from '../services';
 import { hp } from '../../../core/tools';
+import { useTheme } from '../../../core/services';
 
 const AddProductScreen = ({
     route: {
         params,
     },
 }) => {
+    const { colors } = useTheme();
     const {
         taxes,
         productDetails,
@@ -50,7 +50,7 @@ const AddProductScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={strings.addEntity.addProduct} />}
+            title={strings.addEntity.addProduct}
         >
             <KeyboardAwareScrollView 
                 extraHeight={hp(150)}
@@ -127,7 +127,7 @@ const AddProductScreen = ({
                         errorText={errors[5]}
                     />
                     <Button 
-                        color={WHITE}
+                        color={colors.WHITE}
                         text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createProduct}

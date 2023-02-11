@@ -16,30 +16,30 @@ import {
 } from '../../../core/constants/constants';
 import { strings } from '../../../core/internationalization/strings';
 
-export const DASHBOARD_TILES = [
+export const DASHBOARD_TILES = (colors) => ([
     { 
         title: strings.dashboardTiles.companies, 
-        icon: <CompaniesIcon />, 
+        icon: <CompaniesIcon color={colors.BLACK} />, 
         label: COMPANY_ENTITY,
     },
     { 
         title: strings.dashboardTiles.customers, 
-        icon: <CustomersIcon />, 
+        icon: <CustomersIcon color={colors.BLACK}  />, 
         label: CUSTOMER_ENTITY,
     },
     { 
         title: strings.dashboardTiles.invoices, 
-        icon: <InvoicesIcon />, 
+        icon: <InvoicesIcon color={colors.BLACK}  />, 
         label: INVOICE_ENTITY,
     },
     { 
         title: strings.dashboardTiles.products, 
-        icon: <ProductsIcon />, 
+        icon: <ProductsIcon color={colors.BLACK}  />, 
         label: PRODUCT_ENTITY,
     },
     { 
         title: strings.dashboardTiles.taxes, 
-        icon: <TaxesIcon />, 
+        icon: <TaxesIcon color={colors.BLACK}  />, 
         label: TAX_ENTITY,
     },
-];
+]);

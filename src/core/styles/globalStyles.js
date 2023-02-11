@@ -1,10 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 import { 
-    BLACK, 
-    WHITE, 
-} from '../constants/colors';
-import { 
     hp, 
     wp, 
 } from '../tools';
@@ -29,16 +25,16 @@ export default StyleSheet.create({
     alignCenter: {
         alignItems: 'center',
     },
-    shadow: {
-        shadowColor: BLACK,
+    shadow: (colors) => ({
+        shadowColor: colors.BLACK,
         shadowOffset: { width: 0, height: hp(2) },
         shadowOpacity: 0.25,
         shadowRadius: 8, 
         elevation: 4,
-        backgroundColor: WHITE,
+        backgroundColor: colors.WHITE,
         borderRadius: 16,
         marginTop: hp(24),
-    },
+    }),
     flatListContainer: {
         width: '100%', 
         paddingHorizontal: wp(16), 
@@ -123,5 +119,8 @@ export default StyleSheet.create({
     },
     lastInputSpace: {
         marginBottom: hp(48),
+    },
+    zeroBottomMargin: {
+        marginBottom: 0,
     },
 });

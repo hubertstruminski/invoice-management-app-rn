@@ -5,27 +5,22 @@ import {
     View,
 } from 'react-native';
 
-import { 
-    BasicView, 
-    Header, 
-} from '../../../core/components';
+import { BasicView } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
 import { useInvoicesScreen } from '../services';
+import { useTheme } from '../../../core/services';
 
 const InvoicesScreen = () => {
+    const { colors } = useTheme();
     const {
         invoices,
         renderItem,
         renderHeader,
-    } = useInvoicesScreen();
+    } = useInvoicesScreen(colors);
 
     return (
-        <BasicView 
-            headerComponent={
-                <Header title={strings.dashboardTiles.invoices} />
-            }
-        >
+        <BasicView title={strings.dashboardTiles.invoices}>
             <FlatList
                 ListHeaderComponent={renderHeader} 
                 showsVerticalScrollIndicator={false}

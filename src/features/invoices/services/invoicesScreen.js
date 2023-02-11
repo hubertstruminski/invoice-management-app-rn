@@ -1,4 +1,7 @@
-import { useCallback, useMemo } from 'react';
+import React, { 
+    useCallback, 
+    useMemo, 
+} from 'react';
 
 import { 
     useDispatch, 
@@ -11,17 +14,29 @@ import {
     fetchInvoices,
     removeInvoice, 
 } from '../../../core/redux/actions';
-import { useInitData } from '../../../core/services';
-import { hp, initFutureDate } from '../../../core/tools';
+import { 
+    useInitData, 
+    useSearchEntities, 
+} from '../../../core/services';
+import { 
+    hp, 
+    initFutureDate, 
+} from '../../../core/tools';
 import { removeInvoiceById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
-import { Button, EntityItem } from '../../../core/components';
+import { 
+    Button, 
+    EntityItem, 
+} from '../../../core/components';
 import { InvoiceItem } from '../components';
-import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
 import { strings } from '../../../core/internationalization/strings';
 
-export function useInvoicesScreen() {
+export function useInvoicesScreen(colors) {
     const invoices = useSelector(state => state.invoice.invoices);
+    const {
+        filteredData,
+        renderSearchInput
+    } = useSearchEntities(invoices, "number");
 
     const { navigate } = useNavigation();
     const dispatch = useDispatch();
@@ -29,7 +44,7 @@ export function useInvoicesScreen() {
     useInitData(fetchInvoices);
 
     const openAddInvoiceForm = useCallback(() => {
-        setInvoiceDetails({
+        dispatch(setInvoiceDetails({
             id: 0,
             number: '',
             date: new Date(),
@@ -37,7 +52,7 @@ export function useInvoicesScreen() {
             customer: null,
             description: '',
             sentStatus: false,
-        });
+        }));
         navigate(Screens.ADD_INVOICE, { isEdit: false });
     }, []);
 
@@ -91,17 +106,20 @@ export function useInvoicesScreen() {
     );
 
     const renderHeader = useMemo(() => (
-        <Button 
-            color={MAIN_GRAY}
-            text={strings.addEntity.addInvoice}
-            backgroundColor={TRANSPARENT}
-            isOutline
-            onPress={openAddInvoiceForm}
-        />
-    ), [openAddInvoiceForm]);
+        <React.Fragment>
+            <Button 
+                color={colors.MAIN_GRAY}
+                text={strings.addEntity.addInvoice}
+                backgroundColor={colors.TRANSPARENT}
+                isOutline
+                onPress={openAddInvoiceForm}
+            />
+            {renderSearchInput()}
+        </React.Fragment>
+    ), [openAddInvoiceForm, colors, renderSearchInput]);
 
     return {
-        invoices,
+        invoices: filteredData,
         renderItem,
         renderHeader,
     };

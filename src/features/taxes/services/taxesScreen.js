@@ -1,4 +1,4 @@
-import { 
+import React, { 
     useCallback, 
     useMemo, 
 } from 'react';
@@ -14,22 +14,34 @@ import {
     fetchTaxes, 
     removeTax, 
 } from '../../../core/redux/actions/taxActions';
-import { useInitData } from '../../../core/services';
+import { 
+    useInitData, 
+    useSearchEntities, 
+    useTheme, 
+} from '../../../core/services';
 import { removeTaxById } from '../../../core/redux/requests';
 import { Screens } from '../../../core/constants/navigator';
-import { Button, EntityItem } from '../../../core/components';
-import { MAIN_GRAY, TRANSPARENT } from '../../../core/constants/colors';
+import { 
+    Button, 
+    EntityItem,
+} from '../../../core/components';
 import { strings } from '../../../core/internationalization/strings';
 import { hp } from '../../../core/tools';
 import { TaxItem } from '../components';
 
 export function useTaxesScreen() {
     const taxes = useSelector(state => state.tax.taxes);
+    const {
+        filteredData,
+        renderSearchInput
+    } = useSearchEntities(taxes, "name");
 
     const { navigate } = useNavigation();
     const dispatch = useDispatch();
 
     useInitData(fetchTaxes);
+
+    const { colors } = useTheme();
 
     const openAddTaxForm = useCallback(() => {
         dispatch(setTaxDetails({
@@ -87,17 +99,20 @@ export function useTaxesScreen() {
     );
     
     const renderHeader = useMemo(() => (
-        <Button 
-            color={MAIN_GRAY}
-            text={strings.addEntity.addTax}
-            backgroundColor={TRANSPARENT}
-            isOutline
-            onPress={openAddTaxForm}
-        />
-    ), [openAddTaxForm]);
+        <React.Fragment>
+            <Button 
+                color={colors.MAIN_GRAY}
+                text={strings.addEntity.addTax}
+                backgroundColor={colors.TRANSPARENT}
+                isOutline
+                onPress={openAddTaxForm}
+            />
+            {renderSearchInput()}
+        </React.Fragment>
+    ), [openAddTaxForm, colors, renderSearchInput]);
 
     return {
-        taxes,
+        taxes: filteredData,
         renderHeader,
         renderItem,
     }

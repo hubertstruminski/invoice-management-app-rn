@@ -5,10 +5,7 @@ import {
     View,
 } from 'react-native';
 
-import { 
-    BasicView, 
-    Header,
-} from '../../../core/components';
+import { BasicView } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
 import { useTaxesScreen } from '../services';
@@ -21,11 +18,7 @@ const TaxesScreen = () => {
     } = useTaxesScreen();
 
     return (
-        <BasicView 
-            headerComponent={
-                <Header title={strings.dashboardTiles.taxes} />
-            }
-        >
+        <BasicView title={strings.dashboardTiles.taxes}>
             <FlatList
                 ListHeaderComponent={renderHeader} 
                 showsVerticalScrollIndicator={false}

@@ -14,13 +14,13 @@ import {
     EditIcon, 
     TrashIcon, 
 } from '../../../../assets';
-import { MAIN_ORANGE } from '../../constants/colors';
 import { 
     hp, 
     showConfirmationDelete, 
 } from '../../tools';
 import styles from '../../styles/entityItemStyle';
 import { strings } from '../../internationalization/strings';
+import { useTheme } from '../../services';
 
 const EntityItem = ({
     children,
@@ -33,15 +33,16 @@ const EntityItem = ({
     removeItem,
     updateItem,
 }) => {
+    const { colors } = useTheme();
     const onRemove = () => {
         showConfirmationDelete(() => removeItem?.(id));
     }
 
     return (
-        <View style={globalStyles.shadow}>
+        <View style={globalStyles.shadow(colors)}>
             <View 
                 style={[
-                    styles.container, {
+                    styles.container(colors), {
                         height: height,
                     }
                 ]}
@@ -54,7 +55,7 @@ const EntityItem = ({
                         <View>
                             <ResponsiveText 
                                 fontStyle='details'
-                                color={MAIN_ORANGE}
+                                color={colors.MAIN_ORANGE}
                                 text={strings.buttons.seeDetails}
                             />
                         </View>
@@ -65,10 +66,10 @@ const EntityItem = ({
                         onPress={() => updateItem?.(item)}
                         containerStyle={styles.iconSpace}
                     >
-                        <EditIcon />
+                        <EditIcon color={colors.MAIN_ORANGE} />
                     </TouchableIcon>
                     <TouchableIcon onPress={onRemove}>
-                        <TrashIcon />
+                        <TrashIcon color={colors.MAIN_ORANGE} />
                     </TouchableIcon>
                 </View>
             </View>

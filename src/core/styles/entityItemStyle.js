@@ -4,20 +4,18 @@ import {
     hp, 
     wp, 
 } from '../tools';
-import { WHITE } from '../constants/colors';
-
 
 export default StyleSheet.create({
-    container: {
+    container: (colors) => ({
         width: wp(358),
         paddingHorizontal: wp(16),
         paddingVertical: hp(8),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: WHITE,
+        backgroundColor: colors.WHITE,
         borderRadius: 16,
-    },
+    }),
     columnStretchContainer: {
         flexDirection: 'column',
         justifyContent: 'space-between',

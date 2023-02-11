@@ -10,15 +10,13 @@ import MaskInput from 'react-native-mask-input';
 
 import { ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
-import { 
-    GRAY_3, 
-    MAIN_GRAY,
-    RED, 
-} from '../../../constants/colors';
 import styles from '../../../styles/inputs/inputStyle';
 import responsiveTextStyles from '../responsiveText/reponsiveTextStyle';
 import { hp } from '../../../tools';
-import { useInput } from '../../../services';
+import { 
+    useInput, 
+    useTheme, 
+} from '../../../services';
 
 const Input = ({
     containerStyle,
@@ -42,6 +40,7 @@ const Input = ({
         inputRef,
         onInputPress,
     } = useInput();
+    const { colors } = useTheme();
 
     return (
         <View 
@@ -54,22 +53,22 @@ const Input = ({
                 <ResponsiveText 
                     fontStyle='inputText'
                     text={leftTitle}
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                 />
                 { rightTitle &&
                     <ResponsiveText 
                         fontStyle='rightInputTitle'
                         text={rightTitle}
-                        color={GRAY_3}
+                        color={colors.GRAY_3}
                     />
                 }
             </View>
             <TouchableWithoutFeedback onPress={isCalendar ? onCalendarPress : onInputPress}>
                 <View 
                     style={[
-                        styles.inputContainer, {
-                            borderColor: withWarning ? RED : GRAY_3,
-                        }
+                        styles.inputContainer(colors), {
+                            borderColor: withWarning ? colors.RED : colors.GRAY_3,
+                        },
                     ]}
                 >
                     <View style={globalStyles.rowCenter}>
@@ -77,7 +76,7 @@ const Input = ({
                         { isCalendar ? (
                                 <ResponsiveText 
                                     fontStyle='inputText'
-                                    color={MAIN_GRAY}
+                                    color={colors.MAIN_GRAY}
                                     text={placeholder}
                                     customStyle={leftIcon && styles.leftPlaceholderSpace}
                                 />
@@ -87,14 +86,14 @@ const Input = ({
                                     style={[
                                         responsiveTextStyles['inputText'],
                                         leftIcon && styles.leftPlaceholderSpace,
-                                        styles.input, {
+                                        styles.input(colors), {
                                             height: Platform.OS === 'android' ? hp(48) : undefined,
                                             flex: 1,
                                         },
                                     ]}  
                                     placeholder={placeholder}
                                     textContentType={textContentType}
-                                    placeholderTextColor={GRAY_3}
+                                    placeholderTextColor={colors.GRAY_3}
                                     autoCapitalize={autoCapitalize ? autoCapitalize : 'none'}
                                     keyboardType={keyboardType ? keyboardType : 'default'}
                                     value={value}
@@ -114,7 +113,7 @@ const Input = ({
             { errorText !== null &&
                 <ResponsiveText 
                     fontStyle='errorInputText'
-                    color={RED}
+                    color={colors.RED}
                     text={errorText}
                     customStyle={styles.errorSpace}
                 /> 

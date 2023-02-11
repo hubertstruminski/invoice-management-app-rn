@@ -5,27 +5,22 @@ import {
     View,
 } from 'react-native';
 
-import { 
-    BasicView, 
-    Header, 
-} from '../../../core/components';
+import { BasicView } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
 import { useProductsScreen } from '../services';
+import { useTheme } from '../../../core/services';
 
 const ProductsScreen = () => {
+    const { colors } = useTheme();
     const {
         products,
         renderHeader,
         renderItem,
-    } = useProductsScreen();
+    } = useProductsScreen(colors);
 
     return (
-        <BasicView 
-            headerComponent={
-                <Header title={strings.dashboardTiles.products} />
-            }
-        >
+        <BasicView title={strings.dashboardTiles.products}>
             <FlatList
                 ListHeaderComponent={renderHeader} 
                 showsVerticalScrollIndicator={false}

@@ -7,12 +7,9 @@ import {
 
 import { ResponsiveText } from '../..';
 import { 
-    GRAY_4, 
-    MAIN_GRAY, 
-    MAIN_ORANGE, 
-    WHITE, 
-} from '../../../constants/colors';
-import { useDropdownItem } from '../../../services';
+    useDropdownItem, 
+    useTheme, 
+} from '../../../services';
 import styles from '../../../styles/inputs/dropdownItemStyle';
 
 const DropdownItem = ({
@@ -28,9 +25,11 @@ const DropdownItem = ({
     isMark,
     isFirstItem,
 }) => {
+    const { colors } = useTheme();
     const { 
         onMultipleSelect, 
         onPress, 
+        isChecked,
     } = useDropdownItem({
         name,
         setValue,
@@ -49,8 +48,8 @@ const DropdownItem = ({
                 style={[
                     styles.container, {
                         borderBottomWidth: isLastItem ? 0 : 1,
-                        borderBottomColor: !isLastItem && GRAY_4,
-                        backgroundColor: multiple && isChecked ? MAIN_ORANGE : 'transparent',
+                        borderBottomColor: !isLastItem && colors.GRAY_4,
+                        backgroundColor: multiple && isChecked ? colors.MAIN_ORANGE : colors.TRANSPARENT,
                         borderTopRightRadius: isFirstItem ? 8 : 0,
                         borderTopLeftRadius: isFirstItem ? 8 : 0,
                         borderBottomLeftRadius: isLastItem ? 8 : 0,
@@ -60,7 +59,7 @@ const DropdownItem = ({
             >
                 <ResponsiveText 
                     fontStyle='errorInputText'
-                    color={multiple && isChecked ? WHITE : MAIN_GRAY}
+                    color={multiple && isChecked ? colors.WHITE : colors.MAIN_GRAY}
                     text={name}
                 />
             </View>

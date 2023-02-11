@@ -5,10 +5,7 @@ import {
     View, 
 } from 'react-native';
 
-import { 
-    BasicView, 
-    Header, 
-} from '../../../core/components';
+import { BasicView } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
 import { useCustomersScreen } from '../services';
@@ -21,11 +18,7 @@ const CustomersScreen = () => {
     } = useCustomersScreen();
     
     return (
-        <BasicView 
-            headerComponent={
-                <Header title={strings.dashboardTiles.customers} />
-            }
-        >
+        <BasicView title={strings.dashboardTiles.customers}>
             <FlatList
                 ListHeaderComponent={renderHeader} 
                 showsVerticalScrollIndicator={false}

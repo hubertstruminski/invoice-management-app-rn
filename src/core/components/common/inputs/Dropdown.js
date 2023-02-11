@@ -13,11 +13,9 @@ import { ArrowDownIcon } from '../../../../../assets';
 import { hp } from '../../../tools';
 import { strings } from '../../../internationalization/strings';
 import { 
-    GRAY_3, 
-    MAIN_GRAY, 
-    RED, 
-} from '../../../constants/colors';
-import { useDropdown } from '../../../services';
+    useDropdown, 
+    useTheme, 
+} from '../../../services';
 
 const Dropdown = forwardRef(({
     containerStyle,
@@ -33,9 +31,12 @@ const Dropdown = forwardRef(({
     setChosenEntities,
     chosenEntities,
 }, ref) => {
+    const { colors } = useTheme();
     const {
         renderItems,
         toggleDropdown,
+        value,
+        showData,
     } = useDropdown({
         data,
         setId,
@@ -44,6 +45,7 @@ const Dropdown = forwardRef(({
         chosenEntities,
         multiple,
         ref,
+        colors,
     });
 
     return (
@@ -57,50 +59,50 @@ const Dropdown = forwardRef(({
                 <ResponsiveText 
                     fontStyle='inputText'
                     text={leftTitle}
-                    color={MAIN_GRAY}
+                    color={colors.MAIN_GRAY}
                 />
                 { rightTitle &&
                     <ResponsiveText 
                         fontStyle='rightInputTitle'
                         text={rightTitle}
-                        color={GRAY_3}
+                        color={colors.GRAY_3}
                     />
                 }
             </View>
             <View 
                 style={[
-                    styles.inputContainer, {
+                    styles.inputContainer(colors), {
                         height: multiple ? undefined : hp(48),
-                        borderColor: (!id && errorText && !showData) ? RED : GRAY_3,
+                        borderColor: (!id && errorText && !showData) ? colors.RED : colors.GRAY_3,
                     }
                 ]}
             >
                 {multiple ? (
                         <ResponsiveText 
                             fontStyle='inputText'
-                            color={chosenEntities?.length !== 0 ? MAIN_GRAY : GRAY_3}
+                            color={chosenEntities?.length !== 0 ? colors.MAIN_GRAY : colors.GRAY_3}
                             text={chosenEntities?.length === 0 ? 
                                 strings.placeholders.multipleProducts : chosenEntities?.map(item => item.name).join(', ')}
                         />
                     ) :
                         <ResponsiveText 
                             fontStyle='inputText'
-                            color={value !== '' ? MAIN_GRAY : GRAY_3}
+                            color={value !== '' ? colors.MAIN_GRAY : colors.GRAY_3}
                             text={value === '' ? placeholder : value}
                             customStyle={[
-                                styles.input, {
+                                styles.input(colors), {
                                     flex: 1,
                                 }
                             ]}
                         />
                 }
                 <TouchableIcon onPress={toggleDropdown}>
-                    <ArrowDownIcon />
+                    <ArrowDownIcon color={colors.GRAY_3} />
                 </TouchableIcon>
             </View> 
             { showData &&
-                <View style={styles.shadow}>
-                    <View style={styles.dropdownContainer}>
+                <View style={styles.shadow(colors)}>
+                    <View style={styles.dropdownContainer(colors)}>
                         {renderItems()}
                     </View>   
                 </View>
@@ -108,7 +110,7 @@ const Dropdown = forwardRef(({
             { !id && errorText && !showData &&
                 <ResponsiveText 
                     fontStyle='errorInputText'
-                    color={RED}
+                    color={colors.RED}
                     text={errorText}
                     customStyle={styles.errorSpace}
                 /> 

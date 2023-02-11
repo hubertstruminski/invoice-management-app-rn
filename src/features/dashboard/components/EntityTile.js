@@ -9,12 +9,12 @@ import { useNavigation } from '@react-navigation/native';
 
 import { ResponsiveText } from '../../../core/components';
 import globalStyles from '../../../core/styles/globalStyles';
-import { MAIN_GRAY } from '../../../core/constants/colors';
 import styles from '../style/entityTileStyle';
 import { 
     hp, 
     navigateFromTile, 
 } from '../../../core/tools';
+import { useTheme } from '../../../core/services';
 
 const EntityTile = ({
     icon,
@@ -23,12 +23,13 @@ const EntityTile = ({
     label,
     isLast,
 }) => {
+    const { colors } = useTheme();
     const { navigate } = useNavigation();
 
     return (
         <View 
             style={[
-                globalStyles.shadow, 
+                globalStyles.shadow(colors), 
                 customStyle, {
                     marginBottom: isLast ? hp(24) : 0
                 }
@@ -37,11 +38,11 @@ const EntityTile = ({
             <TouchableWithoutFeedback 
                 onPress={() => navigateFromTile(label, navigate)}
             >
-                <View style={styles.container}>
+                <View style={styles.container(colors)}>
                     {icon}
                     <ResponsiveText 
                         fontStyle='header'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={title}
                     />
                 </View>

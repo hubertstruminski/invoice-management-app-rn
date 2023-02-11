@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ResponsiveText } from '../..';
 import globalStyles from '../../../styles/globalStyles';
-import { MAIN_GRAY } from '../../../constants/colors';
 import { strings } from '../../../internationalization/strings';
+import { useTheme } from '../../../services';
 
 const AddressDetails = ({
     children,
@@ -12,30 +12,31 @@ const AddressDetails = ({
     city,
     country,
 }) => {
+    const { colors } = useTheme();
     return (
         <React.Fragment>
             <ResponsiveText 
                 fontStyle='labelDetails'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={strings.labels.street + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
                 fontStyle='rightInputTitle'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={street}
                 customStyle={separatorStyle}
             />
             {children}
             <ResponsiveText 
                 fontStyle='labelDetails'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={strings.labels.city + ':'} 
                 customStyle={globalStyles.smallLabelSpace}
             />
             <ResponsiveText 
                 fontStyle='rightInputTitle'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={city}
                 customStyle={separatorStyle}
             />
@@ -43,13 +44,13 @@ const AddressDetails = ({
                 <React.Fragment> 
                     <ResponsiveText 
                         fontStyle='labelDetails'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={strings.labels.country + ':'} 
                         customStyle={globalStyles.smallLabelSpace}
                     />
                     <ResponsiveText 
                         fontStyle='rightInputTitle'
-                        color={MAIN_GRAY}
+                        color={colors.MAIN_GRAY}
                         text={country}
                         customStyle={separatorStyle}
                     />

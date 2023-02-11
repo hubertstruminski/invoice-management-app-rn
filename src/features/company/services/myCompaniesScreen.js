@@ -1,4 +1,4 @@
-import { 
+import React, { 
     useCallback, 
     useMemo,
 } from 'react';
@@ -16,7 +16,8 @@ import {
 } from '../../../core/components';
 import { 
     fetchCompanies, 
-    removeCompany, 
+    removeCompany,
+    setCompanyDetails, 
 } from '../../../core/redux/actions';
 import { removeCompanyById } from '../../../core/redux/requests';
 import { useInitData } from '../../../core/services';
@@ -28,7 +29,7 @@ import {
 import { strings } from '../../../core/internationalization/strings';
 import globalStyles from '../../../core/styles/globalStyles';
 
-export function useMyCompaniesScreen() {
+export function useMyCompaniesScreen(colors) {
     const companies = useSelector(state => state.company.companies);
 
     useInitData(fetchCompanies);
@@ -87,7 +88,7 @@ export function useMyCompaniesScreen() {
         >
             <ResponsiveText 
                 fontStyle='header'
-                color={MAIN_GRAY}
+                color={colors.MAIN_GRAY}
                 text={item.name}
             />
         </EntityItem>
@@ -95,14 +96,14 @@ export function useMyCompaniesScreen() {
 
     const renderHeader = useMemo(() => (
         <Button 
-            color={MAIN_GRAY}
+            color={colors.MAIN_GRAY}
             text={strings.addEntity.addCompany}
-            backgroundColor={TRANSPARENT}
+            backgroundColor={colors.TRANSPARENT}
             isOutline
             customStyle={globalStyles.mediumToSpace}
             onPress={openAddCompanyForm}
         />
-    ), [openAddCompanyForm]);
+    ), [openAddCompanyForm, colors]);
 
     return {
         companies,

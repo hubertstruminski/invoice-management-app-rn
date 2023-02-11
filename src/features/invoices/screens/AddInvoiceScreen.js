@@ -9,21 +9,24 @@ import {
     BasicView, 
     Button, 
     Dropdown, 
-    Header, 
     Input,
     TouchableLayout, 
 } from '../../../core/components';
-import { WHITE } from '../../../core/constants/colors';
 import globalStyles from '../../../core/styles/globalStyles';
 import { strings } from '../../../core/internationalization/strings';
-import { useAddInvoiceScreen } from '../services';
+import { 
+    useAddInvoiceScreen, 
+    numberMask, 
+} from '../services';
 import { hp } from '../../../core/tools';
+import { useTheme } from '../../../core/services';
 
 const AddInvoiceScreen = ({
     route: {
         params,
     },
 }) => {
+    const { colors } = useTheme();
     const {
         number, 
         setNumber,
@@ -54,7 +57,7 @@ const AddInvoiceScreen = ({
                 globalStyles.alignCenter, 
                 globalStyles.flex,
             ]}
-            headerComponent={<Header title={strings.addEntity.addInvoice} />}
+            title={strings.addEntity.addInvoice}
         >
             <KeyboardAwareScrollView 
                 extraHeight={hp(150)}
@@ -80,7 +83,7 @@ const AddInvoiceScreen = ({
                         leftTitle={strings.labels.deadline}
                         placeholder={moment(deadline).format('DD.MM.YYYY')}
                         containerStyle={globalStyles.regularBottomSpace}
-                        leftIcon={<CalendarIcon />}
+                        leftIcon={<CalendarIcon color={colors.BLACK} />}
                         errorText={errors[1]}
                         withWarning={errors[1] !== null}
                         onCalendarPress={toggleDeadlineModal}
@@ -126,7 +129,7 @@ const AddInvoiceScreen = ({
                         setValue={setComment}
                     />
                     <Button 
-                        color={WHITE}
+                        color={colors.WHITE}
                         text={strings.buttons.save}
                         customStyle={globalStyles.largeBottomPadding}
                         onPress={createInvoice}
